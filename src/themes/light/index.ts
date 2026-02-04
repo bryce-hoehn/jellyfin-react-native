@@ -1,40 +1,16 @@
-import type { ColorSystemOptions } from '@mui/material/styles';
-import merge from 'lodash-es/merge';
-
-import { DEFAULT_COLOR_SCHEME } from '../_base/theme';
+import { buildCustomColorScheme } from '../utils';
 
 /** The "Light" color scheme. */
-const theme = merge<ColorSystemOptions, ColorSystemOptions, ColorSystemOptions>(
-    {},
-    DEFAULT_COLOR_SCHEME,
-    {
-        palette: {
-            mode: 'light',
-            background: {
-                default: '#f2f2f2',
-                paper: '#e8e8e8'
-            },
-            text: {
-                primary: '#000',
-                secondary: 'rgba(0, 0, 0, 0.87)'
-            },
-            action: {
-                focus: '#bbb',
-                hover: '#ddd'
-            },
-            Alert: {
-                infoFilledBg: '#fff3a5',
-                infoFilledColor: '#000'
-            },
-            AppBar: {
-                defaultBg: '#e8e8e8'
-            },
-            Button: {
-                inheritContainedBg: '#d8d8d8',
-                inheritContainedHoverBg: '#ccc'
-            }
-        }
-    }
-);
+const theme = buildCustomColorScheme({
+    colors: {
+        background: '#f2f2f2',
+        onBackground: '#000000',
+        surface: '#e8e8e8',
+        onSurface: '#000000',
+        inverseSurface: '#202020',
+        inverseOnSurface: 'rgba(255, 255, 255, 0.87)',
+        surfaceVariant: '#d8d8d8'
+    } as any
+});
 
 export default theme;

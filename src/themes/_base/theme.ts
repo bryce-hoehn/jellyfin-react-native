@@ -1,125 +1,52 @@
-import type { ColorSystemOptions, ThemeOptions } from '@mui/material/styles';
-import type {} from '@mui/material/themeCssVarsAugmentation';
+import type { MD3Theme } from 'react-native-paper';
 
-const LIST_ICON_WIDTH = 36;
-
-/** The default "Dark" color scheme. */
-export const DEFAULT_COLOR_SCHEME: ColorSystemOptions = {
-    palette: {
-        mode: 'dark',
-        primary: {
-            main: '#00a4dc'
-        },
-        secondary: {
-            main: '#aa5cc3'
-        },
-        background: {
-            default: '#101010',
-            paper: '#202020'
-        },
-        action: {
-            selectedOpacity: 0.2
-        },
-        starIcon: {
-            main: '#f2b01e' // Yellow color
-        },
-        error: {
-            main: '#c62828' // Red color
-        },
-        AppBar: {
-            defaultBg: '#202020'
+/** The default color configuration for react-native-paper themes. */
+export const DEFAULT_COLOR_SCHEME = {
+    colors: {
+        primary: '#00a4dc',
+        onPrimary: '#ffffff',
+        primaryContainer: '#004d66',
+        onPrimaryContainer: '#ffffff',
+        secondary: '#aa5cc3',
+        onSecondary: '#ffffff',
+        secondaryContainer: '#7a3a91',
+        onSecondaryContainer: '#ffffff',
+        tertiary: '#f2b01e',
+        onTertiary: '#ffffff',
+        tertiaryContainer: '#b67c00',
+        onTertiaryContainer: '#ffffff',
+        error: '#c62828',
+        onError: '#ffffff',
+        errorContainer: '#ffdad6',
+        onErrorContainer: '#410002',
+        background: '#101010',
+        onBackground: 'rgba(255, 255, 255, 0.87)',
+        surface: '#202020',
+        onSurface: 'rgba(255, 255, 255, 0.87)',
+        surfaceVariant: '#303030',
+        onSurfaceVariant: 'rgba(255, 255, 255, 0.6)',
+        outline: 'rgba(255, 255, 255, 0.12)',
+        outlineVariant: 'rgba(255, 255, 255, 0.12)',
+        inverseSurface: '#e8e8e8',
+        inverseOnSurface: '#000000',
+        inversePrimary: '#00a4dc',
+        shadow: 'rgba(0, 0, 0, 0.4)',
+        scrim: 'rgba(0, 0, 0, 0.4)',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
+        surfaceDisabled: 'rgba(255, 255, 255, 0.12)',
+        onSurfaceDisabled: 'rgba(255, 255, 255, 0.38)',
+        elevation: {
+            level0: 'transparent',
+            level1: 'rgba(0, 0, 0, 0.12)',
+            level2: 'rgba(0, 0, 0, 0.24)',
+            level3: 'rgba(0, 0, 0, 0.36)',
+            level4: 'rgba(0, 0, 0, 0.48)',
+            level5: 'rgba(0, 0, 0, 0.6)'
         }
     }
 };
 
-/** The default customizations to the default MUI theme. */
-export const DEFAULT_THEME_OPTIONS: ThemeOptions = {
-    typography: {
-        fontFamily: '"Noto Sans", sans-serif',
-        button: {
-            textTransform: 'none'
-        },
-        h1: {
-            fontSize: '1.8rem'
-        },
-        h2: {
-            fontSize: '1.5rem'
-        },
-        h3: {
-            fontSize: '1.17rem'
-        }
-    },
-    components: {
-        MuiAlert: {
-            styleOverrides: {
-                message: {
-                    // NOTE: This seems like a bug. Block content does not fill the container width.
-                    flexGrow: 1
-                }
-            }
-        },
-        MuiAppBar: {
-            styleOverrides: {
-                colorTransparent: ({ theme }) => ({
-                    color: theme.vars.palette.text.primary
-                })
-            }
-        },
-        MuiButton: {
-            defaultProps: {
-                variant: 'contained'
-            },
-            variants: [
-                {
-                    props: {
-                        size: 'large'
-                    },
-                    style: {
-                        fontSize: '1rem',
-                        fontWeight: 'bold'
-                    }
-                }
-            ]
-        },
-        MuiFormControl: {
-            defaultProps: {
-                variant: 'filled'
-            }
-        },
-        MuiFormHelperText: {
-            styleOverrides: {
-                root: {
-                    fontSize: '1rem'
-                }
-            }
-        },
-        MuiTextField: {
-            defaultProps: {
-                variant: 'filled'
-            }
-        },
-        MuiListItemIcon: {
-            styleOverrides: {
-                root: {
-                    minWidth: LIST_ICON_WIDTH
-                }
-            }
-        },
-        MuiListSubheader: {
-            styleOverrides: {
-                root: {
-                    // NOTE: Added for drawer subheaders, but maybe it won't work in other cases?
-                    backgroundColor: 'inherit',
-                    position: 'initial'
-                }
-            }
-        },
-        MuiListItemText: {
-            styleOverrides: {
-                inset: {
-                    paddingLeft: LIST_ICON_WIDTH
-                }
-            }
-        }
-    }
+/** The default customizations to the react-native-paper theme. */
+export const DEFAULT_THEME_OPTIONS: Partial<MD3Theme> = {
+    roundness: 4
 };

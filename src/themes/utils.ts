@@ -1,22 +1,17 @@
-import { type ColorSystemOptions, extendTheme } from '@mui/material/styles';
-import merge from 'lodash-es/merge';
+import type { MD3Theme } from "react-native-paper";
 
-import { DEFAULT_COLOR_SCHEME } from './_base/theme';
-
-/** The default built-in MUI theme. */
-const defaultMuiTheme = extendTheme({
-    // @ts-expect-error The default theme does not include our custom color schemes
-    colorSchemes: { dark: true, light: true }
-});
+import { DEFAULT_COLOR_SCHEME } from "./_base/theme";
 
 /**
- * Default color schemes ('dark' or 'light') will automatically be merged with MUI's corresponding default color
- * scheme. For custom schemes, we need to merge these manually.
+ * Build a custom color scheme by merging with the default color scheme.
+ * This is similar to the MUI buildCustomColorScheme function but adapted for react-native-paper.
  */
-export const buildCustomColorScheme = (options: ColorSystemOptions) =>
-    merge<ColorSystemOptions, ColorSystemOptions | undefined, ColorSystemOptions, ColorSystemOptions>(
-        {},
-        options.palette?.mode === 'light' ? defaultMuiTheme.colorSchemes.light : defaultMuiTheme.colorSchemes.dark,
-        DEFAULT_COLOR_SCHEME,
-        options
-    );
+export const buildCustomColorScheme = (
+  options: { colors?: Record<string, string> } & Partial<MD3Theme>,
+): Partial<MD3Theme> => ({
+  colors: {
+    ...DEFAULT_COLOR_SCHEME.colors,
+    ...(options.colors as any),
+  },
+  ...options,
+});

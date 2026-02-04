@@ -1,21 +1,15 @@
-import { buildCustomColorScheme } from 'themes/utils';
+import { buildCustomColorScheme } from '../utils';
 
 /** The "Purple Haze" color scheme. */
 const theme = buildCustomColorScheme({
-    palette: {
-        background: {
-            paper: '#000420'
-        },
-        primary: {
-            main: '#48c3c8'
-        },
-        secondary: {
-            main: '#ff77f1'
-        },
-        AppBar: {
-            defaultBg: '#000420'
-        }
-    }
+    colors: {
+        primary: '#48c3c8',
+        secondary: '#ff77f1',
+        primaryContainer: '#000420',
+        secondaryContainer: '#000420',
+        surface: '#000420',
+        onSurface: 'rgba(255, 255, 255, 0.87)'
+    } as any
 });
 
 export default theme;
