@@ -1,69 +1,112 @@
-import { ThemeProvider } from '@mui/material/styles';
-import React from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { PaperProvider } from "react-native-paper";
+
 import {
-    RouterProvider,
-    createHashRouter,
-    Outlet,
-    useLocation
-} from 'react-router-dom';
+    DASHBOARD_APP_PATHS,
+    DASHBOARD_APP_ROUTES,
+} from "apps/dashboard/routes/routes";
+import { EXPERIMENTAL_APP_ROUTES } from "apps/experimental/routes/routes";
+import { STABLE_APP_ROUTES } from "apps/stable/routes/routes";
+import { WIZARD_APP_ROUTES } from "apps/wizard/routes/routes";
+import AppHeader from "components/AppHeader";
+import Backdrop from "components/Backdrop";
+import { SETTING_KEY as LAYOUT_SETTING_KEY } from "components/layoutManager";
+import BangRedirect from "components/router/BangRedirect";
+import { LayoutMode } from "constants/layoutMode";
+import browser from "scripts/browser";
+import appTheme from "themes";
+import { ThemeStorageManager } from "themes/themeStorageManager";
 
-import { DASHBOARD_APP_PATHS, DASHBOARD_APP_ROUTES } from 'apps/dashboard/routes/routes';
-import { EXPERIMENTAL_APP_ROUTES } from 'apps/experimental/routes/routes';
-import { STABLE_APP_ROUTES } from 'apps/stable/routes/routes';
-import { WIZARD_APP_ROUTES } from 'apps/wizard/routes/routes';
-import AppHeader from 'components/AppHeader';
-import Backdrop from 'components/Backdrop';
-import { SETTING_KEY as LAYOUT_SETTING_KEY } from 'components/layoutManager';
-import BangRedirect from 'components/router/BangRedirect';
-import { createRouterHistory } from 'components/router/routerHistory';
-import { LayoutMode } from 'constants/layoutMode';
-import browser from 'scripts/browser';
-import appTheme from 'themes';
-import { ThemeStorageManager } from 'themes/themeStorageManager';
+const Stack = createNativeStackNavigator();
 
-const layoutMode = browser.tv ? LayoutMode.Tv : localStorage.getItem(LAYOUT_SETTING_KEY);
-const isExperimentalLayout = !layoutMode || layoutMode === LayoutMode.Experimental;
-
-const router = createHashRouter([
-    {
-        element: <RootAppLayout />,
-        children: [
-            ...(isExperimentalLayout ? EXPERIMENTAL_APP_ROUTES : STABLE_APP_ROUTES),
-            ...DASHBOARD_APP_ROUTES,
-            ...WIZARD_APP_ROUTES,
-            {
-                path: '!/*',
-                Component: BangRedirect
-            }
-        ]
-    }
-]);
-
-export const history = createRouterHistory(router);
-
-export default function RootAppRouter() {
-    return <RouterProvider router={router} />;
-}
+const layoutMode = browser.tv
+  ? LayoutMode.Tv
+  : localStorage.getItem(LAYOUT_SETTING_KEY);
+const isExperimentalLayout =
+  !layoutMode || layoutMode === LayoutMode.Experimental;
 
 /**
- * Layout component that renders legacy components required on all pages.
- * NOTE: The app will crash if these get removed from the DOM.
+ * RootAppLayout component that wraps the app with PaperProvider and navigation
  */
 function RootAppLayout() {
-    const location = useLocation();
-    const isNewLayoutPath = Object.values(DASHBOARD_APP_PATHS)
-        .some(path => location.pathname.startsWith(`/${path}`));
+  return (
+    <>
+      <AppHeader isHidden={isExperimentalLayout} />
+      <Backdrop />
+      <Stack.Navigator
+        initialRouteName={isExperimentalLayout ? "Experimental" : "Stable"}
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        {/* Experimental Layout */}
+        {isExperimentalLayout && (
+          <>
+            {EXPERIMENTAL_APP_ROUTES.map((route: any) => (
+              <Stack.Screen
+                key={route.path}
+                name={route.path}
+                component={route.Component || route.element}
+                options={{ title: route.path }}
+              />
+            ))}
+          </>
+        )}
 
-    return (
-        <ThemeProvider
-            theme={appTheme}
-            defaultMode='dark'
-            storageManager={ThemeStorageManager}
-        >
-            <Backdrop />
-            <AppHeader isHidden={isExperimentalLayout || isNewLayoutPath} />
+        {/* Stable Layout */}
+        {!isExperimentalLayout && (
+          <>
+            {STABLE_APP_ROUTES.map((route: any) => (
+              <Stack.Screen
+                key={route.path}
+                name={route.path}
+                component={route.Component || route.element}
+                options={{ title: route.path }}
+              />
+            ))}
+          </>
+        )}
 
-            <Outlet />
-        </ThemeProvider>
-    );
+        {/* Dashboard Routes (always available) */}
+        {DASHBOARD_APP_ROUTES.map((route: any) => (
+          <Stack.Screen
+            key={route.path || DASHBOARD_APP_PATHS.Dashboard}
+            name={route.path || DASHBOARD_APP_PATHS.Dashboard}
+            component={route.Component || route.element}
+            options={{ title: route.path || "Dashboard" }}
+          />
+        ))}
+
+        {/* Wizard Routes */}
+        {WIZARD_APP_ROUTES.map((route: any) => (
+          <Stack.Screen
+            key={route.path}
+            name={route.path}
+            component={route.Component || route.element}
+            options={{ title: route.path }}
+          />
+        ))}
+
+        {/* Bang Redirect for invalid paths */}
+        <Stack.Screen
+          name="BangRedirect"
+          component={BangRedirect}
+          options={{ title: "BangRedirect" }}
+        />
+      </Stack.Navigator>
+    </>
+  );
+}
+
+export default function RootAppRouter() {
+  return (
+    <PaperProvider theme={appTheme}>
+      <ThemeStorageManager>
+        <NavigationContainer>
+          <RootAppLayout />
+        </NavigationContainer>
+      </ThemeStorageManager>
+    </PaperProvider>
+  );
 }
