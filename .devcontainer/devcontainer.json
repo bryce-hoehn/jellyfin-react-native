@@ -1,23 +1,46 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
 {
-	"name": "Node.js",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/javascript-node:24-bookworm",
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	//https://github.com/microsoft/vscode-dev-containers/issues/559
-	"postCreateCommand": "source $NVM_DIR/nvm.sh && nvm install 24"
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "name": "Expo Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
+  "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+  "mounts": ["source=node_modules_${devcontainerId},target=${containerWorkspaceFolder}/node_modules,type=volume"],
+  "forwardPorts": [8081],
+  "runArgs": ["-p=8081:8081", "--env-file", ".devcontainer/.env"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "GitHub.vscode-github-actions",
+        "streetsidesoftware.code-spell-checker",
+        "VisualStudioExptTeam.vscodeintellicode"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "quickfix.biome": "always",
+          "source.organizeImports.biome": "always"
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[javascriptreact]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[typescriptreact]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "workbench.tree.indent": 25
+      }
+    }
+  }
 }
