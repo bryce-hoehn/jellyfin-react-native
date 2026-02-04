@@ -37,6 +37,12 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "react-native-localize",
+        {
+          "locales": ["en", "fr"] 
+        }
       ]
     ],
     "experiments": {
