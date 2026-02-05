@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const createSelectElement = ({ name, id, required, label, option }: { name?: string, id?: string, required?: string, label?: string, option?: React.ReactNode }) => ({
     __html: `<select
@@ -29,7 +29,7 @@ const SelectElement: FunctionComponent<IProps> = ({ name, id, required, label, c
                 name: name ? `name='${name}'` : '',
                 id: id,
                 required: required ? `required='${required}'` : '',
-                label: globalize.translate(label),
+                label: translate(label),
                 option: children
             })}
         />

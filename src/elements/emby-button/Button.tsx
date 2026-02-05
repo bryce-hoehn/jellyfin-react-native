@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
     icon,
     iconClassName,
     iconPos,
-    onClick,
+    onPress,
     ...rest
 }) => {
     const btnClass = classNames(
@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
     return (
         <button
             className={btnClass}
-            onClick={onClick}
+            onPress={onPress}
             {...rest}
         >
             {icon && iconPos === IconPosition.LEFT && <span className={iconClass} aria-hidden='true' />}

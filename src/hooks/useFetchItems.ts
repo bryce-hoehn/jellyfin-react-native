@@ -19,7 +19,7 @@ import { getLiveTvApi } from '@jellyfin/sdk/lib/utils/api/live-tv-api';
 import { getPlaystateApi } from '@jellyfin/sdk/lib/utils/api/playstate-api';
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
 import datetime from 'scripts/datetime';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import { type JellyfinApiContext, useApi } from './useApi';
 import { getAlphaPickerQuery, getFieldsQuery, getFiltersQuery, getLimitQuery } from 'utils/items';
@@ -437,7 +437,7 @@ function groupsUpcomingEpisodes(items: ItemDto[]) {
                     true
                 );
                 dateText = datetime.isRelativeDay(premiereDate, -1) ?
-                    globalize.translate('Yesterday') :
+                    translate('Yesterday') :
                     datetime.toLocaleDateString(premiereDate, {
                         weekday: 'long',
                         month: 'short',

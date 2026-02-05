@@ -56,7 +56,7 @@ const ResponsiveDrawer: FC<PropsWithChildren<ResponsiveDrawerProps>> = ({
             <Box
                 role='presentation'
                 // Close the drawer when the content is clicked
-                onClick={onClose}
+                onPress={onClose}
                 onKeyDown={onClose}
             >
                 {children}

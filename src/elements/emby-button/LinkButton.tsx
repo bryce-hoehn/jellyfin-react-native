@@ -23,7 +23,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
     isAutoHideEnabled,
     href = '#', // The href must have a value to be focusable in the TV layout
     target,
-    onClick,
+    onPress,
     children,
     ...rest
 }) => {
@@ -45,8 +45,8 @@ const LinkButton: React.FC<LinkButtonProps> = ({
         } else {
             e.preventDefault();
         }
-        onClick?.(e);
-    }, [ href, target, onClick ]);
+        onPress?.(e);
+    }, [ href, target, onPress ]);
 
     if (isAutoHideEnabled === true && !appHost.supports(AppFeature.ExternalLinks)) {
         return null;
@@ -63,7 +63,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
             className={cssClass}
             href={href}
             target={target}
-            onClick={onAnchorClick}
+            onPress={onAnchorClick}
             {...rest}
         >
             {children}

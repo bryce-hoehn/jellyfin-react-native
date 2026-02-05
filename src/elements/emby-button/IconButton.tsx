@@ -16,7 +16,7 @@ const IconButton: React.FC<IconButtonProps> = ({
     icon,
     iconClassName,
     disabled = false,
-    onClick,
+    onPress,
     ...rest
 }) => {
     const btnClass = classNames(
@@ -36,7 +36,7 @@ const IconButton: React.FC<IconButtonProps> = ({
             className={btnClass}
             title={title}
             disabled={disabled}
-            onClick={onClick}
+            onPress={onPress}
             {...rest}
         >
             <span className={iconClass} aria-hidden='true' />

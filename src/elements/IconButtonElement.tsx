@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 type IProps = {
     is?: string;
@@ -11,7 +11,7 @@ type IProps = {
     dataIndex?: string | number;
     dataTag?: string | number;
     dataProfileid?: string | number;
-    onClick?: () => void;
+    onPress?: () => void;
 };
 
 const createIconButtonElement = ({ is, id, className, title, icon, dataIndex, dataTag, dataProfileid }: IProps) => ({
@@ -29,24 +29,24 @@ const createIconButtonElement = ({ is, id, className, title, icon, dataIndex, da
     </button>`
 });
 
-const IconButtonElement: FunctionComponent<IProps> = ({ is, id, className, title, icon, dataIndex, dataTag, dataProfileid, onClick }: IProps) => {
+const IconButtonElement: FunctionComponent<IProps> = ({ is, id, className, title, icon, dataIndex, dataTag, dataProfileid, onPress }: IProps) => {
     const button = createIconButtonElement({
         is: is,
         id: id ? `id="${id}"` : '',
         className: className,
-        title: title ? `title="${globalize.translate(title)}"` : '',
+        title: title ? `title="${translate(title)}"` : '',
         icon: icon,
         dataIndex: (dataIndex || dataIndex === 0) ? `data-index="${dataIndex}"` : '',
         dataTag: dataTag ? `data-tag="${dataTag}"` : '',
         dataProfileid: dataProfileid ? `data-profileid="${dataProfileid}"` : ''
     });
 
-    if (onClick !== undefined) {
+    if (onPress !== undefined) {
         return (
             <button
                 style={{ all: 'unset' }}
                 dangerouslySetInnerHTML={button}
-                onClick={onClick}
+                onPress={onPress}
             />
         );
     }
