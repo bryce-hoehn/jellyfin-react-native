@@ -1,9 +1,4 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import { type Theme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useMediaQuery, Theme } from 'hooks/useMediaQuery';
 import React, { FC, StrictMode, useCallback, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
@@ -13,7 +8,6 @@ import ServerButton from 'components/toolbar/ServerButton';
 import ElevationScroll from 'components/ElevationScroll';
 import { DRAWER_WIDTH } from 'components/ResponsiveDrawer';
 import { appRouter } from 'components/router/appRouter';
-import ThemeCss from 'components/ThemeCss';
 import { useApi } from 'hooks/useApi';
 import { useLocale } from 'hooks/useLocale';
 
@@ -22,7 +16,7 @@ import AppDrawer from './components/drawer/AppDrawer';
 import HelpButton from './components/toolbar/HelpButton';
 import { DASHBOARD_APP_PATHS } from './routes/routes';
 
-import './AppOverrides.scss';
+import { View } from 'react-native';
 
 export const Component: FC = () => {
     const [ isDrawerActive, setIsDrawerActive ] = useState(false);
@@ -30,7 +24,7 @@ export const Component: FC = () => {
     const { user } = useApi();
     const { dateFnsLocale } = useLocale();
 
-    const isMediumScreen = useMediaQuery((t: Theme) => t.breakpoints.up('md'));
+    const isMediumScreen = useMediaQuery((t: any) => t.breakpoints.up('md'));
     const isMetadataManager = location.pathname.startsWith(`/${DASHBOARD_APP_PATHS.MetadataManager}`);
     const isDrawerAvailable = Boolean(user) && !isMetadataManager;
     const isDrawerOpen = isDrawerActive && isDrawerAvailable;
@@ -49,39 +43,24 @@ export const Component: FC = () => {
     }, []);
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={dateFnsLocale}>
-            <Box sx={{ display: 'flex' }}>
+            <View>
                 <StrictMode>
                     <ElevationScroll elevate={false}>
-                        <AppBar
-                            position='fixed'
-                            sx={{
-                                width: {
-                                    xs: '100%',
-                                    md: isDrawerAvailable ? `calc(100% - ${DRAWER_WIDTH}px)` : '100%'
-                                },
-                                ml: {
-                                    xs: 0,
-                                    md: isDrawerAvailable ? DRAWER_WIDTH : 0
-                                }
-                            }}
+                        <AppToolbar
+                            isBackButtonAvailable={appRouter.canGoBack()}
+                            isDrawerAvailable={!isMediumScreen && isDrawerAvailable}
+                            isDrawerOpen={isDrawerOpen}
+                            onDrawerButtonPress={onToggleDrawer}
+                            buttons={
+                                <HelpButton />
+                            }
                         >
-                            <AppToolbar
-                                isBackButtonAvailable={appRouter.canGoBack()}
-                                isDrawerAvailable={!isMediumScreen && isDrawerAvailable}
-                                isDrawerOpen={isDrawerOpen}
-                                onDrawerButtonClick={onToggleDrawer}
-                                buttons={
-                                    <HelpButton />
-                                }
-                            >
-                                {isMetadataManager && (
-                                    <ServerButton />
-                                )}
+                            {isMetadataManager && (
+                                <ServerButton />
+                            )}
 
-                                <AppTabs isDrawerOpen={isDrawerOpen} />
-                            </AppToolbar>
-                        </AppBar>
+                            <AppTabs isDrawerOpen={isDrawerOpen} />
+                        </AppToolbar>
                     </ElevationScroll>
 
                     {
@@ -95,9 +74,8 @@ export const Component: FC = () => {
                     }
                 </StrictMode>
 
-                <Box
-                    component='main'
-                    sx={{
+                <View
+                    style={{
                         width: '100%',
                         flexGrow: 1
                     }}
@@ -105,9 +83,7 @@ export const Component: FC = () => {
                     <AppBody>
                         <Outlet />
                     </AppBody>
-                </Box>
-            </Box>
-            <ThemeCss dashboard />
-        </LocalizationProvider>
+                </View>
+            </View>
     );
 };

@@ -1,39 +1,36 @@
-import ArrowBack from '@mui/icons-material/ArrowBack';
-import MenuIcon from '@mui/icons-material/Menu';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Toolbar from '@mui/material/Toolbar';
-import Tooltip from '@mui/material/Tooltip';
+import { Appbar, Tooltip } from 'react-native-paper';
 import React, { type FC, type PropsWithChildren, ReactNode } from 'react';
 
 import { appRouter } from 'components/router/appRouter';
 import { useApi } from 'hooks/useApi';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize'
 
 import UserMenuButton from './UserMenuButton';
+import { View } from 'react-native';
+import { fontSizes } from 'constants/sizes';
 
 interface AppToolbarProps {
     buttons?: ReactNode
     isDrawerAvailable: boolean
     isDrawerOpen: boolean
-    onDrawerButtonClick?: (event: React.MouseEvent<HTMLElement>) => void
+    onDrawerButtonPress?: () => void
     isBackButtonAvailable?: boolean
     isUserMenuAvailable?: boolean
 }
 
-const onBackButtonClick = () => {
+const onBackButtonPress = () => {
     appRouter.back()
         .catch(err => {
             console.error('[AppToolbar] error calling appRouter.back', err);
         });
-};
+}; // TODO: Fix routing
 
 const AppToolbar: FC<PropsWithChildren<AppToolbarProps>> = ({
     buttons,
     children,
     isDrawerAvailable,
     isDrawerOpen,
-    onDrawerButtonClick = () => { /* no-op */ },
+    onDrawerButtonPress = () => { /* no-op */ },
     isBackButtonAvailable = false,
     isUserMenuAvailable = true
 }) => {
@@ -41,64 +38,46 @@ const AppToolbar: FC<PropsWithChildren<AppToolbarProps>> = ({
     const isUserLoggedIn = Boolean(user);
 
     return (
-        <Toolbar
-            variant='dense'
-            sx={{
-                flexWrap: {
-                    xs: 'wrap',
-                    lg: 'nowrap'
-                },
-                pl: {
-                    xs: 'max(16px, env(safe-area-inset-left))',
-                    sm: 'max(24px, env(safe-area-inset-left))'
-                },
-                pr: {
-                    xs: 'max(16px, env(safe-area-inset-left))',
-                    sm: 'max(24px, env(safe-area-inset-left))'
-                }
-            }}
-        >
+        <Appbar.Header>
             {isUserLoggedIn && isDrawerAvailable && (
-                <Tooltip title={globalize.translate(isDrawerOpen ? 'MenuClose' : 'MenuOpen')}>
-                    <IconButton
-                        size='large'
-                        edge='start'
+                <Tooltip title={translate(isDrawerOpen ? 'MenuClose' : 'MenuOpen')}>
+                    <Appbar.Action
+                        icon="menu"
+                        size={fontSizes.large}
+                        // edge='start'
                         color='inherit'
-                        aria-label={globalize.translate(isDrawerOpen ? 'MenuClose' : 'MenuOpen')}
-                        onClick={onDrawerButtonClick}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                        aria-label={translate(isDrawerOpen ? 'MenuClose' : 'MenuOpen')}
+                        onPress={onDrawerButtonPress}
+                    />
                 </Tooltip>
             )}
 
             {isBackButtonAvailable && (
-                <Tooltip title={globalize.translate('ButtonBack')}>
-                    <IconButton
-                        size='large'
+                <Tooltip title={translate('ButtonBack')}>
+                    <Appbar.Action
+                        icon="arrow-back"
+                        size={fontSizes.large}
                         // Set the edge if the drawer button is not shown
-                        edge={!(isUserLoggedIn && isDrawerAvailable) ? 'start' : undefined}
+                        // edge={!(isUserLoggedIn && isDrawerAvailable) ? 'start' : undefined} // FIX
                         color='inherit'
-                        aria-label={globalize.translate('ButtonBack')}
-                        onClick={onBackButtonClick}
-                    >
-                        <ArrowBack />
-                    </IconButton>
+                        aria-label={translate('ButtonBack')}
+                        onPress={onBackButtonPress}
+                    />
                 </Tooltip>
             )}
 
             {children}
 
-            <Box sx={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}>
+            <View style={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}>
                 {buttons}
-            </Box>
+            </View>
 
             {isUserLoggedIn && isUserMenuAvailable && (
-                <Box sx={{ flexGrow: 0 }}>
+                <View style={{ flexGrow: 0 }}>
                     <UserMenuButton />
-                </Box>
+                </View>
             )}
-        </Toolbar>
+        </Appbar.Header>
     );
 };
 
