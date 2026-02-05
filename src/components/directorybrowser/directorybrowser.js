@@ -94,17 +94,17 @@ function getEditorHtml(options) {
         labelKey = 'LabelPath';
     }
     const readOnlyAttribute = options.pathReadOnly ? ' readonly' : '';
-    html += `<input is="emby-input" id="txtDirectoryPickerPath" type="text" required="required" ${readOnlyAttribute} label="${globalize.translate(labelKey)}"/>`;
+    html += `<input is="emby-input" id="txtDirectoryPickerPath" type="text" required="required" ${readOnlyAttribute} label="${translate(labelKey)}"/>`;
     html += '</div>';
     if (!readOnlyAttribute) {
-        html += `<button type="button" is="paper-icon-button-light" class="btnRefreshDirectories emby-input-iconbutton" title="${globalize.translate('Refresh')}"><span class="material-icons search" aria-hidden="true"></span></button>`;
+        html += `<button type="button" is="paper-icon-button-light" class="btnRefreshDirectories emby-input-iconbutton" title="${translate('Refresh')}"><span class="material-icons search" aria-hidden="true"></span></button>`;
     }
     html += '</div>';
     if (!readOnlyAttribute) {
         html += '<div class="results paperList" style="max-height: 200px; overflow-y: auto;"></div>';
     }
     html += '<div class="formDialogFooter">';
-    html += `<button is="emby-button" type="submit" class="raised button-submit block formDialogFooterItem">${globalize.translate('ButtonOk')}</button>`;
+    html += `<button is="emby-button" type="submit" class="raised button-submit block formDialogFooterItem">${translate('ButtonOk')}</button>`;
     html += '</div>';
     html += '</form>';
     html += '</div>';
@@ -136,14 +136,14 @@ function validatePath(path, validateWriteable, apiClient) {
     }).catch(response => {
         if (response) {
             if (response.status === 404) {
-                alertText(globalize.translate('PathNotFound'));
+                alertText(translate('PathNotFound'));
                 return Promise.reject();
             }
             if (response.status === 500) {
                 if (validateWriteable) {
-                    alertText(globalize.translate('WriteAccessRequired'));
+                    alertText(translate('WriteAccessRequired'));
                 } else {
-                    alertText(globalize.translate('PathNotFound'));
+                    alertText(translate('PathNotFound'));
                 }
                 return Promise.reject();
             }
@@ -234,9 +234,9 @@ class DirectoryBrowser {
 
                 let html = '';
                 html += '<div class="formDialogHeader">';
-                html += `<button is="paper-icon-button-light" class="btnCloseDialog autoSize" tabindex="-1" title="${globalize.translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
+                html += `<button is="paper-icon-button-light" class="btnCloseDialog autoSize" tabindex="-1" title="${translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
                 html += '<h3 class="formDialogHeaderTitle">';
-                html += escapeHtml(options.header || '') || globalize.translate('HeaderSelectPath');
+                html += escapeHtml(options.header || '') || translate('HeaderSelectPath');
                 html += '</h3>';
                 html += '</div>';
                 html += getEditorHtml(options);

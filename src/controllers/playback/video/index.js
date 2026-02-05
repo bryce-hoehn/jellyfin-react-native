@@ -501,10 +501,10 @@ export default function (view) {
         icon.classList.remove('fullscreen_exit', 'fullscreen');
 
         if (playbackManager.isFullscreen(currentPlayer)) {
-            button.setAttribute('title', globalize.translate('ExitFullscreen') + ' (F)');
+            button.setAttribute('title', translate('ExitFullscreen') + ' (F)');
             icon.classList.add('fullscreen_exit');
         } else {
-            button.setAttribute('title', globalize.translate('Fullscreen') + ' (F)');
+            button.setAttribute('title', translate('Fullscreen') + ' (F)');
             icon.classList.add('fullscreen');
         }
     }
@@ -732,10 +732,10 @@ export default function (view) {
 
         if (isPaused) {
             icon = 'play_arrow';
-            title = globalize.translate('Play');
+            title = translate('Play');
         } else {
             icon = 'pause';
-            title = globalize.translate('ButtonPause');
+            title = translate('ButtonPause');
         }
 
         btnPlayPauseIcon.classList.add(icon);
@@ -888,10 +888,10 @@ export default function (view) {
         buttonMuteIcon.classList.remove('volume_off', 'volume_up');
 
         if (isMuted) {
-            buttonMute.setAttribute('title', globalize.translate('Unmute') + ' (M)');
+            buttonMute.setAttribute('title', translate('Unmute') + ' (M)');
             buttonMuteIcon.classList.add('volume_off');
         } else {
-            buttonMute.setAttribute('title', globalize.translate('Mute') + ' (M)');
+            buttonMute.setAttribute('title', translate('Mute') + ' (M)');
             buttonMuteIcon.classList.add('volume_up');
         }
 
@@ -955,7 +955,7 @@ export default function (view) {
         updateTimeDisplay(playState.PositionTicks, nowPlayingItem.RunTimeTicks, playState.PlaybackStartTimeTicks, playState.PlaybackRate, playState.BufferedRanges || []);
     }
 
-    function onSettingsButtonClick() {
+    function onSettingsButtonPress() {
         const btn = this;
 
         import('../../../components/playback/playersettingsmenu').then((playerSettingsMenu) => {
@@ -1041,7 +1041,7 @@ export default function (view) {
         import('../../../components/actionSheet/actionSheet').then(({ default: actionsheet }) => {
             actionsheet.show({
                 items: menuItems,
-                title: globalize.translate('Audio'),
+                title: translate('Audio'),
                 positionTo: positionTo
             }).then(function (id) {
                 const index = parseInt(id, 10);
@@ -1069,7 +1069,7 @@ export default function (view) {
 
         streams.unshift({
             Index: -1,
-            DisplayTitle: globalize.translate('Off')
+            DisplayTitle: translate('Off')
         });
 
         const menuItems = streams.map(function (stream) {
@@ -1086,7 +1086,7 @@ export default function (view) {
         });
 
         actionsheet.show({
-            title: globalize.translate('SecondarySubtitles'),
+            title: translate('SecondarySubtitles'),
             items: menuItems,
             positionTo
         }).then(function (id) {
@@ -1116,7 +1116,7 @@ export default function (view) {
 
         streams.unshift({
             Index: -1,
-            DisplayTitle: globalize.translate('Off')
+            DisplayTitle: translate('Off')
         });
         const menuItems = streams.map(function (stream) {
             const opt = {
@@ -1147,7 +1147,7 @@ export default function (view) {
 
         if (currentTrackCanAddSecondarySubtitle) {
             const secondarySubtitleMenuItem = {
-                name: globalize.translate('SecondarySubtitles'),
+                name: translate('SecondarySubtitles'),
                 id: 'secondarysubtitle'
             };
             menuItems.unshift(secondarySubtitleMenuItem);
@@ -1157,7 +1157,7 @@ export default function (view) {
 
         import('../../../components/actionSheet/actionSheet').then(({ default: actionsheet }) => {
             actionsheet.show({
-                title: globalize.translate('Subtitles'),
+                title: translate('Subtitles'),
                 items: menuItems,
                 positionTo: positionTo
             }).then(function (id) {
@@ -1206,7 +1206,7 @@ export default function (view) {
          */
     let clickedElement;
 
-    function onClickCapture(e) {
+    function onPressCapture(e) {
         // Firefox/Edge emits `click` even if `preventDefault` was used on `keydown`
         // Ignore 'click' if another element was originally clicked
         if (!e.target.contains(clickedElement)) {
@@ -1712,7 +1712,7 @@ export default function (view) {
                 passive: true
             });
             if (browser.firefox || browser.edge) {
-                dom.addEventListener(document, 'click', onClickCapture, { capture: true });
+                dom.addEventListener(document, 'click', onPressCapture, { capture: true });
             }
         } catch {
             setBackdropTransparency(TRANSPARENCY_LEVEL.None); // reset state set in viewbeforeshow
@@ -1755,7 +1755,7 @@ export default function (view) {
             passive: true
         });
         if (browser.firefox || browser.edge) {
-            dom.removeEventListener(document, 'click', onClickCapture, { capture: true });
+            dom.removeEventListener(document, 'click', onPressCapture, { capture: true });
         }
         stopOsdHideTimer();
         headerElement.classList.remove('osdHeader');
@@ -1777,7 +1777,7 @@ export default function (view) {
     view.querySelector('.btnAirPlay').addEventListener('click', function () {
         playbackManager.toggleAirPlay(currentPlayer);
     });
-    view.querySelector('.btnVideoOsdSettings').addEventListener('click', onSettingsButtonClick);
+    view.querySelector('.btnVideoOsdSettings').addEventListener('click', onSettingsButtonPress);
     view.addEventListener('viewhide', function () {
         headerElement.classList.remove('hide');
     });

@@ -156,7 +156,7 @@ export default function (page, providerId, options) {
             }, function () {
                 loading.hide();
                 Dashboard.alert({
-                    message: globalize.translate('ErrorAddingXmlTvFile')
+                    message: translate('ErrorAddingXmlTvFile')
                 });
             });
         });

@@ -7,7 +7,7 @@ import escapeHtml from 'escape-html';
 
 import toast from 'components/toast/toast';
 import dom from 'utils/dom';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { currentSettings as userSettings } from 'scripts/settings/userSettings';
 import { PluginType } from 'types/plugin';
@@ -57,21 +57,21 @@ function onSubmit(this: HTMLElement, e: Event) {
             addToPlaylist(panel, playlistId)
                 .catch(err => {
                     console.error('[PlaylistEditor] Failed to add to playlist %s', playlistId, err);
-                    toast(globalize.translate('PlaylistError.AddFailed'));
+                    toast(translate('PlaylistError.AddFailed'));
                 })
                 .finally(loading.hide);
         } else if (panel.playlistId) {
             updatePlaylist(panel)
                 .catch(err => {
                     console.error('[PlaylistEditor] Failed to update to playlist %s', panel.playlistId, err);
-                    toast(globalize.translate('PlaylistError.UpdateFailed'));
+                    toast(translate('PlaylistError.UpdateFailed'));
                 })
                 .finally(loading.hide);
         } else {
             createPlaylist(panel)
                 .catch(err => {
                     console.error('[PlaylistEditor] Failed to create playlist', err);
-                    toast(globalize.translate('PlaylistError.CreateFailed'));
+                    toast(translate('PlaylistError.CreateFailed'));
                 })
                 .finally(loading.hide);
         }
@@ -221,10 +221,10 @@ function populatePlaylists(editorOptions: PlaylistEditorOptions, panel: DialogEl
             let html = '';
 
             if ((editorOptions.enableAddToPlayQueue !== false && playbackManager.isPlaying()) || SyncPlay?.Manager.isSyncPlayEnabled()) {
-                html += `<option value="queue">${globalize.translate('AddToPlayQueue')}</option>`;
+                html += `<option value="queue">${translate('AddToPlayQueue')}</option>`;
             }
 
-            html += `<option value="">${globalize.translate('OptionNew')}</option>`;
+            html += `<option value="">${translate('OptionNew')}</option>`;
 
             html += playlists.map(({ item, permissions }) => {
                 if (!permissions?.CanEdit) return '';
@@ -258,24 +258,24 @@ function getEditorHtml(items: string[], options: PlaylistEditorOptions) {
 
     html += '<div class="fldSelectPlaylist selectContainer">';
     let autoFocus = items.length ? ' autofocus' : '';
-    html += `<select is="emby-select" id="selectPlaylistToAddTo" label="${globalize.translate('LabelPlaylist')}"${autoFocus}></select>`;
+    html += `<select is="emby-select" id="selectPlaylistToAddTo" label="${translate('LabelPlaylist')}"${autoFocus}></select>`;
     html += '</div>';
 
     html += '<div class="newPlaylistInfo">';
 
     html += '<div class="inputContainer">';
     autoFocus = items.length ? '' : ' autofocus';
-    html += `<input is="emby-input" type="text" id="txtNewPlaylistName" required="required" label="${globalize.translate('LabelName')}"${autoFocus} />`;
+    html += `<input is="emby-input" type="text" id="txtNewPlaylistName" required="required" label="${translate('LabelName')}"${autoFocus} />`;
     html += '</div>';
 
     html += `
     <div class="checkboxContainer checkboxContainer-withDescription">
         <label>
             <input type="checkbox" is="emby-checkbox" id="chkPlaylistPublic" />
-            <span>${globalize.translate('PlaylistPublic')}</span>
+            <span>${translate('PlaylistPublic')}</span>
         </label>
         <div class="fieldDescription checkboxFieldDescription">
-            ${globalize.translate('PlaylistPublicDescription')}
+            ${translate('PlaylistPublicDescription')}
         </div>
     </div>`;
 
@@ -283,7 +283,7 @@ function getEditorHtml(items: string[], options: PlaylistEditorOptions) {
     html += '</div>';
 
     html += '<div class="formDialogFooter">';
-    html += `<button is="emby-button" type="submit" class="raised btnSubmit block formDialogFooterItem button-submit">${options.id ? globalize.translate('Save') : globalize.translate('Add')}</button>`;
+    html += `<button is="emby-button" type="submit" class="raised btnSubmit block formDialogFooterItem button-submit">${options.id ? translate('Save') : translate('Add')}</button>`;
     html += '</div>';
 
     html += '<input type="hidden" class="fldSelectedItemIds" />';
@@ -393,14 +393,14 @@ export class PlaylistEditor {
 
         let html = '';
         html += '<div class="formDialogHeader">';
-        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${globalize.translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
         html += '<h3 class="formDialogHeaderTitle">';
         if (items.length) {
-            html += globalize.translate('HeaderAddToPlaylist');
+            html += translate('HeaderAddToPlaylist');
         } else if (options.id) {
-            html += globalize.translate('HeaderEditPlaylist');
+            html += translate('HeaderEditPlaylist');
         } else {
-            html += globalize.translate('HeaderNewPlaylist');
+            html += translate('HeaderNewPlaylist');
         }
         html += '</h3>';
 

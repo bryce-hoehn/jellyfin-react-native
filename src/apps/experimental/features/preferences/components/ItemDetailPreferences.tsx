@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import type { DisplaySettingsValues } from '../types/displaySettingsValues';
 
@@ -18,7 +18,7 @@ interface ItemDetailPreferencesProps {
 export function ItemDetailPreferences({ onChange, values }: Readonly<ItemDetailPreferencesProps>) {
     return (
         <Stack spacing={2}>
-            <Typography variant='h2'>{globalize.translate('ItemDetails')}</Typography>
+            <Typography variant='h2'>{translate('ItemDetails')}</Typography>
 
             <FormControl fullWidth>
                 <FormControlLabel
@@ -29,11 +29,11 @@ export function ItemDetailPreferences({ onChange, values }: Readonly<ItemDetailP
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('EnableDetailsBanner')}
+                    label={translate('EnableDetailsBanner')}
                     name='enableItemDetailsBanner'
                 />
                 <FormHelperText id='display-settings-item-details-banner-description'>
-                    {globalize.translate('EnableDetailsBannerHelp')}
+                    {translate('EnableDetailsBannerHelp')}
                 </FormHelperText>
             </FormControl>
         </Stack>

@@ -3,7 +3,7 @@ import { TaskProps } from '../types/taskProps';
 import { useLocale } from 'hooks/useLocale';
 import { formatDistance, formatDistanceToNow, parseISO } from 'date-fns';
 import Typography from '@mui/material/Typography';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const TaskLastRan: FunctionComponent<TaskProps> = ({ task }: TaskProps) => {
     const { dateFnsLocale } = useLocale();
@@ -27,17 +27,17 @@ const TaskLastRan: FunctionComponent<TaskProps> = ({ task }: TaskProps) => {
 
             return (
                 <Typography sx={{ lineHeight: '1.2rem', color: 'text.secondary' }} variant='body1'>
-                    {globalize.translate('LabelScheduledTaskLastRan', lastRan, timeTaken)}
+                    {translate('LabelScheduledTaskLastRan', lastRan, timeTaken)}
 
-                    {lastResultStatus == 'Failed' && <Typography display='inline' color='error'>{` (${globalize.translate('LabelFailed')})`}</Typography>}
-                    {lastResultStatus == 'Cancelled' && <Typography display='inline' color='blue'>{` (${globalize.translate('LabelCancelled')})`}</Typography>}
-                    {lastResultStatus == 'Aborted' && <Typography display='inline' color='error'>{` (${globalize.translate('LabelAbortedByServerShutdown')})`}</Typography>}
+                    {lastResultStatus == 'Failed' && <Typography display='inline' color='error'>{` (${translate('LabelFailed')})`}</Typography>}
+                    {lastResultStatus == 'Cancelled' && <Typography display='inline' color='blue'>{` (${translate('LabelCancelled')})`}</Typography>}
+                    {lastResultStatus == 'Aborted' && <Typography display='inline' color='error'>{` (${translate('LabelAbortedByServerShutdown')})`}</Typography>}
                 </Typography>
             );
         }
     } else {
         return (
-            <Typography sx={{ color: 'text.secondary' }}>{globalize.translate('LabelStopping')}</Typography>
+            <Typography sx={{ color: 'text.secondary' }}>{translate('LabelStopping')}</Typography>
         );
     }
 };

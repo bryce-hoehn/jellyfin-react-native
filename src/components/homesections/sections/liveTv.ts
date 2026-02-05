@@ -5,7 +5,7 @@ import type { ApiClient } from 'jellyfin-apiclient';
 import { appRouter } from 'components/router/appRouter';
 import cardBuilder from 'components/cardbuilder/cardBuilder';
 import layoutManager from 'components/layoutManager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { getBackdropShape } from 'utils/card';
 
@@ -68,7 +68,7 @@ function buildSection(
 
     html += '<div class="verticalSection">';
     html += '<div class="sectionTitleContainer sectionTitleContainer-cards padded-left">';
-    html += '<h2 class="sectionTitle sectionTitle-cards">' + globalize.translate('LiveTV') + '</h2>';
+    html += '<h2 class="sectionTitle sectionTitle-cards">' + translate('LiveTV') + '</h2>';
     html += '</div>';
 
     if (options.enableOverflow) {
@@ -81,31 +81,31 @@ function buildSection(
     html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('livetv', {
         serverId,
         section: 'programs'
-    }) + '" class="raised"><span>' + globalize.translate('Programs') + '</span></a>';
+    }) + '" class="raised"><span>' + translate('Programs') + '</span></a>';
 
     html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('livetv', {
         serverId,
         section: 'guide'
-    }) + '" class="raised"><span>' + globalize.translate('Guide') + '</span></a>';
+    }) + '" class="raised"><span>' + translate('Guide') + '</span></a>';
 
     html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('livetv', {
         serverId,
         section: 'channels'
-    }) + '" class="raised"><span>' + globalize.translate('Channels') + '</span></a>';
+    }) + '" class="raised"><span>' + translate('Channels') + '</span></a>';
 
     html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('recordedtv', {
         serverId
-    }) + '" class="raised"><span>' + globalize.translate('Recordings') + '</span></a>';
+    }) + '" class="raised"><span>' + translate('Recordings') + '</span></a>';
 
     html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('livetv', {
         serverId,
         section: 'dvrschedule'
-    }) + '" class="raised"><span>' + globalize.translate('Schedule') + '</span></a>';
+    }) + '" class="raised"><span>' + translate('Schedule') + '</span></a>';
 
     html += '<a is="emby-linkbutton" href="' + appRouter.getRouteUrl('livetv', {
         serverId,
         section: 'seriesrecording'
-    }) + '" class="raised"><span>' + globalize.translate('Series') + '</span></a>';
+    }) + '" class="raised"><span>' + translate('Series') + '</span></a>';
 
     html += '</div>';
     if (options.enableOverflow) {
@@ -123,12 +123,12 @@ function buildSection(
             section: 'onnow'
         }) + '" class="more button-flat button-flat-mini sectionTitleTextButton">';
         html += '<h2 class="sectionTitle sectionTitle-cards">';
-        html += globalize.translate('HeaderOnNow');
+        html += translate('HeaderOnNow');
         html += '</h2>';
         html += '<span class="material-icons chevron_right" aria-hidden="true"></span>';
         html += '</a>';
     } else {
-        html += '<h2 class="sectionTitle sectionTitle-cards">' + globalize.translate('HeaderOnNow') + '</h2>';
+        html += '<h2 class="sectionTitle sectionTitle-cards">' + translate('HeaderOnNow') + '</h2>';
     }
     html += '</div>';
 

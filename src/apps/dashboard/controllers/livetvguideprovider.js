@@ -1,5 +1,5 @@
 import loading from 'components/loading/loading';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Dashboard, { pageIdOn } from 'utils/dashboard';
 import { getParameterByName } from 'utils/url';
 import Events from 'utils/events';
@@ -18,7 +18,7 @@ function init(page, type, providerId) {
 
 function loadTemplate(page, type, providerId) {
     import(`components/tvproviders/${type}.template.html`).then(({ default: html }) => {
-        page.querySelector('.providerTemplate').innerHTML = globalize.translateHtml(html);
+        page.querySelector('.providerTemplate').innerHTML = translateHtml(html);
         init(page, type, providerId);
     });
 }

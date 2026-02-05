@@ -22,7 +22,7 @@ function showPicker(button, apiClient, itemId, likes, isFavorite) {
     return apiClient.updateFavoriteStatus(apiClient.getCurrentUserId(), itemId, !isFavorite);
 }
 
-function onClick() {
+function onPress() {
     const button = this;
     const id = button.getAttribute('data-id');
     const serverId = button.getAttribute('data-serverid');
@@ -79,7 +79,7 @@ function setState(button, likes, isFavorite, updateAttribute) {
 }
 
 function setTitle(button, isFavorite) {
-    button.title = isFavorite ? globalize.translate('Favorite') : globalize.translate('AddToFavorites');
+    button.title = isFavorite ? translate('Favorite') : translate('AddToFavorites');
 
     const text = button.querySelector('.button-text');
     if (text) {
@@ -88,14 +88,14 @@ function setTitle(button, isFavorite) {
 }
 
 function clearEvents(button) {
-    button.removeEventListener('click', onClick);
+    button.removeEventListener('click', onPress);
     removeNotificationEvent(button, 'UserDataChanged');
 }
 
 function bindEvents(button) {
     clearEvents(button);
 
-    button.addEventListener('click', onClick);
+    button.addEventListener('click', onPress);
     addNotificationEvent(button, 'UserDataChanged', onUserDataChanged);
 }
 

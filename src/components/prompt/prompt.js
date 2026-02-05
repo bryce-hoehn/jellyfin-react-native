@@ -36,7 +36,7 @@ export default (() => {
 
         dlg.classList.add('formDialog');
 
-        dlg.innerHTML = globalize.translateHtml(template, 'core');
+        dlg.innerHTML = translateHtml(template, 'core');
 
         if (layoutManager.tv) {
             scrollHelper.centerFocus.on(dlg.querySelector('.formDialogContent'), false);
@@ -74,7 +74,7 @@ export default (() => {
             return false;
         });
 
-        dlg.querySelector('.submitText').innerText = options.confirmText || globalize.translate('ButtonOk');
+        dlg.querySelector('.submitText').innerText = options.confirmText || translate('ButtonOk');
 
         dlg.style.minWidth = `${Math.min(400, dom.getWindowSize().innerWidth - 50)}px`;
 

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { pluginManager } from 'components/pluginManager';
 import { Plugin, PluginType } from 'types/plugin';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 export function useScreensavers() {
     const screensavers = useMemo<Plugin[]>(() => {
@@ -10,13 +10,13 @@ export function useScreensavers() {
             .ofType(PluginType.Screensaver)
             .map((plugin: Plugin) => ({
                 ...plugin,
-                name: globalize.translate(plugin.name) as string
+                name: translate(plugin.name) as string
             }));
 
         return [
             {
                 id: 'none',
-                name: globalize.translate('None') as string,
+                name: translate('None') as string,
                 type: PluginType.Screensaver
             },
             ...installedScreensaverPlugins

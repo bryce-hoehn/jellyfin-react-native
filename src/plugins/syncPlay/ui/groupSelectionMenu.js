@@ -60,24 +60,24 @@ class GroupSelectionMenu {
 
                 if (policy.SyncPlayAccess === 'CreateAndJoinGroups') {
                     menuItems.push({
-                        name: globalize.translate('LabelSyncPlayNewGroup'),
+                        name: translate('LabelSyncPlayNewGroup'),
                         icon: 'add',
                         id: 'new-group',
                         selected: true,
-                        secondaryText: globalize.translate('LabelSyncPlayNewGroupDescription')
+                        secondaryText: translate('LabelSyncPlayNewGroupDescription')
                     });
                 }
 
                 if (menuItems.length === 0 && policy.SyncPlayAccess === 'JoinGroups') {
                     toast({
-                        text: globalize.translate('MessageSyncPlayCreateGroupDenied')
+                        text: translate('MessageSyncPlayCreateGroupDenied')
                     });
                     loading.hide();
                     return;
                 }
 
                 const menuOptions = {
-                    title: globalize.translate('HeaderSyncPlaySelectGroup'),
+                    title: translate('HeaderSyncPlaySelectGroup'),
                     items: menuItems,
                     positionTo: button,
                     border: true,
@@ -87,7 +87,7 @@ class GroupSelectionMenu {
                 actionsheet.show(menuOptions).then(function (id) {
                     if (id == 'new-group') {
                         apiClient.createSyncPlayGroup({
-                            GroupName: globalize.translate('SyncPlayGroupDefaultTitle', user.localUser.Name)
+                            GroupName: translate('SyncPlayGroupDefaultTitle', user.localUser.Name)
                         });
                     } else if (id) {
                         apiClient.joinSyncPlayGroup({
@@ -106,7 +106,7 @@ class GroupSelectionMenu {
             console.error(error);
             loading.hide();
             toast({
-                text: globalize.translate('MessageSyncPlayErrorAccessingGroups')
+                text: translate('MessageSyncPlayErrorAccessingGroups')
             });
         });
     }
@@ -124,36 +124,36 @@ class GroupSelectionMenu {
         if (!this.SyncPlay?.Manager.isPlaylistEmpty()
             && !this.SyncPlay?.Manager.isPlaybackActive()) {
             menuItems.push({
-                name: globalize.translate('LabelSyncPlayResumePlayback'),
+                name: translate('LabelSyncPlayResumePlayback'),
                 icon: 'play_circle_filled',
                 id: 'resume-playback',
                 selected: false,
-                secondaryText: globalize.translate('LabelSyncPlayResumePlaybackDescription')
+                secondaryText: translate('LabelSyncPlayResumePlaybackDescription')
             });
         } else if (this.SyncPlay?.Manager.isPlaybackActive()) {
             menuItems.push({
-                name: globalize.translate('LabelSyncPlayHaltPlayback'),
+                name: translate('LabelSyncPlayHaltPlayback'),
                 icon: 'pause_circle_filled',
                 id: 'halt-playback',
                 selected: false,
-                secondaryText: globalize.translate('LabelSyncPlayHaltPlaybackDescription')
+                secondaryText: translate('LabelSyncPlayHaltPlaybackDescription')
             });
         }
 
         menuItems.push({
-            name: globalize.translate('Settings'),
+            name: translate('Settings'),
             icon: 'video_settings',
             id: 'settings',
             selected: false,
-            secondaryText: globalize.translate('LabelSyncPlaySettingsDescription')
+            secondaryText: translate('LabelSyncPlaySettingsDescription')
         });
 
         menuItems.push({
-            name: globalize.translate('LabelSyncPlayLeaveGroup'),
+            name: translate('LabelSyncPlayLeaveGroup'),
             icon: 'meeting_room',
             id: 'leave-group',
             selected: true,
-            secondaryText: globalize.translate('LabelSyncPlayLeaveGroupDescription')
+            secondaryText: translate('LabelSyncPlayLeaveGroupDescription')
         });
 
         const menuOptions = {
@@ -203,7 +203,7 @@ class GroupSelectionMenu {
         }).catch((error) => {
             console.error('Playback not allowed!', error);
             toast({
-                text: globalize.translate('MessageSyncPlayPlaybackPermissionRequired')
+                text: translate('MessageSyncPlayPlaybackPermissionRequired')
             });
         });
 
@@ -218,7 +218,7 @@ class GroupSelectionMenu {
             console.error(error);
             loading.hide();
             toast({
-                text: globalize.translate('MessageSyncPlayNoGroupsAvailable')
+                text: translate('MessageSyncPlayNoGroupsAvailable')
             });
         });
     }

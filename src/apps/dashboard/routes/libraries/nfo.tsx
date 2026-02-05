@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Stack from '@mui/material/Stack';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
@@ -15,7 +15,7 @@ import Page from 'components/Page';
 import SimpleAlert from 'components/SimpleAlert';
 import { QUERY_KEY, useNamedConfiguration } from 'hooks/useNamedConfiguration';
 import { useUsers } from 'hooks/useUsers';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import React, { useCallback, useState } from 'react';
 import { type ActionFunctionArgs, Form, useActionData, useNavigation } from 'react-router-dom';
@@ -83,34 +83,34 @@ export const Component = () => {
     return (
         <Page
             id='metadataNfoPage'
-            title={globalize.translate('TabNfoSettings')}
+            title={translate('TabNfoSettings')}
             className='type-interior mainAnimatedPage'
         >
             <SimpleAlert
                 open={isAlertOpen}
-                text={globalize.translate('MetadataSettingChangeHelp')}
+                text={translate('MetadataSettingChangeHelp')}
                 onClose={onAlertClose}
             />
             <Box className='content-primary'>
                 {isConfigError || isUsersError ? (
-                    <Alert severity='error'>{globalize.translate('MetadataNfoLoadError')}</Alert>
+                    <Alert severity='error'>{translate('MetadataNfoLoadError')}</Alert>
                 ) : (
                     <Form method='POST' onSubmit={onSubmit}>
                         <Stack spacing={3}>
                             {!isSubmitting && actionData?.isSaved && (
                                 <Alert severity='success'>
-                                    {globalize.translate('SettingsSaved')}
+                                    {translate('SettingsSaved')}
                                 </Alert>
                             )}
-                            <Typography variant='h1'>{globalize.translate('TabNfoSettings')}</Typography>
-                            <Typography>{globalize.translate('HeaderKodiMetadataHelp')}</Typography>
+                            <Typography variant='h1'>{translate('TabNfoSettings')}</Typography>
+                            <Typography>{translate('HeaderKodiMetadataHelp')}</Typography>
 
                             <TextField
                                 name={'UserId'}
-                                label={globalize.translate('LabelKodiMetadataUser')}
+                                label={translate('LabelKodiMetadataUser')}
                                 defaultValue={config.UserId || ''}
                                 select
-                                helperText={globalize.translate('LabelKodiMetadataUserHelp')}
+                                helperText={translate('LabelKodiMetadataUserHelp')}
                                 slotProps={{
                                     select: {
                                         displayEmpty: true
@@ -121,7 +121,7 @@ export const Component = () => {
                                     }
                                 }}
                             >
-                                <MenuItem value=''>{globalize.translate('None')}</MenuItem>
+                                <MenuItem value=''>{translate('None')}</MenuItem>
                                 {users.map(user =>
                                     <MenuItem key={user.Id} value={user.Id}>{user.Name}</MenuItem>
                                 )}
@@ -135,9 +135,9 @@ export const Component = () => {
                                             defaultChecked={config.SaveImagePathsInNfo}
                                         />
                                     }
-                                    label={globalize.translate('LabelKodiMetadataSaveImagePaths')}
+                                    label={translate('LabelKodiMetadataSaveImagePaths')}
                                 />
-                                <FormHelperText>{globalize.translate('LabelKodiMetadataSaveImagePathsHelp')}</FormHelperText>
+                                <FormHelperText>{translate('LabelKodiMetadataSaveImagePathsHelp')}</FormHelperText>
                             </FormControl>
 
                             <FormControl>
@@ -148,9 +148,9 @@ export const Component = () => {
                                             defaultChecked={config.EnablePathSubstitution}
                                         />
                                     }
-                                    label={globalize.translate('LabelKodiMetadataEnablePathSubstitution')}
+                                    label={translate('LabelKodiMetadataEnablePathSubstitution')}
                                 />
-                                <FormHelperText>{globalize.translate('LabelKodiMetadataEnablePathSubstitutionHelp')}</FormHelperText>
+                                <FormHelperText>{translate('LabelKodiMetadataEnablePathSubstitutionHelp')}</FormHelperText>
                             </FormControl>
 
                             <FormControl>
@@ -161,13 +161,13 @@ export const Component = () => {
                                             defaultChecked={config.EnableExtraThumbsDuplication}
                                         />
                                     }
-                                    label={globalize.translate('LabelKodiMetadataEnableExtraThumbs')}
+                                    label={translate('LabelKodiMetadataEnableExtraThumbs')}
                                 />
-                                <FormHelperText>{globalize.translate('LabelKodiMetadataEnableExtraThumbsHelp')}</FormHelperText>
+                                <FormHelperText>{translate('LabelKodiMetadataEnableExtraThumbsHelp')}</FormHelperText>
                             </FormControl>
 
                             <Button type='submit' size='large'>
-                                {globalize.translate('Save')}
+                                {translate('Save')}
                             </Button>
                         </Stack>
                     </Form>

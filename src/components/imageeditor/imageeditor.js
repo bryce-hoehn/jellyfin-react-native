@@ -140,7 +140,7 @@ function getCardHtml(image, apiClient, options) {
 
     html += '<div class="cardFooter visualCardBox-cardFooter">';
 
-    html += '<h3 class="cardText cardTextCentered" style="margin:0;">' + globalize.translate('' + image.ImageType) + '</h3>';
+    html += '<h3 class="cardText cardTextCentered" style="margin:0;">' + translate('' + image.ImageType) + '</h3>';
 
     html += '<div class="cardText cardText-secondary cardTextCentered">';
     if (image.Width && image.Height) {
@@ -155,21 +155,21 @@ function getCardHtml(image, apiClient, options) {
 
         if (image.ImageType === 'Backdrop') {
             if (options.index > 0) {
-                html += '<button type="button" is="paper-icon-button-light" class="btnMoveImage autoSize" data-imagetype="' + image.ImageType + '" data-index="' + image.ImageIndex + '" data-newindex="' + (image.ImageIndex - 1) + '" title="' + globalize.translate('MoveLeft') + '"><span class="material-icons chevron_left"></span></button>';
+                html += '<button type="button" is="paper-icon-button-light" class="btnMoveImage autoSize" data-imagetype="' + image.ImageType + '" data-index="' + image.ImageIndex + '" data-newindex="' + (image.ImageIndex - 1) + '" title="' + translate('MoveLeft') + '"><span class="material-icons chevron_left"></span></button>';
             } else {
-                html += '<button type="button" is="paper-icon-button-light" class="autoSize" disabled title="' + globalize.translate('MoveLeft') + '"><span class="material-icons chevron_left" aria-hidden="true"></span></button>';
+                html += '<button type="button" is="paper-icon-button-light" class="autoSize" disabled title="' + translate('MoveLeft') + '"><span class="material-icons chevron_left" aria-hidden="true"></span></button>';
             }
 
             if (options.index < options.numImages - 1) {
-                html += '<button type="button" is="paper-icon-button-light" class="btnMoveImage autoSize" data-imagetype="' + image.ImageType + '" data-index="' + image.ImageIndex + '" data-newindex="' + (image.ImageIndex + 1) + '" title="' + globalize.translate('MoveRight') + '"><span class="material-icons chevron_right" aria-hidden="true"></span></button>';
+                html += '<button type="button" is="paper-icon-button-light" class="btnMoveImage autoSize" data-imagetype="' + image.ImageType + '" data-index="' + image.ImageIndex + '" data-newindex="' + (image.ImageIndex + 1) + '" title="' + translate('MoveRight') + '"><span class="material-icons chevron_right" aria-hidden="true"></span></button>';
             } else {
-                html += '<button type="button" is="paper-icon-button-light" class="autoSize" disabled title="' + globalize.translate('MoveRight') + '"><span class="material-icons chevron_right" aria-hidden="true"></span></button>';
+                html += '<button type="button" is="paper-icon-button-light" class="autoSize" disabled title="' + translate('MoveRight') + '"><span class="material-icons chevron_right" aria-hidden="true"></span></button>';
             }
         } else if (options.imageProviders.length) {
-            html += '<button type="button" is="paper-icon-button-light" data-imagetype="' + image.ImageType + '" class="btnSearchImages autoSize" title="' + globalize.translate('Search') + '"><span class="material-icons search" aria-hidden="true"></span></button>';
+            html += '<button type="button" is="paper-icon-button-light" data-imagetype="' + image.ImageType + '" class="btnSearchImages autoSize" title="' + translate('Search') + '"><span class="material-icons search" aria-hidden="true"></span></button>';
         }
 
-        html += '<button type="button" is="paper-icon-button-light" data-imagetype="' + image.ImageType + '" data-index="' + (image.ImageIndex != null ? image.ImageIndex : 'null') + '" class="btnDeleteImage autoSize" title="' + globalize.translate('Delete') + '"><span class="material-icons delete" aria-hidden="true"></span></button>';
+        html += '<button type="button" is="paper-icon-button-light" data-imagetype="' + image.ImageType + '" data-index="' + (image.ImageIndex != null ? image.ImageIndex : 'null') + '" class="btnDeleteImage autoSize" title="' + translate('Delete') + '"><span class="material-icons delete" aria-hidden="true"></span></button>';
         html += '</div>';
     }
 
@@ -194,8 +194,8 @@ function deleteImage(context, itemId, type, index, apiClient, enableConfirmation
     }
 
     confirm({
-        text: globalize.translate('ConfirmDeleteImage'),
-        confirmText: globalize.translate('Delete'),
+        text: translate('ConfirmDeleteImage'),
+        confirmText: translate('Delete'),
         primary: 'delete'
     }).then(afterConfirm);
 }
@@ -205,7 +205,7 @@ function moveImage(context, apiClient, itemId, type, index, newIndex, focusConte
         hasChanges = true;
         reload(context, null, focusContext);
     }, function () {
-        alert(globalize.translate('ErrorDefault'));
+        alert(translate('ErrorDefault'));
     });
 }
 
@@ -285,21 +285,21 @@ function showActionSheet(context, imageCard) {
         const commands = [];
 
         commands.push({
-            name: globalize.translate('Delete'),
+            name: translate('Delete'),
             id: 'delete'
         });
 
         if (type === 'Backdrop') {
             if (index > 0) {
                 commands.push({
-                    name: globalize.translate('MoveLeft'),
+                    name: translate('MoveLeft'),
                     id: 'moveleft'
                 });
             }
 
             if (index < numImages - 1) {
                 commands.push({
-                    name: globalize.translate('MoveRight'),
+                    name: translate('MoveRight'),
                     id: 'moveright'
                 });
             }
@@ -307,7 +307,7 @@ function showActionSheet(context, imageCard) {
 
         if (providerCount) {
             commands.push({
-                name: globalize.translate('Search'),
+                name: translate('Search'),
                 id: 'search'
             });
         }
@@ -420,7 +420,7 @@ function showEditor(options, resolve, reject) {
 
         dlg.classList.add('formDialog');
 
-        dlg.innerHTML = globalize.translateHtml(template, 'core');
+        dlg.innerHTML = translateHtml(template, 'core');
 
         if (layoutManager.tv) {
             scrollHelper.centerFocus.on(dlg, false);

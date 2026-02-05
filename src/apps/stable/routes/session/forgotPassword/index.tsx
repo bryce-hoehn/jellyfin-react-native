@@ -8,7 +8,7 @@ import alert from 'components/alert';
 import Page from 'components/Page';
 import Button from 'elements/emby-button/Button';
 import Input from 'elements/emby-input/Input';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import ServerConnections from 'lib/jellyfin-apiclient/ServerConnections';
 
 export const ForgotPasswordPage = () => {
@@ -35,15 +35,15 @@ export const ForgotPasswordPage = () => {
 
             switch (result.Action) {
                 case ForgotPasswordAction.ContactAdmin:
-                    msg = globalize.translate('MessageContactAdminToResetPassword');
+                    msg = translate('MessageContactAdminToResetPassword');
                     break;
                 case ForgotPasswordAction.InNetworkRequired:
-                    msg = globalize.translate('MessageForgotPasswordInNetworkRequired');
+                    msg = translate('MessageForgotPasswordInNetworkRequired');
                     break;
                 case ForgotPasswordAction.PinCode:
-                    msg = globalize.translate('MessageForgotPasswordFileCreated');
+                    msg = translate('MessageForgotPasswordFileCreated');
                     msg += '<br/><br/>';
-                    msg += globalize.translate('MessageForgotPasswordPinReset');
+                    msg += translate('MessageForgotPasswordPinReset');
                     msg += '<br/><br/>';
                     msg += result.PinFile;
                     msg += '<br/>';
@@ -55,7 +55,7 @@ export const ForgotPasswordPage = () => {
 
             return alert({
                 text: msg,
-                title: globalize.translate('ButtonForgotPassword')
+                title: translate('ButtonForgotPassword')
             }).then(() => {
                 if (callback) callback();
             });
@@ -88,19 +88,19 @@ export const ForgotPasswordPage = () => {
                     onSubmit={handleSubmit}
                 >
                     <div style={{ textAlign: 'left' }}>
-                        <h1>{globalize.translate('ButtonForgotPassword')}</h1>
+                        <h1>{translate('ButtonForgotPassword')}</h1>
 
                         <div className='inputContainer'>
                             <Input
                                 type='text'
                                 id='txtName'
-                                label={globalize.translate('LabelUser')}
+                                label={translate('LabelUser')}
                                 autoComplete='off'
                                 value={username}
                                 onChange={handleUsernameChange}
                             />
                             <div className='fieldDescription'>
-                                {globalize.translate('LabelForgotPasswordUsernameHelp')}
+                                {translate('LabelForgotPasswordUsernameHelp')}
                             </div>
                         </div>
 
@@ -109,15 +109,15 @@ export const ForgotPasswordPage = () => {
                                 type='submit'
                                 id='btnSubmit'
                                 className='raised submit block'
-                                title={globalize.translate('ButtonSubmit')}
+                                title={translate('ButtonSubmit')}
                             />
 
                             <Button
                                 type='button'
                                 id='btnCancel'
                                 className='raised cancel block btnCancel'
-                                title={globalize.translate('ButtonCancel')}
-                                onClick={handleCancel}
+                                title={translate('ButtonCancel')}
+                                onPress={handleCancel}
                             />
                         </div>
                     </div>

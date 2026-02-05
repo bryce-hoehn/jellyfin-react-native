@@ -34,7 +34,7 @@ import ConfirmDialog from 'components/ConfirmDialog';
 import Image from 'components/Image';
 import Page from 'components/Page';
 import { useApi } from 'hooks/useApi';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { getPluginUrl } from 'utils/dashboard';
 
 interface AlertMessage {
@@ -321,7 +321,7 @@ const PluginPage: FC = () => {
                         severity={severity}
                         sx={{ marginBottom: 2 }}
                     >
-                        {globalize.translate(messageKey)}
+                        {translate(messageKey)}
                     </Alert>
                 ))}
 
@@ -355,7 +355,7 @@ const PluginPage: FC = () => {
                         {!!pluginDetails?.versions.length && (
                             <>
                                 <Typography variant='h3' sx={{ marginBottom: 2 }}>
-                                    {globalize.translate('HeaderRevisionHistory')}
+                                    {translate('HeaderRevisionHistory')}
                                 </Typography>
                                 <PluginRevisions
                                     pluginDetails={pluginDetails}
@@ -371,15 +371,15 @@ const PluginPage: FC = () => {
                                 {!isLoading && !pluginDetails?.status && (
                                     <>
                                         <Alert severity='info'>
-                                            {globalize.translate('ServerRestartNeededAfterPluginInstall')}
+                                            {translate('ServerRestartNeededAfterPluginInstall')}
                                         </Alert>
 
                                         <Button
                                             startIcon={<Download />}
-                                            onClick={onInstall()}
+                                            onPress={onInstall()}
                                             loading={isInstalling}
                                         >
-                                            {globalize.translate('HeaderInstall')}
+                                            {translate('HeaderInstall')}
                                         </Button>
                                     </>
                                 )}
@@ -394,7 +394,7 @@ const PluginPage: FC = () => {
                                                     disabled={pluginDetails.status === PluginStatus.Restart}
                                                 />
                                             }
-                                            label={globalize.translate('LabelEnablePlugin')}
+                                            label={translate('LabelEnablePlugin')}
                                         />
                                     </FormGroup>
                                 )}
@@ -405,7 +405,7 @@ const PluginPage: FC = () => {
                                         to={`/${getPluginUrl(pluginDetails.configurationPage.Name)}`}
                                         startIcon={<Settings />}
                                     >
-                                        {globalize.translate('Settings')}
+                                        {translate('Settings')}
                                     </Button>
                                 )}
 
@@ -413,9 +413,9 @@ const PluginPage: FC = () => {
                                     <Button
                                         color='error'
                                         startIcon={<Delete />}
-                                        onClick={onConfirmUninstall}
+                                        onPress={onConfirmUninstall}
                                     >
-                                        {globalize.translate('ButtonUninstall')}
+                                        {translate('ButtonUninstall')}
                                     </Button>
                                 )}
                             </Stack>
@@ -433,21 +433,21 @@ const PluginPage: FC = () => {
 
             <ConfirmDialog
                 open={isInstallConfirmOpen}
-                title={globalize.translate('HeaderConfirmPluginInstallation')}
-                text={globalize.translate('MessagePluginInstallDisclaimer')}
+                title={translate('HeaderConfirmPluginInstallation')}
+                text={translate('MessagePluginInstallDisclaimer')}
                 onCancel={onCloseInstallConfirmDialog}
                 onConfirm={onConfirmInstall}
-                confirmButtonText={globalize.translate('HeaderInstall')}
+                confirmButtonText={translate('HeaderInstall')}
             />
 
             <ConfirmDialog
                 open={isUninstallConfirmOpen}
-                title={globalize.translate('HeaderUninstallPlugin')}
-                text={globalize.translate('UninstallPluginConfirmation', pluginName || '')}
+                title={translate('HeaderUninstallPlugin')}
+                text={translate('UninstallPluginConfirmation', pluginName || '')}
                 onCancel={onCloseUninstallConfirmDialog}
                 onConfirm={onUninstall}
                 confirmButtonColor='error'
-                confirmButtonText={globalize.translate('ButtonUninstall')}
+                confirmButtonText={translate('ButtonUninstall')}
             />
         </Page>
     );

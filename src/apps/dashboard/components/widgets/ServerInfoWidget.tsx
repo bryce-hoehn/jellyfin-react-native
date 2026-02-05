@@ -1,5 +1,5 @@
 import React from 'react';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Widget from './Widget';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -28,7 +28,7 @@ const ServerInfoWidget = ({
 
     return (
         <Widget
-            title={globalize.translate('TabServer')}
+            title={translate('TabServer')}
             href='/dashboard/settings'
         >
             <Stack spacing={2}>
@@ -37,10 +37,10 @@ const ServerInfoWidget = ({
                 }}>
                     <Stack direction='row'>
                         <Stack flexGrow={1} spacing={1}>
-                            <Typography fontWeight='bold'>{globalize.translate('LabelServerName')}</Typography>
-                            <Typography fontWeight='bold'>{globalize.translate('LabelServerVersion')}</Typography>
-                            <Typography fontWeight='bold'>{globalize.translate('LabelWebVersion')}</Typography>
-                            <Typography fontWeight='bold'>{globalize.translate('LabelBuildVersion')}</Typography>
+                            <Typography fontWeight='bold'>{translate('LabelServerName')}</Typography>
+                            <Typography fontWeight='bold'>{translate('LabelServerVersion')}</Typography>
+                            <Typography fontWeight='bold'>{translate('LabelWebVersion')}</Typography>
+                            <Typography fontWeight='bold'>{translate('LabelBuildVersion')}</Typography>
                         </Stack>
                         <Stack flexGrow={5} spacing={1}>
                             {isPending ? (
@@ -64,36 +64,36 @@ const ServerInfoWidget = ({
 
                 <Stack direction='row' spacing={1.5}>
                     <Button
-                        onClick={onScanLibrariesClick}
+                        onPress={onScanLibrariesClick}
                         startIcon={<RefreshIcon />}
                         sx={{
                             fontWeight: 'bold'
                         }}
                         disabled={isScanning}
                     >
-                        {globalize.translate('ButtonScanAllLibraries')}
+                        {translate('ButtonScanAllLibraries')}
                     </Button>
 
                     <Button
-                        onClick={onRestartClick}
+                        onPress={onRestartClick}
                         startIcon={<RestartAltIcon />}
                         color='error'
                         sx={{
                             fontWeight: 'bold'
                         }}
                     >
-                        {globalize.translate('Restart')}
+                        {translate('Restart')}
                     </Button>
 
                     <Button
-                        onClick={onShutdownClick}
+                        onPress={onShutdownClick}
                         startIcon={<PowerSettingsNewIcon />}
                         color='error'
                         sx={{
                             fontWeight: 'bold'
                         }}
                     >
-                        {globalize.translate('ButtonShutdown')}
+                        {translate('ButtonShutdown')}
                     </Button>
                 </Stack>
             </Stack>

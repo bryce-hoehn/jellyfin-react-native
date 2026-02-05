@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import { useApi } from 'hooks/useApi';
 import { useGetItemByType } from '../../hooks/api/useGetItemByType';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import itemContextMenu from 'components/itemContextMenu';
 import { playbackManager } from 'components/playback/playbackmanager';
 import { appRouter } from 'components/router/appRouter';
@@ -216,8 +216,8 @@ const MoreCommandsButton: FC<MoreCommandsButtonProps> = ({
         return (
             <IconButton
                 className='button-flat btnMoreCommands'
-                title={globalize.translate('ButtonMore')}
-                onClick={onMoreCommandsClick}
+                title={translate('ButtonMore')}
+                onPress={onMoreCommandsClick}
             >
                 <MoreVertIcon />
             </IconButton>

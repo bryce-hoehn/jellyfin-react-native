@@ -102,7 +102,7 @@ function save(instance, context, userId, userSettings, apiClient, enableSaveConf
         saveUser(context, user, userSettings, instance.appearanceKey, apiClient).then(function () {
             loading.hide();
             if (enableSaveConfirmation) {
-                toast(globalize.translate('SettingsSaved'));
+                toast(translate('SettingsSaved'));
             }
 
             Events.trigger(instance, 'saved');
@@ -190,7 +190,7 @@ function hideSubtitlePreview(persistent) {
 
 function embed(options, self) {
     options.element.classList.add('subtitlesettings');
-    options.element.innerHTML = globalize.translateHtml(template, 'core');
+    options.element.innerHTML = translateHtml(template, 'core');
 
     options.element.querySelector('form').addEventListener('submit', self.onSubmit.bind(self));
 

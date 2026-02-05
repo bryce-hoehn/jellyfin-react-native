@@ -8,7 +8,7 @@ import layoutManager from 'components/layoutManager';
 import { playbackManager } from 'components/playback/playbackmanager';
 import scrollManager from 'components/scrollManager';
 import focusManager from 'components/focusManager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import keyboardNavigation from 'scripts/keyboardNavigation';
 import LibraryMenu from 'scripts/libraryMenu';
@@ -95,7 +95,7 @@ export default function (view) {
     function renderNoLyricMessage() {
         const itemsContainer = view.querySelector('.lyricsContainer');
         if (itemsContainer) {
-            const html = `<h1>${globalize.translate('HeaderNoLyrics')}</h1>`;
+            const html = `<h1>${translate('HeaderNoLyrics')}</h1>`;
             itemsContainer.innerHTML = html;
         }
         autoFocuser.autoFocus();
@@ -211,7 +211,7 @@ export default function (view) {
         currentItem = null;
         isDynamicLyric = false;
 
-        LibraryMenu.setTitle(globalize.translate('Lyrics'));
+        LibraryMenu.setTitle(translate('Lyrics'));
 
         const player = playbackManager.getCurrentPlayer();
 

@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
 import { ItemAction } from 'constants/itemAction';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface InfoIconButtonProps {
     className?: string;
@@ -14,7 +14,7 @@ const InfoIconButton: FC<InfoIconButtonProps> = ({ className }) => {
         <IconButton
             className={className}
             data-action={ItemAction.Link}
-            title={globalize.translate('ButtonInfo')}
+            title={translate('ButtonInfo')}
         >
             <InfoIcon />
         </IconButton>

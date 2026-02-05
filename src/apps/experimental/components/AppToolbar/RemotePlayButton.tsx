@@ -8,7 +8,7 @@ import type {} from '@mui/material/themeCssVarsAugmentation';
 import Tooltip from '@mui/material/Tooltip';
 
 import { playbackManager } from 'components/playback/playbackmanager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Events from 'utils/events';
 
 import RemotePlayMenu, { ID } from './menus/RemotePlayMenu';
@@ -32,7 +32,7 @@ const RemotePlayButton = () => {
     const [ remotePlayMenuAnchorEl, setRemotePlayMenuAnchorEl ] = useState<null | HTMLElement>(null);
     const isRemotePlayMenuOpen = Boolean(remotePlayMenuAnchorEl);
 
-    const onRemotePlayButtonClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    const onRemotePlayButtonPress = useCallback((event: React.MouseEvent<HTMLElement>) => {
         setRemotePlayMenuAnchorEl(event.currentTarget);
     }, [ setRemotePlayMenuAnchorEl ]);
 
@@ -43,7 +43,7 @@ const RemotePlayButton = () => {
     const [ remotePlayActiveMenuAnchorEl, setRemotePlayActiveMenuAnchorEl ] = useState<null | HTMLElement>(null);
     const isRemotePlayActiveMenuOpen = Boolean(remotePlayActiveMenuAnchorEl);
 
-    const onRemotePlayActiveButtonClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    const onRemotePlayActiveButtonPress = useCallback((event: React.MouseEvent<HTMLElement>) => {
         setRemotePlayActiveMenuAnchorEl(event.currentTarget);
     }, [ setRemotePlayActiveMenuAnchorEl ]);
 
@@ -59,15 +59,15 @@ const RemotePlayButton = () => {
                         alignSelf: 'center'
                     }}
                 >
-                    <Tooltip title={globalize.translate('ButtonCast')}>
+                    <Tooltip title={translate('ButtonCast')}>
                         <Button
                             variant='text'
                             size='large'
                             startIcon={<CastConnected />}
-                            aria-label={globalize.translate('ButtonCast')}
+                            aria-label={translate('ButtonCast')}
                             aria-controls={ACTIVE_ID}
                             aria-haspopup='true'
-                            onClick={onRemotePlayActiveButtonClick}
+                            onPress={onRemotePlayActiveButtonPress}
                             color='inherit'
                             // eslint-disable-next-line react/jsx-no-bind
                             sx={(theme) => ({
@@ -79,13 +79,13 @@ const RemotePlayButton = () => {
                     </Tooltip>
                 </Box>
             ) : (
-                <Tooltip title={globalize.translate('ButtonCast')}>
+                <Tooltip title={translate('ButtonCast')}>
                     <IconButton
                         size='large'
-                        aria-label={globalize.translate('ButtonCast')}
+                        aria-label={translate('ButtonCast')}
                         aria-controls={ID}
                         aria-haspopup='true'
-                        onClick={onRemotePlayButtonClick}
+                        onPress={onRemotePlayButtonPress}
                         color='inherit'
                     >
                         <Cast />

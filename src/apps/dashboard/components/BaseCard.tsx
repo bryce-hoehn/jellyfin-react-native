@@ -17,10 +17,10 @@ interface BaseCardProps {
     image?: string | null;
     icon?: React.ReactNode;
     to?: To;
-    onClick?: () => void;
+    onPress?: () => void;
     action?: boolean;
     actionRef?: React.MutableRefObject<HTMLButtonElement | null>;
-    onActionClick?: () => void;
+    onActionPress?: () => void;
     height?: number;
     width?: number;
 };
@@ -31,10 +31,10 @@ const BaseCard = ({
     image,
     icon,
     to,
-    onClick,
+    onPress,
     action,
     actionRef,
-    onActionClick,
+    onActionPress,
     height,
     width
 }: BaseCardProps) => {
@@ -52,7 +52,7 @@ const BaseCard = ({
                     component: Link,
                     to: to
                 })}
-                onClick={onClick}
+                onPress={onPress}
                 sx={{
                     display: 'flex',
                     flexGrow: 1,
@@ -107,7 +107,7 @@ const BaseCard = ({
                     </Stack>
                     <Box>
                         {action ? (
-                            <IconButton ref={actionRef} onClick={onActionClick}>
+                            <IconButton ref={actionRef} onPress={onActionPress}>
                                 <MoreVertIcon />
                             </IconButton>
                         ) : null}

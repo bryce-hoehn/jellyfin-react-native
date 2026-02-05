@@ -550,13 +550,13 @@ function Guide(options) {
 
                 let indicatorHtml = null;
                 if (program.IsLive && programOptions.showLiveIndicator) {
-                    indicatorHtml = '<span class="liveTvProgram guideProgramIndicator">' + globalize.translate('Live') + '</span>';
+                    indicatorHtml = '<span class="liveTvProgram guideProgramIndicator">' + translate('Live') + '</span>';
                 } else if (program.IsPremiere && programOptions.showPremiereIndicator) {
-                    indicatorHtml = '<span class="premiereTvProgram guideProgramIndicator">' + globalize.translate('Premiere') + '</span>';
+                    indicatorHtml = '<span class="premiereTvProgram guideProgramIndicator">' + translate('Premiere') + '</span>';
                 } else if (program.IsSeries && !program.IsRepeat && programOptions.showNewIndicator) {
-                    indicatorHtml = '<span class="newTvProgram guideProgramIndicator">' + globalize.translate('New') + '</span>';
+                    indicatorHtml = '<span class="newTvProgram guideProgramIndicator">' + translate('New') + '</span>';
                 } else if (program.IsSeries && program.IsRepeat && programOptions.showRepeatIndicator) {
-                    indicatorHtml = '<span class="repeatTvProgram guideProgramIndicator">' + globalize.translate('Repeat') + '</span>';
+                    indicatorHtml = '<span class="repeatTvProgram guideProgramIndicator">' + translate('Repeat') + '</span>';
                 }
                 html += indicatorHtml || '';
 
@@ -1098,7 +1098,7 @@ function Guide(options) {
 
     guideContext.classList.add('tvguide');
 
-    guideContext.innerHTML = globalize.translateHtml(template, 'core');
+    guideContext.innerHTML = translateHtml(template, 'core');
 
     const programGrid = guideContext.querySelector('.programGrid');
     const timeslotHeaders = guideContext.querySelector('.timeslotHeaders');

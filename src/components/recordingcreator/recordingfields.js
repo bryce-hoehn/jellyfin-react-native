@@ -23,25 +23,25 @@ function loadData(parent, program) {
     if (program.SeriesTimerId) {
         parent.querySelector('.btnManageSeriesRecording').classList.remove('hide');
         parent.querySelector('.seriesRecordingButton .recordingIcon').classList.add('recordingIcon-active');
-        parent.querySelector('.seriesRecordingButton .buttonText').innerHTML = globalize.translate('CancelSeries');
+        parent.querySelector('.seriesRecordingButton .buttonText').innerHTML = translate('CancelSeries');
     } else {
         parent.querySelector('.btnManageSeriesRecording').classList.add('hide');
         parent.querySelector('.seriesRecordingButton .recordingIcon').classList.remove('recordingIcon-active');
-        parent.querySelector('.seriesRecordingButton .buttonText').innerHTML = globalize.translate('RecordSeries');
+        parent.querySelector('.seriesRecordingButton .buttonText').innerHTML = translate('RecordSeries');
     }
 
     if (program.TimerId && program.Status !== 'Cancelled') {
         parent.querySelector('.btnManageRecording').classList.remove('hide');
         parent.querySelector('.singleRecordingButton .recordingIcon').classList.add('recordingIcon-active');
         if (program.Status === 'InProgress') {
-            parent.querySelector('.singleRecordingButton .buttonText').innerHTML = globalize.translate('StopRecording');
+            parent.querySelector('.singleRecordingButton .buttonText').innerHTML = translate('StopRecording');
         } else {
-            parent.querySelector('.singleRecordingButton .buttonText').innerHTML = globalize.translate('DoNotRecord');
+            parent.querySelector('.singleRecordingButton .buttonText').innerHTML = translate('DoNotRecord');
         }
     } else {
         parent.querySelector('.btnManageRecording').classList.add('hide');
         parent.querySelector('.singleRecordingButton .recordingIcon').classList.remove('recordingIcon-active');
-        parent.querySelector('.singleRecordingButton .buttonText').innerHTML = globalize.translate('Record');
+        parent.querySelector('.singleRecordingButton .buttonText').innerHTML = translate('Record');
     }
 }
 
@@ -101,7 +101,7 @@ class RecordingEditor {
         return new Promise(function (resolve) {
             const options = self.options;
             const context = options.parent;
-            context.innerHTML = globalize.translateHtml(template, 'core');
+            context.innerHTML = translateHtml(template, 'core');
 
             context.querySelector('.singleRecordingButton').addEventListener('click', onRecordChange.bind(self));
             context.querySelector('.seriesRecordingButton').addEventListener('click', onRecordSeriesChange.bind(self));
@@ -224,7 +224,7 @@ function onRecordSeriesChange(e) {
         }
     } else if (this.SeriesTimerId) {
         apiClient.cancelLiveTvSeriesTimer(this.SeriesTimerId).then(function () {
-            toast(globalize.translate('RecordingCancelled'));
+            toast(translate('RecordingCancelled'));
             fetchData(self);
         });
     }

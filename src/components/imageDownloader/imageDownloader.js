@@ -70,7 +70,7 @@ function reloadBrowsableImages(page, apiClient) {
         });
 
         const selectImageProvider = page.querySelector('#selectImageProvider');
-        selectImageProvider.innerHTML = '<option value="">' + globalize.translate('All') + '</option>' + providersHtml;
+        selectImageProvider.innerHTML = '<option value="">' + translate('All') + '</option>' + providersHtml;
         selectImageProvider.value = provider;
 
         loading.hide();
@@ -121,15 +121,15 @@ function getPagingHtml(startIndex, limit, totalRecordCount) {
     html += '<span style="margin-right: 10px;">';
 
     const startAtDisplay = totalRecordCount ? startIndex + 1 : 0;
-    html += globalize.translate('ListPaging', startAtDisplay, recordsEnd, totalRecordCount);
+    html += translate('ListPaging', startAtDisplay, recordsEnd, totalRecordCount);
 
     html += '</span>';
 
     if (showControls) {
         html += '<div data-role="controlgroup" data-type="horizontal" style="display:inline-block;">';
 
-        html += `<button is="paper-icon-button-light" title="${globalize.translate('Previous')}" class="btnPreviousPage autoSize" ${(startIndex ? '' : 'disabled')}><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
-        html += `<button is="paper-icon-button-light" title="${globalize.translate('Next')}" class="btnNextPage autoSize" ${(startIndex + limit >= totalRecordCount ? 'disabled' : '')}><span class="material-icons arrow_forward" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" title="${translate('Previous')}" class="btnPreviousPage autoSize" ${(startIndex ? '' : 'disabled')}><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" title="${translate('Next')}" class="btnNextPage autoSize" ${(startIndex + limit >= totalRecordCount ? 'disabled' : '')}><span class="material-icons arrow_forward" aria-hidden="true"></span></button>`;
         html += '</div>';
     }
 
@@ -257,7 +257,7 @@ function getRemoteImageHtml(image, imageType) {
     if (enableFooterButtons) {
         html += '<div class="cardText cardTextCentered">';
 
-        html += `<button is="paper-icon-button-light" class="btnDownloadRemoteImage autoSize" raised" title="${globalize.translate('Download')}"><span class="material-icons cloud_download" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" class="btnDownloadRemoteImage autoSize" raised" title="${translate('Download')}"><span class="material-icons cloud_download" aria-hidden="true"></span></button>`;
         html += '</div>';
     }
 
@@ -333,7 +333,7 @@ function showEditor(itemId, serverId, itemType) {
 
     const dlg = dialogHelper.createDialog(dialogOptions);
 
-    dlg.innerHTML = globalize.translateHtml(template, 'core');
+    dlg.innerHTML = translateHtml(template, 'core');
 
     if (layoutManager.tv) {
         scrollHelper.centerFocus.on(dlg, false);

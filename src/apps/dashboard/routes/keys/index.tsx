@@ -15,7 +15,7 @@ import TablePage, { DEFAULT_TABLE_OPTIONS } from 'apps/dashboard/components/tabl
 import { useApiKeys } from 'apps/dashboard/features/keys/api/useApiKeys';
 import { useRevokeKey } from 'apps/dashboard/features/keys/api/useRevokeKey';
 import { useCreateKey } from 'apps/dashboard/features/keys/api/useCreateKey';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import InputDialog from 'components/InputDialog';
 import ConfirmDialog from 'components/ConfirmDialog';
 
@@ -35,19 +35,19 @@ export const Component = () => {
         {
             id: 'ApiKey',
             accessorKey: 'AccessToken',
-            header: globalize.translate('HeaderApiKey'),
+            header: translate('HeaderApiKey'),
             size: 300
         },
         {
             id: 'AppName',
             accessorKey: 'AppName',
-            header: globalize.translate('HeaderApp')
+            header: translate('HeaderApp')
         },
         {
             id: 'DateIssued',
             accessorFn: item => item.DateCreated ? parseISO(item.DateCreated) : undefined,
             Cell: DateTimeCell,
-            header: globalize.translate('HeaderDateIssued'),
+            header: translate('HeaderDateIssued'),
             filterVariant: 'datetime-range'
         }
     ], []);
@@ -82,20 +82,20 @@ export const Component = () => {
         renderTopToolbarCustomActions: () => (
             <Button
                 startIcon={<AddIcon />}
-                onClick={showNewKeyPopup}
+                onPress={showNewKeyPopup}
             >
-                {globalize.translate('HeaderNewApiKey')}
+                {translate('HeaderNewApiKey')}
             </Button>
         ),
 
         renderRowActions: ({ row }) => {
             return (
                 <Box sx={{ display: 'flex' }}>
-                    <Tooltip title={globalize.translate('ButtonRevoke')}>
+                    <Tooltip title={translate('ButtonRevoke')}>
                         <IconButton
                             color='error'
                             // eslint-disable-next-line react/jsx-no-bind
-                            onClick={() => row.original?.AccessToken && onRevokeKey(row.original.AccessToken)}
+                            onPress={() => row.original?.AccessToken && onRevokeKey(row.original.AccessToken)}
                         >
                             <DeleteIcon />
                         </IconButton>
@@ -148,26 +148,26 @@ export const Component = () => {
         <>
             <ConfirmDialog
                 open={isConfirmDeleteOpen}
-                title={globalize.translate('HeaderConfirmRevokeApiKey')}
-                text={globalize.translate('MessageConfirmRevokeApiKey')}
+                title={translate('HeaderConfirmRevokeApiKey')}
+                text={translate('MessageConfirmRevokeApiKey')}
                 confirmButtonColor='error'
-                confirmButtonText={globalize.translate('Delete')}
+                confirmButtonText={translate('Delete')}
                 onConfirm={onConfirmDelete}
                 onCancel={onConfirmDeleteCancel}
             />
             <InputDialog
                 open={isCreateApiKeyPromptOpen}
-                title={globalize.translate('HeaderNewApiKey')}
-                label={globalize.translate('LabelAppName')}
-                helperText={globalize.translate('LabelAppNameExample')}
-                confirmButtonText={globalize.translate('Create')}
+                title={translate('HeaderNewApiKey')}
+                label={translate('LabelAppName')}
+                helperText={translate('LabelAppNameExample')}
+                confirmButtonText={translate('Create')}
                 onConfirm={onConfirmCreate}
                 onClose={onCreateApiKeyPromptClose}
             />
             <TablePage
                 id='apiKeysPage'
-                title={globalize.translate('HeaderApiKeys')}
-                subtitle={globalize.translate('HeaderApiKeysHelp')}
+                title={translate('HeaderApiKeys')}
+                subtitle={translate('HeaderApiKeysHelp')}
                 className='mainAnimatedPage type-interior'
                 table={table}
             />

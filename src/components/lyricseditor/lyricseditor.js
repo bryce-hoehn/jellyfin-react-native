@@ -4,7 +4,7 @@ import { getLyricsApi } from '@jellyfin/sdk/lib/utils/api/lyrics-api';
 import { toApi } from 'utils/jellyfin-apiclient/compat';
 import dialogHelper from '../dialogHelper/dialogHelper';
 import layoutManager from '../layoutManager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import loading from '../loading/loading';
 import focusManager from '../focusManager';
@@ -34,7 +34,7 @@ function downloadRemoteLyrics(context, id) {
     }).then(function () {
         hasChanges = true;
 
-        toast(globalize.translate('MessageDownloadQueued'));
+        toast(translate('MessageDownloadQueued'));
 
         focusManager.autoFocus(context);
     });
@@ -98,9 +98,9 @@ function renderSearchResults(context, results) {
         const minutes = Math.floor(metadata.Length / 600000000);
         const seconds = Math.floor((metadata.Length % 600000000) / 10000000);
 
-        html += '<div class="secondary listItemBodyText" style="white-space:pre-line;">' + globalize.translate('LabelDuration') + ': ' + minutes + ':' + String(seconds).padStart(2, '0') + '</div>';
+        html += '<div class="secondary listItemBodyText" style="white-space:pre-line;">' + translate('LabelDuration') + ': ' + minutes + ':' + String(seconds).padStart(2, '0') + '</div>';
 
-        html += '<div class="secondary listItemBodyText" style="white-space:pre-line;">' + globalize.translate('LabelIsSynced') + ': ' + escapeHtml(metadata.IsSynced ? 'True' : 'False') + '</div>';
+        html += '<div class="secondary listItemBodyText" style="white-space:pre-line;">' + translate('LabelIsSynced') + ': ' + escapeHtml(metadata.IsSynced ? 'True' : 'False') + '</div>';
 
         html += '</div>';
 
@@ -109,7 +109,7 @@ function renderSearchResults(context, results) {
             html += '<button type="button" is="paper-icon-button-light" data-lyricsid="' + result.Id + '" class="btnDownload listItemButton"><span class="material-icons file_download" aria-hidden="true"></span></button>';
         }
         html += '<div class="hide hiddenLyrics">';
-        html += '<h2>' + globalize.translate('Lyrics') + '</h2>';
+        html += '<h2>' + translate('Lyrics') + '</h2>';
         html += '<div>' + lyrics + '</div>';
         html += '</div>';
         html += '</' + tagName + '>';
@@ -221,7 +221,7 @@ function showLyricsPreview(lyrics) {
     dlg.classList.add('formDialog');
     dlg.classList.add('lyricsEditorDialog');
 
-    dlg.innerHTML = globalize.translateHtml(templatePreview, 'core');
+    dlg.innerHTML = translateHtml(templatePreview, 'core');
 
     dlg.querySelector('.lyricsPreview').innerHTML = lyrics;
 
@@ -236,11 +236,11 @@ function showOptions(button, context, lyricsId, lyrics) {
     const items = [];
 
     items.push({
-        name: globalize.translate('PreviewLyrics'),
+        name: translate('PreviewLyrics'),
         id: 'preview'
     }
     , {
-        name: globalize.translate('Download'),
+        name: translate('Download'),
         id: 'download'
     });
 
@@ -305,7 +305,7 @@ function fillCurrentLyrics(context, apiClient, item) {
             context.querySelector('.currentLyrics').innerHTML = '';
         } else {
             let html = '';
-            html += '<h2>' + globalize.translate('Lyrics') + '</h2>';
+            html += '<h2>' + translate('Lyrics') + '</h2>';
             html += '<div>';
             html += getLyricsText(response.data.Lyrics);
             html += '</div>';
@@ -336,9 +336,9 @@ function showEditorInternal(itemId, serverId) {
         dlg.classList.add('formDialog');
         dlg.classList.add('lyricsEditorDialog');
 
-        dlg.innerHTML = globalize.translateHtml(template, 'core');
+        dlg.innerHTML = translateHtml(template, 'core');
 
-        dlg.querySelector('.originalLyricsFileLabel').innerHTML = globalize.translate('File');
+        dlg.querySelector('.originalLyricsFileLabel').innerHTML = translate('File');
 
         dlg.querySelector('.lyricsSearchForm').addEventListener('submit', onSearchSubmit);
 

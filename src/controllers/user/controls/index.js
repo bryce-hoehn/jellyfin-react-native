@@ -10,7 +10,7 @@ export default function (view) {
         appSettings.enableGamepad(view.querySelector('.chkEnableGamepad').checked);
         appSettings.enableSmoothScroll(view.querySelector('.chkSmoothScroll').checked);
 
-        toast(globalize.translate('SettingsSaved'));
+        toast(translate('SettingsSaved'));
 
         Events.trigger(view, 'saved');
 

@@ -203,7 +203,7 @@ class AppRouter {
 
             // Bounce to the login screen, but not if a password entry fails, obviously
             if (!isPublicPage) {
-                appRouter.showForcedLogoutMessage(globalize.translate('AccessRestrictedTryAgainLater'));
+                appRouter.showForcedLogoutMessage(translate('AccessRestrictedTryAgainLater'));
                 appRouter.showLocalLogin(apiClient.serverId());
             }
         }

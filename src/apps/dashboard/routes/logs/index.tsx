@@ -2,7 +2,7 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { getConfigurationApi } from '@jellyfin/sdk/lib/utils/api/configuration-api';
 import Loading from 'components/loading/LoadingComponent';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -80,19 +80,19 @@ export const Component = () => {
     return (
         <Page
             id='logPage'
-            title={globalize.translate('TabLogs')}
+            title={translate('TabLogs')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>
                 <Form method='POST'>
                     <Stack spacing={3}>
                         <Typography variant='h1'>
-                            {globalize.translate('TabLogs')}
+                            {translate('TabLogs')}
                         </Typography>
 
                         {!isSubmitting && actionData?.isSaved && (
                             <Alert severity='success'>
-                                {globalize.translate('SettingsSaved')}
+                                {translate('SettingsSaved')}
                             </Alert>
                         )}
 
@@ -104,14 +104,14 @@ export const Component = () => {
                                     name={'EnableWarningMessage'}
                                 />
                             }
-                            label={globalize.translate('LabelSlowResponseEnabled')}
+                            label={translate('LabelSlowResponseEnabled')}
                         />
 
                         <TextField
                             fullWidth
                             type='number'
                             name='SlowResponseTime'
-                            label={globalize.translate('LabelSlowResponseTime')}
+                            label={translate('LabelSlowResponseTime')}
                             value={configuration?.SlowResponseThresholdMs}
                             disabled={!configuration?.EnableSlowResponseWarning}
                             onChange={onResponseTimeChange}
@@ -121,7 +121,7 @@ export const Component = () => {
                             type='submit'
                             size='large'
                         >
-                            {globalize.translate('Save')}
+                            {translate('Save')}
                         </Button>
                     </Stack>
                 </Form>

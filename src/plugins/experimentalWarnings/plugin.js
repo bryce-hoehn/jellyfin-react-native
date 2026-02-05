@@ -33,15 +33,15 @@ function showMessage(text, userSettingsKey, appHostFeature) {
 }
 
 function showBlurayMessage() {
-    return showMessage(globalize.translate('UnsupportedPlayback'), 'blurayexpirementalinfo', 'nativeblurayplayback');
+    return showMessage(translate('UnsupportedPlayback'), 'blurayexpirementalinfo', 'nativeblurayplayback');
 }
 
 function showDvdMessage() {
-    return showMessage(globalize.translate('UnsupportedPlayback'), 'dvdexpirementalinfo', 'nativedvdplayback');
+    return showMessage(translate('UnsupportedPlayback'), 'dvdexpirementalinfo', 'nativedvdplayback');
 }
 
 function showIsoMessage() {
-    return showMessage(globalize.translate('UnsupportedPlayback'), 'isoexpirementalinfo', 'nativeisoplayback');
+    return showMessage(translate('UnsupportedPlayback'), 'isoexpirementalinfo', 'nativeisoplayback');
 }
 
 class ExpirementalPlaybackWarnings {

@@ -1,4 +1,4 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 /**
  * Helper for handling settings.
@@ -8,7 +8,7 @@ import globalize from 'lib/globalize';
 export function populateLanguages(select, languages) {
     let html = '';
 
-    html += "<option value=''>" + globalize.translate('AnyLanguage') + '</option>';
+    html += "<option value=''>" + translate('AnyLanguage') + '</option>';
     for (let i = 0, length = languages.length; i < length; i++) {
         const culture = languages[i];
         html += "<option value='" + culture.ThreeLetterISOLanguageName + "'>" + culture.DisplayName + '</option>';

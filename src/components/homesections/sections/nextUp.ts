@@ -4,7 +4,7 @@ import type { ApiClient } from 'jellyfin-apiclient';
 import cardBuilder from 'components/cardbuilder/cardBuilder';
 import layoutManager from 'components/layoutManager';
 import { appRouter } from 'components/router/appRouter';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import type { UserSettings } from 'scripts/settings/userSettings';
 import { getBackdropShape } from 'utils/card';
@@ -73,13 +73,13 @@ export function loadNextUp(
             serverId: apiClient.serverId()
         }) + '" class="button-flat button-flat-mini sectionTitleTextButton">';
         html += '<h2 class="sectionTitle sectionTitle-cards">';
-        html += globalize.translate('NextUp');
+        html += translate('NextUp');
         html += '</h2>';
         html += '<span class="material-icons chevron_right" aria-hidden="true"></span>';
         html += '</a>';
     } else {
         html += '<h2 class="sectionTitle sectionTitle-cards">';
-        html += globalize.translate('NextUp');
+        html += translate('NextUp');
         html += '</h2>';
     }
     html += '</div>';

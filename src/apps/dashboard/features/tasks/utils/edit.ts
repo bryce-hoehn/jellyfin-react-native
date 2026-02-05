@@ -1,6 +1,6 @@
 import type { TaskTriggerInfo } from '@jellyfin/sdk/lib/generated-client/models/task-trigger-info';
 import { format, formatDistanceStrict, Locale, parse } from 'date-fns';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { INTERVAL_DURATIONS } from '../constants/intervalDurations';
 
 function getDisplayTime(ticks: number, locale: Locale) {
@@ -44,15 +44,15 @@ function getIntervalTriggerTime(ticks: number) {
 
     switch (hours) {
         case 0.25:
-            return globalize.translate('EveryXMinutes', '15');
+            return translate('EveryXMinutes', '15');
         case 0.5:
-            return globalize.translate('EveryXMinutes', '30');
+            return translate('EveryXMinutes', '30');
         case 0.75:
-            return globalize.translate('EveryXMinutes', '45');
+            return translate('EveryXMinutes', '45');
         case 1:
-            return globalize.translate('EveryHour');
+            return translate('EveryHour');
         default:
-            return globalize.translate('EveryXHours', hours);
+            return translate('EveryXHours', hours);
     }
 }
 
@@ -67,13 +67,13 @@ function localizeDayOfWeek(dayOfWeek: string | null | undefined, locale: Locale)
 export function getTriggerFriendlyName(trigger: TaskTriggerInfo, locale: Locale) {
     switch (trigger.Type) {
         case 'DailyTrigger':
-            return globalize.translate('DailyAt', getDisplayTime(trigger.TimeOfDayTicks || 0, locale));
+            return translate('DailyAt', getDisplayTime(trigger.TimeOfDayTicks || 0, locale));
         case 'WeeklyTrigger':
-            return globalize.translate('WeeklyAt', localizeDayOfWeek(trigger.DayOfWeek, locale), getDisplayTime(trigger.TimeOfDayTicks || 0, locale));
+            return translate('WeeklyAt', localizeDayOfWeek(trigger.DayOfWeek, locale), getDisplayTime(trigger.TimeOfDayTicks || 0, locale));
         case 'IntervalTrigger':
             return getIntervalTriggerTime(trigger.IntervalTicks || 0);
         case 'StartupTrigger':
-            return globalize.translate('OnApplicationStartup');
+            return translate('OnApplicationStartup');
         default:
             return trigger.Type;
     }

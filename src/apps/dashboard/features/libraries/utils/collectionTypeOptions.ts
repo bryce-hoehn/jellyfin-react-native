@@ -1,29 +1,29 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const getCollectionTypeOptions = () => {
     return [{
         name: '',
         value: ''
     }, {
-        name: globalize.translate('Movies'),
+        name: translate('Movies'),
         value: 'movies'
     }, {
-        name: globalize.translate('TabMusic'),
+        name: translate('TabMusic'),
         value: 'music'
     }, {
-        name: globalize.translate('Shows'),
+        name: translate('Shows'),
         value: 'tvshows'
     }, {
-        name: globalize.translate('Books'),
+        name: translate('Books'),
         value: 'books'
     }, {
-        name: globalize.translate('HomeVideosPhotos'),
+        name: translate('HomeVideosPhotos'),
         value: 'homevideos'
     }, {
-        name: globalize.translate('MusicVideos'),
+        name: translate('MusicVideos'),
         value: 'musicvideos'
     }, {
-        name: globalize.translate('MixedMoviesShows'),
+        name: translate('MixedMoviesShows'),
         value: 'mixed'
     }];
 };

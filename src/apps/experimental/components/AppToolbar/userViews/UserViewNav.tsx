@@ -17,7 +17,7 @@ import { useApi } from 'hooks/useApi';
 import useCurrentTab from 'hooks/useCurrentTab';
 import { useUserViews } from 'hooks/useUserViews';
 import { useWebConfig } from 'hooks/useWebConfig';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import UserViewsMenu from './UserViewsMenu';
 
@@ -89,7 +89,7 @@ const UserViewNav = () => {
     const [ overflowAnchorEl, setOverflowAnchorEl ] = useState<null | HTMLElement>(null);
     const isOverflowMenuOpen = Boolean(overflowAnchorEl);
 
-    const onOverflowButtonClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    const onOverflowButtonPress = useCallback((event: React.MouseEvent<HTMLElement>) => {
         setOverflowAnchorEl(event.currentTarget);
     }, []);
 
@@ -112,7 +112,7 @@ const UserViewNav = () => {
                 component={Link}
                 to='/home?tab=1'
             >
-                {globalize.translate(MetaView.Favorites.Name)}
+                {translate(MetaView.Favorites.Name)}
             </Button>
 
             {webConfig.menuLinks?.map(link => (
@@ -150,9 +150,9 @@ const UserViewNav = () => {
                         endIcon={<ArrowDropDown />}
                         aria-controls={OVERFLOW_MENU_ID}
                         aria-haspopup='true'
-                        onClick={onOverflowButtonClick}
+                        onPress={onOverflowButtonPress}
                     >
-                        {globalize.translate('ButtonMore')}
+                        {translate('ButtonMore')}
                     </Button>
 
                     <UserViewsMenu

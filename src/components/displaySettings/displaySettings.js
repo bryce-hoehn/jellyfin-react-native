@@ -38,13 +38,13 @@ function loadScreensavers(context, userSettings) {
     const selectScreensaver = context.querySelector('.selectScreensaver');
     const options = pluginManager.ofType(PluginType.Screensaver).map(plugin => {
         return {
-            name: globalize.translate(plugin.name),
+            name: translate(plugin.name),
             value: plugin.id
         };
     });
 
     options.unshift({
-        name: globalize.translate('None'),
+        name: translate('None'),
         value: 'none'
     });
 
@@ -191,7 +191,7 @@ function save(instance, context, userId, userSettings, apiClient, enableSaveConf
         saveUser(context, user, userSettings, apiClient).then(() => {
             loading.hide();
             if (enableSaveConfirmation) {
-                toast(globalize.translate('SettingsSaved'));
+                toast(translate('SettingsSaved'));
             }
             Events.trigger(instance, 'saved');
         }, () => {
@@ -219,7 +219,7 @@ function onSubmit(e) {
 }
 
 function embed(options, self) {
-    options.element.innerHTML = globalize.translateHtml(template, 'core');
+    options.element.innerHTML = translateHtml(template, 'core');
     options.element.querySelector('form').addEventListener('submit', onSubmit.bind(self));
     if (options.enableSaveButton) {
         options.element.querySelector('.btnSave').classList.remove('hide');

@@ -29,11 +29,11 @@ function getHtml() {
     html += '<div class="flex flex-direction-row upNextDialog-buttons" style="margin-top:1em;">';
 
     html += '<button type="button" is="emby-button" class="raised raised-mini btnStartNow upNextDialog-button">';
-    html += globalize.translate('HeaderStartNow');
+    html += translate('HeaderStartNow');
     html += '</button>';
 
     html += '<button type="button" is="emby-button" class="raised raised-mini btnHide upNextDialog-button">';
-    html += globalize.translate('Hide');
+    html += translate('Hide');
     html += '</button>';
 
     // buttons
@@ -54,17 +54,17 @@ function setNextVideoText() {
 
     console.debug('up next seconds remaining: ' + secondsRemaining);
 
-    const timeText = '<span class="upNextDialog-countdownText">' + globalize.translate('HeaderSecondsValue', secondsRemaining) + '</span>';
+    const timeText = '<span class="upNextDialog-countdownText">' + translate('HeaderSecondsValue', secondsRemaining) + '</span>';
 
     let nextVideoText;
     if (instance.itemType === 'Episode') {
         nextVideoText = instance.showStaticNextText ?
-            globalize.translate('HeaderNextEpisode') :
-            globalize.translate('HeaderNextEpisodePlayingInValue', timeText);
+            translate('HeaderNextEpisode') :
+            translate('HeaderNextEpisodePlayingInValue', timeText);
     } else {
         nextVideoText = instance.showStaticNextText ?
-            globalize.translate('HeaderNextVideo') :
-            globalize.translate('HeaderNextVideoPlayingInValue', timeText);
+            translate('HeaderNextVideo') :
+            translate('HeaderNextVideoPlayingInValue', timeText);
     }
 
     elem.querySelector('.upNextDialog-nextVideoText').innerHTML = nextVideoText;

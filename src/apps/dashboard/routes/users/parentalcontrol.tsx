@@ -93,25 +93,25 @@ const UserParentalControl = () => {
         }
 
         const items: NamedItem[] = [{
-            name: globalize.translate('Books'),
+            name: translate('Books'),
             value: UnratedItem.Book
         }, {
-            name: globalize.translate('Channels'),
+            name: translate('Channels'),
             value: UnratedItem.ChannelContent
         }, {
-            name: globalize.translate('LiveTV'),
+            name: translate('LiveTV'),
             value: UnratedItem.LiveTvChannel
         }, {
-            name: globalize.translate('Movies'),
+            name: translate('Movies'),
             value: UnratedItem.Movie
         }, {
-            name: globalize.translate('Music'),
+            name: translate('Music'),
             value: UnratedItem.Music
         }, {
-            name: globalize.translate('Trailers'),
+            name: translate('Trailers'),
             value: UnratedItem.Trailer
         }, {
-            name: globalize.translate('Shows'),
+            name: translate('Shows'),
             value: UnratedItem.Series
         }];
 
@@ -269,7 +269,7 @@ const UserParentalControl = () => {
 
         const showAllowedTagPopup = () => {
             prompt({
-                label: globalize.translate('LabelTag')
+                label: translate('LabelTag')
             }).then(function (value) {
                 const tags = getAllowedTagsFromPage();
 
@@ -290,7 +290,7 @@ const UserParentalControl = () => {
 
         const showBlockedTagPopup = () => {
             prompt({
-                label: globalize.translate('LabelTag')
+                label: translate('LabelTag')
             }).then(function (value) {
                 const tags = getBlockedTagsFromPage();
 
@@ -395,7 +395,7 @@ const UserParentalControl = () => {
             <Toast
                 open={isSettingsSavedToastOpen}
                 onClose={handleToastClose}
-                message={globalize.translate('SettingsSaved')}
+                message={translate('SettingsSaved')}
             />
             <div ref={element} className='content-primary'>
                 <div className='verticalSection'>
@@ -413,13 +413,13 @@ const UserParentalControl = () => {
                             {optionMaxParentalRating()}
                         </SelectElement>
                         <div className='fieldDescription'>
-                            {globalize.translate('MaxParentalRatingHelp')}
+                            {translate('MaxParentalRatingHelp')}
                         </div>
                     </div>
                     <div>
                         <div className='blockUnratedItems'>
                             <h3 className='checkboxListLabel'>
-                                {globalize.translate('HeaderBlockItemsWithNoRating')}
+                                {translate('HeaderBlockItemsWithNoRating')}
                             </h3>
                             <div className='checkboxList paperList' style={{ padding: '.5em 1em' }}>
                                 {unratedItems.map(Item => {
@@ -438,7 +438,7 @@ const UserParentalControl = () => {
                     <div className='verticalSection' style={{ marginBottom: '2em' }}>
                         <SectionTitleContainer
                             SectionClassName='detailSectionHeader'
-                            title={globalize.translate('LabelAllowContentWithTags')}
+                            title={translate('LabelAllowContentWithTags')}
                             isBtnVisible={true}
                             btnId='btnAddAllowedTag'
                             btnClassName='fab submit sectionTitleButton'
@@ -446,7 +446,7 @@ const UserParentalControl = () => {
                             btnIcon='add'
                         />
                         <div className='fieldDescription'>
-                            {globalize.translate('AllowContentWithTagsHelp')}
+                            {translate('AllowContentWithTagsHelp')}
                         </div>
                         <div className='allowedTags' style={{ marginTop: '.5em' }}>
                             {allowedTags?.map(tag => {
@@ -462,7 +462,7 @@ const UserParentalControl = () => {
                     <div className='verticalSection' style={{ marginBottom: '2em' }}>
                         <SectionTitleContainer
                             SectionClassName='detailSectionHeader'
-                            title={globalize.translate('LabelBlockContentWithTags')}
+                            title={translate('LabelBlockContentWithTags')}
                             isBtnVisible={true}
                             btnId='btnAddBlockedTag'
                             btnClassName='fab submit sectionTitleButton'
@@ -470,7 +470,7 @@ const UserParentalControl = () => {
                             btnIcon='add'
                         />
                         <div className='fieldDescription'>
-                            {globalize.translate('BlockContentWithTagsHelp')}
+                            {translate('BlockContentWithTagsHelp')}
                         </div>
                         <div className='blockedTags' style={{ marginTop: '.5em' }}>
                             {blockedTags.map(tag => {
@@ -485,14 +485,14 @@ const UserParentalControl = () => {
                     </div>
                     <div className='accessScheduleSection verticalSection' style={{ marginBottom: '2em' }}>
                         <SectionTitleContainer
-                            title={globalize.translate('HeaderAccessSchedule')}
+                            title={translate('HeaderAccessSchedule')}
                             isBtnVisible={true}
                             btnId='btnAddSchedule'
                             btnClassName='fab submit sectionTitleButton'
                             btnTitle='Add'
                             btnIcon='add'
                         />
-                        <p>{globalize.translate('HeaderAccessScheduleHelp')}</p>
+                        <p>{translate('HeaderAccessScheduleHelp')}</p>
                         <div className='accessScheduleList paperList'>
                             {accessSchedules.map((accessSchedule, index) => {
                                 return <AccessScheduleList
@@ -510,7 +510,7 @@ const UserParentalControl = () => {
                         <Button
                             type='submit'
                             className='raised button-submit block'
-                            title={globalize.translate('Save')}
+                            title={translate('Save')}
                         />
                     </div>
                 </form>

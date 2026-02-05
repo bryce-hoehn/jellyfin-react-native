@@ -7,7 +7,7 @@ import { appRouter } from 'components/router/appRouter';
 import { ItemAction } from 'constants/itemAction';
 import { useApi } from 'hooks/useApi';
 import { useGetProgramsSectionsWithItems, useGetTimers } from 'hooks/useFetchItems';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import type { ParentId } from 'types/library';
 import type { Section, SectionType } from 'types/sections';
 import { CardShape } from 'utils/card';
@@ -57,7 +57,7 @@ const ProgramsSectionView: FC<ProgramsSectionViewProps> = ({
                 <SectionContainer
                     key={section.type}
                     sectionHeaderProps={{
-                        title: globalize.translate(section.name),
+                        title: translate(section.name),
                         url: getRouteUrl(section)
                     }}
                     itemsContainerProps={{

@@ -28,17 +28,17 @@ const DOWNLOAD_ALL_TYPES = [
 function getDeleteLabel(type) {
     switch (type) {
         case BaseItemKind.Series:
-            return globalize.translate('DeleteSeries');
+            return translate('DeleteSeries');
 
         case BaseItemKind.Episode:
-            return globalize.translate('DeleteEpisode');
+            return translate('DeleteEpisode');
 
         case BaseItemKind.Playlist:
         case BaseItemKind.BoxSet:
-            return globalize.translate('Delete');
+            return translate('Delete');
 
         default:
-            return globalize.translate('DeleteMedia');
+            return translate('DeleteMedia');
     }
 }
 
@@ -53,7 +53,7 @@ export async function getCommands(options) {
     if (canPlay && item.MediaType !== 'Photo') {
         if (options.play !== false) {
             commands.push({
-                name: globalize.translate('Play'),
+                name: translate('Play'),
                 id: 'resume',
                 icon: 'play_arrow'
             });
@@ -61,7 +61,7 @@ export async function getCommands(options) {
 
         if (options.playAllFromHere && item.Type !== 'Program' && item.Type !== 'TvChannel') {
             commands.push({
-                name: globalize.translate('PlayAllFromHere'),
+                name: translate('PlayAllFromHere'),
                 id: 'playallfromhere',
                 icon: 'play_arrow'
             });
@@ -71,14 +71,14 @@ export async function getCommands(options) {
     if (playbackManager.getCurrentPlayer() !== null) {
         if (options.stopPlayback) {
             commands.push({
-                name: globalize.translate('StopPlayback'),
+                name: translate('StopPlayback'),
                 id: 'stopPlayback',
                 icon: 'stop'
             });
         }
         if (options.clearQueue) {
             commands.push({
-                name: globalize.translate('ClearQueue'),
+                name: translate('ClearQueue'),
                 id: 'clearQueue',
                 icon: 'clear_all'
             });
@@ -88,7 +88,7 @@ export async function getCommands(options) {
     if (playbackManager.canQueue(item)) {
         if (options.queue !== false) {
             commands.push({
-                name: globalize.translate('AddToPlayQueue'),
+                name: translate('AddToPlayQueue'),
                 id: 'queue',
                 icon: 'playlist_add'
             });
@@ -96,7 +96,7 @@ export async function getCommands(options) {
 
         if (options.queue !== false) {
             commands.push({
-                name: globalize.translate('PlayNext'),
+                name: translate('PlayNext'),
                 id: 'queuenext',
                 icon: 'playlist_add'
             });
@@ -108,7 +108,7 @@ export async function getCommands(options) {
             && options.shuffle !== false
     ) {
         commands.push({
-            name: globalize.translate('Shuffle'),
+            name: translate('Shuffle'),
             id: 'shuffle',
             icon: 'shuffle'
         });
@@ -118,7 +118,7 @@ export async function getCommands(options) {
             && options.instantMix !== false && !itemHelper.isLocalItem(item)
     ) {
         commands.push({
-            name: globalize.translate('InstantMix'),
+            name: translate('InstantMix'),
             id: 'instantmix',
             icon: 'explore'
         });
@@ -135,7 +135,7 @@ export async function getCommands(options) {
         // This disables Select on any context menu not originating from a card i.e songs
         if (options.positionTo && (dom.parentWithClass(options.positionTo, 'card') !== null)) {
             commands.push({
-                name:  globalize.translate('Select'),
+                name:  translate('Select'),
                 id: 'multiSelect',
                 icon: 'library_add_check'
             });
@@ -143,7 +143,7 @@ export async function getCommands(options) {
 
         if (itemHelper.supportsAddingToCollection(item) && (user.Policy.IsAdministrator || user.Policy.EnableCollectionManagement)) {
             commands.push({
-                name: globalize.translate('AddToCollection'),
+                name: translate('AddToCollection'),
                 id: 'addtocollection',
                 icon: 'playlist_add'
             });
@@ -151,7 +151,7 @@ export async function getCommands(options) {
 
         if (itemHelper.supportsAddingToPlaylist(item) && options.playlist !== false) {
             commands.push({
-                name: globalize.translate('AddToPlaylist'),
+                name: translate('AddToPlaylist'),
                 id: 'addtoplaylist',
                 icon: 'playlist_add'
             });
@@ -160,7 +160,7 @@ export async function getCommands(options) {
 
     if ((item.Type === 'Timer') && user.Policy.EnableLiveTvManagement && options.cancelTimer !== false) {
         commands.push({
-            name: globalize.translate('CancelRecording'),
+            name: translate('CancelRecording'),
             id: 'canceltimer',
             icon: 'cancel'
         });
@@ -168,7 +168,7 @@ export async function getCommands(options) {
 
     if ((item.Type === 'Recording' && item.Status === 'InProgress') && user.Policy.EnableLiveTvManagement && options.cancelTimer !== false) {
         commands.push({
-            name: globalize.translate('CancelRecording'),
+            name: translate('CancelRecording'),
             id: 'canceltimer',
             icon: 'cancel'
         });
@@ -176,7 +176,7 @@ export async function getCommands(options) {
 
     if ((item.Type === 'SeriesTimer') && user.Policy.EnableLiveTvManagement && options.cancelTimer !== false) {
         commands.push({
-            name: globalize.translate('CancelSeries'),
+            name: translate('CancelSeries'),
             id: 'cancelseriestimer',
             icon: 'cancel'
         });
@@ -186,7 +186,7 @@ export async function getCommands(options) {
         // CanDownload should probably be updated to return true for these items?
         if (user.Policy.EnableContentDownloading && DOWNLOAD_ALL_TYPES.includes(item.Type)) {
             commands.push({
-                name: globalize.translate('DownloadAll'),
+                name: translate('DownloadAll'),
                 id: 'downloadall',
                 icon: 'file_download'
             });
@@ -195,13 +195,13 @@ export async function getCommands(options) {
         // Books are promoted to major download Button and therefor excluded in the context menu
         if (item.CanDownload && item.Type !== 'Book') {
             commands.push({
-                name: globalize.translate('Download'),
+                name: translate('Download'),
                 id: 'download',
                 icon: 'file_download'
             });
 
             commands.push({
-                name: globalize.translate('CopyStreamURL'),
+                name: translate('CopyStreamURL'),
                 id: 'copy-stream',
                 icon: 'content_copy'
             });
@@ -226,7 +226,7 @@ export async function getCommands(options) {
         const _canEditPlaylist = await canEditPlaylist(user, item);
         if (_canEditPlaylist) {
             commands.push({
-                name: globalize.translate('Edit'),
+                name: translate('Edit'),
                 id: 'editplaylist',
                 icon: 'edit'
             });
@@ -235,7 +235,7 @@ export async function getCommands(options) {
 
     const canEdit = itemHelper.canEdit(user, item);
     if (canEdit && options.edit !== false && item.Type !== 'SeriesTimer') {
-        const text = (item.Type === 'Timer' || item.Type === 'SeriesTimer') ? globalize.translate('Edit') : globalize.translate('EditMetadata');
+        const text = (item.Type === 'Timer' || item.Type === 'SeriesTimer') ? translate('Edit') : translate('EditMetadata');
         commands.push({
             name: text,
             id: 'edit',
@@ -245,7 +245,7 @@ export async function getCommands(options) {
 
     if (itemHelper.canEditImages(user, item) && options.editImages !== false) {
         commands.push({
-            name: globalize.translate('EditImages'),
+            name: translate('EditImages'),
             id: 'editimages',
             icon: 'image'
         });
@@ -253,7 +253,7 @@ export async function getCommands(options) {
 
     if (itemHelper.canEditSubtitles(user, item) && options.editSubtitles !== false) {
         commands.push({
-            name: globalize.translate('EditSubtitles'),
+            name: translate('EditSubtitles'),
             id: 'editsubtitles',
             icon: 'closed_caption'
         });
@@ -261,7 +261,7 @@ export async function getCommands(options) {
 
     if (itemHelper.canEditLyrics(user, item)) {
         commands.push({
-            name: globalize.translate('EditLyrics'),
+            name: translate('EditLyrics'),
             id: 'editlyrics',
             icon: 'lyrics'
         });
@@ -269,7 +269,7 @@ export async function getCommands(options) {
 
     if (options.identify !== false && itemHelper.canIdentify(user, item)) {
         commands.push({
-            name: globalize.translate('Identify'),
+            name: translate('Identify'),
             id: 'identify',
             icon: 'edit'
         });
@@ -277,7 +277,7 @@ export async function getCommands(options) {
 
     if (item.MediaSources && options.moremediainfo !== false) {
         commands.push({
-            name: globalize.translate('MoreMediaInfo'),
+            name: translate('MoreMediaInfo'),
             id: 'moremediainfo',
             icon: 'info'
         });
@@ -286,13 +286,13 @@ export async function getCommands(options) {
     if (item.Type === 'Program' && options.record !== false) {
         if (item.TimerId) {
             commands.push({
-                name: globalize.translate('ManageRecording'),
+                name: translate('ManageRecording'),
                 id: 'record',
                 icon: 'fiber_manual_record'
             });
         } else {
             commands.push({
-                name: globalize.translate('Record'),
+                name: translate('Record'),
                 id: 'record',
                 icon: 'fiber_manual_record'
             });
@@ -301,7 +301,7 @@ export async function getCommands(options) {
 
     if (itemHelper.canRefreshMetadata(item, user)) {
         commands.push({
-            name: globalize.translate('RefreshMetadata'),
+            name: translate('RefreshMetadata'),
             id: 'refresh',
             icon: 'refresh'
         });
@@ -309,7 +309,7 @@ export async function getCommands(options) {
 
     if (item.PlaylistItemId && options.playlistId && options.canEditPlaylist) {
         commands.push({
-            name: globalize.translate('RemoveFromPlaylist'),
+            name: translate('RemoveFromPlaylist'),
             id: 'removefromplaylist',
             icon: 'playlist_remove'
         });
@@ -317,7 +317,7 @@ export async function getCommands(options) {
 
     if (item.PlaylistItemId && options.playlistId && item.PlaylistIndex > 0) {
         commands.push({
-            name: globalize.translate('MoveToTop'),
+            name: translate('MoveToTop'),
             id: 'movetotop',
             icon: 'vertical_align_top'
         });
@@ -325,7 +325,7 @@ export async function getCommands(options) {
 
     if (item.PlaylistItemId && options.playlistId && item.PlaylistIndex < (item.PlaylistItemCount - 1)) {
         commands.push({
-            name: globalize.translate('MoveToBottom'),
+            name: translate('MoveToBottom'),
             id: 'movetobottom',
             icon: 'vertical_align_bottom'
         });
@@ -333,7 +333,7 @@ export async function getCommands(options) {
 
     if (options.collectionId) {
         commands.push({
-            name: globalize.translate('RemoveFromCollection'),
+            name: translate('RemoveFromCollection'),
             id: 'removefromcollection',
             icon: 'playlist_remove'
         });
@@ -341,7 +341,7 @@ export async function getCommands(options) {
 
     if (!browser.tv && options.share === true && itemHelper.canShare(item, user)) {
         commands.push({
-            name: globalize.translate('Share'),
+            name: translate('Share'),
             id: 'share',
             icon: 'share'
         });
@@ -349,7 +349,7 @@ export async function getCommands(options) {
 
     if (options.openAlbum !== false && item.AlbumId && item.MediaType !== 'Photo') {
         commands.push({
-            name: globalize.translate('ViewAlbum'),
+            name: translate('ViewAlbum'),
             id: 'album',
             icon: 'album'
         });
@@ -358,7 +358,7 @@ export async function getCommands(options) {
     // Although some albums can have multiple artists, it's not as common as songs.
     if (options.openArtist !== false && item.AlbumArtists?.length) {
         commands.push({
-            name: globalize.translate('ViewAlbumArtist'),
+            name: translate('ViewAlbumArtist'),
             id: 'artist',
             icon: 'person'
         });
@@ -366,7 +366,7 @@ export async function getCommands(options) {
 
     if (item.HasLyrics) {
         commands.push({
-            name: globalize.translate('ViewLyrics'),
+            name: translate('ViewLyrics'),
             id: 'lyrics',
             icon: 'lyrics'
         });
@@ -484,9 +484,9 @@ function executeCommand(item, id, options) {
             case 'copy-stream': {
                 const downloadHref = getLibraryApi(api).getDownloadUrl({ itemId });
                 copy(downloadHref).then(() => {
-                    toast(globalize.translate('CopyStreamURLSuccess'));
+                    toast(translate('CopyStreamURLSuccess'));
                 }).catch(() => {
-                    prompt(globalize.translate('CopyStreamURL'), downloadHref);
+                    prompt(translate('CopyStreamURL'), downloadHref);
                 });
                 getResolveFunction(resolve, id)();
                 break;
@@ -768,7 +768,7 @@ export async function show(options) {
     const id = await actionsheet.show({
         items: commands,
         positionTo: options.positionTo,
-        resolveOnClick: ['share']
+        resolveonPress: ['share']
     });
 
     return executeCommand(options.item, id, options);

@@ -144,12 +144,12 @@ export function navigate(url, preserveQueryString) {
 
 export function processPluginConfigurationUpdateResult() {
     loading.hide();
-    toast(globalize.translate('SettingsSaved'));
+    toast(translate('SettingsSaved'));
 }
 
 export function processServerConfigurationUpdateResult() {
     loading.hide();
-    toast(globalize.translate('SettingsSaved'));
+    toast(translate('SettingsSaved'));
 }
 
 export function processErrorResponse(response) {
@@ -174,7 +174,7 @@ export function alert(options) {
         });
     } else {
         baseAlert({
-            title: options.title || globalize.translate('HeaderAlert'),
+            title: options.title || translate('HeaderAlert'),
             text: options.message
         }).then(options.callback || function () { /* no-op */ });
     }

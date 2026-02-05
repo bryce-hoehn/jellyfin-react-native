@@ -23,7 +23,7 @@ function getDisplayTime(hours = 0) {
 }
 
 const AccessScheduleList: FunctionComponent<AccessScheduleListProps> = ({ index, DayOfWeek, StartHour, EndHour, removeScheduleCallback }: AccessScheduleListProps) => {
-    const onClick = useCallback(() => {
+    const onPress = useCallback(() => {
         index !== undefined && removeScheduleCallback !== undefined && removeScheduleCallback(index);
     }, [index, removeScheduleCallback]);
     return (
@@ -35,7 +35,7 @@ const AccessScheduleList: FunctionComponent<AccessScheduleListProps> = ({ index,
         >
             <div className='listItemBody two-line'>
                 <h3 className='listItemBodyText'>
-                    {globalize.translate(DayOfWeek)}
+                    {translate(DayOfWeek)}
                 </h3>
                 <div className='listItemBodyText secondary'>
                     {getDisplayTime(StartHour) + ' - ' + getDisplayTime(EndHour)}
@@ -47,7 +47,7 @@ const AccessScheduleList: FunctionComponent<AccessScheduleListProps> = ({ index,
                 title='Delete'
                 icon='delete'
                 dataIndex={index}
-                onClick={onClick}
+                onPress={onPress}
             />
         </div>
     );

@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -15,7 +15,7 @@ import { AppFeature } from 'constants/appFeature';
 import { LayoutMode } from 'constants/layoutMode';
 import { useApi } from 'hooks/useApi';
 import { useThemes } from 'hooks/useThemes';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import { useScreensavers } from '../hooks/useScreensavers';
 import type { DisplaySettingsValues } from '../types/displaySettingsValues';
@@ -32,11 +32,11 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
 
     return (
         <Stack spacing={3}>
-            <Typography variant='h2'>{globalize.translate('Display')}</Typography>
+            <Typography variant='h2'>{translate('Display')}</Typography>
 
             { appHost.supports(AppFeature.DisplayMode) && (
                 <FormControl fullWidth>
-                    <InputLabel id='display-settings-layout-label'>{globalize.translate('LabelDisplayMode')}</InputLabel>
+                    <InputLabel id='display-settings-layout-label'>{translate('LabelDisplayMode')}</InputLabel>
                     <Select
                         aria-describedby='display-settings-layout-description'
                         inputProps={{
@@ -46,21 +46,21 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                         onChange={onChange}
                         value={values.layout}
                     >
-                        <MenuItem value={LayoutMode.Auto}>{globalize.translate('Auto')}</MenuItem>
-                        <MenuItem value={LayoutMode.Desktop}>{globalize.translate('Desktop')}</MenuItem>
-                        <MenuItem value={LayoutMode.Mobile}>{globalize.translate('Mobile')}</MenuItem>
-                        <MenuItem value={LayoutMode.Tv}>{globalize.translate('TV')}</MenuItem>
+                        <MenuItem value={LayoutMode.Auto}>{translate('Auto')}</MenuItem>
+                        <MenuItem value={LayoutMode.Desktop}>{translate('Desktop')}</MenuItem>
+                        <MenuItem value={LayoutMode.Mobile}>{translate('Mobile')}</MenuItem>
+                        <MenuItem value={LayoutMode.Tv}>{translate('TV')}</MenuItem>
                     </Select>
                     <FormHelperText component={Stack} id='display-settings-layout-description'>
-                        <span>{globalize.translate('DisplayModeHelp')}</span>
-                        <span>{globalize.translate('LabelPleaseRestart')}</span>
+                        <span>{translate('DisplayModeHelp')}</span>
+                        <span>{translate('LabelPleaseRestart')}</span>
                     </FormHelperText>
                 </FormControl>
             ) }
 
             { themes.length > 0 && (
                 <FormControl fullWidth>
-                    <InputLabel id='display-settings-theme-label'>{globalize.translate('LabelTheme')}</InputLabel>
+                    <InputLabel id='display-settings-theme-label'>{translate('LabelTheme')}</InputLabel>
                     <Select
                         inputProps={{
                             name: 'theme'
@@ -85,11 +85,11 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('DisableCustomCss')}
+                    label={translate('DisableCustomCss')}
                     name='disableCustomCss'
                 />
                 <FormHelperText id='display-settings-disable-css-description'>
-                    {globalize.translate('LabelDisableCustomCss')}
+                    {translate('LabelDisableCustomCss')}
                 </FormHelperText>
             </FormControl>
 
@@ -97,19 +97,19 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                 <TextField
                     aria-describedby='display-settings-custom-css-description'
                     value={values.customCss}
-                    label={globalize.translate('LabelCustomCss')}
+                    label={translate('LabelCustomCss')}
                     multiline
                     name='customCss'
                     onChange={onChange}
                 />
                 <FormHelperText id='display-settings-custom-css-description'>
-                    {globalize.translate('LabelLocalCustomCss')}
+                    {translate('LabelLocalCustomCss')}
                 </FormHelperText>
             </FormControl>
 
             { themes.length > 0 && user?.Policy?.IsAdministrator && (
                 <FormControl fullWidth>
-                    <InputLabel id='display-settings-dashboard-theme-label'>{globalize.translate('LabelDashboardTheme')}</InputLabel>
+                    <InputLabel id='display-settings-dashboard-theme-label'>{translate('LabelDashboardTheme')}</InputLabel>
                     <Select
                         inputProps={{
                             name: 'dashboardTheme'
@@ -128,7 +128,7 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
             { screensavers.length > 0 && appHost.supports(AppFeature.Screensaver) && (
                 <Fragment>
                     <FormControl fullWidth>
-                        <InputLabel id='display-settings-screensaver-label'>{globalize.translate('LabelScreensaver')}</InputLabel>
+                        <InputLabel id='display-settings-screensaver-label'>{translate('LabelScreensaver')}</InputLabel>
                         <Select
                             inputProps={{
                                 name: 'screensaver'
@@ -147,7 +147,7 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                         <TextField
                             aria-describedby='display-settings-screensaver-interval-description'
                             value={values.screensaverInterval}
-                            label={globalize.translate('LabelBackdropScreensaverInterval')}
+                            label={translate('LabelBackdropScreensaverInterval')}
                             name='screensaverInterval'
                             onChange={onChange}
                             slotProps={{
@@ -163,7 +163,7 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                             }}
                         />
                         <FormHelperText id='display-settings-screensaver-interval-description'>
-                            {globalize.translate('LabelBackdropScreensaverIntervalHelp')}
+                            {translate('LabelBackdropScreensaverIntervalHelp')}
                         </FormHelperText>
                     </FormControl>
                 </Fragment>
@@ -173,7 +173,7 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                 <TextField
                     aria-describedby='display-settings-slideshow-interval-description'
                     value={values.slideshowInterval}
-                    label={globalize.translate('LabelSlideshowInterval')}
+                    label={translate('LabelSlideshowInterval')}
                     name='slideshowInterval'
                     onChange={onChange}
                     slotProps={{
@@ -189,7 +189,7 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                     }}
                 />
                 <FormHelperText id='display-settings-slideshow-interval-description'>
-                    {globalize.translate('LabelSlideshowIntervalHelp')}
+                    {translate('LabelSlideshowIntervalHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -202,11 +202,11 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('EnableFasterAnimations')}
+                    label={translate('EnableFasterAnimations')}
                     name='enableFasterAnimation'
                 />
                 <FormHelperText id='display-settings-faster-animations-description'>
-                    {globalize.translate('EnableFasterAnimationsHelp')}
+                    {translate('EnableFasterAnimationsHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -219,11 +219,11 @@ export function DisplayPreferences({ onChange, values }: Readonly<DisplayPrefere
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('EnableBlurHash')}
+                    label={translate('EnableBlurHash')}
                     name='enableBlurHash'
                 />
                 <FormHelperText id='display-settings-blurhash-description'>
-                    {globalize.translate('EnableBlurHashHelp')}
+                    {translate('EnableBlurHashHelp')}
                 </FormHelperText>
             </FormControl>
         </Stack>

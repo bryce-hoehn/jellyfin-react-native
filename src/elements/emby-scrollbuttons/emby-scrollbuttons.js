@@ -1,7 +1,7 @@
 import './emby-scrollbuttons.scss';
 import 'webcomponents.js/webcomponents-lite';
 import '../emby-button/paper-icon-button-light';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { scrollerItemSlideIntoView } from './utils';
 
 const EmbyScrollButtonsPrototype = Object.create(HTMLDivElement.prototype);
@@ -13,7 +13,7 @@ EmbyScrollButtonsPrototype.createdCallback = function () {
 function getScrollButtonHtml(direction) {
     let html = '';
     const icon = direction === 'left' ? 'chevron_left' : 'chevron_right';
-    const title = direction === 'left' ? globalize.translate('Previous') : globalize.translate('Next') ;
+    const title = direction === 'left' ? translate('Previous') : translate('Next') ;
 
     html += `<button type="button" is="paper-icon-button-light" data-ripple="false" data-direction="${direction}" title="${title}" class="emby-scrollbuttons-button">`;
     html += '<span class="material-icons ' + icon + '" aria-hidden="true"></span>';
@@ -128,7 +128,7 @@ function getScrollSize(elem) {
     return scrollSize;
 }
 
-function onScrollButtonClick() {
+function onScrollButtonPress() {
     const direction = this.getAttribute('data-direction');
     const scroller = this.parentNode.nextSibling;
     const scrollPosition = getScrollPosition(scroller);
@@ -151,8 +151,8 @@ EmbyScrollButtonsPrototype.attachedCallback = function () {
     this.innerHTML = getScrollButtonHtml('left') + getScrollButtonHtml('right');
 
     const buttons = this.querySelectorAll('.emby-scrollbuttons-button');
-    buttons[0].addEventListener('click', onScrollButtonClick);
-    buttons[1].addEventListener('click', onScrollButtonClick);
+    buttons[0].addEventListener('click', onScrollButtonPress);
+    buttons[1].addEventListener('click', onScrollButtonPress);
     this.scrollButtonsLeft = buttons[0];
     this.scrollButtonsRight = buttons[1];
 

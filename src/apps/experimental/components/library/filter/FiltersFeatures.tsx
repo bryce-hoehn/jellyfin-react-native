@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { FeatureFilters, LibraryViewSettings } from 'types/library';
 
 const featuresOptions = [
@@ -63,7 +63,7 @@ const FiltersFeatures: FC<FiltersFeaturesProps> = ({
                                 value={filter.value}
                             />
                         }
-                        label={globalize.translate(filter.label)}
+                        label={translate(filter.label)}
                     />
                 ))}
         </FormGroup>

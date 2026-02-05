@@ -248,28 +248,28 @@ export default function (view, params, tabContent) {
         tabElement.querySelector('.btnSort').addEventListener('click', function (e) {
             libraryBrowser.showSortMenu({
                 items: [{
-                    name: globalize.translate('Name'),
+                    name: translate('Name'),
                     id: 'SortName'
                 }, {
-                    name: globalize.translate('OptionRandom'),
+                    name: translate('OptionRandom'),
                     id: 'Random'
                 }, {
-                    name: globalize.translate('OptionCommunityRating'),
+                    name: translate('OptionCommunityRating'),
                     id: 'CommunityRating,SortName'
                 }, {
-                    name: globalize.translate('OptionDateShowAdded'),
+                    name: translate('OptionDateShowAdded'),
                     id: 'DateCreated,SortName'
                 }, {
-                    name: globalize.translate('OptionDateEpisodeAdded'),
+                    name: translate('OptionDateEpisodeAdded'),
                     id: 'DateLastContentAdded,SortName'
                 }, {
-                    name: globalize.translate('OptionDatePlayed'),
+                    name: translate('OptionDatePlayed'),
                     id: 'SeriesDatePlayed,SortName'
                 }, {
-                    name: globalize.translate('OptionParentalRating'),
+                    name: translate('OptionParentalRating'),
                     id: 'OfficialRating,SortName'
                 }, {
-                    name: globalize.translate('OptionReleaseDate'),
+                    name: translate('OptionReleaseDate'),
                     id: 'PremiereDate,SortName'
                 }],
                 callback: function () {

@@ -3,10 +3,10 @@ import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu, { type MenuProps } from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import React, { FC, useEffect, useState } from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { playbackManager } from 'components/playback/playbackmanager';
 import { pluginManager } from 'components/pluginManager';
 import type { PlayTarget } from 'types/playTarget';
@@ -71,7 +71,7 @@ const RemotePlayMenu: FC<RemotePlayMenuProps> = ({
                         <Warning />
                     </ListItemIcon>
                     <ListItemText>
-                        {globalize.translate('GoogleCastUnsupported')}
+                        {translate('GoogleCastUnsupported')}
                     </ListItemText>
                 </MenuItem>
             )}
@@ -85,7 +85,7 @@ const RemotePlayMenu: FC<RemotePlayMenuProps> = ({
                     key={target.id}
                     // Since we are looping over targets there is no good way to avoid creating a new function here
                     // eslint-disable-next-line react/jsx-no-bind
-                    onClick={() => onPlayTargetClick(target)}
+                    onPress={() => onPlayTargetClick(target)}
                 >
                     <ListItemIcon>
                         <PlayTargetIcon target={target} />

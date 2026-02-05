@@ -4,7 +4,7 @@ import StopIcon from '@mui/icons-material/Stop';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { useCancelTimer } from 'hooks/api/liveTvHooks';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import loading from 'components/loading/loading';
 import toast from 'components/toast/toast';
 
@@ -28,7 +28,7 @@ const CancelTimerButton: FC<CancelTimerButtonProps> = ({
             },
             {
                 onSuccess: async () => {
-                    toast(globalize.translate('RecordingCancelled'));
+                    toast(translate('RecordingCancelled'));
                     loading.hide();
                     await queryClient.invalidateQueries({
                         queryKey
@@ -37,7 +37,7 @@ const CancelTimerButton: FC<CancelTimerButtonProps> = ({
 
                 onError: (err: unknown) => {
                     loading.hide();
-                    toast(globalize.translate('MessageCancelTimerError'));
+                    toast(translate('MessageCancelTimerError'));
                     console.error(
                         '[cancelTimer] failed to cancel timer',
                         err
@@ -50,8 +50,8 @@ const CancelTimerButton: FC<CancelTimerButtonProps> = ({
     return (
         <IconButton
             className='button-flat btnCancelTimer'
-            title={globalize.translate('StopRecording')}
-            onClick={onCancelTimerClick}
+            title={translate('StopRecording')}
+            onPress={onCancelTimerClick}
         >
             <StopIcon />
         </IconButton>

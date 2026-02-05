@@ -194,7 +194,7 @@ class Manager {
                 break;
             case 'UserJoined':
 
-                toast(globalize.translate('MessageSyncPlayUserJoined', cmd.Data));
+                toast(translate('MessageSyncPlayUserJoined', cmd.Data));
                 if (!this.groupInfo.Participants) {
                     this.groupInfo.Participants = [cmd.Data];
                 } else {
@@ -202,7 +202,7 @@ class Manager {
                 }
                 break;
             case 'UserLeft':
-                toast(globalize.translate('MessageSyncPlayUserLeft', cmd.Data));
+                toast(translate('MessageSyncPlayUserLeft', cmd.Data));
                 if (this.groupInfo.Participants) {
                     this.groupInfo.Participants = this.groupInfo.Participants.filter((user) => user !== cmd.Data);
                 }
@@ -212,7 +212,7 @@ class Manager {
                 this.enableSyncPlay(apiClient, cmd.Data, true);
                 break;
             case 'SyncPlayIsDisabled':
-                toast(globalize.translate('MessageSyncPlayIsDisabled'));
+                toast(translate('MessageSyncPlayIsDisabled'));
                 break;
             case 'NotInGroup':
             case 'GroupLeft':
@@ -227,16 +227,16 @@ class Manager {
                 console.debug(`SyncPlay processGroupUpdate: state changed to ${cmd.Data.State} because ${cmd.Data.Reason}.`);
                 break;
             case 'GroupDoesNotExist':
-                toast(globalize.translate('MessageSyncPlayGroupDoesNotExist'));
+                toast(translate('MessageSyncPlayGroupDoesNotExist'));
                 break;
             case 'CreateGroupDenied':
-                toast(globalize.translate('MessageSyncPlayCreateGroupDenied'));
+                toast(translate('MessageSyncPlayCreateGroupDenied'));
                 break;
             case 'JoinGroupDenied':
-                toast(globalize.translate('MessageSyncPlayJoinGroupDenied'));
+                toast(translate('MessageSyncPlayJoinGroupDenied'));
                 break;
             case 'LibraryAccessDenied':
-                toast(globalize.translate('MessageSyncPlayLibraryAccessDenied'));
+                toast(translate('MessageSyncPlayLibraryAccessDenied'));
                 break;
             default:
                 console.error(`SyncPlay processGroupUpdate: command ${cmd.Type} not recognised.`);
@@ -390,7 +390,7 @@ class Manager {
         this.timeSyncCore.forceUpdate();
 
         if (showMessage) {
-            toast(globalize.translate('MessageSyncPlayEnabled'));
+            toast(translate('MessageSyncPlayEnabled'));
         }
     }
 
@@ -409,7 +409,7 @@ class Manager {
         this.playerWrapper.unbindFromPlayer();
 
         if (showMessage) {
-            toast(globalize.translate('MessageSyncPlayDisabled'));
+            toast(translate('MessageSyncPlayDisabled'));
         }
     }
 

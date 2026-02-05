@@ -76,7 +76,7 @@ function showSubtitleMenu(context, player, button) {
     });
     menuItems.unshift({
         id: -1,
-        name: globalize.translate('Off'),
+        name: translate('Off'),
         selected: currentIndex == null
     });
 
@@ -384,10 +384,10 @@ export default function () {
         buttonMuteIcon.classList.remove('volume_off', 'volume_up');
 
         if (isMuted) {
-            buttonMute.setAttribute('title', globalize.translate('Unmute'));
+            buttonMute.setAttribute('title', translate('Unmute'));
             buttonMuteIcon.classList.add('volume_off');
         } else {
-            buttonMute.setAttribute('title', globalize.translate('Mute'));
+            buttonMute.setAttribute('title', translate('Mute'));
             buttonMuteIcon.classList.add('volume_up');
         }
 
@@ -471,7 +471,7 @@ export default function () {
                 enableUserDataButtons: favoritesEnabled,
                 rightButtons: [{
                     icon: 'remove_circle_outline',
-                    title: globalize.translate('ButtonRemove'),
+                    title: translate('ButtonRemove'),
                     id: 'remove'
                 }],
                 dragHandle: true
@@ -847,7 +847,7 @@ export default function () {
         }, currentPlayer);
         form.querySelector('input').value = '';
 
-        toast(globalize.translate('MessageSent'));
+        toast(translate('MessageSent'));
 
         e.preventDefault();
         e.stopPropagation();
@@ -864,7 +864,7 @@ export default function () {
         }, currentPlayer);
         form.querySelector('input').value = '';
 
-        toast(globalize.translate('TextSent'));
+        toast(translate('TextSent'));
 
         e.preventDefault();
         e.stopPropagation();
@@ -873,7 +873,7 @@ export default function () {
 
     function init(ownerView, context) {
         let volumecontrolHtml = '<div class="volumecontrol flex align-items-center flex-wrap-wrap justify-content-center">';
-        volumecontrolHtml += `<button is="paper-icon-button-light" class="buttonMute autoSize" title=${globalize.translate('Mute')}><span class="xlargePaperIconButton material-icons volume_up" aria-hidden="true"></span></button>`;
+        volumecontrolHtml += `<button is="paper-icon-button-light" class="buttonMute autoSize" title=${translate('Mute')}><span class="xlargePaperIconButton material-icons volume_up" aria-hidden="true"></span></button>`;
         volumecontrolHtml += '<div class="sliderContainer nowPlayingVolumeSliderContainer"><input is="emby-slider" type="range" step="1" min="0" max="100" value="0" class="nowPlayingVolumeSlider"/></div>';
         volumecontrolHtml += '</div>';
         const optionsSection = context.querySelector('.playlistSectionButton');

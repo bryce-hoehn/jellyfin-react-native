@@ -44,12 +44,12 @@ function renderTimer(context, item) {
     context.querySelector('.selectKeepUpTo').value = item.KeepUpTo || 0;
 
     if (item.ChannelName || item.ChannelNumber) {
-        context.querySelector('.optionChannelOnly').innerText = globalize.translate('ChannelNameOnly', item.ChannelName || item.ChannelNumber);
+        context.querySelector('.optionChannelOnly').innerText = translate('ChannelNameOnly', item.ChannelName || item.ChannelNumber);
     } else {
-        context.querySelector('.optionChannelOnly').innerHTML = globalize.translate('OneChannel');
+        context.querySelector('.optionChannelOnly').innerHTML = translate('OneChannel');
     }
 
-    context.querySelector('.optionAroundTime').innerHTML = globalize.translate('AroundTime', datetime.getDisplayTime(datetime.parseISO8601Date(item.StartDate)));
+    context.querySelector('.optionAroundTime').innerHTML = translate('AroundTime', datetime.getDisplayTime(datetime.parseISO8601Date(item.StartDate)));
 
     loading.hide();
 }
@@ -127,11 +127,11 @@ function fillKeepUpTo(context) {
         let text;
 
         if (i === 0) {
-            text = globalize.translate('AsManyAsPossible');
+            text = translate('AsManyAsPossible');
         } else if (i === 1) {
-            text = globalize.translate('ValueOneEpisode');
+            text = translate('ValueOneEpisode');
         } else {
-            text = globalize.translate('ValueEpisodeCount', i);
+            text = translate('ValueEpisodeCount', i);
         }
 
         html += '<option value="' + i + '">' + text + '</option>';
@@ -165,7 +165,7 @@ function embed(itemId, serverId, options) {
     const dlg = options.context;
 
     dlg.classList.add('hide');
-    dlg.innerHTML = globalize.translateHtml(template, 'core');
+    dlg.innerHTML = translateHtml(template, 'core');
 
     dlg.querySelector('.formDialogHeader').classList.add('hide');
     dlg.querySelector('.formDialogFooter').classList.add('hide');
@@ -213,7 +213,7 @@ function showEditor(itemId, serverId, options) {
 
         let html = '';
 
-        html += globalize.translateHtml(template, 'core');
+        html += translateHtml(template, 'core');
 
         dlg.innerHTML = html;
 

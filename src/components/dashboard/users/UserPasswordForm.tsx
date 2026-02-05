@@ -70,9 +70,9 @@ const UserPasswordForm: FunctionComponent<IProps> = ({ user }: IProps) => {
 
         const onSubmit = (e: Event) => {
             if ((page.querySelector('#txtNewPassword') as HTMLInputElement).value != (page.querySelector('#txtNewPasswordConfirm') as HTMLInputElement).value) {
-                toast(globalize.translate('PasswordMatchError'));
+                toast(translate('PasswordMatchError'));
             } else if ((page.querySelector('#txtNewPassword') as HTMLInputElement).value == '' && user?.Policy?.IsAdministrator) {
-                toast(globalize.translate('PasswordMissingSaveError'));
+                toast(translate('PasswordMissingSaveError'));
             } else {
                 loading.show();
                 savePassword();
@@ -99,7 +99,7 @@ const UserPasswordForm: FunctionComponent<IProps> = ({ user }: IProps) => {
 
             window.ApiClient.updateUserPassword(user.Id, currentPassword, newPassword).then(function () {
                 loading.hide();
-                toast(globalize.translate('PasswordSaved'));
+                toast(translate('PasswordSaved'));
 
                 loadUser().catch(err => {
                     console.error('[UserPasswordForm] failed to load user', err);
@@ -107,22 +107,22 @@ const UserPasswordForm: FunctionComponent<IProps> = ({ user }: IProps) => {
             }, function () {
                 loading.hide();
                 Dashboard.alert({
-                    title: globalize.translate('HeaderLoginFailure'),
-                    message: globalize.translate('MessageInvalidUser')
+                    title: translate('HeaderLoginFailure'),
+                    message: translate('MessageInvalidUser')
                 });
             });
         };
 
         const resetPassword = () => {
-            const msg = globalize.translate('PasswordResetConfirmation');
-            confirm(msg, globalize.translate('ResetPassword')).then(function () {
+            const msg = translate('PasswordResetConfirmation');
+            confirm(msg, translate('ResetPassword')).then(function () {
                 loading.show();
                 if (user.Id) {
                     window.ApiClient.resetUserPassword(user.Id).then(function () {
                         loading.hide();
                         Dashboard.alert({
-                            message: globalize.translate('PasswordResetComplete'),
-                            title: globalize.translate('ResetPassword')
+                            message: translate('PasswordResetComplete'),
+                            title: translate('ResetPassword')
                         });
                         loadUser().catch(err => {
                             console.error('[UserPasswordForm] failed to load user', err);
@@ -156,7 +156,7 @@ const UserPasswordForm: FunctionComponent<IProps> = ({ user }: IProps) => {
                         <Input
                             type='password'
                             id='txtCurrentPassword'
-                            label={globalize.translate('LabelCurrentPassword')}
+                            label={translate('LabelCurrentPassword')}
                             autoComplete='off'
                         />
                     </div>
@@ -164,7 +164,7 @@ const UserPasswordForm: FunctionComponent<IProps> = ({ user }: IProps) => {
                         <Input
                             type='password'
                             id='txtNewPassword'
-                            label={globalize.translate('LabelNewPassword')}
+                            label={translate('LabelNewPassword')}
                             autoComplete='off'
                         />
                     </div>
@@ -172,7 +172,7 @@ const UserPasswordForm: FunctionComponent<IProps> = ({ user }: IProps) => {
                         <Input
                             type='password'
                             id='txtNewPasswordConfirm'
-                            label={globalize.translate('LabelNewPasswordConfirm')}
+                            label={translate('LabelNewPasswordConfirm')}
                             autoComplete='off'
                         />
                     </div>
@@ -181,13 +181,13 @@ const UserPasswordForm: FunctionComponent<IProps> = ({ user }: IProps) => {
                         <Button
                             type='submit'
                             className='raised button-submit block'
-                            title={globalize.translate('SavePassword')}
+                            title={translate('SavePassword')}
                         />
                         <Button
                             type='button'
                             id='btnResetPassword'
                             className='raised button-cancel block hide'
-                            title={globalize.translate('ResetPassword')}
+                            title={translate('ResetPassword')}
                         />
                     </div>
                 </div>

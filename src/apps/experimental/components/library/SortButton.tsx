@@ -2,7 +2,7 @@ import { ItemSortBy } from '@jellyfin/sdk/lib/generated-client/models/item-sort-
 import { SortOrder } from '@jellyfin/sdk/lib/generated-client/models/sort-order';
 import React, { FC, useCallback } from 'react';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SortByAlphaIcon from '@mui/icons-material/SortByAlpha';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { LibraryViewSettings } from 'types/library';
 import { LibraryTab } from 'types/libraryTab';
 
@@ -159,9 +159,9 @@ const SortButton: FC<SortButtonProps> = ({
     return (
         <>
             <Button
-                title={globalize.translate('Sort')}
+                title={translate('Sort')}
                 aria-describedby={id}
-                onClick={handleClick}
+                onPress={handleClick}
             >
                 <SortByAlphaIcon />
             </Button>
@@ -185,14 +185,14 @@ const SortButton: FC<SortButtonProps> = ({
                 <FormControl fullWidth>
                     <InputLabel id='select-sort-label'>
                         <Typography component='span'>
-                            {globalize.translate('LabelSortBy')}
+                            {translate('LabelSortBy')}
                         </Typography>
                     </InputLabel>
                     <Select
                         labelId='select-sort-label'
                         id='selectSortBy'
                         value={libraryViewSettings.SortBy}
-                        label={globalize.translate('LabelSortBy')}
+                        label={translate('LabelSortBy')}
                         name='SortBy'
                         onChange={onSelectChange}
                     >
@@ -203,7 +203,7 @@ const SortButton: FC<SortButtonProps> = ({
                                     value={option.value}
                                 >
                                     <Typography component='span'>
-                                        {globalize.translate(option.label)}
+                                        {translate(option.label)}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -214,14 +214,14 @@ const SortButton: FC<SortButtonProps> = ({
                 <FormControl fullWidth>
                     <InputLabel id='select-sortorder-label'>
                         <Typography component='span'>
-                            {globalize.translate('LabelSortOrder')}
+                            {translate('LabelSortOrder')}
                         </Typography>
                     </InputLabel>
                     <Select
                         labelId='select-sortorder-label'
                         id='selectSortOrder'
                         value={libraryViewSettings.SortOrder}
-                        label={globalize.translate('LabelSortOrder')}
+                        label={translate('LabelSortOrder')}
                         name='SortOrder'
                         onChange={onSelectChange}
                     >

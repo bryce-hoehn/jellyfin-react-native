@@ -6,14 +6,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Menu, { MenuProps } from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import dialog from 'components/dialog/dialog';
 import { playbackManager } from 'components/playback/playbackmanager';
 import React, { FC, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { enable, isEnabled } from 'scripts/autocast';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface RemotePlayActiveMenuProps extends MenuProps {
     onMenuClose: () => void
@@ -55,14 +55,14 @@ const RemotePlayActiveMenu: FC<RemotePlayActiveMenuProps> = ({
             dialog.show({
                 buttons: [
                     {
-                        name: globalize.translate('Yes'),
+                        name: translate('Yes'),
                         id: 'yes'
                     }, {
-                        name: globalize.translate('No'),
+                        name: translate('No'),
                         id: 'no'
                     }
                 ],
-                text: globalize.translate('ConfirmEndPlayerSession', remotePlayerName)
+                text: translate('ConfirmEndPlayerSession', remotePlayerName)
             }).then(id => {
                 onMenuClose();
 
@@ -106,26 +106,26 @@ const RemotePlayActiveMenu: FC<RemotePlayActiveMenuProps> = ({
             }}
         >
             {isDisplayMirrorSupported && (
-                <MenuItem onClick={toggleDisplayMirror}>
+                <MenuItem onPress={toggleDisplayMirror}>
                     {isDisplayMirrorEnabled && (
                         <ListItemIcon>
                             <Check />
                         </ListItemIcon>
                     )}
                     <ListItemText inset={!isDisplayMirrorEnabled}>
-                        {globalize.translate('EnableDisplayMirroring')}
+                        {translate('EnableDisplayMirroring')}
                     </ListItemText>
                 </MenuItem>
             )}
 
-            <MenuItem onClick={toggleAutoCast}>
+            <MenuItem onPress={toggleAutoCast}>
                 {isAutoCastEnabled && (
                     <ListItemIcon>
                         <Check />
                     </ListItemIcon>
                 )}
                 <ListItemText inset={!isAutoCastEnabled}>
-                    {globalize.translate('EnableAutoCast')}
+                    {translate('EnableAutoCast')}
                 </ListItemText>
             </MenuItem>
 
@@ -134,22 +134,22 @@ const RemotePlayActiveMenu: FC<RemotePlayActiveMenuProps> = ({
             <MenuItem
                 component={Link}
                 to='/queue'
-                onClick={onMenuClose}
+                onPress={onMenuClose}
             >
                 <ListItemIcon>
                     <SettingsRemote />
                 </ListItemIcon>
                 <ListItemText>
-                    {globalize.translate('HeaderRemoteControl')}
+                    {translate('HeaderRemoteControl')}
                 </ListItemText>
             </MenuItem>
             <Divider />
-            <MenuItem onClick={disconnectRemotePlayer}>
+            <MenuItem onPress={disconnectRemotePlayer}>
                 <ListItemIcon>
                     <Close />
                 </ListItemIcon>
                 <ListItemText>
-                    {globalize.translate('Disconnect')}
+                    {translate('Disconnect')}
                 </ListItemText>
             </MenuItem>
         </Menu>

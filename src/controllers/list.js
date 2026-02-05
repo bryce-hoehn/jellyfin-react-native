@@ -195,7 +195,7 @@ function updateSortText(instance) {
 
         for (const option of options) {
             if (sortBy === option.value) {
-                btnSortText.innerHTML = globalize.translate('SortByValue', option.name);
+                btnSortText.innerHTML = translate('SortByValue', option.name);
                 break;
             }
         }
@@ -661,43 +661,43 @@ class ItemsView {
 
         function getTitle(item) {
             if (params.type === 'Recordings') {
-                return globalize.translate('Recordings');
+                return translate('Recordings');
             }
 
             if (params.type === 'Programs') {
                 if (params.IsMovie === 'true') {
-                    return globalize.translate('Movies');
+                    return translate('Movies');
                 }
 
                 if (params.IsSports === 'true') {
-                    return globalize.translate('Sports');
+                    return translate('Sports');
                 }
 
                 if (params.IsKids === 'true') {
-                    return globalize.translate('HeaderForKids');
+                    return translate('HeaderForKids');
                 }
 
                 if (params.IsAiring === 'true') {
-                    return globalize.translate('HeaderOnNow');
+                    return translate('HeaderOnNow');
                 }
 
                 if (params.IsSeries === 'true') {
-                    return globalize.translate('Shows');
+                    return translate('Shows');
                 }
 
                 if (params.IsNews === 'true') {
-                    return globalize.translate('News');
+                    return translate('News');
                 }
 
-                return globalize.translate('Programs');
+                return translate('Programs');
             }
 
             if (params.type === 'nextup') {
-                return globalize.translate('NextUp');
+                return translate('NextUp');
             }
 
             if (params.type === 'favoritemovies') {
-                return globalize.translate('FavoriteMovies');
+                return translate('FavoriteMovies');
             }
 
             if (item) {
@@ -705,35 +705,35 @@ class ItemsView {
             }
 
             if (params.type === 'Movie') {
-                return globalize.translate('Movies');
+                return translate('Movies');
             }
 
             if (params.type === 'Series') {
-                return globalize.translate('Shows');
+                return translate('Shows');
             }
 
             if (params.type === 'Season') {
-                return globalize.translate('Seasons');
+                return translate('Seasons');
             }
 
             if (params.type === 'Episode') {
-                return globalize.translate('Episodes');
+                return translate('Episodes');
             }
 
             if (params.type === 'MusicArtist') {
-                return globalize.translate('Artists');
+                return translate('Artists');
             }
 
             if (params.type === 'MusicAlbum') {
-                return globalize.translate('Albums');
+                return translate('Albums');
             }
 
             if (params.type === 'Audio') {
-                return globalize.translate('Songs');
+                return translate('Songs');
             }
 
             if (params.type === 'Video') {
-                return globalize.translate('Videos');
+                return translate('Videos');
             }
 
             if (params.tag) {
@@ -1008,7 +1008,7 @@ class ItemsView {
 
         if (this.params.type === 'Programs') {
             sortBy.push({
-                name: globalize.translate('AirDate'),
+                name: translate('AirDate'),
                 value: [ItemSortBy.StartDate, ItemSortBy.SortName].join(',')
             });
         }
@@ -1033,7 +1033,7 @@ class ItemsView {
 
         if (this.params.type !== 'Programs') {
             sortBy.push({
-                name: globalize.translate('DateAdded'),
+                name: translate('DateAdded'),
                 value: [ItemSortBy.DateCreated, ItemSortBy.SortName].join(',')
             });
         }
@@ -1047,13 +1047,13 @@ class ItemsView {
         if (!this.params.type) {
             option = this.getNameSortOption(this.params);
             sortBy.push({
-                name: globalize.translate('Folders'),
+                name: translate('Folders'),
                 value: `${ItemSortBy.IsFolder},${option.value}`
             });
         }
 
         sortBy.push({
-            name: globalize.translate('ParentalRating'),
+            name: translate('ParentalRating'),
             value: [ItemSortBy.OfficialRating, ItemSortBy.SortName].join(',')
         });
         option = this.getPlayCountSortOption();
@@ -1063,11 +1063,11 @@ class ItemsView {
         }
 
         sortBy.push({
-            name: globalize.translate('ReleaseDate'),
+            name: translate('ReleaseDate'),
             value: [ItemSortBy.ProductionYear, ItemSortBy.PremiereDate, ItemSortBy.SortName].join(',')
         });
         sortBy.push({
-            name: globalize.translate('Runtime'),
+            name: translate('Runtime'),
             value: [ItemSortBy.Runtime, ItemSortBy.SortName].join(',')
         });
         return sortBy;
@@ -1076,13 +1076,13 @@ class ItemsView {
     getNameSortOption(params) {
         if (params.type === 'Episode') {
             return {
-                name: globalize.translate('Name'),
+                name: translate('Name'),
                 value: [ItemSortBy.SeriesSortName, ItemSortBy.SortName].join(',')
             };
         }
 
         return {
-            name: globalize.translate('Name'),
+            name: translate('Name'),
             value: ItemSortBy.SortName
         };
     }
@@ -1093,7 +1093,7 @@ class ItemsView {
         }
 
         return {
-            name: globalize.translate('PlayCount'),
+            name: translate('PlayCount'),
             value: [ItemSortBy.PlayCount, ItemSortBy.SortName].join(',')
         };
     }
@@ -1104,7 +1104,7 @@ class ItemsView {
         }
 
         return {
-            name: globalize.translate('DatePlayed'),
+            name: translate('DatePlayed'),
             value: [ItemSortBy.DatePlayed, ItemSortBy.SortName].join(',')
         };
     }
@@ -1115,14 +1115,14 @@ class ItemsView {
         }
 
         return {
-            name: globalize.translate('CriticRating'),
+            name: translate('CriticRating'),
             value: [ItemSortBy.CriticRating, ItemSortBy.SortName].join(',')
         };
     }
 
     getCommunityRatingSortOption() {
         return {
-            name: globalize.translate('CommunityRating'),
+            name: translate('CommunityRating'),
             value: [ItemSortBy.CommunityRating, ItemSortBy.SortName].join(',')
         };
     }

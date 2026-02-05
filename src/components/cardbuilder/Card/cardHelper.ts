@@ -8,7 +8,7 @@ import { appRouter } from 'components/router/appRouter';
 import layoutManager from 'components/layoutManager';
 import itemHelper from 'components/itemHelper';
 import { ItemAction } from 'constants/itemAction';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import datetime from 'scripts/datetime';
 import { isUsingLiveTvNaming } from '../cardBuilderUtils';
 import { getDataAttributes } from 'utils/items';
@@ -156,55 +156,55 @@ function isMusicGenreOrMusicArtist(
 function getMovieCount(itemMovieCount: NullableNumber) {
     if (itemMovieCount) {
         return itemMovieCount === 1 ?
-            globalize.translate('ValueOneMovie') :
-            globalize.translate('ValueMovieCount', itemMovieCount);
+            translate('ValueOneMovie') :
+            translate('ValueMovieCount', itemMovieCount);
     }
 }
 
 function getSeriesCount(itemSeriesCount: NullableNumber) {
     if (itemSeriesCount) {
         return itemSeriesCount === 1 ?
-            globalize.translate('ValueOneSeries') :
-            globalize.translate('ValueSeriesCount', itemSeriesCount);
+            translate('ValueOneSeries') :
+            translate('ValueSeriesCount', itemSeriesCount);
     }
 }
 
 function getEpisodeCount(itemEpisodeCount: NullableNumber) {
     if (itemEpisodeCount) {
         return itemEpisodeCount === 1 ?
-            globalize.translate('ValueOneEpisode') :
-            globalize.translate('ValueEpisodeCount', itemEpisodeCount);
+            translate('ValueOneEpisode') :
+            translate('ValueEpisodeCount', itemEpisodeCount);
     }
 }
 
 function getAlbumCount(itemAlbumCount: NullableNumber) {
     if (itemAlbumCount) {
         return itemAlbumCount === 1 ?
-            globalize.translate('ValueOneAlbum') :
-            globalize.translate('ValueAlbumCount', itemAlbumCount);
+            translate('ValueOneAlbum') :
+            translate('ValueAlbumCount', itemAlbumCount);
     }
 }
 
 function getSongCount(itemSongCount: NullableNumber) {
     if (itemSongCount) {
         return itemSongCount === 1 ?
-            globalize.translate('ValueOneSong') :
-            globalize.translate('ValueSongCount', itemSongCount);
+            translate('ValueOneSong') :
+            translate('ValueSongCount', itemSongCount);
     }
 }
 
 function getMusicVideoCount(itemMusicVideoCount: NullableNumber) {
     if (itemMusicVideoCount) {
         return itemMusicVideoCount === 1 ?
-            globalize.translate('ValueOneMusicVideo') :
-            globalize.translate('ValueMusicVideoCount', itemMusicVideoCount);
+            translate('ValueOneMusicVideo') :
+            translate('ValueMusicVideoCount', itemMusicVideoCount);
     }
 }
 
 function getRecursiveItemCount(itemRecursiveItemCount: NullableNumber) {
     return itemRecursiveItemCount === 1 ?
-        globalize.translate('ValueOneEpisode') :
-        globalize.translate('ValueEpisodeCount', itemRecursiveItemCount);
+        translate('ValueOneEpisode') :
+        translate('ValueEpisodeCount', itemRecursiveItemCount);
 }
 
 function getParentTitle(
@@ -252,9 +252,9 @@ function getRunTimeTicks(itemRunTimeTicks: NullableNumber) {
 
         minutes = minutes || 1;
 
-        return globalize.translate('ValueMinutes', Math.round(minutes));
+        return translate('ValueMinutes', Math.round(minutes));
     } else {
-        return globalize.translate('ValueMinutes', 0);
+        return translate('ValueMinutes', 0);
     }
 }
 
@@ -399,7 +399,7 @@ function addOtherText(
     }
 
     if (shouldShowExtraType(item.ExtraType)) {
-        addTextLine({ title: globalize.translate(item.ExtraType) });
+        addTextLine({ title: translate(item.ExtraType) });
     }
 
     if (cardOptions.showItemCounts) {
@@ -468,7 +468,7 @@ function addOtherText(
 
     if (shouldShowPersonRoleOrType(cardOptions.showCurrentProgramTime, item)) {
         addTextLine({
-            title: globalize.translate(
+            title: translate(
                 'PersonRole',
                 (item as BaseItemPerson).Role
             )
@@ -478,15 +478,15 @@ function addOtherText(
 
 function getSeriesTimerChannel(item: ItemDto) {
     if (item.RecordAnyChannel) {
-        return globalize.translate('AllChannels');
+        return translate('AllChannels');
     } else {
-        return item.ChannelName || '' || globalize.translate('OneChannel');
+        return item.ChannelName || '' || translate('OneChannel');
     }
 }
 
 function getSeriesTimerTime(item: ItemDto) {
     if (item.RecordAnyTime) {
-        return globalize.translate('Anytime');
+        return translate('Anytime');
     } else {
         return datetime.getDisplayTime(item.StartDate);
     }
@@ -568,7 +568,7 @@ function getProductionYear(item: ItemDto) {
         });
     if (item.Type === ItemKind.Series) {
         if (item.Status === 'Continuing') {
-            return globalize.translate(
+            return translate(
                 'SeriesYearToPresent',
                 productionYear || ''
             );

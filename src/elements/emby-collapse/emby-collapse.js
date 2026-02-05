@@ -54,7 +54,7 @@ function slideUpToHide(button, elem) {
     });
 }
 
-function onButtonClick() {
+function onButtonPress() {
     const button = this;
     const collapseContent = button.parentNode.querySelector('.collapseContent');
 
@@ -87,10 +87,10 @@ EmbyButtonPrototype.attachedCallback = function () {
 
     const button = this.querySelector('.emby-collapsible-button');
 
-    button.addEventListener('click', onButtonClick);
+    button.addEventListener('click', onButtonPress);
 
     if (this.getAttribute('data-expanded') === 'true') {
-        onButtonClick.call(button);
+        onButtonPress.call(button);
     }
 };
 

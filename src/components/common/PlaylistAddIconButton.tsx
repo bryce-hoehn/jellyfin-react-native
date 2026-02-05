@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 import { ItemAction } from 'constants/itemAction';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface PlaylistAddIconButtonProps {
     className?: string;
@@ -14,7 +14,7 @@ const PlaylistAddIconButton: FC<PlaylistAddIconButtonProps> = ({ className }) =>
         <IconButton
             className={className}
             data-action={ItemAction.AddToPlaylist}
-            title={globalize.translate('AddToPlaylist')}
+            title={translate('AddToPlaylist')}
         >
             <PlaylistAddIcon />
         </IconButton>

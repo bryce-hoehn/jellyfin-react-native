@@ -3,7 +3,7 @@ import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-ite
 import { ImageType } from '@jellyfin/sdk/lib/generated-client/models/image-type';
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api/image-api';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import type { ItemDto } from 'types/base/models/item-dto';
 import type { ListOptions } from 'types/listOptions';
 
@@ -24,12 +24,12 @@ const sortBySortName = (item: ItemDto): string => {
 };
 
 const sortByOfficialrating = (item: ItemDto): string => {
-    return item.OfficialRating ?? globalize.translate('Unrated');
+    return item.OfficialRating ?? translate('Unrated');
 };
 
 const sortByCommunityRating = (item: ItemDto): string => {
     if (item.CommunityRating == null) {
-        return globalize.translate('Unrated');
+        return translate('Unrated');
     }
 
     return String(Math.floor(item.CommunityRating));
@@ -37,7 +37,7 @@ const sortByCommunityRating = (item: ItemDto): string => {
 
 const sortByCriticRating = (item: ItemDto): string => {
     if (item.CriticRating == null) {
-        return globalize.translate('Unrated');
+        return translate('Unrated');
     }
 
     return String(Math.floor(item.CriticRating));
@@ -63,7 +63,7 @@ export function getIndex(item: ItemDto, listOptions: ListOptions): string {
     if (listOptions.index === 'disc') {
         return item.ParentIndexNumber == null ?
             '' :
-            globalize.translate('ValueDiscNumber', item.ParentIndexNumber);
+            translate('ValueDiscNumber', item.ParentIndexNumber);
     }
 
     const sortBy = (listOptions.sortBy ?? '').toLowerCase();

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow/TableRow';
 import React, { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import type { PluginDetails } from '../types/PluginDetails';
 
@@ -30,19 +30,19 @@ const PluginDetailsTable: FC<PluginDetailsTableProps> = ({
             <TableBody>
                 <TableRow>
                     <TableCell variant='head'>
-                        {globalize.translate('LabelStatus')}
+                        {translate('LabelStatus')}
                     </TableCell>
                     <TableCell>
                         {
                             (isPluginLoading && <Skeleton />)
                             || pluginDetails?.status
-                            || globalize.translate('LabelNotInstalled')
+                            || translate('LabelNotInstalled')
                         }
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell variant='head'>
-                        {globalize.translate('LabelVersion')}
+                        {translate('LabelVersion')}
                     </TableCell>
                     <TableCell>
                         {
@@ -53,13 +53,13 @@ const PluginDetailsTable: FC<PluginDetailsTableProps> = ({
                 </TableRow>
                 <TableRow>
                     <TableCell variant='head'>
-                        {globalize.translate('LabelDeveloper')}
+                        {translate('LabelDeveloper')}
                     </TableCell>
                     <TableCell>
                         {
                             (isRepositoryLoading && <Skeleton />)
                             || pluginDetails?.owner
-                            || globalize.translate('Unknown')
+                            || translate('Unknown')
                         }
                     </TableCell>
                 </TableRow>
@@ -67,13 +67,13 @@ const PluginDetailsTable: FC<PluginDetailsTableProps> = ({
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                     <TableCell variant='head'>
-                        {globalize.translate('LabelRepository')}
+                        {translate('LabelRepository')}
                     </TableCell>
                     <TableCell>
                         {
                             (isRepositoryLoading && <Skeleton />)
                             || (pluginDetails?.status && pluginDetails?.canUninstall === false
-                                && globalize.translate('LabelBundled')
+                                && translate('LabelBundled')
                             )
                             || (pluginDetails?.version?.repositoryUrl && (
                                 <Link
@@ -85,7 +85,7 @@ const PluginDetailsTable: FC<PluginDetailsTableProps> = ({
                                     {pluginDetails.version.repositoryName}
                                 </Link>
                             ))
-                            || globalize.translate('Unknown')
+                            || translate('Unknown')
                         }
                     </TableCell>
                 </TableRow>

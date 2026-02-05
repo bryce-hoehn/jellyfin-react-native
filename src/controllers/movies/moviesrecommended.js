@@ -6,7 +6,7 @@ import layoutManager from 'components/layoutManager';
 import * as mainTabsManager from 'components/maintabsmanager';
 import { playbackManager } from 'components/playback/playbackmanager';
 import dom from 'utils/dom';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import inputManager from 'scripts/inputManager';
 import libraryMenu from 'scripts/libraryMenu';
 import * as userSettings from 'scripts/settings/userSettings';
@@ -102,21 +102,21 @@ function getRecommendationHtml(recommendation) {
 
     switch (recommendation.RecommendationType) {
         case 'SimilarToRecentlyPlayed':
-            title = globalize.translate('RecommendationBecauseYouWatched', recommendation.BaselineItemName);
+            title = translate('RecommendationBecauseYouWatched', recommendation.BaselineItemName);
             break;
 
         case 'SimilarToLikedItem':
-            title = globalize.translate('RecommendationBecauseYouLike', recommendation.BaselineItemName);
+            title = translate('RecommendationBecauseYouLike', recommendation.BaselineItemName);
             break;
 
         case 'HasDirectorFromRecentlyPlayed':
         case 'HasLikedDirector':
-            title = globalize.translate('RecommendationDirectedBy', recommendation.BaselineItemName);
+            title = translate('RecommendationDirectedBy', recommendation.BaselineItemName);
             break;
 
         case 'HasActorFromRecentlyPlayed':
         case 'HasLikedActor':
-            title = globalize.translate('RecommendationStarring', recommendation.BaselineItemName);
+            title = translate('RecommendationStarring', recommendation.BaselineItemName);
             break;
     }
 
@@ -228,15 +228,15 @@ function loadSuggestionsTab(view, params, tabContent) {
 
 function getTabs() {
     return [{
-        name: globalize.translate('Movies')
+        name: translate('Movies')
     }, {
-        name: globalize.translate('Suggestions')
+        name: translate('Suggestions')
     }, {
-        name: globalize.translate('Favorites')
+        name: translate('Favorites')
     }, {
-        name: globalize.translate('Collections')
+        name: translate('Collections')
     }, {
-        name: globalize.translate('Genres')
+        name: translate('Genres')
     }];
 }
 
@@ -386,8 +386,8 @@ export default function (view, params) {
                     libraryMenu.setTitle(item.Name);
                 });
             } else {
-                view.setAttribute('data-title', globalize.translate('Movies'));
-                libraryMenu.setTitle(globalize.translate('Movies'));
+                view.setAttribute('data-title', translate('Movies'));
+                libraryMenu.setTitle(translate('Movies'));
             }
         }
 

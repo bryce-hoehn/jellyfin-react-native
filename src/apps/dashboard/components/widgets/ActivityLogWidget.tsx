@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Widget from './Widget';
 import List from '@mui/material/List';
 import ActivityListItem from 'apps/dashboard/features/activity/components/ActivityListItem';
@@ -22,7 +22,7 @@ const ActivityLogWidget = () => {
 
     return (
         <Widget
-            title={globalize.translate('HeaderActivity')}
+            title={translate('HeaderActivity')}
             href='/dashboard/activity?useractivity=true'
         >
             {isPending ? (

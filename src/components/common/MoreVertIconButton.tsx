@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { ItemAction } from 'constants/itemAction';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface MoreVertIconButtonProps {
     className?: string;
@@ -15,7 +15,7 @@ const MoreVertIconButton: FC<MoreVertIconButtonProps> = ({ className, iconClassN
         <IconButton
             className={className}
             data-action={ItemAction.Menu}
-            title={globalize.translate('ButtonMore')}
+            title={translate('ButtonMore')}
         >
             <MoreVertIcon className={iconClassName} />
         </IconButton>

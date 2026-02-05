@@ -28,7 +28,7 @@ export function getVideoQualityOptions(options) {
     const qualityOptions = [];
 
     const autoQualityOption = {
-        name: globalize.translate('Auto'),
+        name: translate('Auto'),
         bitrate: 0,
         selected: options.isAutomaticBitrateEnabled
     };
@@ -83,7 +83,7 @@ export function getAudioQualityOptions(options) {
     const qualityOptions = [];
 
     const autoQualityOption = {
-        name: globalize.translate('Auto'),
+        name: translate('Auto'),
         bitrate: 0,
         selected: options.isAutomaticBitrateEnabled
     };

@@ -5,7 +5,7 @@ import loading from 'components/loading/loading';
 import * as mainTabsManager from 'components/maintabsmanager';
 import browser from 'scripts/browser';
 import dom from 'utils/dom';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import inputManager from 'scripts/inputManager';
 import libraryMenu from 'scripts/libraryMenu';
 import * as userSettings from 'scripts/settings/userSettings';
@@ -176,19 +176,19 @@ function loadSuggestionsTab(page, tabContent, parentId) {
 
 function getTabs() {
     return [{
-        name: globalize.translate('Albums')
+        name: translate('Albums')
     }, {
-        name: globalize.translate('Suggestions')
+        name: translate('Suggestions')
     }, {
-        name: globalize.translate('HeaderAlbumArtists')
+        name: translate('HeaderAlbumArtists')
     }, {
-        name: globalize.translate('Artists')
+        name: translate('Artists')
     }, {
-        name: globalize.translate('Playlists')
+        name: translate('Playlists')
     }, {
-        name: globalize.translate('Songs')
+        name: translate('Songs')
     }, {
-        name: globalize.translate('Genres')
+        name: translate('Genres')
     }];
 }
 
@@ -381,8 +381,8 @@ export default function (view, params) {
                     libraryMenu.setTitle(item.Name);
                 });
             } else {
-                view.setAttribute('data-title', globalize.translate('TabMusic'));
-                libraryMenu.setTitle(globalize.translate('TabMusic'));
+                view.setAttribute('data-title', translate('TabMusic'));
+                libraryMenu.setTitle(translate('TabMusic'));
             }
         }
 

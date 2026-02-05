@@ -53,106 +53,106 @@ function getLandingScreenOptions(type) {
 
     if (type === 'movies') {
         list.push({
-            name: globalize.translate('Movies'),
+            name: translate('Movies'),
             value: LibraryTab.Movies,
             isDefault: true
         });
         list.push({
-            name: globalize.translate('Suggestions'),
+            name: translate('Suggestions'),
             value: LibraryTab.Suggestions
         });
         list.push({
-            name: globalize.translate('Favorites'),
+            name: translate('Favorites'),
             value: LibraryTab.Favorites
         });
         list.push({
-            name: globalize.translate('Collections'),
+            name: translate('Collections'),
             value: LibraryTab.Collections
         });
         list.push({
-            name: globalize.translate('Genres'),
+            name: translate('Genres'),
             value: LibraryTab.Genres
         });
     } else if (type === 'tvshows') {
         list.push({
-            name: globalize.translate('Shows'),
+            name: translate('Shows'),
             value: LibraryTab.Series,
             isDefault: true
         });
         list.push({
-            name: globalize.translate('Suggestions'),
+            name: translate('Suggestions'),
             value: LibraryTab.Suggestions
         });
         list.push({
-            name: globalize.translate('TabUpcoming'),
+            name: translate('TabUpcoming'),
             value: LibraryTab.Upcoming
         });
         list.push({
-            name: globalize.translate('Genres'),
+            name: translate('Genres'),
             value: LibraryTab.Genres
         });
         list.push({
-            name: globalize.translate('TabNetworks'),
+            name: translate('TabNetworks'),
             value: LibraryTab.Networks
         });
         list.push({
-            name: globalize.translate('Episodes'),
+            name: translate('Episodes'),
             value: LibraryTab.Episodes
         });
     } else if (type === 'music') {
         list.push({
-            name: globalize.translate('Albums'),
+            name: translate('Albums'),
             value: LibraryTab.Albums,
             isDefault: true
         });
         list.push({
-            name: globalize.translate('Suggestions'),
+            name: translate('Suggestions'),
             value: LibraryTab.Suggestions
         });
         list.push({
-            name: globalize.translate('HeaderAlbumArtists'),
+            name: translate('HeaderAlbumArtists'),
             value: LibraryTab.AlbumArtists
         });
         list.push({
-            name: globalize.translate('Artists'),
+            name: translate('Artists'),
             value: LibraryTab.Artists
         });
         list.push({
-            name: globalize.translate('Playlists'),
+            name: translate('Playlists'),
             value: LibraryTab.Playlists
         });
         list.push({
-            name: globalize.translate('Songs'),
+            name: translate('Songs'),
             value: LibraryTab.Songs
         });
         list.push({
-            name: globalize.translate('Genres'),
+            name: translate('Genres'),
             value: LibraryTab.Genres
         });
     } else if (type === 'livetv') {
         list.push({
-            name: globalize.translate('Programs'),
+            name: translate('Programs'),
             value: LibraryTab.Programs,
             isDefault: true
         });
         list.push({
-            name: globalize.translate('Guide'),
+            name: translate('Guide'),
             value: LibraryTab.Guide
         });
         list.push({
-            name: globalize.translate('Channels'),
+            name: translate('Channels'),
             value: LibraryTab.Channels
         });
         list.push({
-            name: globalize.translate('Recordings'),
+            name: translate('Recordings'),
             value: LibraryTab.Recordings
         });
         list.push({
-            name: globalize.translate('Schedule'),
+            name: translate('Schedule'),
             value: LibraryTab.Schedule
         });
         list.push({
-            name: globalize.translate('Series'),
+            name: translate('Series'),
             value: LibraryTab.SeriesTimers
         });
     }
@@ -188,8 +188,8 @@ function renderViewOrder(context, user, result) {
 
         currentHtml += '</div>';
 
-        currentHtml += `<button type="button" is="paper-icon-button-light" class="btnViewItemUp btnViewItemMove autoSize" title="${globalize.translate('Up')}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
-        currentHtml += `<button type="button" is="paper-icon-button-light" class="btnViewItemDown btnViewItemMove autoSize" title="${globalize.translate('Down')}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
+        currentHtml += `<button type="button" is="paper-icon-button-light" class="btnViewItemUp btnViewItemMove autoSize" title="${translate('Up')}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
+        currentHtml += `<button type="button" is="paper-icon-button-light" class="btnViewItemDown btnViewItemMove autoSize" title="${translate('Down')}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
 
         currentHtml += '</div>';
 
@@ -230,7 +230,7 @@ function getPerLibrarySettingsHtml(item, user, userSettings) {
         html += '<div>';
         html += '<label>';
         html += `<input type="checkbox" is="emby-checkbox" class="chkIncludeInMyMedia" data-folderid="${item.Id}"${isChecked ? ' checked="checked"' : ''}/>`;
-        html += `<span>${globalize.translate('DisplayInMyMedia')}</span>`;
+        html += `<span>${translate('DisplayInMyMedia')}</span>`;
         html += '</label>';
         html += '</div>';
     }
@@ -240,7 +240,7 @@ function getPerLibrarySettingsHtml(item, user, userSettings) {
         isChecked = !user.Configuration.LatestItemsExcludes.includes(item.Id);
         html += '<label class="fldIncludeInLatest">';
         html += `<input type="checkbox" is="emby-checkbox" class="chkIncludeInLatest" data-folderid="${item.Id}"${isChecked ? ' checked="checked"' : ''}/>`;
-        html += `<span>${globalize.translate('DisplayInOtherHomeScreenSections')}</span>`;
+        html += `<span>${translate('DisplayInOtherHomeScreenSections')}</span>`;
         html += '</label>';
     }
 
@@ -251,7 +251,7 @@ function getPerLibrarySettingsHtml(item, user, userSettings) {
     if (item.CollectionType === 'movies' || item.CollectionType === 'tvshows' || item.CollectionType === 'music' || item.CollectionType === 'livetv') {
         const idForLanding = item.CollectionType === 'livetv' ? item.CollectionType : item.Id;
         html += '<div class="selectContainer">';
-        html += `<select is="emby-select" class="selectLanding" data-folderid="${idForLanding}" label="${globalize.translate('LabelDefaultScreen')}">`;
+        html += `<select is="emby-select" class="selectLanding" data-folderid="${idForLanding}" label="${translate('LabelDefaultScreen')}">`;
 
         const userValue = userSettings.get(`landing-${idForLanding}`);
 
@@ -406,7 +406,7 @@ function save(instance, context, userId, userSettings, apiClient, enableSaveConf
         saveUser(context, user, userSettings, apiClient).then(() => {
             loading.hide();
             if (enableSaveConfirmation) {
-                toast(globalize.translate('SettingsSaved'));
+                toast(translate('SettingsSaved'));
             }
 
             Events.trigger(instance, 'saved');
@@ -454,10 +454,10 @@ function onChange(e) {
 function embed(options, self) {
     let workingTemplate = template;
     for (let i = 1; i <= numConfigurableSections; i++) {
-        workingTemplate = workingTemplate.replace(`{section${i}label}`, globalize.translate('LabelHomeScreenSectionValue', i));
+        workingTemplate = workingTemplate.replace(`{section${i}label}`, translate('LabelHomeScreenSectionValue', i));
     }
 
-    options.element.innerHTML = globalize.translateHtml(workingTemplate, 'core');
+    options.element.innerHTML = translateHtml(workingTemplate, 'core');
 
     options.element.querySelector('.viewOrderList').addEventListener('click', onSectionOrderListClick);
     options.element.querySelector('form').addEventListener('submit', onSubmit.bind(self));

@@ -1,10 +1,10 @@
 import alert from 'components/alert';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { PluginType } from 'types/plugin.ts';
 
 function showErrorMessage() {
-    return alert(globalize.translate('MessagePlayAccessRestricted'));
+    return alert(translate('MessagePlayAccessRestricted'));
 }
 
 class PlayAccessValidation {

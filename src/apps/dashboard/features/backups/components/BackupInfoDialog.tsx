@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Box from '@mui/material/Box';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import Stack from '@mui/material/Stack';
 import FormGroup from '@mui/material/FormGroup';
@@ -48,7 +48,7 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
             <Toast
                 open={isCopiedToastOpen}
                 onClose={handleToastClose}
-                message={globalize.translate('Copied')}
+                message={translate('Copied')}
             />
             <DialogTitle>
                 {backup.DateCreated}
@@ -61,10 +61,10 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
                             direction='row'
                             spacing={2}
                         >
-                            <Typography fontWeight='bold'>{globalize.translate('LabelPath')}</Typography>
+                            <Typography fontWeight='bold'>{translate('LabelPath')}</Typography>
                             <Stack direction='row'>
                                 <Typography color='text.secondary'>{backup.Path}</Typography>
-                                <IconButton size='small' onClick={copyPath}>
+                                <IconButton size='small' onPress={copyPath}>
                                     <ContentCopy fontSize='small' />
                                 </IconButton>
                             </Stack>
@@ -73,7 +73,7 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
                             direction='row'
                             spacing={2}
                         >
-                            <Typography fontWeight='bold'>{globalize.translate('LabelVersion')}</Typography>
+                            <Typography fontWeight='bold'>{translate('LabelVersion')}</Typography>
                             <Typography color='text.secondary'>{backup.ServerVersion}</Typography>
                         </Stack>
                     </Box>
@@ -88,7 +88,7 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
                                         disabled
                                     />
                                 }
-                                label={globalize.translate('LabelDatabase')}
+                                label={translate('LabelDatabase')}
                             />
                         </FormControl>
 
@@ -101,7 +101,7 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
                                         disabled
                                     />
                                 }
-                                label={globalize.translate('LabelMetadata')}
+                                label={translate('LabelMetadata')}
                             />
                         </FormControl>
 
@@ -114,7 +114,7 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
                                         disabled
                                     />
                                 }
-                                label={globalize.translate('Subtitles')}
+                                label={translate('Subtitles')}
                             />
                         </FormControl>
 
@@ -127,7 +127,7 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
                                         disabled
                                     />
                                 }
-                                label={globalize.translate('Trickplay')}
+                                label={translate('Trickplay')}
                             />
                         </FormControl>
                     </FormGroup>
@@ -135,8 +135,8 @@ const BackupInfoDialog: FunctionComponent<IProps> = ({ backup, open, onClose }: 
             </DialogContent>
 
             <DialogActions>
-                <Button onClick={onClose}>
-                    {globalize.translate('ButtonOk')}
+                <Button onPress={onClose}>
+                    {translate('ButtonOk')}
                 </Button>
             </DialogActions>
         </Dialog>

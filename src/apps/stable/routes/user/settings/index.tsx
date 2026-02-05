@@ -11,7 +11,7 @@ import LinkButton from 'elements/emby-button/LinkButton';
 import { useApi } from 'hooks/useApi';
 import { useQuickConnectEnabled } from 'hooks/useQuickConnect';
 import { useUsers } from 'hooks/useUsers';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import browser from 'scripts/browser';
 import Dashboard from 'utils/dashboard';
 import shell from 'scripts/shell';
@@ -54,7 +54,7 @@ const UserSettingsPage: FC = () => {
         <Page
             id='myPreferencesMenuPage'
             className='libraryPage userPreferencesPage noSecondaryNavPage mainAnimatedPage'
-            title={globalize.translate('Settings')}
+            title={translate('Settings')}
             shouldAutoFocus
         >
             <div className='padded-left padded-right padded-bottom-page padded-top'>
@@ -87,7 +87,7 @@ const UserSettingsPage: FC = () => {
                                 <span className='material-icons listItemIcon listItemIcon-transparent person' aria-hidden='true' />
                                 <div className='listItemBody'>
                                     <div className='listItemBodyText'>
-                                        {globalize.translate('Profile')}
+                                        {translate('Profile')}
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@ const UserSettingsPage: FC = () => {
                                     <span className='material-icons listItemIcon listItemIcon-transparent phonelink_lock' aria-hidden='true' />
                                     <div className='listItemBody'>
                                         <div className='listItemBodyText'>
-                                            {globalize.translate('QuickConnect')}
+                                            {translate('QuickConnect')}
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@ const UserSettingsPage: FC = () => {
                                 <span className='material-icons listItemIcon listItemIcon-transparent tv' aria-hidden='true' />
                                 <div className='listItemBody'>
                                     <div className='listItemBodyText'>
-                                        {globalize.translate('Display')}
+                                        {translate('Display')}
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@ const UserSettingsPage: FC = () => {
                                 <span className='material-icons listItemIcon listItemIcon-transparent home' aria-hidden='true' />
                                 <div className='listItemBody'>
                                     <div className='listItemBodyText'>
-                                        {globalize.translate('Home')}
+                                        {translate('Home')}
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@ const UserSettingsPage: FC = () => {
                                 <span className='material-icons listItemIcon listItemIcon-transparent play_circle_filled' aria-hidden='true' />
                                 <div className='listItemBody'>
                                     <div className='listItemBodyText'>
-                                        {globalize.translate('TitlePlayback')}
+                                        {translate('TitlePlayback')}
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@ const UserSettingsPage: FC = () => {
                                 <span className='material-icons listItemIcon listItemIcon-transparent closed_caption' aria-hidden='true' />
                                 <div className='listItemBody'>
                                     <div className='listItemBodyText'>
-                                        {globalize.translate('Subtitles')}
+                                        {translate('Subtitles')}
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@ const UserSettingsPage: FC = () => {
 
                         {appHost.supports(AppFeature.DownloadManagement) && (
                             <LinkButton
-                                onClick={shell.openDownloadManager}
+                                onPress={shell.openDownloadManager}
                                 className='downloadManager listItem-border'
                                 style={{
                                     display: 'block',
@@ -204,7 +204,7 @@ const UserSettingsPage: FC = () => {
                                     <span className='material-icons listItemIcon listItemIcon-transparent download' aria-hidden='true' />
                                     <div className='listItemBody'>
                                         <div className='listItemBodyText'>
-                                            {globalize.translate('DownloadManager')}
+                                            {translate('DownloadManager')}
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@ const UserSettingsPage: FC = () => {
 
                         {appHost.supports(AppFeature.ClientSettings) && (
                             <LinkButton
-                                onClick={shell.openClientSettings}
+                                onPress={shell.openClientSettings}
                                 className='clientSettings listItem-border'
                                 style={{
                                     display: 'block',
@@ -225,7 +225,7 @@ const UserSettingsPage: FC = () => {
                                     <span className='material-icons listItemIcon listItemIcon-transparent devices_other' aria-hidden='true' />
                                     <div className='listItemBody'>
                                         <div className='listItemBodyText'>
-                                            {globalize.translate('ClientSettings')}
+                                            {translate('ClientSettings')}
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@ const UserSettingsPage: FC = () => {
                                     <span className='material-icons listItemIcon listItemIcon-transparent keyboard' aria-hidden='true' />
                                     <div className='listItemBody'>
                                         <div className='listItemBodyText'>
-                                            {globalize.translate('Controls')}
+                                            {translate('Controls')}
                                         </div>
                                     </div>
                                 </div>
@@ -262,7 +262,7 @@ const UserSettingsPage: FC = () => {
                                     paddingLeft: '0.25em'
                                 }}
                             >
-                                {globalize.translate('HeaderAdmin')}
+                                {translate('HeaderAdmin')}
                             </h2>
 
                             <LinkButton
@@ -278,7 +278,7 @@ const UserSettingsPage: FC = () => {
                                     <span className='material-icons listItemIcon listItemIcon-transparent dashboard' aria-hidden='true' />
                                     <div className='listItemBody'>
                                         <div className='listItemBodyText'>
-                                            {globalize.translate('TabDashboard')}
+                                            {translate('TabDashboard')}
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@ const UserSettingsPage: FC = () => {
                                     <span className='material-icons listItemIcon listItemIcon-transparent mode_edit' aria-hidden='true' />
                                     <div className='listItemBody'>
                                         <div className='listItemBodyText'>
-                                            {globalize.translate('MetadataManager')}
+                                            {translate('MetadataManager')}
                                         </div>
                                     </div>
                                 </div>
@@ -313,12 +313,12 @@ const UserSettingsPage: FC = () => {
                                     paddingLeft: '0.25em'
                                 }}
                             >
-                                {globalize.translate('HeaderUser')}
+                                {translate('HeaderUser')}
                             </h2>
 
                             {appHost.supports(AppFeature.MultiServer) && (
                                 <LinkButton
-                                    onClick={Dashboard.selectServer}
+                                    onPress={Dashboard.selectServer}
                                     className='selectServer listItem-border'
                                     style={{
                                         display: 'block',
@@ -330,7 +330,7 @@ const UserSettingsPage: FC = () => {
                                         <span className='material-icons listItemIcon listItemIcon-transparent storage' aria-hidden='true' />
                                         <div className='listItemBody'>
                                             <div className='listItemBodyText'>
-                                                {globalize.translate('SelectServer')}
+                                                {translate('SelectServer')}
                                             </div>
                                         </div>
                                     </div>
@@ -338,7 +338,7 @@ const UserSettingsPage: FC = () => {
                             )}
 
                             <LinkButton
-                                onClick={Dashboard.logout}
+                                onPress={Dashboard.logout}
                                 className='btnLogout listItem-border'
                                 style={{
                                     display: 'block',
@@ -350,7 +350,7 @@ const UserSettingsPage: FC = () => {
                                     <span className='material-icons listItemIcon listItemIcon-transparent exit_to_app' aria-hidden='true' />
                                     <div className='listItemBody'>
                                         <div className='listItemBodyText'>
-                                            {globalize.translate('ButtonSignOut')}
+                                            {translate('ButtonSignOut')}
                                         </div>
                                     </div>
                                 </div>
@@ -358,7 +358,7 @@ const UserSettingsPage: FC = () => {
 
                             {appHost.supports(AppFeature.ExitMenu) && (
                                 <LinkButton
-                                    onClick={appHost.exit}
+                                    onPress={appHost.exit}
                                     className='exitApp listItem-border'
                                     style={{
                                         display: 'block',
@@ -370,7 +370,7 @@ const UserSettingsPage: FC = () => {
                                         <span className='material-icons listItemIcon listItemIcon-transparent close' aria-hidden='true' />
                                         <div className='listItemBody'>
                                             <div className='listItemBodyText'>
-                                                {globalize.translate('ButtonExitApp')}
+                                                {translate('ButtonExitApp')}
                                             </div>
                                         </div>
                                     </div>

@@ -5,7 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { ItemAction } from 'constants/itemAction';
 import { useToggleFavoriteMutation } from 'hooks/useFetchItems';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface FavoriteButtonProps {
     className?: string;
@@ -23,7 +23,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
     const queryClient = useQueryClient();
     const { mutateAsync: toggleFavoriteMutation } = useToggleFavoriteMutation();
 
-    const onClick = useCallback(async () => {
+    const onPress = useCallback(async () => {
         try {
             if (!itemId) {
                 throw new Error('Item has no Id');
@@ -49,9 +49,9 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
         <IconButton
             data-action={ItemAction.None}
             className={className}
-            title={isFavorite ? globalize.translate('Favorite') : globalize.translate('AddToFavorites')}
+            title={isFavorite ? translate('Favorite') : translate('AddToFavorites')}
             size='small'
-            onClick={onClick}
+            onPress={onPress}
         >
             <FavoriteIcon
                 color={isFavorite ? 'error' : undefined}

@@ -6,7 +6,7 @@ import focusManager from 'components/focusManager';
 import layoutManager from 'components/layoutManager';
 import { appRouter } from 'components/router/appRouter';
 import dom from 'utils/dom';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { getBackdropShape, getPortraitShape, getSquareShape } from 'utils/card';
 
@@ -217,7 +217,7 @@ function getItemsHtmlFn(section) {
         const cardLayout = false;
         const serverId = this.apiClient.serverId();
         const leadingButtons = layoutManager.tv ? [{
-            name: globalize.translate('All'),
+            name: translate('All'),
             id: 'more',
             icon: 'favorite',
             routeUrl: getRouteUrl(section, serverId)
@@ -273,11 +273,11 @@ function createSections(instance, elem, apiClient) {
         html += '<div class="sectionTitleContainer sectionTitleContainer-cards padded-left">';
 
         if (layoutManager.tv) {
-            html += '<h2 class="sectionTitle sectionTitle-cards">' + globalize.translate(section.name) + '</h2>';
+            html += '<h2 class="sectionTitle sectionTitle-cards">' + translate(section.name) + '</h2>';
         } else {
             html += '<a is="emby-linkbutton" href="' + getRouteUrl(section, apiClient.serverId()) + '" class="more button-flat button-flat-mini sectionTitleTextButton">';
             html += '<h2 class="sectionTitle sectionTitle-cards">';
-            html += globalize.translate(section.name);
+            html += translate(section.name);
             html += '</h2>';
             html += '<span class="material-icons chevron_right" aria-hidden="true"></span>';
             html += '</a>';

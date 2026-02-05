@@ -78,7 +78,7 @@ export const Component = () => {
             id: 'TriggerTime',
             accessorFn: row => row,
             Cell: TaskTriggerCell,
-            header: globalize.translate('LabelTime')
+            header: translate('LabelTime')
         }
     ], []);
 
@@ -123,11 +123,11 @@ export const Component = () => {
                     display: 'flex',
                     justifyContent: 'flex-end'
                 }}>
-                    <Tooltip disableInteractive title={globalize.translate('ButtonRemove')}>
+                    <Tooltip disableInteractive title={translate('ButtonRemove')}>
                         <IconButton
                             color='error'
                             // eslint-disable-next-line react/jsx-no-bind
-                            onClick={() => onDeleteTrigger(row.original)}
+                            onPress={() => onDeleteTrigger(row.original)}
                         >
                             <RemoveCircleIcon />
                         </IconButton>
@@ -148,16 +148,16 @@ export const Component = () => {
         >
             <ConfirmDialog
                 open={isRemoveConfirmOpen}
-                title={globalize.translate('HeaderDeleteTaskTrigger')}
-                text={globalize.translate('MessageDeleteTaskTrigger')}
+                title={translate('HeaderDeleteTaskTrigger')}
+                text={translate('MessageDeleteTaskTrigger')}
                 onCancel={onCloseRemoveConfirmDialog}
                 onConfirm={onConfirmDelete}
                 confirmButtonColor='error'
-                confirmButtonText={globalize.translate('ButtonRemove')}
+                confirmButtonText={translate('ButtonRemove')}
             />
             <NewTriggerForm
                 open={isAddTriggerDialogOpen}
-                title={globalize.translate('ButtonAddScheduledTaskTrigger')}
+                title={translate('ButtonAddScheduledTaskTrigger')}
                 onClose={handleNewTriggerDialogClose}
                 onAdd={onNewTriggerAdd}
             />
@@ -169,8 +169,8 @@ export const Component = () => {
                         <Button
                             sx={{ alignSelf: 'flex-start' }}
                             startIcon={<AddIcon />}
-                            onClick={showAddTriggerDialog}
-                        >{globalize.translate('ButtonAddScheduledTaskTrigger')}</Button>
+                            onPress={showAddTriggerDialog}
+                        >{translate('ButtonAddScheduledTaskTrigger')}</Button>
                         <MRT_Table table={table} />
                     </Stack>
                 </Box>

@@ -3,7 +3,7 @@ import { getConfigurationApi } from '@jellyfin/sdk/lib/utils/api/configuration-a
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -13,7 +13,7 @@ import { getImageResolutionOptions } from 'apps/dashboard/features/libraries/uti
 import Loading from 'components/loading/LoadingComponent';
 import Page from 'components/Page';
 import { QUERY_KEY, useConfiguration } from 'hooks/useConfiguration';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import React from 'react';
 import { type ActionFunctionArgs, Form, useActionData, useNavigation } from 'react-router-dom';
@@ -76,26 +76,26 @@ export const Component = () => {
     return (
         <Page
             id='metadataImagesConfigurationPage'
-            title={globalize.translate('LabelMetadata')}
+            title={translate('LabelMetadata')}
             className='type-interior mainAnimatedPage'
         >
             <Box className='content-primary'>
                 {isConfigError || isCulturesError || isCountriesError ? (
-                    <Alert severity='error'>{globalize.translate('MetadataImagesLoadError')}</Alert>
+                    <Alert severity='error'>{translate('MetadataImagesLoadError')}</Alert>
                 ) : (
                     <Form method='POST'>
                         <Stack spacing={3}>
                             {!isSubmitting && actionData?.isSaved && (
                                 <Alert severity='success'>
-                                    {globalize.translate('SettingsSaved')}
+                                    {translate('SettingsSaved')}
                                 </Alert>
                             )}
-                            <Typography variant='h2'>{globalize.translate('HeaderPreferredMetadataLanguage')}</Typography>
-                            <Typography>{globalize.translate('DefaultMetadataLangaugeDescription')}</Typography>
+                            <Typography variant='h2'>{translate('HeaderPreferredMetadataLanguage')}</Typography>
+                            <Typography>{translate('DefaultMetadataLangaugeDescription')}</Typography>
 
                             <TextField
                                 name={'Language'}
-                                label={globalize.translate('LabelLanguage')}
+                                label={translate('LabelLanguage')}
                                 defaultValue={config.PreferredMetadataLanguage}
                                 select
                             >
@@ -109,7 +109,7 @@ export const Component = () => {
 
                             <TextField
                                 name={'Country'}
-                                label={globalize.translate('LabelCountry')}
+                                label={translate('LabelCountry')}
                                 defaultValue={config.MetadataCountryCode}
                                 select
                             >
@@ -121,14 +121,14 @@ export const Component = () => {
                                 })}
                             </TextField>
 
-                            <Typography variant='h2'>{globalize.translate('HeaderDummyChapter')}</Typography>
+                            <Typography variant='h2'>{translate('HeaderDummyChapter')}</Typography>
 
                             <TextField
                                 name={'DummyChapterDuration'}
                                 defaultValue={config.DummyChapterDuration}
                                 type='number'
-                                label={globalize.translate('LabelDummyChapterDuration')}
-                                helperText={globalize.translate('LabelDummyChapterDurationHelp')}
+                                label={translate('LabelDummyChapterDuration')}
+                                helperText={translate('LabelDummyChapterDurationHelp')}
                                 slotProps={{
                                     htmlInput: {
                                         min: 0,
@@ -141,8 +141,8 @@ export const Component = () => {
                                 name={'ChapterImageResolution'}
                                 select
                                 defaultValue={config.ChapterImageResolution}
-                                label={globalize.translate('LabelChapterImageResolution')}
-                                helperText={globalize.translate('LabelChapterImageResolutionHelp')}
+                                label={translate('LabelChapterImageResolution')}
+                                helperText={translate('LabelChapterImageResolutionHelp')}
                             >
                                 {imageResolutions.map(resolution => {
                                     return <MenuItem key={resolution.name} value={resolution.value}>{resolution.name}</MenuItem>;
@@ -153,7 +153,7 @@ export const Component = () => {
                                 type='submit'
                                 size='large'
                             >
-                                {globalize.translate('Save')}
+                                {translate('Save')}
                             </Button>
                         </Stack>
                     </Form>

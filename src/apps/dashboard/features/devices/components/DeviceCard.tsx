@@ -19,7 +19,7 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import SimpleAlert from 'components/SimpleAlert';
 import playmethodhelper from 'components/playback/playmethodhelper';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import getSessionNowPlayingStreamInfo from '../../sessions/utils/getSessionNowPlayingStreamInfo';
 import { useSendPlayStateCommand } from '../../sessions/api/usePlayPauseSession';
 import { PlaystateCommand } from '@jellyfin/sdk/lib/generated-client/models/playstate-command';
@@ -86,25 +86,25 @@ const DeviceCard = ({ device }: DeviceCardProps) => {
 
         switch (displayPlayMethod) {
             case 'Remux':
-                setPlaybackInfoTitle(globalize.translate('Remuxing'));
-                setPlaybackInfoDesc(globalize.translate('RemuxHelp1') + '\n' + globalize.translate('RemuxHelp2'));
+                setPlaybackInfoTitle(translate('Remuxing'));
+                setPlaybackInfoDesc(translate('RemuxHelp1') + '\n' + translate('RemuxHelp2'));
                 break;
             case 'DirectStream':
-                setPlaybackInfoTitle(globalize.translate('DirectStreaming'));
-                setPlaybackInfoDesc(globalize.translate('DirectStreamHelp1') + '\n' + globalize.translate('DirectStreamHelp2'));
+                setPlaybackInfoTitle(translate('DirectStreaming'));
+                setPlaybackInfoDesc(translate('DirectStreamHelp1') + '\n' + translate('DirectStreamHelp2'));
                 break;
             case 'DirectPlay':
-                setPlaybackInfoTitle(globalize.translate('DirectPlaying'));
-                setPlaybackInfoDesc(globalize.translate('DirectPlayHelp'));
+                setPlaybackInfoTitle(translate('DirectPlaying'));
+                setPlaybackInfoDesc(translate('DirectPlayHelp'));
                 break;
             case 'Transcode': {
                 const transcodeReasons = device.TranscodingInfo?.TranscodeReasons as string[] | undefined;
-                const localizedTranscodeReasons = transcodeReasons?.map(transcodeReason => globalize.translate(transcodeReason)) || [];
-                setPlaybackInfoTitle(globalize.translate('Transcoding'));
+                const localizedTranscodeReasons = transcodeReasons?.map(transcodeReason => translate(transcodeReason)) || [];
+                setPlaybackInfoTitle(translate('Transcoding'));
                 setPlaybackInfoDesc(
-                    globalize.translate('MediaIsBeingConverted')
+                    translate('MediaIsBeingConverted')
                     + '\n\n' + getSessionNowPlayingStreamInfo(device)
-                    + '\n\n' + globalize.translate('LabelReasonForTranscoding')
+                    + '\n\n' + translate('LabelReasonForTranscoding')
                     + '\n' + localizedTranscodeReasons.join('\n')
                 );
                 break;
@@ -138,9 +138,9 @@ const DeviceCard = ({ device }: DeviceCardProps) => {
             <InputDialog
                 open={isMessageDialogOpen}
                 onClose={onMessageDialogClose}
-                title={globalize.translate('HeaderSendMessage')}
-                label={globalize.translate('LabelMessageText')}
-                confirmButtonText={globalize.translate('ButtonSend')}
+                title={translate('HeaderSendMessage')}
+                label={translate('LabelMessageText')}
+                confirmButtonText={translate('ButtonSend')}
                 onConfirm={onMessageSend}
             />
             <SimpleAlert
@@ -222,21 +222,21 @@ const DeviceCard = ({ device }: DeviceCardProps) => {
                 <Stack direction='row' flexGrow={1} justifyContent='center'>
                     {canControl && isPlayingMedia && (
                         <>
-                            <IconButton onClick={onPlayPauseSession}>
+                            <IconButton onPress={onPlayPauseSession}>
                                 {device.PlayState?.IsPaused ? <PlayArrow /> : <Pause />}
                             </IconButton>
-                            <IconButton onClick={onStopSession}>
+                            <IconButton onPress={onStopSession}>
                                 <Stop />
                             </IconButton>
                         </>
                     )}
                     {isPlayingMedia && (
-                        <IconButton onClick={showPlaybackInfo}>
+                        <IconButton onPress={showPlaybackInfo}>
                             <Info />
                         </IconButton>
                     )}
                     {canControl && (
-                        <IconButton onClick={showMessageDialog}>
+                        <IconButton onPress={showMessageDialog}>
                             <Comment />
                         </IconButton>
                     )}

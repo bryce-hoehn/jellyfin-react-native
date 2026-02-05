@@ -60,22 +60,22 @@ const UserProfiles = () => {
             const menuItems: MenuEntry[] = [];
 
             menuItems.push({
-                name: globalize.translate('ButtonEditUser'),
+                name: translate('ButtonEditUser'),
                 id: 'open',
                 icon: 'mode_edit'
             });
             menuItems.push({
-                name: globalize.translate('ButtonLibraryAccess'),
+                name: translate('ButtonLibraryAccess'),
                 id: 'access',
                 icon: 'lock'
             });
             menuItems.push({
-                name: globalize.translate('ButtonParentalControl'),
+                name: translate('ButtonParentalControl'),
                 id: 'parentalcontrol',
                 icon: 'person'
             });
             menuItems.push({
-                name: globalize.translate('Delete'),
+                name: translate('Delete'),
                 id: 'delete',
                 icon: 'delete'
             });
@@ -111,13 +111,13 @@ const UserProfiles = () => {
         };
 
         const confirmDeleteUser = (id: string, username?: string | null) => {
-            const title = username ? globalize.translate('DeleteName', username) : globalize.translate('DeleteUser');
-            const text = globalize.translate('DeleteUserConfirmation');
+            const title = username ? translate('DeleteName', username) : translate('DeleteUser');
+            const text = translate('DeleteUserConfirmation');
 
             confirm({
                 title,
                 text,
-                confirmText: globalize.translate('Delete'),
+                confirmText: translate('Delete'),
                 primary: 'delete'
             }).then(function () {
                 deleteUser.mutate({
@@ -157,17 +157,17 @@ const UserProfiles = () => {
         <Page
             id='userProfilesPage'
             className='mainAnimatedPage type-interior userProfilesPage fullWidthContent'
-            title={globalize.translate('HeaderUsers')}
+            title={translate('HeaderUsers')}
         >
             <Toast
                 open={isSettingsSavedToastOpen}
                 onClose={handleToastClose}
-                message={globalize.translate('SettingsSaved')}
+                message={translate('SettingsSaved')}
             />
             <div ref={element} className='content-primary'>
                 <div className='verticalSection'>
                     <SectionTitleContainer
-                        title={globalize.translate('HeaderUsers')}
+                        title={translate('HeaderUsers')}
                         isBtnVisible={true}
                         btnId='btnAddUser'
                         btnClassName='fab submit sectionTitleButton'

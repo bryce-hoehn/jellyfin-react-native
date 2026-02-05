@@ -194,28 +194,28 @@ export default function (view, params, tabContent) {
         tabElement.querySelector('.btnSort').addEventListener('click', function (e) {
             libraryBrowser.showSortMenu({
                 items: [{
-                    name: globalize.translate('Name'),
+                    name: translate('Name'),
                     id: 'SeriesSortName,SortName'
                 }, {
-                    name: globalize.translate('OptionTvdbRating'),
+                    name: translate('OptionTvdbRating'),
                     id: 'CommunityRating,SeriesSortName,SortName'
                 }, {
-                    name: globalize.translate('OptionDateAdded'),
+                    name: translate('OptionDateAdded'),
                     id: 'DateCreated,SeriesSortName,SortName'
                 }, {
-                    name: globalize.translate('OptionPremiereDate'),
+                    name: translate('OptionPremiereDate'),
                     id: 'PremiereDate,SeriesSortName,SortName'
                 }, {
-                    name: globalize.translate('OptionDatePlayed'),
+                    name: translate('OptionDatePlayed'),
                     id: 'DatePlayed,SeriesSortName,SortName'
                 }, {
-                    name: globalize.translate('OptionParentalRating'),
+                    name: translate('OptionParentalRating'),
                     id: 'OfficialRating,SeriesSortName,SortName'
                 }, {
-                    name: globalize.translate('OptionPlayCount'),
+                    name: translate('OptionPlayCount'),
                     id: 'PlayCount,SeriesSortName,SortName'
                 }, {
-                    name: globalize.translate('Runtime'),
+                    name: translate('Runtime'),
                     id: 'Runtime,SeriesSortName,SortName'
                 }],
                 callback: function () {

@@ -36,7 +36,7 @@ function show(person) {
         let html = '';
         let submitted = false;
 
-        html += globalize.translateHtml(template, 'core');
+        html += translateHtml(template, 'core');
 
         dlg.innerHTML = html;
 
@@ -70,7 +70,7 @@ function show(person) {
             const selected = person.Type === type ? 'selected' : '';
             selectPersonTypeOptions += `<option value="${type}" ${selected}>\${${type}}</option>`;
         }
-        dlg.querySelector('.selectPersonType').innerHTML = globalize.translateHtml(selectPersonTypeOptions);
+        dlg.querySelector('.selectPersonType').innerHTML = translateHtml(selectPersonTypeOptions);
 
         dlg.querySelector('.selectPersonType').addEventListener('change', function () {
             dlg.querySelector('.fldRole').classList.toggle(

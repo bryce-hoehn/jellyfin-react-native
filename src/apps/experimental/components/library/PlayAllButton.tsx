@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import PlayArrow from '@mui/icons-material/PlayArrow';
 
 import { playbackManager } from 'components/playback/playbackmanager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { getFiltersQuery } from 'utils/items';
 import { LibraryViewSettings } from 'types/library';
 import { LibraryTab } from 'types/libraryTab';
@@ -56,12 +56,12 @@ const PlayAllButton: FC<PlayAllButtonProps> = ({
 
     return (
         <Button
-            title={globalize.translate('HeaderPlayAll')}
+            title={translate('HeaderPlayAll')}
             startIcon={isTextVisible ? <PlayArrow /> : undefined}
-            onClick={play}
+            onPress={play}
         >
             {isTextVisible ? (
-                globalize.translate('HeaderPlayAll')
+                translate('HeaderPlayAll')
             ) : (
                 <PlayArrow />
             )}

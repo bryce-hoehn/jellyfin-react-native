@@ -6,7 +6,7 @@ import Page from 'components/Page';
 import toast from 'components/toast/toast';
 import { AppFeature } from 'constants/appFeature';
 import LinkButton from 'elements/emby-button/LinkButton';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ConnectionState, ServerConnections } from 'lib/jellyfin-apiclient';
 
 interface ConnectionErrorPageProps {
@@ -30,7 +30,7 @@ const ConnectionErrorPage: FC<ConnectionErrorPageProps> = ({
             window.location.reload();
         } catch (err) {
             console.error('[ConnectionErrorPage] Failed to force connect to server', err);
-            toast(globalize.translate('HeaderConnectionFailure'));
+            toast(translate('HeaderConnectionFailure'));
             setIsConnectDisabled(false);
         }
     }, []);
@@ -38,22 +38,22 @@ const ConnectionErrorPage: FC<ConnectionErrorPageProps> = ({
     useEffect(() => {
         switch (state) {
             case ConnectionState.ServerMismatch:
-                setTitle(globalize.translate('HeaderServerMismatch'));
+                setTitle(translate('HeaderServerMismatch'));
                 setHtmlMessage(undefined);
-                setMessage(globalize.translate('MessageServerMismatch'));
+                setMessage(translate('MessageServerMismatch'));
                 return;
             case ConnectionState.ServerUpdateNeeded:
-                setTitle(globalize.translate('HeaderUpdateRequired'));
-                setHtmlMessage(globalize.translate(
+                setTitle(translate('HeaderUpdateRequired'));
+                setHtmlMessage(translate(
                     'ServerUpdateNeeded',
                     '<a href="https://jellyfin.org/downloads/server/">jellyfin.org/downloads/server</a>'
                 ));
                 setMessage(undefined);
                 return;
             case ConnectionState.Unavailable:
-                setTitle(globalize.translate('HeaderServerUnavailable'));
+                setTitle(translate('HeaderServerUnavailable'));
                 setHtmlMessage(undefined);
-                setMessage(globalize.translate('MessageUnableToConnectToServer'));
+                setMessage(translate('MessageUnableToConnectToServer'));
         }
     }, [ state ]);
 
@@ -84,16 +84,16 @@ const ConnectionErrorPage: FC<ConnectionErrorPageProps> = ({
                         className='raised'
                         href='/selectserver'
                     >
-                        {globalize.translate('ButtonChangeServer')}
+                        {translate('ButtonChangeServer')}
                     </LinkButton>
                 )}
 
                 {state === ConnectionState.ServerMismatch && (
                     <LinkButton
-                        onClick={onForceConnect}
+                        onPress={onForceConnect}
                         style={ isConnectDisabled ? { pointerEvents: 'none' } : undefined }
                     >
-                        {globalize.translate('ConnectAnyway')}
+                        {translate('ConnectAnyway')}
                     </LinkButton>
                 )}
             </div>

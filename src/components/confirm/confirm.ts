@@ -1,6 +1,6 @@
 import dialog from 'components/dialog/dialog';
 import { appRouter } from 'components/router/appRouter';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface OptionItem {
     id: string,
@@ -28,13 +28,13 @@ async function confirm(options: string | ConfirmOptions, title: string = '') {
     const items: OptionItem[] = [];
 
     items.push({
-        name: options.cancelText || globalize.translate('ButtonCancel'),
+        name: options.cancelText || translate('ButtonCancel'),
         id: 'cancel',
         type: 'cancel'
     });
 
     items.push({
-        name: options.confirmText || globalize.translate('ButtonOk'),
+        name: options.confirmText || translate('ButtonOk'),
         id: 'ok',
         type: options.primary === 'delete' ? 'delete' : 'submit'
     });

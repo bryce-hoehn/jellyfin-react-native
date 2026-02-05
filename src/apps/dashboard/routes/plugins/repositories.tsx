@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import React, { useCallback, useState } from 'react';
 import Stack from '@mui/material/Stack';
 import { useRepositories } from 'apps/dashboard/features/plugins/api/useRepositories';
@@ -58,7 +58,7 @@ export const Component = () => {
     return (
         <Page
             id='repositories'
-            title={globalize.translate('TabRepositories')}
+            title={translate('TabRepositories')}
             className='type-interior mainAnimatedPage'
         >
             <NewRepositoryForm
@@ -68,17 +68,17 @@ export const Component = () => {
             />
             <Box className='content-primary'>
                 {isError ? (
-                    <Alert severity='error'>{globalize.translate('RepositoriesPageLoadError')}</Alert>
+                    <Alert severity='error'>{translate('RepositoriesPageLoadError')}</Alert>
                 ) : (
                     <Stack spacing={3}>
-                        <Typography variant='h1'>{globalize.translate('TabRepositories')}</Typography>
+                        <Typography variant='h1'>{translate('TabRepositories')}</Typography>
 
                         <Button
                             sx={{ alignSelf: 'flex-start' }}
                             startIcon={<AddIcon />}
-                            onClick={openRepositoryForm}
+                            onPress={openRepositoryForm}
                         >
-                            {globalize.translate('HeaderNewRepository')}
+                            {translate('HeaderNewRepository')}
                         </Button>
 
                         {repositories.length > 0 ? (
@@ -93,8 +93,8 @@ export const Component = () => {
                             </List>
                         ) : (
                             <Stack alignSelf='center' alignItems='center' maxWidth={'500px'} spacing={2}>
-                                <Typography variant='h2'>{globalize.translate('MessageNoRepositories')}</Typography>
-                                <Typography textAlign='center'>{globalize.translate('MessageAddRepository')}</Typography>
+                                <Typography variant='h2'>{translate('MessageNoRepositories')}</Typography>
+                                <Typography textAlign='center'>{translate('MessageAddRepository')}</Typography>
                             </Stack>
                         )}
                     </Stack>

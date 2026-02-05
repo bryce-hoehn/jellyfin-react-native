@@ -42,7 +42,7 @@ const OverviewCell: FC<ActivityLogEntryCell> = ({ row }) => {
                 {displayValue}
             </Box>
             {ShortOverview && Overview && (
-                <ClickAwayListener onClickAway={onTooltipClose}>
+                <ClickAwayListener onPressAway={onTooltipClose}>
                     <Tooltip
                         title={Overview}
                         placement='top'
@@ -53,7 +53,7 @@ const OverviewCell: FC<ActivityLogEntryCell> = ({ row }) => {
                         disableHoverListener
                         disableTouchListener
                     >
-                        <IconButton onClick={onTooltipOpen}>
+                        <IconButton onPress={onTooltipOpen}>
                             <Info />
                         </IconButton>
                     </Tooltip>

@@ -2,7 +2,7 @@ import escapeHtml from 'escape-html';
 import 'jquery';
 import 'material-design-icons-iconfont';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Dashboard from 'utils/dashboard';
 import { getParameterByName } from 'utils/url';
 
@@ -77,7 +77,7 @@ function loadChildrenOfRootNode(page, scope, callback) {
         const nodes = [];
         nodes.push({
             id: 'MediaFolders',
-            text: globalize.translate('HeaderMediaFolders'),
+            text: translate('HeaderMediaFolders'),
             state: {
                 opened: true
             },
@@ -90,7 +90,7 @@ function loadChildrenOfRootNode(page, scope, callback) {
         if (result.TotalRecordCount) {
             nodes.push({
                 id: 'livetv',
-                text: globalize.translate('LiveTV'),
+                text: translate('LiveTV'),
                 state: {
                     opened: false
                 },

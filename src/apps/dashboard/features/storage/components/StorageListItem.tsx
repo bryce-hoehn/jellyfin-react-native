@@ -7,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import React, { type FC } from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { getReadableSize } from 'utils/file';
 
 import { StorageType } from '../constants/StorageType';
@@ -30,7 +30,7 @@ const getStorageTypeText = (type?: string | null) => {
     if (!type) return undefined;
 
     if (Object.keys(StorageType).includes(type)) {
-        return globalize.translate(`StorageType.${type}`);
+        return translate(`StorageType.${type}`);
     }
 
     return type;

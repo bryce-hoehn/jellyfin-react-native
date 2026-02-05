@@ -1,7 +1,7 @@
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -9,7 +9,7 @@ import { useLocalizationOptions } from 'apps/dashboard/features/settings/api/use
 import Loading from 'components/loading/LoadingComponent';
 import Page from 'components/Page';
 import { QUERY_KEY, useConfiguration } from 'hooks/useConfiguration';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import React, { useCallback, useEffect, useState } from 'react';
 import { type ActionFunctionArgs, Form, useActionData, useNavigation } from 'react-router-dom';
@@ -90,8 +90,8 @@ export const Component = () => {
                 picker.close();
             },
             validateWriteable: true,
-            header: globalize.translate('HeaderSelectServerCachePath'),
-            instruction: globalize.translate('HeaderSelectServerCachePathHelp')
+            header: translate('HeaderSelectServerCachePath'),
+            instruction: translate('HeaderSelectServerCachePathHelp')
         });
     }, []);
 
@@ -108,8 +108,8 @@ export const Component = () => {
                 picker.close();
             },
             validateWriteable: true,
-            header: globalize.translate('HeaderSelectMetadataPath'),
-            instruction: globalize.translate('HeaderSelectMetadataPathHelp')
+            header: translate('HeaderSelectMetadataPath'),
+            instruction: translate('HeaderSelectMetadataPathHelp')
         });
     }, [metadataPath]);
 
@@ -127,39 +127,39 @@ export const Component = () => {
     return (
         <Page
             id='dashboardGeneralPage'
-            title={globalize.translate('General')}
+            title={translate('General')}
             className='type-interior mainAnimatedPage'
         >
             <Box className='content-primary'>
                 {isConfigError || isLocalizationOptionsError ? (
-                    <Alert severity='error'>{globalize.translate('SettingsPageLoadError')}</Alert>
+                    <Alert severity='error'>{translate('SettingsPageLoadError')}</Alert>
                 ) : (
                     <Form method='POST'>
                         <Stack spacing={3}>
-                            <Typography variant='h1'>{globalize.translate('Settings')}</Typography>
+                            <Typography variant='h1'>{translate('Settings')}</Typography>
 
                             {!isSubmitting && actionData?.isSaved && (
                                 <Alert severity='success'>
-                                    {globalize.translate('SettingsSaved')}
+                                    {translate('SettingsSaved')}
                                 </Alert>
                             )}
 
                             <TextField
                                 name='ServerName'
-                                label={globalize.translate('LabelServerName')}
-                                helperText={globalize.translate('LabelServerNameHelp')}
+                                label={translate('LabelServerName')}
+                                helperText={translate('LabelServerNameHelp')}
                                 defaultValue={config.ServerName}
                             />
 
                             <TextField
                                 select
                                 name='UICulture'
-                                label={globalize.translate('LabelPreferredDisplayLanguage')}
+                                label={translate('LabelPreferredDisplayLanguage')}
                                 helperText={(
                                     <>
-                                        <span>{globalize.translate('LabelDisplayLanguageHelp')}</span>
+                                        <span>{translate('LabelDisplayLanguageHelp')}</span>
                                         <Link href='https://jellyfin.org/docs/general/contributing/#translating' target='_blank'>
-                                            {globalize.translate('LearnHowYouCanContribute')}
+                                            {translate('LearnHowYouCanContribute')}
                                         </Link>
                                     </>
                                 )}
@@ -173,19 +173,19 @@ export const Component = () => {
                                 )}
                             </TextField>
 
-                            <Typography variant='h2'>{globalize.translate('HeaderPaths')}</Typography>
+                            <Typography variant='h2'>{translate('HeaderPaths')}</Typography>
 
                             <TextField
                                 name='CachePath'
-                                label={globalize.translate('LabelCachePath')}
-                                helperText={globalize.translate('LabelCachePathHelp')}
+                                label={translate('LabelCachePath')}
+                                helperText={translate('LabelCachePathHelp')}
                                 value={cachePath}
                                 onChange={onCachePathChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <IconButton edge='end' onClick={showCachePathPicker}>
+                                                <IconButton edge='end' onPress={showCachePathPicker}>
                                                     <SearchIcon />
                                                 </IconButton>
                                             </InputAdornment>
@@ -196,15 +196,15 @@ export const Component = () => {
 
                             <TextField
                                 name={'MetadataPath'}
-                                label={globalize.translate('LabelMetadataPath')}
-                                helperText={globalize.translate('LabelMetadataPathHelp')}
+                                label={translate('LabelMetadataPath')}
+                                helperText={translate('LabelMetadataPathHelp')}
                                 value={metadataPath}
                                 onChange={onMetadataPathChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <IconButton edge='end' onClick={showMetadataPathPicker}>
+                                                <IconButton edge='end' onPress={showMetadataPathPicker}>
                                                     <SearchIcon />
                                                 </IconButton>
                                             </InputAdornment>
@@ -213,7 +213,7 @@ export const Component = () => {
                                 }}
                             />
 
-                            <Typography variant='h2'>{globalize.translate('QuickConnect')}</Typography>
+                            <Typography variant='h2'>{translate('QuickConnect')}</Typography>
 
                             <FormControl>
                                 <FormControlLabel
@@ -223,17 +223,17 @@ export const Component = () => {
                                             defaultChecked={config.QuickConnectAvailable}
                                         />
                                     }
-                                    label={globalize.translate('EnableQuickConnect')}
+                                    label={translate('EnableQuickConnect')}
                                 />
                             </FormControl>
 
-                            <Typography variant='h2'>{globalize.translate('HeaderPerformance')}</Typography>
+                            <Typography variant='h2'>{translate('HeaderPerformance')}</Typography>
 
                             <TextField
                                 name='LibraryScanFanoutConcurrency'
                                 type='number'
-                                label={globalize.translate('LibraryScanFanoutConcurrency')}
-                                helperText={globalize.translate('LibraryScanFanoutConcurrencyHelp')}
+                                label={translate('LibraryScanFanoutConcurrency')}
+                                helperText={translate('LibraryScanFanoutConcurrencyHelp')}
                                 defaultValue={config.LibraryScanFanoutConcurrency || ''}
                                 slotProps={{
                                     htmlInput: {
@@ -246,8 +246,8 @@ export const Component = () => {
                             <TextField
                                 name='ParallelImageEncodingLimit'
                                 type='number'
-                                label={globalize.translate('LabelParallelImageEncodingLimit')}
-                                helperText={globalize.translate('LabelParallelImageEncodingLimitHelp')}
+                                label={translate('LabelParallelImageEncodingLimit')}
+                                helperText={translate('LabelParallelImageEncodingLimitHelp')}
                                 defaultValue={config.ParallelImageEncodingLimit || ''}
                                 slotProps={{
                                     htmlInput: {
@@ -258,7 +258,7 @@ export const Component = () => {
                             />
 
                             <Button type='submit' size='large'>
-                                {globalize.translate('Save')}
+                                {translate('Save')}
                             </Button>
                         </Stack>
                     </Form>

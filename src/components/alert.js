@@ -9,7 +9,7 @@ export default async function (text, title) {
 
     options.buttons = [
         {
-            name: globalize.translate('ButtonGotIt'),
+            name: translate('ButtonGotIt'),
             id: 'ok',
             type: 'submit'
         }

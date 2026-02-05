@@ -868,7 +868,7 @@ export class HtmlVideoPlayer {
             videoElement.removeEventListener('pause', this.onPause);
             videoElement.removeEventListener('playing', this.onPlaying);
             videoElement.removeEventListener('play', this.onPlay);
-            videoElement.removeEventListener('click', this.onClick);
+            videoElement.removeEventListener('click', this.onPress);
             videoElement.removeEventListener('dblclick', this.onDblClick);
             videoElement.removeEventListener('waiting', this.onWaiting);
             videoElement.removeEventListener('error', this.onError); // bound in htmlMediaHelper
@@ -1046,7 +1046,7 @@ export class HtmlVideoPlayer {
     /**
      * @private
      */
-    onClick = () => {
+    onPress = () => {
         Events.trigger(this, 'click');
     };
 
@@ -1647,7 +1647,7 @@ export class HtmlVideoPlayer {
                 videoElement.addEventListener('pause', this.onPause);
                 videoElement.addEventListener('playing', this.onPlaying);
                 videoElement.addEventListener('play', this.onPlay);
-                videoElement.addEventListener('click', this.onClick);
+                videoElement.addEventListener('click', this.onPress);
                 videoElement.addEventListener('dblclick', this.onDblClick);
                 videoElement.addEventListener('waiting', this.onWaiting);
                 if (options.backdropUrl) {
@@ -2087,13 +2087,13 @@ export class HtmlVideoPlayer {
 
     getSupportedAspectRatios() {
         return [{
-            name: globalize.translate('Auto'),
+            name: translate('Auto'),
             id: 'auto'
         }, {
-            name: globalize.translate('AspectRatioCover'),
+            name: translate('AspectRatioCover'),
             id: 'cover'
         }, {
-            name: globalize.translate('AspectRatioFill'),
+            name: translate('AspectRatioFill'),
             id: 'fill'
         }];
     }
@@ -2142,7 +2142,7 @@ export class HtmlVideoPlayer {
 
             if (protocol) {
                 mediaCategory.stats.push({
-                    label: globalize.translate('LabelProtocol'),
+                    label: translate('LabelProtocol'),
                     value: protocol
                 });
             }
@@ -2152,12 +2152,12 @@ export class HtmlVideoPlayer {
 
         if (this._hlsPlayer) {
             mediaCategory.stats.push({
-                label: globalize.translate('LabelStreamType'),
+                label: translate('LabelStreamType'),
                 value: 'HLS'
             });
         } else {
             mediaCategory.stats.push({
-                label: globalize.translate('LabelStreamType'),
+                label: translate('LabelStreamType'),
                 value: 'Video'
             });
         }
@@ -2176,7 +2176,7 @@ export class HtmlVideoPlayer {
         // Don't show player dimensions on smart TVs because the app UI could be lower resolution than the video and this causes users to think there is a problem
         if (width && height && !browser.tv) {
             videoCategory.stats.push({
-                label: globalize.translate('LabelPlayerDimensions'),
+                label: translate('LabelPlayerDimensions'),
                 value: `${width}x${height}`
             });
         }
@@ -2186,7 +2186,7 @@ export class HtmlVideoPlayer {
 
         if (width && height) {
             videoCategory.stats.push({
-                label: globalize.translate('LabelVideoResolution'),
+                label: translate('LabelVideoResolution'),
                 value: `${width}x${height}`
             });
         }
@@ -2196,13 +2196,13 @@ export class HtmlVideoPlayer {
 
             const droppedVideoFrames = playbackQuality.droppedVideoFrames || 0;
             videoCategory.stats.push({
-                label: globalize.translate('LabelDroppedFrames'),
+                label: translate('LabelDroppedFrames'),
                 value: droppedVideoFrames
             });
 
             const corruptedVideoFrames = playbackQuality.corruptedVideoFrames || 0;
             videoCategory.stats.push({
-                label: globalize.translate('LabelCorruptedFrames'),
+                label: translate('LabelCorruptedFrames'),
                 value: corruptedVideoFrames
             });
         }

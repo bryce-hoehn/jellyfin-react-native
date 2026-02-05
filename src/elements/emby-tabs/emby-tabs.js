@@ -63,7 +63,7 @@ function triggerBeforeTabChange(tabs, index, previousIndex) {
     }
 }
 
-function onClick(e) {
+function onPress(e) {
     const tabs = this;
 
     const current = tabs.querySelector('.' + activeButtonClass);
@@ -159,7 +159,7 @@ EmbyTabs.createdCallback = function () {
     this.classList.add('emby-tabs');
     this.classList.add('focusable');
 
-    dom.addEventListener(this, 'click', onClick, {
+    dom.addEventListener(this, 'click', onPress, {
         passive: true
     });
 
@@ -219,7 +219,7 @@ EmbyTabs.detachedCallback = function () {
         this.scroller = null;
     }
 
-    dom.removeEventListener(this, 'click', onClick, {
+    dom.removeEventListener(this, 'click', onPress, {
         passive: true
     });
 
@@ -261,7 +261,7 @@ EmbyTabs.selectedIndex = function (selected, triggerEvent) {
             currentTabButton.classList.remove(activeButtonClass);
         }
     } else {
-        onClick.call(tabs, {
+        onPress.call(tabs, {
             target: tabButtons[selected]
         });
     }
@@ -287,7 +287,7 @@ EmbyTabs.selectNext = function () {
     const sibling = getSibling(current, 'nextSibling');
 
     if (sibling) {
-        onClick.call(this, {
+        onPress.call(this, {
             target: sibling
         });
     }
@@ -299,7 +299,7 @@ EmbyTabs.selectPrevious = function () {
     const sibling = getSibling(current, 'previousSibling');
 
     if (sibling) {
-        onClick.call(this, {
+        onPress.call(this, {
             target: sibling
         });
     }

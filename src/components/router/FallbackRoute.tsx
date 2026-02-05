@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import LinkButton from 'elements/emby-button/LinkButton';
 
 const FallbackRoute = () => {
@@ -40,17 +40,17 @@ const FallbackRoute = () => {
     return (
         <Page
             id='fallbackPage'
-            title={globalize.translate('HeaderPageNotFound')}
+            title={translate('HeaderPageNotFound')}
             className='mainAnimatedPage libraryPage'
         >
             <div className='padded-left padded-right'>
-                <h1>{globalize.translate('HeaderPageNotFound')}</h1>
-                <p>{globalize.translate('PageNotFound')}</p>
+                <h1>{translate('HeaderPageNotFound')}</h1>
+                <p>{translate('PageNotFound')}</p>
                 <LinkButton
                     className='button-link'
                     href='#/home'
                 >
-                    {globalize.translate('GoHome')}
+                    {translate('GoHome')}
                 </LinkButton>
             </div>
         </Page>

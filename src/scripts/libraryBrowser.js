@@ -1,4 +1,4 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 export function showLayoutMenu (button, currentLayout, views) {
     let dispatchEvent = true;
@@ -11,7 +11,7 @@ export function showLayoutMenu (button, currentLayout, views) {
 
     const menuItems = views.map(function (v) {
         return {
-            name: globalize.translate(v),
+            name: translate(v),
             id: v,
             selected: currentLayout == v
         };
@@ -50,7 +50,7 @@ export function getQueryPagingHtml (options) {
     html += '<div class="listPaging">';
 
     html += '<span style="vertical-align:middle;">';
-    html += globalize.translate('ListPaging', recordsStart, recordsEnd, totalRecordCount);
+    html += translate('ListPaging', recordsStart, recordsEnd, totalRecordCount);
     html += '</span>';
 
     if (showControls || options.viewButton || options.filterButton || options.sortButton || options.addLayoutButton) {
@@ -62,15 +62,15 @@ export function getQueryPagingHtml (options) {
         }
 
         if (options.addLayoutButton) {
-            html += '<button is="paper-icon-button-light" title="' + globalize.translate('ButtonSelectView') + '" class="btnChangeLayout autoSize" data-layouts="' + (options.layouts || '') + '" onclick="LibraryBrowser.showLayoutMenu(this, \'' + (options.currentLayout || '') + '\');"><span class="material-icons view_comfy" aria-hidden="true"></span></button>';
+            html += '<button is="paper-icon-button-light" title="' + translate('ButtonSelectView') + '" class="btnChangeLayout autoSize" data-layouts="' + (options.layouts || '') + '" onPress="LibraryBrowser.showLayoutMenu(this, \'' + (options.currentLayout || '') + '\');"><span class="material-icons view_comfy" aria-hidden="true"></span></button>';
         }
 
         if (options.sortButton) {
-            html += '<button is="paper-icon-button-light" class="btnSort autoSize" title="' + globalize.translate('Sort') + '"><span class="material-icons sort_by_alpha" aria-hidden="true"></span></button>';
+            html += '<button is="paper-icon-button-light" class="btnSort autoSize" title="' + translate('Sort') + '"><span class="material-icons sort_by_alpha" aria-hidden="true"></span></button>';
         }
 
         if (options.filterButton) {
-            html += '<button is="paper-icon-button-light" class="btnFilter autoSize" title="' + globalize.translate('Filter') + '"><span class="material-icons filter_alt" aria-hidden="true"></span></button>';
+            html += '<button is="paper-icon-button-light" class="btnFilter autoSize" title="' + translate('Filter') + '"><span class="material-icons filter_alt" aria-hidden="true"></span></button>';
         }
 
         html += '</div>';
@@ -125,7 +125,7 @@ export function showSortMenu (options) {
         let html = '';
         html += '<div style="margin:0;padding:1.25em 1.5em 1.5em;">';
         html += '<h2 style="margin:0 0 .5em;">';
-        html += globalize.translate('HeaderSortBy');
+        html += translate('HeaderSortBy');
         html += '</h2>';
         let i;
         let length;
@@ -140,13 +140,13 @@ export function showSortMenu (options) {
 
         html += '</div>';
         html += '<h2 style="margin: 1em 0 .5em;">';
-        html += globalize.translate('HeaderSortOrder');
+        html += translate('HeaderSortOrder');
         html += '</h2>';
         html += '<div>';
         isChecked = options.query.SortOrder == 'Ascending' ? ' checked' : '';
-        html += '<label class="radio-label-block"><input type="radio" is="emby-radio" name="SortOrder" value="Ascending" class="menuSortOrder" ' + isChecked + ' /><span>' + globalize.translate('Ascending') + '</span></label>';
+        html += '<label class="radio-label-block"><input type="radio" is="emby-radio" name="SortOrder" value="Ascending" class="menuSortOrder" ' + isChecked + ' /><span>' + translate('Ascending') + '</span></label>';
         isChecked = options.query.SortOrder == 'Descending' ? ' checked' : '';
-        html += '<label class="radio-label-block"><input type="radio" is="emby-radio" name="SortOrder" value="Descending" class="menuSortOrder" ' + isChecked + ' /><span>' + globalize.translate('Descending') + '</span></label>';
+        html += '<label class="radio-label-block"><input type="radio" is="emby-radio" name="SortOrder" value="Descending" class="menuSortOrder" ' + isChecked + ' /><span>' + translate('Descending') + '</span></label>';
         html += '</div>';
         html += '</div>';
         dlg.innerHTML = html;

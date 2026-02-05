@@ -3,7 +3,7 @@ import imageLoader from 'components/images/imageLoader';
 import layoutManager from 'components/layoutManager';
 import loading from 'components/loading/loading';
 import * as mainTabsManager from 'components/maintabsmanager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import inputManager from 'scripts/inputManager';
 import * as userSettings from 'scripts/settings/userSettings';
 import { LibraryTab } from 'types/libraryTab';
@@ -157,17 +157,17 @@ function renderItems(page, items, sectionClass, overlayButton, cardOptions) {
 
 function getTabs() {
     return [{
-        name: globalize.translate('Programs')
+        name: translate('Programs')
     }, {
-        name: globalize.translate('Guide')
+        name: translate('Guide')
     }, {
-        name: globalize.translate('Channels')
+        name: translate('Channels')
     }, {
-        name: globalize.translate('Recordings')
+        name: translate('Recordings')
     }, {
-        name: globalize.translate('Schedule')
+        name: translate('Schedule')
     }, {
-        name: globalize.translate('Series')
+        name: translate('Series')
     }];
 }
 

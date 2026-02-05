@@ -6,7 +6,7 @@ import '../../elements/emby-button/paper-icon-button-light';
 import '../../elements/emby-button/emby-button';
 import './recordingfields.scss';
 
-function onRecordingButtonClick() {
+function onRecordingButtonPress() {
     const item = this.item;
 
     if (item) {
@@ -45,7 +45,7 @@ class RecordingButton {
             this.refresh(options.itemId, options.serverId);
         }
 
-        const clickFn = onRecordingButtonClick.bind(this);
+        const clickFn = onRecordingButtonPress.bind(this);
         this.clickFn = clickFn;
 
         dom.addEventListener(button, 'click', clickFn, {

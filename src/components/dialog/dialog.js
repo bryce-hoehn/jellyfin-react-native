@@ -30,7 +30,7 @@ function showDialog(options = { dialogOptions: {}, buttons: [] }) {
 
     dlg.classList.add('formDialog');
 
-    dlg.innerHTML = globalize.translateHtml(template, 'core');
+    dlg.innerHTML = translateHtml(template, 'core');
 
     dlg.classList.add('align-items-center');
     dlg.classList.add('justify-content-center');
@@ -96,14 +96,14 @@ function showDialog(options = { dialogOptions: {}, buttons: [] }) {
     }
 
     let dialogResult;
-    function onButtonClick() {
+    function onButtonPress() {
         dialogResult = this.getAttribute('data-id');
         dialogHelper.close(dlg);
     }
 
     const buttons = dlg.querySelectorAll('.btnOption');
     for (i = 0, length = buttons.length; i < length; i++) {
-        buttons[i].addEventListener('click', onButtonClick);
+        buttons[i].addEventListener('click', onButtonPress);
     }
 
     return dialogHelper.open(dlg).then(() => {

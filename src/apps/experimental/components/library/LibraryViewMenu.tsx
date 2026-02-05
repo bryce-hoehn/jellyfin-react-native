@@ -8,7 +8,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { LibraryRoutes } from 'apps/experimental/features/libraries/constants/libraryRoutes';
 import useCurrentTab from 'hooks/useCurrentTab';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const LIBRARY_VIEW_MENU_ID = 'library-view-menu';
 
@@ -20,7 +20,7 @@ const LibraryViewMenu: FC = () => {
     const [ menuAnchorEl, setMenuAnchorEl ] = useState<null | HTMLElement>(null);
     const isMenuOpen = Boolean(menuAnchorEl);
 
-    const onMenuButtonClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    const onMenuButtonPress = useCallback((event: React.MouseEvent<HTMLElement>) => {
         setMenuAnchorEl(event.currentTarget);
     }, []);
 
@@ -42,9 +42,9 @@ const LibraryViewMenu: FC = () => {
                 endIcon={<ArrowDropDown />}
                 aria-controls={LIBRARY_VIEW_MENU_ID}
                 aria-haspopup='true'
-                onClick={onMenuButtonClick}
+                onPress={onMenuButtonPress}
             >
-                {globalize.translate(currentTab.label)}
+                {translate(currentTab.label)}
             </Button>
 
             <Menu
@@ -58,14 +58,14 @@ const LibraryViewMenu: FC = () => {
                     <MenuItem
                         key={tab.view}
                         // eslint-disable-next-line react/jsx-no-bind
-                        onClick={() => {
+                        onPress={() => {
                             searchParams.set('tab', `${tab.index}`);
                             setSearchParams(searchParams);
                             onMenuClose();
                         }}
                         selected={tab.index === currentTab.index}
                     >
-                        {globalize.translate(tab.label)}
+                        {translate(tab.label)}
                     </MenuItem>
                 ))}
             </Menu>

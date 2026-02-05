@@ -66,7 +66,7 @@ const ItemsContainer: FC<PropsWithChildren<ItemsContainerProps>> = ({
     const sortableref = useRef<Sortable | null>(null);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const onClick = useCallback((e: MouseEvent) => {
+    const onPress = useCallback((e: MouseEvent) => {
         const itemsContainer = itemsContainerRef.current as HTMLDivElement;
         const multiSelect = multiSelectref.current;
 
@@ -77,7 +77,7 @@ const ItemsContainer: FC<PropsWithChildren<ItemsContainerProps>> = ({
             return;
         }
 
-        itemShortcuts.onClick.call(itemsContainer, e);
+        itemShortcuts.onPress.call(itemsContainer, e);
     }, []);
 
     const onContextMenu = useCallback((e: MouseEvent) => {
@@ -99,7 +99,7 @@ const ItemsContainer: FC<PropsWithChildren<ItemsContainerProps>> = ({
     const initMultiSelect = useCallback((itemsContainer: HTMLDivElement) => {
         multiSelectref.current = new MultiSelect({
             container: itemsContainer,
-            bindOnClick: false
+            bindonPress: false
         });
     }, []);
 
@@ -346,7 +346,7 @@ const ItemsContainer: FC<PropsWithChildren<ItemsContainerProps>> = ({
             initDragReordering(itemsContainer);
         }
 
-        itemsContainer.addEventListener('click', onClick);
+        itemsContainer.addEventListener('click', onPress);
 
         if (browser.touch) {
             itemsContainer.addEventListener('contextmenu', disableEvent);
@@ -371,7 +371,7 @@ const ItemsContainer: FC<PropsWithChildren<ItemsContainerProps>> = ({
 
             destroyMultiSelect();
             destroyDragReordering();
-            itemsContainer.removeEventListener('click', onClick);
+            itemsContainer.removeEventListener('click', onPress);
             itemsContainer.removeEventListener('contextmenu', onContextMenu);
             itemsContainer.removeEventListener('contextmenu', disableEvent);
 
@@ -393,7 +393,7 @@ const ItemsContainer: FC<PropsWithChildren<ItemsContainerProps>> = ({
         isContextMenuEnabled,
         isDragreOrderEnabled,
         isMultiSelectEnabled,
-        onClick,
+        onPress,
         onContextMenu,
         onLibraryChanged,
         onPlaybackStopped,

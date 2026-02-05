@@ -223,34 +223,34 @@ export default function (view, params, tabContent, options) {
             btnSort.addEventListener('click', function (e) {
                 libraryBrowser.showSortMenu({
                     items: [{
-                        name: globalize.translate('Name'),
+                        name: translate('Name'),
                         id: 'SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('OptionRandom'),
+                        name: translate('OptionRandom'),
                         id: 'Random'
                     }, {
-                        name: globalize.translate('OptionCommunityRating'),
+                        name: translate('OptionCommunityRating'),
                         id: 'CommunityRating,SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('OptionCriticRating'),
+                        name: translate('OptionCriticRating'),
                         id: 'CriticRating,SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('OptionDateAdded'),
+                        name: translate('OptionDateAdded'),
                         id: 'DateCreated,SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('OptionDatePlayed'),
+                        name: translate('OptionDatePlayed'),
                         id: 'DatePlayed,SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('OptionParentalRating'),
+                        name: translate('OptionParentalRating'),
                         id: 'OfficialRating,SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('OptionPlayCount'),
+                        name: translate('OptionPlayCount'),
                         id: 'PlayCount,SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('OptionReleaseDate'),
+                        name: translate('OptionReleaseDate'),
                         id: 'PremiereDate,SortName,ProductionYear'
                     }, {
-                        name: globalize.translate('Runtime'),
+                        name: translate('Runtime'),
                         id: 'Runtime,SortName,ProductionYear'
                     }],
                     callback: function () {

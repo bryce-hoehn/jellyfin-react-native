@@ -13,7 +13,7 @@ type IProps = {
 
 const getLastSeenText = (lastActivityDate?: string | null) => {
     if (lastActivityDate) {
-        return globalize.translate('LastSeen', formatDistanceToNow(Date.parse(lastActivityDate), getLocaleWithSuffix()));
+        return translate('LastSeen', formatDistanceToNow(Date.parse(lastActivityDate), getLocaleWithSuffix()));
     }
 
     return '';

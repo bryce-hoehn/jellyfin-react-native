@@ -22,32 +22,32 @@ function getEditorHtml() {
     html += '<form style="margin:auto;">';
 
     html += '<div class="fldSelectPlaylist selectContainer">';
-    html += '<select is="emby-select" id="selectMetadataRefreshMode" label="' + globalize.translate('LabelRefreshMode') + '">';
-    html += '<option value="scan" selected>' + globalize.translate('ScanForNewAndUpdatedFiles') + '</option>';
-    html += '<option value="missing">' + globalize.translate('SearchForMissingMetadata') + '</option>';
-    html += '<option value="all">' + globalize.translate('ReplaceAllMetadata') + '</option>';
+    html += '<select is="emby-select" id="selectMetadataRefreshMode" label="' + translate('LabelRefreshMode') + '">';
+    html += '<option value="scan" selected>' + translate('ScanForNewAndUpdatedFiles') + '</option>';
+    html += '<option value="missing">' + translate('SearchForMissingMetadata') + '</option>';
+    html += '<option value="all">' + translate('ReplaceAllMetadata') + '</option>';
     html += '</select>';
     html += '</div>';
 
     html += '<label class="checkboxContainer hide fldReplaceExistingImages">';
     html += '<input type="checkbox" is="emby-checkbox" class="chkReplaceImages" />';
-    html += '<span>' + globalize.translate('ReplaceExistingImages') + '</span>';
+    html += '<span>' + translate('ReplaceExistingImages') + '</span>';
     html += '</label>';
 
     html += '<label class="checkboxContainer hide fldReplaceTrickplayImages">';
     html += '<input type="checkbox" is="emby-checkbox" class="chkReplaceTrickplayImages" />';
-    html += '<span>' + globalize.translate('ReplaceTrickplayImages') + '</span>';
+    html += '<span>' + translate('ReplaceTrickplayImages') + '</span>';
     html += '</label>';
 
     html += '<div class="fieldDescription">';
-    html += globalize.translate('RefreshDialogHelp');
+    html += translate('RefreshDialogHelp');
     html += '</div>';
 
     html += '<input type="hidden" class="fldSelectedItemIds" />';
 
     html += '<br />';
     html += '<div class="formDialogFooter">';
-    html += '<button is="emby-button" type="submit" class="raised btnSubmit block formDialogFooterItem button-submit">' + globalize.translate('Refresh') + '</button>';
+    html += '<button is="emby-button" type="submit" class="raised btnSubmit block formDialogFooterItem button-submit">' + translate('Refresh') + '</button>';
     html += '</div>';
 
     html += '</form>';
@@ -92,7 +92,7 @@ function onSubmit(e) {
 
     dialogHelper.close(dlg);
 
-    toast(globalize.translate('RefreshQueued'));
+    toast(translate('RefreshQueued'));
 
     loading.hide();
 
@@ -122,10 +122,10 @@ class RefreshDialog {
         dlg.classList.add('formDialog');
 
         let html = '';
-        const title = globalize.translate('RefreshMetadata');
+        const title = translate('RefreshMetadata');
 
         html += '<div class="formDialogHeader">';
-        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${globalize.translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
         html += '<h3 class="formDialogHeaderTitle">';
         html += title;
         html += '</h3>';

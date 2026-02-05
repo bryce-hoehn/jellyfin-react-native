@@ -104,7 +104,7 @@ function getIconsHtml(options) {
     const serverId = item.ServerId;
 
     if (includePlayed !== false) {
-        const tooltipPlayed = globalize.translate('MarkPlayed');
+        const tooltipPlayed = translate('MarkPlayed');
 
         if (itemHelper.canMarkPlayed(item)) {
             if (userData.Played) {
@@ -116,7 +116,7 @@ function getIconsHtml(options) {
         }
     }
 
-    const tooltipFavorite = globalize.translate('Favorite');
+    const tooltipFavorite = translate('Favorite');
     if (userData.IsFavorite) {
         const buttonCssClass = classes.buttonCssClass + ' btnUserData btnUserDataOn';
         html += getUserDataButtonHtml('markFavorite', itemId, serverId, 'favorite', tooltipFavorite, style, { buttonCssClass, ...classes });

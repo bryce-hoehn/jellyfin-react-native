@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Widget from './Widget';
 import type { TaskInfo } from '@jellyfin/sdk/lib/generated-client/models/task-info';
 import Paper from '@mui/material/Paper';
@@ -22,7 +22,7 @@ const RunningTasksWidget = ({ tasks }: RunningTasksWidgetProps) => {
 
     return (
         <Widget
-            title={globalize.translate('HeaderRunningTasks')}
+            title={translate('HeaderRunningTasks')}
             href='/dashboard/tasks'
         >
             <Paper sx={{ padding: 2 }}>

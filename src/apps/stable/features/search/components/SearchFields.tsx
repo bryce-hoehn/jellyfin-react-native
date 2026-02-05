@@ -1,7 +1,7 @@
 import React, { type ChangeEvent, type FC, useCallback, useRef } from 'react';
 import AlphaPicker from 'components/alphaPicker/AlphaPickerComponent';
 import Input from 'elements/emby-input/Input';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import layoutManager from 'components/layoutManager';
 import browser from 'scripts/browser';
 import 'material-design-icons-iconfont';
@@ -48,7 +48,7 @@ const SearchFields: FC<SearchFieldsProps> = ({
                         className='searchfields-txtSearch'
                         type='text'
                         data-keyboard='true'
-                        placeholder={globalize.translate('Search')}
+                        placeholder={translate('Search')}
                         autoComplete='off'
                         maxLength={40}
                         // eslint-disable-next-line jsx-a11y/no-autofocus

@@ -28,7 +28,7 @@ function onFileReaderError(evt) {
 
     const error = evt.target.error;
     if (error.code !== error.ABORT_ERR) {
-        toast(globalize.translate('MessageFileReadError'));
+        toast(translate('MessageFileReadError'));
     }
 }
 
@@ -85,7 +85,7 @@ async function onSubmit(e) {
     const file = currentFile;
 
     if (!isValidSubtitleFile(file)) {
-        toast(globalize.translate('MessageSubtitleFileTypeAllowed'));
+        toast(translate('MessageSubtitleFileTypeAllowed'));
         return;
     }
 
@@ -143,7 +143,7 @@ function showEditor(options, resolve) {
     dlg.classList.add('formDialog');
     dlg.classList.add('subtitleUploaderDialog');
 
-    dlg.innerHTML = globalize.translateHtml(template, 'core');
+    dlg.innerHTML = translateHtml(template, 'core');
 
     if (layoutManager.tv) {
         scrollHelper.centerFocus.on(dlg, false);

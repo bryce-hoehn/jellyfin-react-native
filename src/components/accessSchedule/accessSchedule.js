@@ -48,7 +48,7 @@ function submitSchedule(context, options) {
     };
 
     if (parseFloat(updatedSchedule.StartHour) >= parseFloat(updatedSchedule.EndHour)) {
-        alert(globalize.translate('ErrorStartHourGreaterThanEnd'));
+        alert(translate('ErrorStartHourGreaterThanEnd'));
         return;
     }
 
@@ -65,7 +65,7 @@ export function show(options) {
         });
         dlg.classList.add('formDialog');
         let html = '';
-        html += globalize.translateHtml(template);
+        html += translateHtml(template);
         dlg.innerHTML = html;
         populateHours(dlg);
         loadSchedule(dlg, options.schedule);

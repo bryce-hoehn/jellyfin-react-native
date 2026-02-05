@@ -33,7 +33,7 @@ const UserViewsMenu: FC<UserViewsMenuProps> = ({
                     key={view.Id}
                     component={Link}
                     to={appRouter.getRouteUrl(view, { context: view.CollectionType }).substring(1)}
-                    onClick={onMenuClose}
+                    onPress={onMenuClose}
                     selected={view.Id === selectedId}
                 >
                     <ListItemIcon>

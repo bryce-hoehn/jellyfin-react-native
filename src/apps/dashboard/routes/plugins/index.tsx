@@ -19,7 +19,7 @@ import { PluginStatusOption } from 'apps/dashboard/features/plugins/constants/pl
 import Loading from 'components/loading/LoadingComponent';
 import Page from 'components/Page';
 import useSearchParam from 'hooks/useSearchParam';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 /**
  * The list of primary/main categories.
@@ -94,7 +94,7 @@ export const Component = () => {
     return (
         <Page
             id='pluginsPage'
-            title={globalize.translate('TabPlugins')}
+            title={translate('TabPlugins')}
             className='type-interior mainAnimatedPage'
         >
             <Box className='content-primary'>
@@ -116,7 +116,7 @@ export const Component = () => {
                                 verticalAlign: 'middle'
                             }}
                         >
-                            {globalize.translate('TabPlugins')}
+                            {translate('TabPlugins')}
                         </Typography>
 
                         <Button
@@ -127,7 +127,7 @@ export const Component = () => {
                                 marginLeft: 2
                             }}
                         >
-                            {globalize.translate('ManageRepositories')}
+                            {translate('ManageRepositories')}
                         </Button>
 
                         <Box
@@ -149,7 +149,7 @@ export const Component = () => {
                             }}
                         >
                             <SearchInput
-                                label={globalize.translate('Search')}
+                                label={translate('Search')}
                                 value={searchQuery}
                                 onChange={onSearchChange}
                             />
@@ -161,7 +161,7 @@ export const Component = () => {
                             severity='error'
                             sx={{ marginBottom: 2 }}
                         >
-                            {globalize.translate('PluginsLoadError')}
+                            {translate('PluginsLoadError')}
                         </Alert>
                     ) : (
                         <>
@@ -184,22 +184,22 @@ export const Component = () => {
                                     <Chip
                                         color={status === PluginStatusOption.All ? 'primary' : undefined}
                                         // eslint-disable-next-line react/jsx-no-bind
-                                        onClick={() => setStatus(PluginStatusOption.All)}
-                                        label={globalize.translate('All')}
+                                        onPress={() => setStatus(PluginStatusOption.All)}
+                                        label={translate('All')}
                                     />
 
                                     <Chip
                                         color={status === PluginStatusOption.Available ? 'primary' : undefined}
                                         // eslint-disable-next-line react/jsx-no-bind
-                                        onClick={() => setStatus(PluginStatusOption.Available)}
-                                        label={globalize.translate('LabelAvailable')}
+                                        onPress={() => setStatus(PluginStatusOption.Available)}
+                                        label={translate('LabelAvailable')}
                                     />
 
                                     <Chip
                                         color={status === PluginStatusOption.Installed ? 'primary' : undefined}
                                         // eslint-disable-next-line react/jsx-no-bind
-                                        onClick={() => setStatus(PluginStatusOption.Installed)}
-                                        label={globalize.translate('LabelInstalled')}
+                                        onPress={() => setStatus(PluginStatusOption.Installed)}
+                                        label={translate('LabelInstalled')}
                                     />
 
                                     <Divider orientation='vertical' flexItem />
@@ -207,8 +207,8 @@ export const Component = () => {
                                     <Chip
                                         color={!category ? 'primary' : undefined}
                                         // eslint-disable-next-line react/jsx-no-bind
-                                        onClick={() => setCategory('')}
-                                        label={globalize.translate('All')}
+                                        onPress={() => setCategory('')}
+                                        label={translate('All')}
                                     />
 
                                     {Object.values(PluginCategory).map(c => (
@@ -216,8 +216,8 @@ export const Component = () => {
                                             key={c}
                                             color={category === c.toLowerCase() ? 'primary' : undefined}
                                             // eslint-disable-next-line react/jsx-no-bind
-                                            onClick={() => setCategory(c.toLowerCase())}
-                                            label={globalize.translate(CATEGORY_LABELS[c as PluginCategory])}
+                                            onPress={() => setCategory(c.toLowerCase())}
+                                            label={translate(CATEGORY_LABELS[c as PluginCategory])}
                                         />
                                     ))}
                                 </Stack>

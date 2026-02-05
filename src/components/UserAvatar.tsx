@@ -1,7 +1,9 @@
 import React, { type FC } from 'react';
 import type { UserDto } from '@jellyfin/sdk/lib/generated-client/models/user-dto';
-import Avatar from '@mui/material/Avatar';
-import type {} from '@mui/material/themeCssVarsAugmentation';
+import { Avatar } from 'react-native-paper';
+
+import { getImageApi } from '@jellyfin/sdk/lib/utils/api/image-api';
+import { ImageType } from '@jellyfin/sdk/lib/generated-client/models/image-type';
 
 import { useApi } from 'hooks/useApi';
 
@@ -12,22 +14,24 @@ interface UserAvatarProps {
 const UserAvatar: FC<UserAvatarProps> = ({ user }) => {
     const { api } = useApi();
 
+    const imageUrl = api && user?.Id && user.PrimaryImageTag
+        ? getImageApi(api).getItemImageUrlById(user.Id, ImageType.Primary, {
+            tag: user.PrimaryImageTag
+        })
+        : undefined;
+
     return user ? (
-        <Avatar
-            alt={user.Name ?? undefined}
-            src={
-                api && user.Id && user.PrimaryImageTag ?
-                    `${api.basePath}/Users/${user.Id}/Images/Primary?tag=${user.PrimaryImageTag}` :
-                    undefined
-            }
-            // eslint-disable-next-line react/jsx-no-bind
-            sx={(theme) => ({
-                bgcolor: api && user.Id && user.PrimaryImageTag ?
-                    theme.vars.palette.background.paper :
-                    theme.vars.palette.primary.dark,
-                color: 'inherit'
-            })}
-        />
+        imageUrl ? (
+            <Avatar.Image
+                source={{ uri: imageUrl }}
+                size={48}
+            />
+        ) : (
+            <Avatar.Text
+                label={user.Name ? user.Name.charAt(0).toUpperCase() : '?'}
+                size={48}
+            />
+        )
     ) : null;
 };
 

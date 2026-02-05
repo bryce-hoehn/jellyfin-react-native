@@ -32,7 +32,7 @@ function onAddLibrary(e) {
 
     if (pathInfos.length == 0) {
         alert({
-            text: globalize.translate('PleaseAddAtLeastOneFolder'),
+            text: translate('PleaseAddAtLeastOneFolder'),
             type: 'error'
         });
 
@@ -47,7 +47,7 @@ function onAddLibrary(e) {
 
     if (name.length === 0) {
         alert({
-            text: globalize.translate('LibraryNameInvalid'),
+            text: translate('LibraryNameInvalid'),
             type: 'error'
         });
 
@@ -69,7 +69,7 @@ function onAddLibrary(e) {
         loading.hide();
         dialogHelper.close(dlg);
     }, () => {
-        toast(globalize.translate('ErrorAddingMediaPathToVirtualFolder'));
+        toast(translate('ErrorAddingMediaPathToVirtualFolder'));
 
         isCreating = false;
         loading.hide();
@@ -111,12 +111,12 @@ function initEditor(page, collectionTypeOptions) {
         const folderOption = collectionTypeOptions.find(i => i.value === value);
         dlg.querySelector('.collectionTypeFieldDescription').innerHTML = folderOption?.message || '';
     });
-    page.querySelector('.btnAddFolder').addEventListener('click', onAddButtonClick);
+    page.querySelector('.btnAddFolder').addEventListener('click', onAddButtonPress);
     page.querySelector('.addLibraryForm').addEventListener('submit', onAddLibrary);
     page.querySelector('.folderList').addEventListener('click', onRemoveClick);
 }
 
-function onAddButtonClick() {
+function onAddButtonPress() {
     const page = dom.parentWithClass(this, 'dlg-librarycreator');
 
     import('../directorybrowser/directorybrowser').then(({ default: DirectoryBrowser }) => {
@@ -214,7 +214,7 @@ export class MediaLibraryCreator {
             dlg.classList.add('background-theme-a');
             dlg.classList.add('dlg-librarycreator');
             dlg.classList.add('formDialog');
-            dlg.innerHTML = globalize.translateHtml(template);
+            dlg.innerHTML = translateHtml(template);
             initEditor(dlg, options.collectionTypeOptions);
             dlg.addEventListener('close', onDialogClosed);
             dialogHelper.open(dlg);

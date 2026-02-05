@@ -3,7 +3,7 @@ import escapeHtml from 'escape-html';
 import { getDefaultBackgroundClass } from 'components/cardbuilder/cardBuilderUtils';
 import confirm from 'components/confirm/confirm';
 import loading from 'components/loading/loading';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import dom from 'utils/dom';
 import taskButton from 'scripts/taskbutton';
@@ -42,17 +42,17 @@ function editVirtualFolder(page, virtualFolder) {
 }
 
 function deleteVirtualFolder(page, virtualFolder) {
-    let msg = globalize.translate('MessageAreYouSureYouWishToRemoveMediaFolder');
+    let msg = translate('MessageAreYouSureYouWishToRemoveMediaFolder');
 
     if (virtualFolder.Locations.length) {
-        msg += '<br/><br/>' + globalize.translate('MessageTheFollowingLocationWillBeRemovedFromLibrary') + '<br/><br/>';
+        msg += '<br/><br/>' + translate('MessageTheFollowingLocationWillBeRemovedFromLibrary') + '<br/><br/>';
         msg += virtualFolder.Locations.join('<br/>');
     }
 
     confirm({
         text: msg,
-        title: globalize.translate('HeaderRemoveMediaFolder'),
-        confirmText: globalize.translate('Delete'),
+        title: translate('HeaderRemoveMediaFolder'),
+        confirmText: translate('Delete'),
         primary: 'delete'
     }).then(function () {
         const refreshAfterChange = shouldRefreshLibraryAfterChanges(page);
@@ -77,9 +77,9 @@ function refreshVirtualFolder(page, virtualFolder) {
 function renameVirtualFolder(page, virtualFolder) {
     import('components/prompt/prompt').then(({ default: prompt }) => {
         prompt({
-            label: globalize.translate('LabelNewName'),
-            description: globalize.translate('MessageRenameMediaFolder'),
-            confirmText: globalize.translate('ButtonRename')
+            label: translate('LabelNewName'),
+            description: translate('MessageRenameMediaFolder'),
+            confirmText: translate('ButtonRename')
         }).then(function (newName) {
             if (newName && newName != virtualFolder.Name) {
                 const refreshAfterChange = shouldRefreshLibraryAfterChanges(page);
@@ -99,27 +99,27 @@ function showCardMenu(page, elem, virtualFolders) {
     const virtualFolder = virtualFolders[index];
     const menuItems = [];
     menuItems.push({
-        name: globalize.translate('EditImages'),
+        name: translate('EditImages'),
         id: 'editimages',
         icon: 'photo'
     });
     menuItems.push({
-        name: globalize.translate('ManageLibrary'),
+        name: translate('ManageLibrary'),
         id: 'edit',
         icon: 'folder'
     });
     menuItems.push({
-        name: globalize.translate('ButtonRename'),
+        name: translate('ButtonRename'),
         id: 'rename',
         icon: 'mode_edit'
     });
     menuItems.push({
-        name: globalize.translate('ScanLibrary'),
+        name: translate('ScanLibrary'),
         id: 'refresh',
         icon: 'refresh'
     });
     menuItems.push({
-        name: globalize.translate('ButtonRemove'),
+        name: translate('ButtonRemove'),
         id: 'delete',
         icon: 'delete'
     });
@@ -170,7 +170,7 @@ function shouldRefreshLibraryAfterChanges(page) {
 function reloadVirtualFolders(page, virtualFolders) {
     let html = '';
     virtualFolders.push({
-        Name: globalize.translate('ButtonAddMediaLibrary'),
+        Name: translate('ButtonAddMediaLibrary'),
         icon: 'add_circle',
         Locations: [],
         showType: false,
@@ -226,7 +226,7 @@ function editImages(page, virtualFolder) {
 }
 
 function getLink(text, url) {
-    return globalize.translate(text, '<a is="emby-linkbutton" class="button-link" href="' + url + '" target="_blank" data-autohide="true">', '</a>');
+    return translate(text, '<a is="emby-linkbutton" class="button-link" href="' + url + '" target="_blank" data-autohide="true">', '</a>');
 }
 
 function getCollectionTypeOptions() {
@@ -234,31 +234,31 @@ function getCollectionTypeOptions() {
         name: '',
         value: ''
     }, {
-        name: globalize.translate('Movies'),
+        name: translate('Movies'),
         value: 'movies',
         message: getLink('MovieLibraryHelp', 'https://jellyfin.org/docs/general/server/media/movies')
     }, {
-        name: globalize.translate('TabMusic'),
+        name: translate('TabMusic'),
         value: 'music',
         message: getLink('MusicLibraryHelp', 'https://jellyfin.org/docs/general/server/media/music')
     }, {
-        name: globalize.translate('Shows'),
+        name: translate('Shows'),
         value: 'tvshows',
         message: getLink('TvLibraryHelp', 'https://jellyfin.org/docs/general/server/media/shows')
     }, {
-        name: globalize.translate('Books'),
+        name: translate('Books'),
         value: 'books',
         message: getLink('BookLibraryHelp', 'https://jellyfin.org/docs/general/server/media/books')
     }, {
-        name: globalize.translate('HomeVideosPhotos'),
+        name: translate('HomeVideosPhotos'),
         value: 'homevideos'
     }, {
-        name: globalize.translate('MusicVideos'),
+        name: translate('MusicVideos'),
         value: 'musicvideos'
     }, {
-        name: globalize.translate('MixedMoviesShows'),
+        name: translate('MixedMoviesShows'),
         value: 'mixed',
-        message: globalize.translate('MessageUnsetContentHelp')
+        message: translate('MessageUnsetContentHelp')
     }];
 }
 
@@ -337,7 +337,7 @@ function getVirtualFolderHtml(page, virtualFolder, index) {
     let typeName = getCollectionTypeOptions().filter(function (t) {
         return t.value == virtualFolder.CollectionType;
     })[0];
-    typeName = typeName ? typeName.name : globalize.translate('Other');
+    typeName = typeName ? typeName.name : translate('Other');
     html += "<div class='cardText cardText-secondary'>";
 
     if (virtualFolder.showType === false) {
@@ -358,7 +358,7 @@ function getVirtualFolderHtml(page, virtualFolder, index) {
         html += '</div>';
     } else {
         html += "<div class='cardText cardText-secondary'>";
-        html += globalize.translate('NumLocationsValue', virtualFolder.Locations.length);
+        html += translate('NumLocationsValue', virtualFolder.Locations.length);
         html += '</div>';
     }
 

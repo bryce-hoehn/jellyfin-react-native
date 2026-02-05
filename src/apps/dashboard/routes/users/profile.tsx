@@ -312,9 +312,9 @@ const UserEdit = () => {
 
     const optionSyncPlayAccess = () => {
         let content = '';
-        content += `<option value='CreateAndJoinGroups'>${globalize.translate('LabelSyncPlayAccessCreateAndJoinGroups')}</option>`;
-        content += `<option value='JoinGroups'>${globalize.translate('LabelSyncPlayAccessJoinGroups')}</option>`;
-        content += `<option value='None'>${globalize.translate('LabelSyncPlayAccessNone')}</option>`;
+        content += `<option value='CreateAndJoinGroups'>${translate('LabelSyncPlayAccessCreateAndJoinGroups')}</option>`;
+        content += `<option value='JoinGroups'>${translate('LabelSyncPlayAccessJoinGroups')}</option>`;
+        content += `<option value='None'>${translate('LabelSyncPlayAccessNone')}</option>`;
         return content;
     };
 
@@ -336,17 +336,17 @@ const UserEdit = () => {
                     style={{ paddingBottom: '1em' }}
                 >
                     <LinkButton className='lnkEditUserPreferences button-link' href={userDto?.Id ? `mypreferencesmenu?userId=${userDto.Id}` : undefined}>
-                        {globalize.translate('ButtonEditOtherUserPreferences')}
+                        {translate('ButtonEditOtherUserPreferences')}
                     </LinkButton>
                 </div>
                 <form className='editUserProfileForm'>
                     <div className='disabledUserBanner hide'>
                         <div className='btn btnDarkAccent btnStatic'>
                             <div>
-                                {globalize.translate('HeaderThisUserIsCurrentlyDisabled')}
+                                {translate('HeaderThisUserIsCurrentlyDisabled')}
                             </div>
                             <div style={{ marginTop: 5 }}>
-                                {globalize.translate('MessageReenableUser')}
+                                {translate('MessageReenableUser')}
                             </div>
                         </div>
                     </div>
@@ -354,7 +354,7 @@ const UserEdit = () => {
                         <Input
                             type='text'
                             id='txtUserName'
-                            label={globalize.translate('LabelName')}
+                            label={translate('LabelName')}
                             required
                         />
                     </div>
@@ -367,7 +367,7 @@ const UserEdit = () => {
                         </SelectElement>
 
                         <div className='fieldDescription'>
-                            {globalize.translate('AuthProviderHelp')}
+                            {translate('AuthProviderHelp')}
                         </div>
                     </div>
                     <div className='selectContainer fldSelectPasswordResetProvider hide'>
@@ -378,7 +378,7 @@ const UserEdit = () => {
                             {optionPasswordResetProvider}
                         </SelectElement>
                         <div className='fieldDescription'>
-                            {globalize.translate('PasswordResetProviderHelp')}
+                            {translate('PasswordResetProviderHelp')}
                         </div>
                     </div>
                     <div className='checkboxContainer checkboxContainer-withDescription fldRemoteAccess hide'>
@@ -387,7 +387,7 @@ const UserEdit = () => {
                             title='AllowRemoteAccess'
                         />
                         <div className='fieldDescription checkboxFieldDescription'>
-                            {globalize.translate('AllowRemoteAccessHelp')}
+                            {translate('AllowRemoteAccessHelp')}
                         </div>
                     </div>
                     <CheckBoxElement
@@ -407,7 +407,7 @@ const UserEdit = () => {
                     />
                     <div id='featureAccessFields' className='verticalSection'>
                         <h2 className='paperListLabel'>
-                            {globalize.translate('HeaderFeatureAccess')}
+                            {translate('HeaderFeatureAccess')}
                         </h2>
                         <div className='checkboxList paperList' style={{ padding: '.5em 1em' }}>
                             <CheckBoxElement
@@ -422,7 +422,7 @@ const UserEdit = () => {
                     </div>
                     <div className='verticalSection'>
                         <h2 className='paperListLabel'>
-                            {globalize.translate('HeaderPlayback')}
+                            {translate('HeaderPlayback')}
                         </h2>
                         <div className='checkboxList paperList' style={{ padding: '.5em 1em' }}>
                             <CheckBoxElement
@@ -447,7 +447,7 @@ const UserEdit = () => {
                             />
                         </div>
                         <div className='fieldDescription'>
-                            {globalize.translate('OptionAllowMediaPlaybackTranscodingHelp')}
+                            {translate('OptionAllowMediaPlaybackTranscodingHelp')}
                         </div>
                     </div>
                     <br />
@@ -456,17 +456,17 @@ const UserEdit = () => {
                             <Input
                                 type='number'
                                 id='txtRemoteClientBitrateLimit'
-                                label={globalize.translate('LabelRemoteClientBitrateLimit')}
+                                label={translate('LabelRemoteClientBitrateLimit')}
                                 inputMode='decimal'
                                 pattern='[0-9]*(.[0-9]+)?'
                                 min='0'
                                 step='.25'
                             />
                             <div className='fieldDescription'>
-                                {globalize.translate('LabelRemoteClientBitrateLimitHelp')}
+                                {translate('LabelRemoteClientBitrateLimitHelp')}
                             </div>
                             <div className='fieldDescription'>
-                                {globalize.translate('LabelUserRemoteClientBitrateLimitHelp')}
+                                {translate('LabelUserRemoteClientBitrateLimitHelp')}
                             </div>
                         </div>
                     </div>
@@ -479,13 +479,13 @@ const UserEdit = () => {
                                 {optionSyncPlayAccess()}
                             </SelectElement>
                             <div className='fieldDescription'>
-                                {globalize.translate('SyncPlayAccessHelp')}
+                                {translate('SyncPlayAccessHelp')}
                             </div>
                         </div>
                     </div>
                     <div className='verticalSection'>
                         <h2 className='checkboxListLabel' style={{ marginBottom: '1em' }}>
-                            {globalize.translate('HeaderAllowMediaDeletionFrom')}
+                            {translate('HeaderAllowMediaDeletionFrom')}
                         </h2>
                         <div className='checkboxList paperList checkboxList-paperList'>
                             <CheckBoxElement
@@ -508,7 +508,7 @@ const UserEdit = () => {
                     </div>
                     <div className='verticalSection'>
                         <h2 className='checkboxListLabel'>
-                            {globalize.translate('HeaderRemoteControl')}
+                            {translate('HeaderRemoteControl')}
                         </h2>
                         <div className='checkboxList paperList' style={{ padding: '.5em 1em' }}>
                             <CheckBoxElement
@@ -521,11 +521,11 @@ const UserEdit = () => {
                             />
                         </div>
                         <div className='fieldDescription'>
-                            {globalize.translate('OptionAllowRemoteSharedDevicesHelp')}
+                            {translate('OptionAllowRemoteSharedDevicesHelp')}
                         </div>
                     </div>
                     <h2 className='checkboxListLabel'>
-                        {globalize.translate('Other')}
+                        {translate('Other')}
                     </h2>
                     <div className='checkboxContainer checkboxContainer-withDescription'>
                         <CheckBoxElement
@@ -533,7 +533,7 @@ const UserEdit = () => {
                             title='OptionAllowContentDownload'
                         />
                         <div className='fieldDescription checkboxFieldDescription'>
-                            {globalize.translate('OptionAllowContentDownloadHelp')}
+                            {translate('OptionAllowContentDownloadHelp')}
                         </div>
                     </div>
                     <div className='checkboxContainer checkboxContainer-withDescription' id='fldIsEnabled'>
@@ -542,7 +542,7 @@ const UserEdit = () => {
                             title='OptionDisableUser'
                         />
                         <div className='fieldDescription checkboxFieldDescription'>
-                            {globalize.translate('OptionDisableUserHelp')}
+                            {translate('OptionDisableUserHelp')}
                         </div>
                     </div>
                     <div className='checkboxContainer checkboxContainer-withDescription' id='fldIsHidden'>
@@ -551,7 +551,7 @@ const UserEdit = () => {
                             title='OptionHideUser'
                         />
                         <div className='fieldDescription checkboxFieldDescription'>
-                            {globalize.translate('OptionHideUserFromLoginHelp')}
+                            {translate('OptionHideUserFromLoginHelp')}
                         </div>
                     </div>
                     <br />
@@ -560,14 +560,14 @@ const UserEdit = () => {
                             <Input
                                 type='number'
                                 id='txtLoginAttemptsBeforeLockout'
-                                label={globalize.translate('LabelUserLoginAttemptsBeforeLockout')}
+                                label={translate('LabelUserLoginAttemptsBeforeLockout')}
                                 min={-1} step={1}
                             />
                             <div className='fieldDescription'>
-                                {globalize.translate('OptionLoginAttemptsBeforeLockout')}
+                                {translate('OptionLoginAttemptsBeforeLockout')}
                             </div>
                             <div className='fieldDescription'>
-                                {globalize.translate('OptionLoginAttemptsBeforeLockoutHelp')}
+                                {translate('OptionLoginAttemptsBeforeLockoutHelp')}
                             </div>
                         </div>
                     </div>
@@ -577,14 +577,14 @@ const UserEdit = () => {
                             <Input
                                 type='number'
                                 id='txtMaxActiveSessions'
-                                label={globalize.translate('LabelUserMaxActiveSessions')}
+                                label={translate('LabelUserMaxActiveSessions')}
                                 min={0} step={1}
                             />
                             <div className='fieldDescription'>
-                                {globalize.translate('OptionMaxActiveSessions')}
+                                {translate('OptionMaxActiveSessions')}
                             </div>
                             <div className='fieldDescription'>
-                                {globalize.translate('OptionMaxActiveSessionsHelp')}
+                                {translate('OptionMaxActiveSessionsHelp')}
                             </div>
                         </div>
                     </div>
@@ -593,13 +593,13 @@ const UserEdit = () => {
                         <Button
                             type='submit'
                             className='raised button-submit block'
-                            title={globalize.translate('Save')}
+                            title={translate('Save')}
                         />
                         <Button
                             type='button'
                             id='btnCancel'
                             className='raised button-cancel block'
-                            title={globalize.translate('ButtonCancel')}
+                            title={translate('ButtonCancel')}
                         />
                     </div>
                 </form>

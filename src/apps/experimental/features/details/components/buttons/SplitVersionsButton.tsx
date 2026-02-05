@@ -4,7 +4,7 @@ import CallSplitIcon from '@mui/icons-material/CallSplit';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { useDeleteAlternateSources } from 'hooks/api/videosHooks';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import confirm from 'components/confirm/confirm';
 import loading from 'components/loading/loading';
 import toast from 'components/toast/toast';
@@ -23,8 +23,8 @@ const SplitVersionsButton: FC<SplitVersionsButtonProps> = ({
 
     const splitVersions = useCallback(() => {
         confirm({
-            title: globalize.translate('HeaderSplitMediaApart'),
-            text: globalize.translate('MessageConfirmSplitMediaSources')
+            title: translate('HeaderSplitMediaApart'),
+            text: translate('MessageConfirmSplitMediaSources')
         })
             .then(function () {
                 loading.show();
@@ -41,7 +41,7 @@ const SplitVersionsButton: FC<SplitVersionsButtonProps> = ({
                         },
                         onError: (err: unknown) => {
                             loading.hide();
-                            toast(globalize.translate('MessageSplitVersionsError'));
+                            toast(translate('MessageSplitVersionsError'));
                             console.error(
                                 '[splitVersions] failed to split versions',
                                 err
@@ -58,8 +58,8 @@ const SplitVersionsButton: FC<SplitVersionsButtonProps> = ({
     return (
         <IconButton
             className='button-flat btnSplitVersions'
-            title={globalize.translate('ButtonSplit')}
-            onClick={splitVersions}
+            title={translate('ButtonSplit')}
+            onPress={splitVersions}
         >
             <CallSplitIcon />
         </IconButton>

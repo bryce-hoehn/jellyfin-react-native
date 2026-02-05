@@ -8,7 +8,7 @@ import Events, { type Event } from 'utils/events';
 import { EventType } from 'constants/eventType';
 import './skipbutton.scss';
 import dom from 'utils/dom';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import * as userSettings from 'scripts/settings/userSettings';
 import focusManager from 'components/focusManager';
 import layoutManager from 'components/layoutManager';
@@ -73,7 +73,7 @@ class SkipSegment extends PlaybackSubscriber {
 
     setButtonText() {
         if (this.skipElement && this.currentSegment) {
-            this.skipElement.innerHTML = globalize.translate('MediaSegmentSkipPrompt', globalize.translate(`MediaSegmentType.${this.currentSegment.Type}`));
+            this.skipElement.innerHTML = translate('MediaSegmentSkipPrompt', translate(`MediaSegmentType.${this.currentSegment.Type}`));
             this.skipElement.innerHTML += '<span class="material-icons skip_next" aria-hidden="true"></span>';
         }
     }

@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Stack from '@mui/material/Stack';
 
 interface InputDialogProps extends DialogProps {
@@ -63,8 +63,8 @@ const InputDialog = ({
                 </Stack>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onConfirmClick}>
-                    {confirmButtonText || globalize.translate('ButtonOk')}
+                <Button onPress={onConfirmClick}>
+                    {confirmButtonText || translate('ButtonOk')}
                 </Button>
             </DialogActions>
         </Dialog>

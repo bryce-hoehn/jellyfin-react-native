@@ -326,10 +326,10 @@ function askForExit() {
 
     import('../components/actionSheet/actionSheet').then((actionsheet) => {
         exitPromise = actionsheet.show({
-            title: globalize.translate('MessageConfirmAppExit'),
+            title: translate('MessageConfirmAppExit'),
             items: [
-                { id: 'yes', name: globalize.translate('Yes') },
-                { id: 'no', name: globalize.translate('No') }
+                { id: 'yes', name: translate('Yes') },
+                { id: 'no', name: translate('No') }
             ]
         }).then(function (value) {
             if (value === 'yes') {

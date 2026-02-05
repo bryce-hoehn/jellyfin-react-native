@@ -1,7 +1,7 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 export const LANGUAGE_OPTIONS = [
-    { value: 'auto', label: globalize.translate('Auto') },
+    { value: 'auto', label: translate('Auto') },
     { value: 'af', label: 'Afrikaans' },
     { value: 'ar', label: 'العربية' },
     { value: 'be-BY', label: 'Беларуская' },

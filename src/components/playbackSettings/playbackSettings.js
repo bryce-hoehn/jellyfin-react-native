@@ -25,7 +25,7 @@ function fillSkipLengths(select) {
 
     select.innerHTML = options.map(option => {
         return {
-            name: globalize.translate('ValueSeconds', option),
+            name: translate('ValueSeconds', option),
             value: option * 1000
         };
     }).map(o => {
@@ -36,7 +36,7 @@ function fillSkipLengths(select) {
 function populateLanguages(select, languages) {
     let html = '';
 
-    html += `<option value=''>${globalize.translate('AnyLanguage')}</option>`;
+    html += `<option value=''>${translate('AnyLanguage')}</option>`;
 
     for (let i = 0, length = languages.length; i < length; i++) {
         const culture = languages[i];
@@ -51,7 +51,7 @@ function populateMediaSegments(container, userSettings) {
     const selectedValues = {};
     const actionOptions = Object.values(MediaSegmentAction)
         .map(action => {
-            const actionLabel = globalize.translate(`MediaSegmentAction.${action}`);
+            const actionLabel = translate(`MediaSegmentAction.${action}`);
             return `<option value='${action}'>${actionLabel}</option>`;
         })
         .join('');
@@ -64,7 +64,7 @@ function populateMediaSegments(container, userSettings) {
         MediaSegmentType.Commercial,
         MediaSegmentType.Outro
     ].map(segmentType => {
-        const segmentTypeLabel = globalize.translate('LabelMediaSegmentsType', globalize.translate(`MediaSegmentType.${segmentType}`));
+        const segmentTypeLabel = translate('LabelMediaSegmentsType', translate(`MediaSegmentType.${segmentType}`));
         const id = getId(segmentType);
         selectedValues[id] = getMediaSegmentAction(userSettings, segmentType);
         return `<div class="selectContainer">
@@ -325,7 +325,7 @@ function save(instance, context, userId, userSettings, apiClient, enableSaveConf
         saveUser(context, user, userSettings, apiClient).then(() => {
             loading.hide();
             if (enableSaveConfirmation) {
-                toast(globalize.translate('SettingsSaved'));
+                toast(translate('SettingsSaved'));
             }
 
             Events.trigger(instance, 'saved');
@@ -354,7 +354,7 @@ function onSubmit(e) {
 }
 
 function embed(options, self) {
-    options.element.innerHTML = globalize.translateHtml(template, 'core');
+    options.element.innerHTML = translateHtml(template, 'core');
 
     options.element.querySelector('form').addEventListener('submit', onSubmit.bind(self));
 

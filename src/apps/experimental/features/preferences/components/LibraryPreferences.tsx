@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import type { DisplaySettingsValues } from '../types/displaySettingsValues';
 
@@ -19,13 +19,13 @@ interface LibraryPreferencesProps {
 export function LibraryPreferences({ onChange, values }: Readonly<LibraryPreferencesProps>) {
     return (
         <Stack spacing={3}>
-            <Typography variant='h2'>{globalize.translate('HeaderLibraries')}</Typography>
+            <Typography variant='h2'>{translate('HeaderLibraries')}</Typography>
 
             <FormControl fullWidth>
                 <TextField
                     aria-describedby='display-settings-lib-pagesize-description'
                     value={values.libraryPageSize}
-                    label={globalize.translate('LabelLibraryPageSize')}
+                    label={translate('LabelLibraryPageSize')}
                     name='libraryPageSize'
                     onChange={onChange}
                     slotProps={{
@@ -41,7 +41,7 @@ export function LibraryPreferences({ onChange, values }: Readonly<LibraryPrefere
                     }}
                 />
                 <FormHelperText id='display-settings-lib-pagesize-description'>
-                    {globalize.translate('LabelLibraryPageSizeHelp')}
+                    {translate('LabelLibraryPageSizeHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -54,11 +54,11 @@ export function LibraryPreferences({ onChange, values }: Readonly<LibraryPrefere
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('Backdrops')}
+                    label={translate('Backdrops')}
                     name='enableLibraryBackdrops'
                 />
                 <FormHelperText id='display-settings-lib-backdrops-description'>
-                    {globalize.translate('EnableBackdropsHelp')}
+                    {translate('EnableBackdropsHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -71,11 +71,11 @@ export function LibraryPreferences({ onChange, values }: Readonly<LibraryPrefere
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('ThemeSongs')}
+                    label={translate('ThemeSongs')}
                     name='enableLibraryThemeSongs'
                 />
                 <FormHelperText id='display-settings-lib-theme-songs-description'>
-                    {globalize.translate('EnableThemeSongsHelp')}
+                    {translate('EnableThemeSongsHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -88,11 +88,11 @@ export function LibraryPreferences({ onChange, values }: Readonly<LibraryPrefere
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('ThemeVideos')}
+                    label={translate('ThemeVideos')}
                     name='enableLibraryThemeVideos'
                 />
                 <FormHelperText id='display-settings-lib-theme-videos-description'>
-                    {globalize.translate('EnableThemeVideosHelp')}
+                    {translate('EnableThemeVideosHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -105,11 +105,11 @@ export function LibraryPreferences({ onChange, values }: Readonly<LibraryPrefere
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('DisplayMissingEpisodesWithinSeasons')}
+                    label={translate('DisplayMissingEpisodesWithinSeasons')}
                     name='displayMissingEpisodes'
                 />
                 <FormHelperText id='display-settings-show-missing-episodes-description'>
-                    {globalize.translate('DisplayMissingEpisodesWithinSeasonsHelp')}
+                    {translate('DisplayMissingEpisodesWithinSeasonsHelp')}
                 </FormHelperText>
             </FormControl>
         </Stack>

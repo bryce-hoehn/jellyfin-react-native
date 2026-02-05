@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { navigate } from '../../../utils/dashboard';
 import LinkButton from '../../../elements/emby-button/LinkButton';
 
@@ -17,9 +17,9 @@ function useNavigate(url: string): () => void {
 }
 
 const SectionTabs: FunctionComponent<IProps> = ({ activeTab }: IProps) => {
-    const onClickProfile = useNavigate('/dashboard/users/profile');
-    const onClickAccess = useNavigate('/dashboard/users/access');
-    const onClickParentalControl = useNavigate('/dashboard/users/parentalcontrol');
+    const onPressProfile = useNavigate('/dashboard/users/profile');
+    const onPressAccess = useNavigate('/dashboard/users/access');
+    const onPressParentalControl = useNavigate('/dashboard/users/parentalcontrol');
     const clickPassword = useNavigate('/dashboard/users/password');
     return (
         <div
@@ -30,29 +30,29 @@ const SectionTabs: FunctionComponent<IProps> = ({ activeTab }: IProps) => {
                 href='#'
                 data-role='button'
                 className={activeTab === 'useredit' ? 'ui-btn-active' : ''}
-                onClick={onClickProfile}>
-                {globalize.translate('Profile')}
+                onPress={onPressProfile}>
+                {translate('Profile')}
             </LinkButton>
             <LinkButton
                 href='#'
                 data-role='button'
                 className={activeTab === 'userlibraryaccess' ? 'ui-btn-active' : ''}
-                onClick={onClickAccess}>
-                {globalize.translate('TabAccess')}
+                onPress={onPressAccess}>
+                {translate('TabAccess')}
             </LinkButton>
             <LinkButton
                 href='#'
                 data-role='button'
                 className={activeTab === 'userparentalcontrol' ? 'ui-btn-active' : ''}
-                onClick={onClickParentalControl}>
-                {globalize.translate('TabParentalControl')}
+                onPress={onPressParentalControl}>
+                {translate('TabParentalControl')}
             </LinkButton>
             <LinkButton
                 href='#'
                 data-role='button'
                 className={activeTab === 'userpassword' ? 'ui-btn-active' : ''}
-                onClick={clickPassword}>
-                {globalize.translate('HeaderPassword')}
+                onPress={clickPassword}>
+                {translate('HeaderPassword')}
             </LinkButton>
         </div>
     );

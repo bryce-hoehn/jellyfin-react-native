@@ -12,7 +12,7 @@ import { ItemAction } from 'constants/itemAction';
 import browser from 'scripts/browser';
 import datetime from 'scripts/datetime';
 import dom from 'utils/dom';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { getBackdropShape, getPortraitShape, getSquareShape } from 'utils/card';
 import { getItemTypeIcon, getLibraryIcon } from 'utils/image';
@@ -515,7 +515,7 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
     const showOtherText = flags.isOuterFooter ? !flags.overlayText : flags.overlayText;
 
     if (flags.isOuterFooter && options.cardLayout && layoutManager.mobile && options.cardFooterAside !== 'none') {
-        html += `<button is="paper-icon-button-light" class="itemAction btnCardOptions cardText-secondary" data-action="${ItemAction.Menu}" title="${globalize.translate('ButtonMore')}"><span class="material-icons more_vert" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" class="itemAction btnCardOptions cardText-secondary" data-action="${ItemAction.Menu}" title="${translate('ButtonMore')}"><span class="material-icons more_vert" aria-hidden="true"></span></button>`;
     }
 
     const cssClass = options.centerText ? 'cardText cardTextCentered' : 'cardText';
@@ -591,7 +591,7 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
         }
 
         if (item.ExtraType && item.ExtraType !== 'Unknown') {
-            lines.push(globalize.translate(item.ExtraType));
+            lines.push(translate(item.ExtraType));
         }
 
         if (options.showItemCounts) {
@@ -610,8 +610,8 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
 
             if (item.SongCount) {
                 songLine = item.SongCount === 1 ?
-                    globalize.translate('ValueOneSong') :
-                    globalize.translate('ValueSongCount', item.SongCount);
+                    translate('ValueOneSong') :
+                    translate('ValueSongCount', item.SongCount);
             }
 
             lines.push(songLine);
@@ -636,7 +636,7 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
             const productionYear = item.ProductionYear && datetime.toLocaleString(item.ProductionYear, { useGrouping: false });
             if (item.Type === 'Series') {
                 if (item.Status === 'Continuing') {
-                    lines.push(globalize.translate('SeriesYearToPresent', productionYear || ''));
+                    lines.push(translate('SeriesYearToPresent', productionYear || ''));
                 } else if (item.EndDate && item.ProductionYear) {
                     const endYear = datetime.toLocaleString(datetime.parseISO8601Date(item.EndDate).getFullYear(), { useGrouping: false });
                     lines.push(productionYear + ((endYear === productionYear) ? '' : (' - ' + endYear)));
@@ -695,7 +695,7 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
 
         if (options.showSeriesTimerTime) {
             if (item.RecordAnyTime) {
-                lines.push(globalize.translate('Anytime'));
+                lines.push(translate('Anytime'));
             } else {
                 lines.push(datetime.getDisplayTime(item.StartDate));
             }
@@ -703,9 +703,9 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
 
         if (options.showSeriesTimerChannel) {
             if (item.RecordAnyChannel) {
-                lines.push(globalize.translate('AllChannels'));
+                lines.push(translate('AllChannels'));
             } else {
-                lines.push(escapeHtml(item.ChannelName || '') || globalize.translate('OneChannel'));
+                lines.push(escapeHtml(item.ChannelName || '') || translate('OneChannel'));
             }
         }
 
@@ -713,22 +713,22 @@ function getCardFooterText(item, apiClient, options, footerClass, progressHtml, 
             if (item.Role) {
                 if ([ PersonKind.Actor, PersonKind.GuestStar ].includes(item.Type)) {
                     // List actor roles formatted like "as Character Name"
-                    const roleText = globalize.translate('PersonRole', escapeHtml(item.Role));
+                    const roleText = translate('PersonRole', escapeHtml(item.Role));
                     lines.push(`<span title="${roleText}">${roleText}</span>`);
                 } else if (item.Role.toLowerCase() === item.Type.toLowerCase()) {
                     // Role and Type are the same so use the localized Type
-                    lines.push(escapeHtml(globalize.translate(item.Type)));
+                    lines.push(escapeHtml(translate(item.Type)));
                 } else if (item.Role.toLowerCase().includes(item.Type.toLowerCase())) {
                     // Avoid duplication if the Role includes the Type (i.e. Executive Producer)
                     lines.push(escapeHtml(item.Role));
                 } else {
                     // Type and Role are unique so list both (i.e. Writer | Novel)
-                    lines.push(escapeHtml(globalize.translate(item.Type)));
+                    lines.push(escapeHtml(translate(item.Type)));
                     lines.push(escapeHtml(item.Role));
                 }
             } else {
                 // No Role so use the localized Type
-                lines.push(escapeHtml(globalize.translate(item.Type)));
+                lines.push(escapeHtml(translate(item.Type)));
             }
         }
     }
@@ -803,61 +803,61 @@ function getItemCountsHtml(options, item) {
 
             minutes = minutes || 1;
 
-            childText += globalize.translate('ValueMinutes', Math.round(minutes));
+            childText += translate('ValueMinutes', Math.round(minutes));
         } else {
-            childText += globalize.translate('ValueMinutes', 0);
+            childText += translate('ValueMinutes', 0);
         }
 
         counts.push(childText);
     } else if (item.Type === 'Genre' || item.Type === 'Studio') {
         if (item.MovieCount) {
             childText = item.MovieCount === 1 ?
-                globalize.translate('ValueOneMovie') :
-                globalize.translate('ValueMovieCount', item.MovieCount);
+                translate('ValueOneMovie') :
+                translate('ValueMovieCount', item.MovieCount);
 
             counts.push(childText);
         }
 
         if (item.SeriesCount) {
             childText = item.SeriesCount === 1 ?
-                globalize.translate('ValueOneSeries') :
-                globalize.translate('ValueSeriesCount', item.SeriesCount);
+                translate('ValueOneSeries') :
+                translate('ValueSeriesCount', item.SeriesCount);
 
             counts.push(childText);
         }
         if (item.EpisodeCount) {
             childText = item.EpisodeCount === 1 ?
-                globalize.translate('ValueOneEpisode') :
-                globalize.translate('ValueEpisodeCount', item.EpisodeCount);
+                translate('ValueOneEpisode') :
+                translate('ValueEpisodeCount', item.EpisodeCount);
 
             counts.push(childText);
         }
     } else if (item.Type === 'MusicGenre' || options.context === 'MusicArtist') {
         if (item.AlbumCount) {
             childText = item.AlbumCount === 1 ?
-                globalize.translate('ValueOneAlbum') :
-                globalize.translate('ValueAlbumCount', item.AlbumCount);
+                translate('ValueOneAlbum') :
+                translate('ValueAlbumCount', item.AlbumCount);
 
             counts.push(childText);
         }
         if (item.SongCount) {
             childText = item.SongCount === 1 ?
-                globalize.translate('ValueOneSong') :
-                globalize.translate('ValueSongCount', item.SongCount);
+                translate('ValueOneSong') :
+                translate('ValueSongCount', item.SongCount);
 
             counts.push(childText);
         }
         if (item.MusicVideoCount) {
             childText = item.MusicVideoCount === 1 ?
-                globalize.translate('ValueOneMusicVideo') :
-                globalize.translate('ValueMusicVideoCount', item.MusicVideoCount);
+                translate('ValueOneMusicVideo') :
+                translate('ValueMusicVideoCount', item.MusicVideoCount);
 
             counts.push(childText);
         }
     } else if (item.Type === 'Series') {
         childText = item.RecursiveItemCount === 1 ?
-            globalize.translate('ValueOneEpisode') :
-            globalize.translate('ValueEpisodeCount', item.RecursiveItemCount);
+            translate('ValueOneEpisode') :
+            translate('ValueEpisodeCount', item.RecursiveItemCount);
 
         counts.push(childText);
     }
@@ -987,15 +987,15 @@ function buildCard(index, item, apiClient, options) {
         const btnCssClass = 'cardOverlayButton cardOverlayButton-br itemAction';
 
         if (options.centerPlayButton) {
-            overlayButtons += `<button is="paper-icon-button-light" class="${btnCssClass} cardOverlayButton-centered" data-action="${ItemAction.Play}" title="${globalize.translate('Play')}"><span class="material-icons cardOverlayButtonIcon play_arrow" aria-hidden="true"></span></button>`;
+            overlayButtons += `<button is="paper-icon-button-light" class="${btnCssClass} cardOverlayButton-centered" data-action="${ItemAction.Play}" title="${translate('Play')}"><span class="material-icons cardOverlayButtonIcon play_arrow" aria-hidden="true"></span></button>`;
         }
 
         if (overlayPlayButton && !item.IsPlaceHolder && (item.LocationType !== 'Virtual' || !item.MediaType || item.Type === 'Program') && item.Type !== 'Person') {
-            overlayButtons += `<button is="paper-icon-button-light" class="${btnCssClass}" data-action="${ItemAction.Play}" title="${globalize.translate('Play')}"><span class="material-icons cardOverlayButtonIcon play_arrow" aria-hidden="true"></span></button>`;
+            overlayButtons += `<button is="paper-icon-button-light" class="${btnCssClass}" data-action="${ItemAction.Play}" title="${translate('Play')}"><span class="material-icons cardOverlayButtonIcon play_arrow" aria-hidden="true"></span></button>`;
         }
 
         if (options.overlayMoreButton) {
-            overlayButtons += `<button is="paper-icon-button-light" class="${btnCssClass}" data-action="${ItemAction.Menu}" title="${globalize.translate('ButtonMore')}"><span class="material-icons cardOverlayButtonIcon more_vert" aria-hidden="true"></span></button>`;
+            overlayButtons += `<button is="paper-icon-button-light" class="${btnCssClass}" data-action="${ItemAction.Menu}" title="${translate('ButtonMore')}"><span class="material-icons cardOverlayButtonIcon more_vert" aria-hidden="true"></span></button>`;
         }
     }
 
@@ -1154,7 +1154,7 @@ function getHoverMenuHtml(item, action) {
     const btnCssClass = 'cardOverlayButton cardOverlayButton-hover itemAction paper-icon-button-light';
 
     if (playbackManager.canPlay(item)) {
-        html += `<button is="paper-icon-button-light" class="${btnCssClass} cardOverlayFab-primary" data-action="${ItemAction.Resume}" title="${globalize.translate('Play')}"><span class="material-icons cardOverlayButtonIcon cardOverlayButtonIcon-hover play_arrow" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" class="${btnCssClass} cardOverlayFab-primary" data-action="${ItemAction.Resume}" title="${translate('Play')}"><span class="material-icons cardOverlayButtonIcon cardOverlayButtonIcon-hover play_arrow" aria-hidden="true"></span></button>`;
     }
 
     html += '<div class="cardOverlayButton-br flex">';
@@ -1173,7 +1173,7 @@ function getHoverMenuHtml(item, action) {
         html += `<button is="emby-ratingbutton" type="button" data-action="${ItemAction.None}" class="${btnCssClass}" data-id="${item.Id}" data-serverid="${item.ServerId}" data-itemtype="${item.Type}" data-likes="${likes}" data-isfavorite="${userData.IsFavorite}"><span class="material-icons cardOverlayButtonIcon cardOverlayButtonIcon-hover favorite" aria-hidden="true"></span></button>`;
     }
 
-    html += `<button is="paper-icon-button-light" class="${btnCssClass}" data-action="${ItemAction.Menu}" title="${globalize.translate('ButtonMore')}"><span class="material-icons cardOverlayButtonIcon cardOverlayButtonIcon-hover more_vert" aria-hidden="true"></span></button>`;
+    html += `<button is="paper-icon-button-light" class="${btnCssClass}" data-action="${ItemAction.Menu}" title="${translate('ButtonMore')}"><span class="material-icons cardOverlayButtonIcon cardOverlayButtonIcon-hover more_vert" aria-hidden="true"></span></button>`;
     html += '</div>';
     html += '</div>';
 

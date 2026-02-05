@@ -56,7 +56,7 @@ class SettingsEditor {
         this.context.classList.add('formDialog');
 
         const { default: editorTemplate } = await import('./editor.html');
-        this.context.innerHTML = globalize.translateHtml(editorTemplate, 'core');
+        this.context.innerHTML = translateHtml(editorTemplate, 'core');
 
         // Set callbacks for form submission
         this.context.querySelector('form').addEventListener('submit', (event) => {
@@ -116,7 +116,7 @@ class SettingsEditor {
         loading.show();
         await this.saveToAppSettings();
         loading.hide();
-        toast(globalize.translate('SettingsSaved'));
+        toast(translate('SettingsSaved'));
         Events.trigger(this, 'saved');
     }
 

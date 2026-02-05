@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import toast from 'components/toast/toast';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import type { DisplaySettingsValues } from '../types/displaySettingsValues';
 import { useDisplaySettings } from './useDisplaySettings';
@@ -39,7 +39,7 @@ export function useDisplaySettingForm() {
     const submitChanges = useCallback(async () => {
         if (formValues) {
             await saveDisplaySettings(formValues);
-            toast(globalize.translate('SettingsSaved'));
+            toast(translate('SettingsSaved'));
         }
     }, [formValues, saveDisplaySettings]);
 

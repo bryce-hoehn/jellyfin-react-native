@@ -2,13 +2,13 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import type { VirtualFolderInfo } from '@jellyfin/sdk/lib/generated-client/models/virtual-folder-info';
 import BaseCard from 'apps/dashboard/components/BaseCard';
 import getCollectionTypeOptions from '../utils/collectionTypeOptions';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Icon from '@mui/material/Icon';
 import { getLibraryIcon } from 'utils/image';
 import MediaLibraryEditor from 'components/mediaLibraryEditor/mediaLibraryEditor';
 import { queryClient } from 'utils/query/queryClient';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Folder from '@mui/icons-material/Folder';
 import ImageIcon from '@mui/icons-material/Image';
@@ -53,7 +53,7 @@ const LibraryCard = ({ virtualFolder }: LibraryCardProps) => {
 
     const typeName = getCollectionTypeOptions().filter(function (t) {
         return t.value == virtualFolder.CollectionType;
-    })[0]?.name || globalize.translate('Other');
+    })[0]?.name || translate('Other');
 
     const openRenameDialog = useCallback(() => {
         setAnchorEl(null);
@@ -70,7 +70,7 @@ const LibraryCard = ({ virtualFolder }: LibraryCardProps) => {
         setIsMenuOpen(false);
     }, []);
 
-    const onActionClick = useCallback(() => {
+    const onActionPress = useCallback(() => {
         setAnchorEl(actionRef.current);
         setIsMenuOpen(true);
     }, []);
@@ -159,25 +159,25 @@ const LibraryCard = ({ virtualFolder }: LibraryCardProps) => {
     return (
         <>
             <InputDialog
-                title={globalize.translate('ButtonRename')}
+                title={translate('ButtonRename')}
                 open={isRenameLibraryDialogOpen}
                 onClose={hideRenameLibraryDialog}
-                label={globalize.translate('LabelNewName')}
-                helperText={globalize.translate('MessageRenameMediaFolder')}
+                label={translate('LabelNewName')}
+                helperText={translate('MessageRenameMediaFolder')}
                 initialText={virtualFolder.Name || ''}
-                confirmButtonText={globalize.translate('ButtonRename')}
+                confirmButtonText={translate('ButtonRename')}
                 onConfirm={renameLibrary}
             />
 
             <ConfirmDialog
                 open={isConfirmDeleteDialogOpen}
-                title={globalize.translate('HeaderRemoveMediaFolder')}
+                title={translate('HeaderRemoveMediaFolder')}
                 text={
-                    globalize.translate('MessageAreYouSureYouWishToRemoveMediaFolder') + '\n\n'
-                    + globalize.translate('MessageTheFollowingLocationWillBeRemovedFromLibrary') + '\n\n'
+                    translate('MessageAreYouSureYouWishToRemoveMediaFolder') + '\n\n'
+                    + translate('MessageTheFollowingLocationWillBeRemovedFromLibrary') + '\n\n'
                     + virtualFolder.Locations?.join('\n')
                 }
-                confirmButtonText={globalize.translate('Delete')}
+                confirmButtonText={translate('Delete')}
                 confirmButtonColor='error'
                 onConfirm={onConfirmDeleteLibrary}
                 onCancel={onCancelDeleteLibrary}
@@ -190,8 +190,8 @@ const LibraryCard = ({ virtualFolder }: LibraryCardProps) => {
                 icon={<Icon sx={{ fontSize: 70 }}>{getLibraryIcon(virtualFolder.CollectionType)}</Icon>}
                 action={true}
                 actionRef={actionRef}
-                onActionClick={onActionClick}
-                onClick={showMediaLibraryEditor}
+                onActionPress={onActionPress}
+                onPress={showMediaLibraryEditor}
                 height={260}
             />
             <Menu
@@ -199,35 +199,35 @@ const LibraryCard = ({ virtualFolder }: LibraryCardProps) => {
                 open={isMenuOpen}
                 onClose={onMenuClose}
             >
-                <MenuItem onClick={showImageEditor}>
+                <MenuItem onPress={showImageEditor}>
                     <ListItemIcon>
                         <ImageIcon />
                     </ListItemIcon>
-                    <ListItemText>{globalize.translate('EditImages')}</ListItemText>
+                    <ListItemText>{translate('EditImages')}</ListItemText>
                 </MenuItem>
-                <MenuItem onClick={showMediaLibraryEditor}>
+                <MenuItem onPress={showMediaLibraryEditor}>
                     <ListItemIcon>
                         <Folder />
                     </ListItemIcon>
-                    <ListItemText>{globalize.translate('ManageLibrary')}</ListItemText>
+                    <ListItemText>{translate('ManageLibrary')}</ListItemText>
                 </MenuItem>
-                <MenuItem onClick={openRenameDialog}>
+                <MenuItem onPress={openRenameDialog}>
                     <ListItemIcon>
                         <EditIcon />
                     </ListItemIcon>
-                    <ListItemText>{globalize.translate('ButtonRename')}</ListItemText>
+                    <ListItemText>{translate('ButtonRename')}</ListItemText>
                 </MenuItem>
-                <MenuItem onClick={showRefreshDialog}>
+                <MenuItem onPress={showRefreshDialog}>
                     <ListItemIcon>
                         <RefreshIcon />
                     </ListItemIcon>
-                    <ListItemText>{globalize.translate('ScanLibrary')}</ListItemText>
+                    <ListItemText>{translate('ScanLibrary')}</ListItemText>
                 </MenuItem>
-                <MenuItem onClick={showDeleteLibraryDialog}>
+                <MenuItem onPress={showDeleteLibraryDialog}>
                     <ListItemIcon>
                         <DeleteIcon />
                     </ListItemIcon>
-                    <ListItemText>{globalize.translate('ButtonRemove')}</ListItemText>
+                    <ListItemText>{translate('ButtonRemove')}</ListItemText>
                 </MenuItem>
             </Menu>
         </>

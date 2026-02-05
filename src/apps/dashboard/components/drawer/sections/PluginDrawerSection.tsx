@@ -7,7 +7,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import React, { useEffect } from 'react';
 
 import ListItemLink from 'components/ListItemLink';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Dashboard from 'utils/dashboard';
 import { useConfigurationPages } from 'apps/dashboard/features/plugins/api/useConfigurationPages';
 
@@ -26,7 +26,7 @@ const PluginDrawerSection = () => {
             aria-labelledby='plugins-subheader'
             subheader={
                 <ListSubheader component='div' id='plugins-subheader'>
-                    {globalize.translate('TabPlugins')}
+                    {translate('TabPlugins')}
                 </ListSubheader>
             }
         >
@@ -41,7 +41,7 @@ const PluginDrawerSection = () => {
                 <ListItemIcon>
                     <Extension />
                 </ListItemIcon>
-                <ListItemText primary={globalize.translate('TabPlugins')} />
+                <ListItemText primary={translate('TabPlugins')} />
             </ListItemLink>
 
             {pagesInfo?.map(pageInfo => (

@@ -9,7 +9,7 @@ import type { Theme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import * as userSettings from 'scripts/settings/userSettings';
 import { LibraryViewSettings } from 'types/library';
 
@@ -72,9 +72,9 @@ const Pagination: FC<PaginationProps> = ({
                 <Button
                     color='inherit'
                     variant='text'
-                    title={globalize.translate('Previous')}
+                    title={translate('Previous')}
                     disabled={!showControls || startIndex == 0 || isPlaceholderData}
-                    onClick={onPreviousPageClick}
+                    onPress={onPreviousPageClick}
                 >
                     <ArrowBackIcon />
                 </Button>
@@ -91,7 +91,7 @@ const Pagination: FC<PaginationProps> = ({
                 }}
             >
                 <Typography variant='body2'>
-                    {globalize.translate(
+                    {translate(
                         'ListPaging',
                         recordsStart,
                         recordsEnd,
@@ -106,17 +106,17 @@ const Pagination: FC<PaginationProps> = ({
                     variant='text'
                 >
                     <Button
-                        title={globalize.translate('Previous')}
+                        title={translate('Previous')}
                         disabled={!showControls || startIndex == 0 || isPlaceholderData}
-                        onClick={onPreviousPageClick}
+                        onPress={onPreviousPageClick}
                     >
                         <ArrowBackIcon />
                     </Button>
 
                     <Button
-                        title={globalize.translate('Next')}
+                        title={translate('Next')}
                         disabled={!showControls || startIndex + limit >= totalRecordCount || isPlaceholderData }
-                        onClick={onNextPageClick}
+                        onPress={onNextPageClick}
                     >
                         <ArrowForwardIcon />
                     </Button>
@@ -127,9 +127,9 @@ const Pagination: FC<PaginationProps> = ({
                 <Button
                     color='inherit'
                     variant='text'
-                    title={globalize.translate('Next')}
+                    title={translate('Next')}
                     disabled={!showControls || startIndex + limit >= totalRecordCount || isPlaceholderData }
-                    onClick={onNextPageClick}
+                    onPress={onNextPageClick}
                 >
                     <ArrowForwardIcon />
                 </Button>

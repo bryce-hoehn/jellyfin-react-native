@@ -638,8 +638,8 @@ function validatePlaybackInfoResult(instance, result) {
 
 function showPlaybackInfoErrorMessage(instance, errorCode) {
     alert({
-        text: globalize.translate(errorCode),
-        title: globalize.translate('HeaderPlaybackError')
+        text: translate(errorCode),
+        title: translate('HeaderPlaybackError')
     });
 }
 

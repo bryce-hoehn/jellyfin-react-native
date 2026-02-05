@@ -12,13 +12,13 @@ import FormGroup from '@mui/material/FormGroup';
 import InputLabel from '@mui/material/InputLabel';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import MenuList from '@mui/material/MenuList';
 import Popover from '@mui/material/Popover';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { LibraryViewSettings, ViewMode } from 'types/library';
 import { LibraryTab } from 'types/libraryTab';
 
@@ -104,9 +104,9 @@ const ViewSettingsButton: FC<ViewSettingsButtonProps> = ({
     return (
         <>
             <Button
-                title={globalize.translate('ViewSettings')}
+                title={translate('ViewSettings')}
                 aria-describedby={id}
-                onClick={handleClick}
+                onPress={handleClick}
             >
                 <MoreVert />
             </Button>
@@ -130,23 +130,23 @@ const ViewSettingsButton: FC<ViewSettingsButtonProps> = ({
                 <MenuList>
 
                     <MenuItem
-                        onClick={onGridViewClick}
+                        onPress={onGridViewClick}
                     >
                         {isGridView && (
                             <ListItemIcon><Check /></ListItemIcon>
                         )}
                         <ListItemText inset={!isGridView}>
-                            {globalize.translate('GridView')}
+                            {translate('GridView')}
                         </ListItemText>
                     </MenuItem>
                     <MenuItem
-                        onClick={onListViewClick}
+                        onPress={onListViewClick}
                     >
                         {!isGridView && (
                             <ListItemIcon><Check /></ListItemIcon>
                         )}
                         <ListItemText inset={isGridView}>
-                            {globalize.translate('ListView')}
+                            {translate('ListView')}
                         </ListItemText>
                     </MenuItem>
 
@@ -158,12 +158,12 @@ const ViewSettingsButton: FC<ViewSettingsButtonProps> = ({
                                     <FormControl>
                                         <InputLabel>
                                             <Typography component='span'>
-                                                {globalize.translate('LabelImageType')}
+                                                {translate('LabelImageType')}
                                             </Typography>
                                         </InputLabel>
                                         <Select
                                             value={libraryViewSettings.ImageType}
-                                            label={globalize.translate('LabelImageType')}
+                                            label={translate('LabelImageType')}
                                             onChange={onSelectChange}
                                         >
                                             {imageTypesOptions.map((imageType) => (
@@ -172,7 +172,7 @@ const ViewSettingsButton: FC<ViewSettingsButtonProps> = ({
                                                     value={imageType.value}
                                                 >
                                                     <Typography component='span'>
-                                                        {globalize.translate(imageType.label)}
+                                                        {translate(imageType.label)}
                                                     </Typography>
                                                 </MenuItem>
                                             ))}
@@ -191,7 +191,7 @@ const ViewSettingsButton: FC<ViewSettingsButtonProps> = ({
                                                 name='ShowTitle'
                                             />
                                         }
-                                        label={globalize.translate('ShowTitle')}
+                                        label={translate('ShowTitle')}
                                     />
                                     {isImageTypeVisible && (
                                         <FormControlLabel
@@ -202,7 +202,7 @@ const ViewSettingsButton: FC<ViewSettingsButtonProps> = ({
                                                     name='ShowYear'
                                                 />
                                             }
-                                            label={globalize.translate('ShowYear')}
+                                            label={translate('ShowYear')}
                                         />
                                     )}
                                     <FormControlLabel
@@ -213,7 +213,7 @@ const ViewSettingsButton: FC<ViewSettingsButtonProps> = ({
                                                 name='CardLayout'
                                             />
                                         }
-                                        label={globalize.translate('EnableCardLayout')}
+                                        label={translate('EnableCardLayout')}
                                     />
                                 </FormGroup>
                             </FormControl>

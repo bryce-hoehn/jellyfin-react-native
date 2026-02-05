@@ -1,4 +1,4 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import loading from '../loading/loading';
 import toast from '../toast/toast';
@@ -14,7 +14,7 @@ function changeRecordingToSeries(apiClient, timerId, programId, confirmTimerCanc
             return apiClient.getNewLiveTvTimerDefaults({ programId: programId }).then(function (timerDefaults) {
                 return apiClient.createLiveTvSeriesTimer(timerDefaults).then(function () {
                     loading.hide();
-                    toast(globalize.translate('SeriesRecordingScheduled'));
+                    toast(translate('SeriesRecordingScheduled'));
                 });
             });
         } else {
@@ -32,10 +32,10 @@ function cancelTimerWithConfirmation(timerId, serverId) {
     return new Promise(function (resolve, reject) {
         confirm({
 
-            text: globalize.translate('MessageConfirmRecordingCancellation'),
+            text: translate('MessageConfirmRecordingCancellation'),
             primary: 'delete',
-            confirmText: globalize.translate('HeaderCancelRecording'),
-            cancelText: globalize.translate('HeaderKeepRecording')
+            confirmText: translate('HeaderCancelRecording'),
+            cancelText: translate('HeaderKeepRecording')
 
         }).then(function () {
             loading.show();
@@ -50,17 +50,17 @@ function cancelSeriesTimerWithConfirmation(timerId, serverId) {
     return new Promise(function (resolve, reject) {
         confirm({
 
-            text: globalize.translate('MessageConfirmRecordingCancellation'),
+            text: translate('MessageConfirmRecordingCancellation'),
             primary: 'delete',
-            confirmText: globalize.translate('HeaderCancelSeries'),
-            cancelText: globalize.translate('HeaderKeepSeries')
+            confirmText: translate('HeaderCancelSeries'),
+            cancelText: translate('HeaderKeepSeries')
 
         }).then(function () {
             loading.show();
 
             const apiClient = ServerConnections.getApiClient(serverId);
             apiClient.cancelLiveTvSeriesTimer(timerId).then(function () {
-                toast(globalize.translate('SeriesCancelled'));
+                toast(translate('SeriesCancelled'));
 
                 loading.hide();
                 resolve();
@@ -74,7 +74,7 @@ function cancelTimer(apiClient, timerId, hideLoading) {
     return apiClient.cancelLiveTvTimer(timerId).then(function () {
         if (hideLoading !== false) {
             loading.hide();
-            toast(globalize.translate('RecordingCancelled'));
+            toast(translate('RecordingCancelled'));
         }
     });
 }
@@ -88,7 +88,7 @@ function createRecording(apiClient, programId, isSeries) {
 
         return promise.then(function () {
             loading.hide();
-            toast(globalize.translate('RecordingScheduled'));
+            toast(translate('RecordingScheduled'));
         });
     });
 }
@@ -98,33 +98,33 @@ function showMultiCancellationPrompt(serverId, programId, timerId, timerStatus, 
         const items = [];
 
         items.push({
-            name: globalize.translate('HeaderKeepRecording'),
+            name: translate('HeaderKeepRecording'),
             id: 'cancel',
             type: 'submit'
         });
 
         if (timerStatus === 'InProgress') {
             items.push({
-                name: globalize.translate('HeaderStopRecording'),
+                name: translate('HeaderStopRecording'),
                 id: 'canceltimer',
                 type: 'cancel'
             });
         } else {
             items.push({
-                name: globalize.translate('HeaderCancelRecording'),
+                name: translate('HeaderCancelRecording'),
                 id: 'canceltimer',
                 type: 'cancel'
             });
         }
 
         items.push({
-            name: globalize.translate('HeaderCancelSeries'),
+            name: translate('HeaderCancelSeries'),
             id: 'cancelseriestimer',
             type: 'cancel'
         });
 
         dialog.show({
-            text: globalize.translate('MessageConfirmRecordingCancellation'),
+            text: translate('MessageConfirmRecordingCancellation'),
             buttons: items
         }).then(function (result) {
             const apiClient = ServerConnections.getApiClient(serverId);
@@ -137,7 +137,7 @@ function showMultiCancellationPrompt(serverId, programId, timerId, timerStatus, 
                 loading.show();
 
                 apiClient.cancelLiveTvSeriesTimer(seriesTimerId).then(function () {
-                    toast(globalize.translate('SeriesCancelled'));
+                    toast(translate('SeriesCancelled'));
                     loading.hide();
                     resolve();
                 }, reject);

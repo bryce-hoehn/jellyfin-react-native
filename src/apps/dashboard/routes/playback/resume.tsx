@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -60,28 +60,28 @@ export const Component = () => {
     return (
         <Page
             id='playbackConfigurationPage'
-            title={globalize.translate('ButtonResume')}
+            title={translate('ButtonResume')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>
                 <Form method='POST'>
                     <Stack spacing={3}>
                         <Typography variant='h1'>
-                            {globalize.translate('ButtonResume')}
+                            {translate('ButtonResume')}
                         </Typography>
 
                         {!isSubmitting && actionData?.isSaved && (
                             <Alert severity='success'>
-                                {globalize.translate('SettingsSaved')}
+                                {translate('SettingsSaved')}
                             </Alert>
                         )}
 
                         <TextField
-                            label={globalize.translate('LabelMinResumePercentage')}
+                            label={translate('LabelMinResumePercentage')}
                             name='MinResumePercentage'
                             type='number'
                             defaultValue={config?.MinResumePct}
-                            helperText={globalize.translate('LabelMinResumePercentageHelp')}
+                            helperText={translate('LabelMinResumePercentageHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 0,
@@ -92,11 +92,11 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelMaxResumePercentage')}
+                            label={translate('LabelMaxResumePercentage')}
                             name='MaxResumePercentage'
                             type='number'
                             defaultValue={config?.MaxResumePct}
-                            helperText={globalize.translate('LabelMaxResumePercentageHelp')}
+                            helperText={translate('LabelMaxResumePercentageHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 1,
@@ -107,11 +107,11 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelMinAudiobookResume')}
+                            label={translate('LabelMinAudiobookResume')}
                             name='MinAudiobookResume'
                             type='number'
                             defaultValue={config?.MinAudiobookResume}
-                            helperText={globalize.translate('LabelMinAudiobookResumeHelp')}
+                            helperText={translate('LabelMinAudiobookResumeHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 0,
@@ -122,11 +122,11 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelMaxAudiobookResume')}
+                            label={translate('LabelMaxAudiobookResume')}
                             name='MaxAudiobookResume'
                             type='number'
                             defaultValue={config?.MaxAudiobookResume}
-                            helperText={globalize.translate('LabelMaxAudiobookResumeHelp')}
+                            helperText={translate('LabelMaxAudiobookResumeHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 1,
@@ -137,11 +137,11 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelMinResumeDuration')}
+                            label={translate('LabelMinResumeDuration')}
                             name='MinResumeDuration'
                             type='number'
                             defaultValue={config?.MinResumeDurationSeconds}
-                            helperText={globalize.translate('LabelMinResumeDurationHelp')}
+                            helperText={translate('LabelMinResumeDurationHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 0,
@@ -154,7 +154,7 @@ export const Component = () => {
                             type='submit'
                             size='large'
                         >
-                            {globalize.translate('Save')}
+                            {translate('Save')}
                         </Button>
                     </Stack>
                 </Form>

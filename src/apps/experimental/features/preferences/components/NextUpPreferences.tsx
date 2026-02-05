@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import type { DisplaySettingsValues } from '../types/displaySettingsValues';
 
@@ -19,13 +19,13 @@ interface NextUpPreferencesProps {
 export function NextUpPreferences({ onChange, values }: Readonly<NextUpPreferencesProps>) {
     return (
         <Stack spacing={3}>
-            <Typography variant='h2'>{globalize.translate('NextUp')}</Typography>
+            <Typography variant='h2'>{translate('NextUp')}</Typography>
 
             <FormControl fullWidth>
                 <TextField
                     aria-describedby='display-settings-max-days-next-up-description'
                     value={values.maxDaysForNextUp}
-                    label={globalize.translate('LabelMaxDaysForNextUp')}
+                    label={translate('LabelMaxDaysForNextUp')}
                     name='maxDaysForNextUp'
                     onChange={onChange}
                     slotProps={{
@@ -41,7 +41,7 @@ export function NextUpPreferences({ onChange, values }: Readonly<NextUpPreferenc
                     }}
                 />
                 <FormHelperText id='display-settings-max-days-next-up-description'>
-                    {globalize.translate('LabelMaxDaysForNextUpHelp')}
+                    {translate('LabelMaxDaysForNextUpHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -54,11 +54,11 @@ export function NextUpPreferences({ onChange, values }: Readonly<NextUpPreferenc
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('EnableRewatchingNextUp')}
+                    label={translate('EnableRewatchingNextUp')}
                     name='enableRewatchingInNextUp'
                 />
                 <FormHelperText id='display-settings-next-up-rewatching-description'>
-                    {globalize.translate('EnableRewatchingNextUpHelp')}
+                    {translate('EnableRewatchingNextUpHelp')}
                 </FormHelperText>
             </FormControl>
 
@@ -71,11 +71,11 @@ export function NextUpPreferences({ onChange, values }: Readonly<NextUpPreferenc
                             onChange={onChange}
                         />
                     }
-                    label={globalize.translate('UseEpisodeImagesInNextUp')}
+                    label={translate('UseEpisodeImagesInNextUp')}
                     name='episodeImagesInNextUp'
                 />
                 <FormHelperText id='display-settings-next-up-images-description'>
-                    {globalize.translate('UseEpisodeImagesInNextUpHelp')}
+                    {translate('UseEpisodeImagesInNextUpHelp')}
                 </FormHelperText>
             </FormControl>
         </Stack>

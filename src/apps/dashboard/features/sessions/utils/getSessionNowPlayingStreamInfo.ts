@@ -1,6 +1,6 @@
 import type { SessionInfo } from '@jellyfin/sdk/lib/generated-client/models/session-info';
 import playmethodhelper from 'components/playback/playmethodhelper';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const getSessionNowPlayingStreamInfo = (session: SessionInfo): string => {
@@ -9,14 +9,14 @@ const getSessionNowPlayingStreamInfo = (session: SessionInfo): string => {
     const displayPlayMethod = playmethodhelper.getDisplayPlayMethod(session);
 
     if (displayPlayMethod === 'DirectPlay') {
-        text += globalize.translate('DirectPlaying');
+        text += translate('DirectPlaying');
     } else if (displayPlayMethod === 'Remux') {
-        text += globalize.translate('Remuxing');
+        text += translate('Remuxing');
     } else if (displayPlayMethod === 'DirectStream') {
-        text += globalize.translate('DirectStreaming');
+        text += translate('DirectStreaming');
     } else if (displayPlayMethod === 'Transcode') {
         if (session.TranscodingInfo?.Framerate) {
-            text += `${globalize.translate('Framerate')}: ${session.TranscodingInfo.Framerate}fps`;
+            text += `${translate('Framerate')}: ${session.TranscodingInfo.Framerate}fps`;
         }
 
         showTranscodingInfo = true;

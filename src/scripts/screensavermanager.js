@@ -62,7 +62,7 @@ function ScreenSaverManager() {
         screensaver.show();
         activeScreenSaver = screensaver;
 
-        if (screensaver.hideOnClick !== false) {
+        if (screensaver.hideonPress !== false) {
             window.addEventListener('click', hide, true);
         }
         if (screensaver.hideOnMouse !== false) {

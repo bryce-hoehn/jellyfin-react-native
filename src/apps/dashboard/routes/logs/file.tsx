@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import FileDownload from '@mui/icons-material/FileDownload';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { copy } from 'scripts/clipboard';
 import Toast from 'apps/dashboard/components/Toast';
 
@@ -60,7 +60,7 @@ export const Component = () => {
             <Toast
                 open={isCopiedToastOpen}
                 onClose={handleToastClose}
-                message={globalize.translate('CopyLogSuccess')}
+                message={translate('CopyLogSuccess')}
             />
             <Container className='content-primary' maxWidth={false}>
                 <Box>
@@ -75,13 +75,13 @@ export const Component = () => {
                                 <Button
                                     color='inherit'
                                     size='small'
-                                    onClick={retry}
+                                    onPress={retry}
                                 >
-                                    {globalize.translate('Retry')}
+                                    {translate('Retry')}
                                 </Button>
                             }
                         >
-                            {globalize.translate('LogLoadFailure')}
+                            {translate('LogLoadFailure')}
                         </Alert>
                     )}
 
@@ -92,15 +92,15 @@ export const Component = () => {
                             <ButtonGroup variant='contained' sx={{ mt: 2 }}>
                                 <Button
                                     startIcon={<ContentCopy />}
-                                    onClick={copyToClipboard}
+                                    onPress={copyToClipboard}
                                 >
-                                    {globalize.translate('Copy')}
+                                    {translate('Copy')}
                                 </Button>
                                 <Button
                                     startIcon={<FileDownload />}
-                                    onClick={downloadFile}
+                                    onPress={downloadFile}
                                 >
-                                    {globalize.translate('Download')}
+                                    {translate('Download')}
                                 </Button>
                             </ButtonGroup>
 

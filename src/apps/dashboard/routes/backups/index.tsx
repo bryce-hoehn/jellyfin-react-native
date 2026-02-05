@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import { useBackups } from 'apps/dashboard/features/backups/api/useBackups';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import React, { useCallback, useEffect, useState } from 'react';
 import Loading from 'components/loading/LoadingComponent';
 import Alert from '@mui/material/Alert';
@@ -117,7 +117,7 @@ export const Component = () => {
     return (
         <Page
             id='backupsPage'
-            title={globalize.translate('HeaderBackups')}
+            title={translate('HeaderBackups')}
             className='mainAnimatedPage type-interior'
         >
             <BackupProgressDialog open={backupInProgress} />
@@ -129,13 +129,13 @@ export const Component = () => {
             />
             <SimpleAlert
                 open={isErrorOccurred}
-                text={globalize.translate('UnknownError')}
+                text={translate('UnknownError')}
                 onClose={onErrorAlertClose}
             />
             <SimpleAlert
                 open={isRestoreSuccess}
-                title={globalize.translate('Success')}
-                text={globalize.translate('MessageRestoreSuccess')}
+                title={translate('Success')}
+                text={translate('MessageRestoreSuccess')}
                 onClose={onRestoreSuccessAlertClose}
             />
             <RestoreConfirmationDialog
@@ -145,22 +145,22 @@ export const Component = () => {
             />
             <Box className='content-primary'>
                 {isError ? (
-                    <Alert severity='error'>{globalize.translate('BackupsPageLoadError')}</Alert>
+                    <Alert severity='error'>{translate('BackupsPageLoadError')}</Alert>
                 ) : (
                     <Stack spacing={3}>
                         <Typography variant='h1'>
-                            {globalize.translate('HeaderBackups')}
+                            {translate('HeaderBackups')}
                         </Typography>
                         <Typography>
-                            {globalize.translate('HeaderBackupsHelp')}
+                            {translate('HeaderBackupsHelp')}
                         </Typography>
 
                         <Button
                             sx={{ alignSelf: 'flex-start' }}
                             startIcon={<AddIcon />}
-                            onClick={onCreateClick}
+                            onPress={onCreateClick}
                         >
-                            {globalize.translate('ButtonCreateBackup')}
+                            {translate('ButtonCreateBackup')}
                         </Button>
 
                         <Box className='readOnlyContent'>

@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import React, { FunctionComponent } from 'react';
 
 type IProps = {
@@ -22,21 +22,21 @@ const RestoreConfirmationDialog: FunctionComponent<IProps> = ({ open, onClose, o
             fullWidth
         >
             <DialogTitle>
-                {globalize.translate('LabelRestore')}
+                {translate('LabelRestore')}
             </DialogTitle>
 
             <DialogContent>
                 <DialogContentText>
-                    {globalize.translate('MessageRestoreDisclaimer')}
+                    {translate('MessageRestoreDisclaimer')}
                 </DialogContentText>
             </DialogContent>
 
             <DialogActions>
-                <Button onClick={onClose} variant='text'>
-                    {globalize.translate('ButtonCancel')}
+                <Button onPress={onClose} variant='text'>
+                    {translate('ButtonCancel')}
                 </Button>
-                <Button onClick={onConfirm}>
-                    {globalize.translate('LabelRestore')}
+                <Button onPress={onConfirm}>
+                    {translate('LabelRestore')}
                 </Button>
             </DialogActions>
         </Dialog>

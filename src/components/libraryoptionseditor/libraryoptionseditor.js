@@ -53,9 +53,9 @@ function populateCountries(select) {
 
 function populateRefreshInterval(select) {
     let html = '';
-    html += `<option value='0'>${globalize.translate('Never')}</option>`;
+    html += `<option value='0'>${translate('Never')}</option>`;
     html += [30, 60, 90].map(val => {
-        return `<option value='${val}'>${globalize.translate('EveryNDays', val)}</option>`;
+        return `<option value='${val}'>${translate('EveryNDays', val)}</option>`;
     }).join('');
     select.innerHTML = html;
 }
@@ -70,7 +70,7 @@ function renderMetadataReaders(page, plugins) {
         return false;
     }
 
-    html += `<h3 class="checkboxListLabel">${globalize.translate('LabelMetadataReaders')}</h3>`;
+    html += `<h3 class="checkboxListLabel">${translate('LabelMetadataReaders')}</h3>`;
     html += '<div class="checkboxList paperList checkboxList-paperList">';
     for (let i = 0; i < plugins.length; i++) {
         const plugin = plugins[i];
@@ -82,14 +82,14 @@ function renderMetadataReaders(page, plugins) {
         html += '</h3>';
         html += '</div>';
         if (i > 0) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
         } else if (plugins.length > 1) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
         }
         html += '</div>';
     }
     html += '</div>';
-    html += `<div class="fieldDescription">${globalize.translate('LabelMetadataReadersHelp')}</div>`;
+    html += `<div class="fieldDescription">${translate('LabelMetadataReadersHelp')}</div>`;
     if (plugins.length < 2) {
         elem.classList.add('hide');
     } else {
@@ -107,13 +107,13 @@ function renderMetadataSavers(page, metadataSavers) {
         elem.classList.add('hide');
         return false;
     }
-    html += `<h3 class="checkboxListLabel">${globalize.translate('LabelMetadataSavers')}</h3>`;
+    html += `<h3 class="checkboxListLabel">${translate('LabelMetadataSavers')}</h3>`;
     html += '<div class="checkboxList paperList checkboxList-paperList">';
     for (const plugin of metadataSavers) {
         html += `<label><input type="checkbox" data-defaultenabled="${plugin.DefaultEnabled}" is="emby-checkbox" class="chkMetadataSaver" data-pluginname="${escapeHtml(plugin.Name)}" ${false}><span>${escapeHtml(plugin.Name)}</span></label>`;
     }
     html += '</div>';
-    html += `<div class="fieldDescription" style="margin-top:.25em;">${globalize.translate('LabelMetadataSaversHelp')}</div>`;
+    html += `<div class="fieldDescription" style="margin-top:.25em;">${translate('LabelMetadataSaversHelp')}</div>`;
     elem.innerHTML = html;
     elem.classList.remove('hide');
     return true;
@@ -127,7 +127,7 @@ function getMetadataFetchersForTypeHtml(availableTypeOptions, libraryOptionsForT
     if (!plugins.length) return html;
 
     html += '<div class="metadataFetcher" data-type="' + availableTypeOptions.Type + '">';
-    html += '<h3 class="checkboxListLabel">' + globalize.translate('LabelTypeMetadataDownloaders', globalize.translate('TypeOptionPlural' + availableTypeOptions.Type)) + '</h3>';
+    html += '<h3 class="checkboxListLabel">' + translate('LabelTypeMetadataDownloaders', translate('TypeOptionPlural' + availableTypeOptions.Type)) + '</h3>';
     html += '<div class="checkboxList paperList checkboxList-paperList">';
 
     plugins.forEach((plugin, index) => {
@@ -141,15 +141,15 @@ function getMetadataFetchersForTypeHtml(availableTypeOptions, libraryOptionsForT
         html += '</h3>';
         html += '</div>';
         if (index > 0) {
-            html += '<button type="button" is="paper-icon-button-light" title="' + globalize.translate('Up') + '" class="btnSortableMoveUp btnSortable" data-pluginindex="' + index + '"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>';
+            html += '<button type="button" is="paper-icon-button-light" title="' + translate('Up') + '" class="btnSortableMoveUp btnSortable" data-pluginindex="' + index + '"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>';
         } else if (plugins.length > 1) {
-            html += '<button type="button" is="paper-icon-button-light" title="' + globalize.translate('Down') + '" class="btnSortableMoveDown btnSortable" data-pluginindex="' + index + '"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>';
+            html += '<button type="button" is="paper-icon-button-light" title="' + translate('Down') + '" class="btnSortableMoveDown btnSortable" data-pluginindex="' + index + '"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>';
         }
         html += '</div>';
     });
 
     html += '</div>';
-    html += '<div class="fieldDescription">' + globalize.translate('LabelMetadataDownloadersHelp') + '</div>';
+    html += '<div class="fieldDescription">' + translate('LabelMetadataDownloadersHelp') + '</div>';
     html += '</div>';
     return html;
 }
@@ -191,7 +191,7 @@ function renderSubtitleFetchers(page, availableOptions, libraryOptions) {
     plugins = getOrderedPlugins(plugins, libraryOptions.SubtitleFetcherOrder || []);
     if (!plugins.length) return html;
 
-    html += `<h3 class="checkboxListLabel">${globalize.translate('LabelSubtitleDownloaders')}</h3>`;
+    html += `<h3 class="checkboxListLabel">${translate('LabelSubtitleDownloaders')}</h3>`;
     html += '<div class="checkboxList paperList checkboxList-paperList">';
     for (let i = 0; i < plugins.length; i++) {
         const plugin = plugins[i];
@@ -205,14 +205,14 @@ function renderSubtitleFetchers(page, availableOptions, libraryOptions) {
         html += '</h3>';
         html += '</div>';
         if (i > 0) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
         } else if (plugins.length > 1) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
         }
         html += '</div>';
     }
     html += '</div>';
-    html += `<div class="fieldDescription">${globalize.translate('SubtitleDownloadersHelp')}</div>`;
+    html += `<div class="fieldDescription">${translate('SubtitleDownloadersHelp')}</div>`;
     elem.innerHTML = html;
 }
 
@@ -224,7 +224,7 @@ function renderLyricFetchers(page, availableOptions, libraryOptions) {
     plugins = getOrderedPlugins(plugins, libraryOptions.LyricFetcherOrder);
     if (!plugins.length) return html;
 
-    html += `<h3 class="checkboxListLabel">${globalize.translate('LabelLyricDownloaders')}</h3>`;
+    html += `<h3 class="checkboxListLabel">${translate('LabelLyricDownloaders')}</h3>`;
     html += '<div class="checkboxList paperList checkboxList-paperList">';
     for (let i = 0; i < plugins.length; i++) {
         const plugin = plugins[i];
@@ -238,14 +238,14 @@ function renderLyricFetchers(page, availableOptions, libraryOptions) {
         html += '</h3>';
         html += '</div>';
         if (i > 0) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
         } else if (plugins.length > 1) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
         }
         html += '</div>';
     }
     html += '</div>';
-    html += `<div class="fieldDescription">${globalize.translate('LyricDownloadersHelp')}</div>`;
+    html += `<div class="fieldDescription">${translate('LyricDownloadersHelp')}</div>`;
     elem.innerHTML = html;
 }
 
@@ -258,7 +258,7 @@ function renderMediaSegmentProviders(page, availableOptions, libraryOptions) {
     elem.classList.toggle('hide', !plugins.length);
     if (!plugins.length) return html;
 
-    html += `<h3 class="checkboxListLabel">${globalize.translate('LabelMediaSegmentProviders')}</h3>`;
+    html += `<h3 class="checkboxListLabel">${translate('LabelMediaSegmentProviders')}</h3>`;
     html += '<div class="checkboxList paperList checkboxList-paperList">';
     for (let i = 0; i < plugins.length; i++) {
         const plugin = plugins[i];
@@ -272,14 +272,14 @@ function renderMediaSegmentProviders(page, availableOptions, libraryOptions) {
         html += '</h3>';
         html += '</div>';
         if (i > 0) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Up')}" class="btnSortableMoveUp btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>`;
         } else if (plugins.length > 1) {
-            html += `<button type="button" is="paper-icon-button-light" title="${globalize.translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
+            html += `<button type="button" is="paper-icon-button-light" title="${translate('Down')}" class="btnSortableMoveDown btnSortable" data-pluginindex="${i}"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>`;
         }
         html += '</div>';
     }
     html += '</div>';
-    html += `<div class="fieldDescription">${globalize.translate('MediaSegmentProvidersHelp')}</div>`;
+    html += `<div class="fieldDescription">${translate('MediaSegmentProvidersHelp')}</div>`;
     elem.innerHTML = html;
 }
 
@@ -292,10 +292,10 @@ function getImageFetchersForTypeHtml(availableTypeOptions, libraryOptionsForType
 
     html += '<div class="imageFetcher" data-type="' + availableTypeOptions.Type + '">';
     html += '<div class="flex align-items-center" style="margin:1.5em 0 .5em;">';
-    html += '<h3 class="checkboxListLabel" style="margin:0;">' + globalize.translate('HeaderTypeImageFetchers', globalize.translate('TypeOptionPlural' + availableTypeOptions.Type)) + '</h3>';
+    html += '<h3 class="checkboxListLabel" style="margin:0;">' + translate('HeaderTypeImageFetchers', translate('TypeOptionPlural' + availableTypeOptions.Type)) + '</h3>';
     const supportedImageTypes = availableTypeOptions.SupportedImageTypes || [];
     if (supportedImageTypes.length > 1 || supportedImageTypes.length === 1 && supportedImageTypes[0] !== 'Primary') {
-        html += '<button is="emby-button" class="raised btnImageOptionsForType" type="button" style="font-size:90%;"><span>' + globalize.translate('HeaderFetcherSettings') + '</span></button>';
+        html += '<button is="emby-button" class="raised btnImageOptionsForType" type="button" style="font-size:90%;"><span>' + translate('HeaderFetcherSettings') + '</span></button>';
     }
     html += '</div>';
     html += '<div class="checkboxList paperList checkboxList-paperList">';
@@ -311,14 +311,14 @@ function getImageFetchersForTypeHtml(availableTypeOptions, libraryOptionsForType
         html += '</h3>';
         html += '</div>';
         if (i > 0) {
-            html += '<button type="button" is="paper-icon-button-light" title="' + globalize.translate('Up') + '" class="btnSortableMoveUp btnSortable" data-pluginindex="' + i + '"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>';
+            html += '<button type="button" is="paper-icon-button-light" title="' + translate('Up') + '" class="btnSortableMoveUp btnSortable" data-pluginindex="' + i + '"><span class="material-icons keyboard_arrow_up" aria-hidden="true"></span></button>';
         } else if (plugins.length > 1) {
-            html += '<button type="button" is="paper-icon-button-light" title="' + globalize.translate('Down') + '" class="btnSortableMoveDown btnSortable" data-pluginindex="' + i + '"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>';
+            html += '<button type="button" is="paper-icon-button-light" title="' + translate('Down') + '" class="btnSortableMoveDown btnSortable" data-pluginindex="' + i + '"><span class="material-icons keyboard_arrow_down" aria-hidden="true"></span></button>';
         }
         html += '</div>';
     }
     html += '</div>';
-    html += '<div class="fieldDescription">' + globalize.translate('LabelImageFetchersHelp') + '</div>';
+    html += '<div class="fieldDescription">' + translate('LabelImageFetchersHelp') + '</div>';
     html += '</div>';
     return html;
 }
@@ -365,13 +365,13 @@ function adjustSortableListElement(elem) {
     const btnSortable = elem.querySelector('.btnSortable');
     const inner = btnSortable.querySelector('.material-icons');
     if (elem.previousSibling) {
-        btnSortable.title = globalize.translate('Up');
+        btnSortable.title = translate('Up');
         btnSortable.classList.add('btnSortableMoveUp');
         btnSortable.classList.remove('btnSortableMoveDown');
         inner.classList.remove('keyboard_arrow_down');
         inner.classList.add('keyboard_arrow_up');
     } else {
-        btnSortable.title = globalize.translate('Down');
+        btnSortable.title = translate('Down');
         btnSortable.classList.remove('btnSortableMoveUp');
         btnSortable.classList.add('btnSortableMoveDown');
         inner.classList.remove('keyboard_arrow_up');
@@ -446,7 +446,7 @@ export async function embed(parent, contentType, libraryOptions) {
     const isNewLibrary = libraryOptions === null;
     isNewLibrary && parent.classList.add('newlibrary');
 
-    parent.innerHTML = globalize.translateHtml(template);
+    parent.innerHTML = translateHtml(template);
     populateRefreshInterval(parent.querySelector('#selectAutoRefreshInterval'));
     const promises = [populateLanguages(parent), populateCountries(parent.querySelector('#selectCountry'))];
     Promise.all(promises).then(function() {

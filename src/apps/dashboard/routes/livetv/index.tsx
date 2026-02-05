@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Page from 'components/Page';
 import { useNamedConfiguration } from 'hooks/useNamedConfiguration';
 import type { LiveTvOptions } from '@jellyfin/sdk/lib/generated-client/models/live-tv-options';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Loading from 'components/loading/LoadingComponent';
@@ -17,7 +17,7 @@ import { useStartTask } from 'apps/dashboard/features/tasks/api/useStartTask';
 import { TaskState } from '@jellyfin/sdk/lib/generated-client/models/task-state';
 import TaskProgress from 'apps/dashboard/features/tasks/components/TaskProgress';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import ListItemText from '@mui/material/ListItemText';
 import Alert from '@mui/material/Alert';
 import List from '@mui/material/List';
@@ -78,15 +78,15 @@ export const Component = () => {
     return (
         <Page
             id='liveTvStatusPage'
-            title={globalize.translate('LiveTV')}
+            title={translate('LiveTV')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>
                 {(isConfigError || isTasksError) ? (
-                    <Alert severity='error'>{globalize.translate('HeaderError')}</Alert>
+                    <Alert severity='error'>{translate('HeaderError')}</Alert>
                 ) : (
                     <Stack spacing={3}>
-                        <Typography variant='h2'>{globalize.translate('HeaderTunerDevices')}</Typography>
+                        <Typography variant='h2'>{translate('HeaderTunerDevices')}</Typography>
 
                         <Button
                             sx={{ alignSelf: 'flex-start' }}
@@ -94,7 +94,7 @@ export const Component = () => {
                             component={Link}
                             to='/dashboard/livetv/tuner'
                         >
-                            {globalize.translate('ButtonAddTunerDevice')}
+                            {translate('ButtonAddTunerDevice')}
                         </Button>
 
                         <Box>
@@ -117,27 +117,27 @@ export const Component = () => {
                             </Grid>
                         </Box>
 
-                        <Typography variant='h2'>{globalize.translate('HeaderGuideProviders')}</Typography>
+                        <Typography variant='h2'>{translate('HeaderGuideProviders')}</Typography>
 
                         <Stack sx={{ alignSelf: 'flex-start' }} spacing={2}>
                             <Stack direction='row' spacing={1.5}>
                                 <Button
                                     sx={{ alignSelf: 'flex-start' }}
                                     startIcon={<AddIcon />}
-                                    onClick={showProviderMenu}
+                                    onPress={showProviderMenu}
                                     ref={providerButtonRef}
                                 >
-                                    {globalize.translate('ButtonAddProvider')}
+                                    {translate('ButtonAddProvider')}
                                 </Button>
                                 <Button
                                     sx={{ alignSelf: 'flex-start' }}
                                     startIcon={<RefreshIcon />}
                                     variant='outlined'
-                                    onClick={refreshGuideData}
+                                    onPress={refreshGuideData}
                                     loading={refreshGuideTask && refreshGuideTask.State === TaskState.Running}
                                     loadingPosition='start'
                                 >
-                                    {globalize.translate('ButtonRefreshGuideData')}
+                                    {translate('ButtonRefreshGuideData')}
                                 </Button>
                             </Stack>
 
@@ -151,10 +151,10 @@ export const Component = () => {
                             open={isMenuOpen}
                             onClose={onMenuClose}
                         >
-                            <MenuItem onClick={navigateToSchedulesDirect}>
+                            <MenuItem onPress={navigateToSchedulesDirect}>
                                 <ListItemText>Schedules Direct</ListItemText>
                             </MenuItem>
-                            <MenuItem onClick={navigateToXMLTV}>
+                            <MenuItem onPress={navigateToXMLTV}>
                                 <ListItemText>XMLTV</ListItemText>
                             </MenuItem>
                         </Menu>

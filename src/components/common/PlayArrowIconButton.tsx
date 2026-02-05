@@ -3,7 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 import { ItemAction } from 'constants/itemAction';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface PlayArrowIconButtonProps {
     className: string;
@@ -17,7 +17,7 @@ const PlayArrowIconButton: FC<PlayArrowIconButtonProps> = ({ className, action, 
         <IconButton
             className={className}
             data-action={action}
-            title={globalize.translate(title)}
+            title={translate(title)}
         >
             <PlayArrowIcon className={iconClassName} />
         </IconButton>

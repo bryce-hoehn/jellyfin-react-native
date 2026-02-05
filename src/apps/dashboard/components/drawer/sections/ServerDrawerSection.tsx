@@ -17,7 +17,7 @@ import React, { type MouseEvent, useCallback, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import ListItemLink from 'components/ListItemLink';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const LIBRARY_PATHS = [
     '/dashboard/libraries',
@@ -39,13 +39,13 @@ const ServerDrawerSection = () => {
     const [ isLibrarySectionOpen, setIsLibrarySectionOpen ] = useState(LIBRARY_PATHS.includes(location.pathname));
     const [ isPlaybackSectionOpen, setIsPlaybackSectionOpen ] = useState(PLAYBACK_PATHS.includes(location.pathname));
 
-    const onLibrarySectionClick = useCallback((e: MouseEvent) => {
+    const onLibrarySectionPress = useCallback((e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         setIsLibrarySectionOpen(isOpen => !isOpen);
     }, []);
 
-    const onPlaybackSectionClick = useCallback((e: MouseEvent) => {
+    const onPlaybackSectionPress = useCallback((e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         setIsPlaybackSectionOpen(isOpen => !isOpen);
@@ -56,7 +56,7 @@ const ServerDrawerSection = () => {
             aria-labelledby='server-subheader'
             subheader={
                 <ListSubheader component='div' id='server-subheader'>
-                    {globalize.translate('TabServer')}
+                    {translate('TabServer')}
                 </ListSubheader>
             }
         >
@@ -65,7 +65,7 @@ const ServerDrawerSection = () => {
                     <ListItemIcon>
                         <Dashboard />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('TabDashboard')} />
+                    <ListItemText primary={translate('TabDashboard')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
@@ -73,70 +73,70 @@ const ServerDrawerSection = () => {
                     <ListItemIcon>
                         <Settings />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('General')} />
+                    <ListItemText primary={translate('General')} />
                 </ListItemLink>
             </ListItem>
             <ListItemLink to='/dashboard/branding'>
                 <ListItemIcon>
                     <Palette />
                 </ListItemIcon>
-                <ListItemText primary={globalize.translate('HeaderBranding')} />
+                <ListItemText primary={translate('HeaderBranding')} />
             </ListItemLink>
             <ListItem disablePadding>
                 <ListItemLink to='/dashboard/users'>
                     <ListItemIcon>
                         <People />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('HeaderUsers')} />
+                    <ListItemText primary={translate('HeaderUsers')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
-                <ListItemButton onClick={onLibrarySectionClick}>
+                <ListItemButton onPress={onLibrarySectionPress}>
                     <ListItemIcon>
                         <LibraryAdd />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('HeaderLibraries')} />
+                    <ListItemText primary={translate('HeaderLibraries')} />
                     {isLibrarySectionOpen ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
             </ListItem>
             <Collapse in={isLibrarySectionOpen} timeout='auto' unmountOnExit>
                 <List component='div' disablePadding>
                     <ListItemLink to='/dashboard/libraries' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('HeaderLibraries')} />
+                        <ListItemText inset primary={translate('HeaderLibraries')} />
                     </ListItemLink>
                     <ListItemLink to='/dashboard/libraries/display' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('Display')} />
+                        <ListItemText inset primary={translate('Display')} />
                     </ListItemLink>
                     <ListItemLink to='/dashboard/libraries/metadata' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('LabelMetadata')} />
+                        <ListItemText inset primary={translate('LabelMetadata')} />
                     </ListItemLink>
                     <ListItemLink to='/dashboard/libraries/nfo' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('TabNfoSettings')} />
+                        <ListItemText inset primary={translate('TabNfoSettings')} />
                     </ListItemLink>
                 </List>
             </Collapse>
             <ListItem disablePadding>
-                <ListItemButton onClick={onPlaybackSectionClick}>
+                <ListItemButton onPress={onPlaybackSectionPress}>
                     <ListItemIcon>
                         <PlayCircle />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('TitlePlayback')} />
+                    <ListItemText primary={translate('TitlePlayback')} />
                     {isPlaybackSectionOpen ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
             </ListItem>
             <Collapse in={isPlaybackSectionOpen} timeout='auto' unmountOnExit>
                 <List component='div' disablePadding>
                     <ListItemLink to='/dashboard/playback/transcoding' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('Transcoding')} />
+                        <ListItemText inset primary={translate('Transcoding')} />
                     </ListItemLink>
                     <ListItemLink to='/dashboard/playback/resume' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('ButtonResume')} />
+                        <ListItemText inset primary={translate('ButtonResume')} />
                     </ListItemLink>
                     <ListItemLink to='/dashboard/playback/streaming' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('TabStreaming')} />
+                        <ListItemText inset primary={translate('TabStreaming')} />
                     </ListItemLink>
                     <ListItemLink to='/dashboard/playback/trickplay' sx={{ pl: 4 }}>
-                        <ListItemText inset primary={globalize.translate('Trickplay')} />
+                        <ListItemText inset primary={translate('Trickplay')} />
                     </ListItemLink>
                 </List>
             </Collapse>

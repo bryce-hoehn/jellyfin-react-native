@@ -12,7 +12,7 @@ import { NextUpPreferences } from 'apps/experimental/features/preferences/compon
 import type { DisplaySettingsValues } from 'apps/experimental/features/preferences/types/displaySettingsValues';
 import LoadingComponent from 'components/loading/LoadingComponent';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 export default function UserDisplayPreferences() {
     const {
@@ -48,7 +48,7 @@ export default function UserDisplayPreferences() {
         <Page
             className='libraryPage userPreferencesPage noSecondaryNavPage'
             id='displayPreferencesPage'
-            title={globalize.translate('Display')}
+            title={translate('Display')}
         >
             <div className='settingsContainer padded-left padded-right padded-bottom-page'>
                 <form
@@ -81,7 +81,7 @@ export default function UserDisplayPreferences() {
                             type='submit'
                             size='large'
                         >
-                            {globalize.translate('Save')}
+                            {translate('Save')}
                         </Button>
                     </Stack>
                 </form>

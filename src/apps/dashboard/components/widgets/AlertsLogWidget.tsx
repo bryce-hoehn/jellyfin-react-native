@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Widget from './Widget';
 import List from '@mui/material/List';
 import ActivityListItem from 'apps/dashboard/features/activity/components/ActivityListItem';
@@ -22,7 +22,7 @@ const AlertsLogWidget = () => {
 
     return (
         <Widget
-            title={globalize.translate('Alerts')}
+            title={translate('Alerts')}
             href='/dashboard/activity?useractivity=false'
         >
             <List sx={{ bgcolor: 'background.paper' }}>

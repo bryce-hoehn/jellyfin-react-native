@@ -5,7 +5,7 @@ import loading from 'components/loading/loading';
 import * as mainTabsManager from 'components/maintabsmanager';
 import { playbackManager } from 'components/playback/playbackmanager';
 import dom from 'utils/dom';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import inputManager from 'scripts/inputManager';
 import libraryMenu from 'scripts/libraryMenu';
 import * as userSettings from 'scripts/settings/userSettings';
@@ -22,17 +22,17 @@ import 'styles/scrollstyles.scss';
 
 function getTabs() {
     return [{
-        name: globalize.translate('Shows')
+        name: translate('Shows')
     }, {
-        name: globalize.translate('Suggestions')
+        name: translate('Suggestions')
     }, {
-        name: globalize.translate('TabUpcoming')
+        name: translate('TabUpcoming')
     }, {
-        name: globalize.translate('Genres')
+        name: translate('Genres')
     }, {
-        name: globalize.translate('TabNetworks')
+        name: translate('TabNetworks')
     }, {
-        name: globalize.translate('Episodes')
+        name: translate('Episodes')
     }];
 }
 
@@ -364,8 +364,8 @@ export default function (view, params) {
                     libraryMenu.setTitle(item.Name);
                 });
             } else {
-                view.setAttribute('data-title', globalize.translate('Shows'));
-                libraryMenu.setTitle(globalize.translate('Shows'));
+                view.setAttribute('data-title', translate('Shows'));
+                libraryMenu.setTitle(translate('Shows'));
             }
         }
 

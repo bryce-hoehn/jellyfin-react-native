@@ -1,5 +1,5 @@
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import serverNotifications from 'scripts/serverNotifications';
 import Events from 'utils/events.ts';
@@ -53,11 +53,11 @@ function taskbutton(options) {
             const lastResult = task.LastExecutionResult ? task.LastExecutionResult.Status : '';
 
             if (lastResult == 'Failed') {
-                options.lastResultElem.html('<span style="color:#FF0000;">(' + globalize.translate('LabelFailed') + ')</span>');
+                options.lastResultElem.html('<span style="color:#FF0000;">(' + translate('LabelFailed') + ')</span>');
             } else if (lastResult == 'Cancelled') {
-                options.lastResultElem.html('<span style="color:#0026FF;">(' + globalize.translate('LabelCancelled') + ')</span>');
+                options.lastResultElem.html('<span style="color:#0026FF;">(' + translate('LabelCancelled') + ')</span>');
             } else if (lastResult == 'Aborted') {
-                options.lastResultElem.html('<span style="color:#FF0000;">' + globalize.translate('LabelAbortedByServerShutdown') + '</span>');
+                options.lastResultElem.html('<span style="color:#FF0000;">' + translate('LabelAbortedByServerShutdown') + '</span>');
             } else {
                 options.lastResultElem.html(lastResult);
             }
@@ -68,7 +68,7 @@ function taskbutton(options) {
         ServerConnections.getApiClient(serverId).startScheduledTask(id).then(pollTasks);
     }
 
-    function onButtonClick() {
+    function onButtonPress() {
         onScheduledTaskMessageConfirmed(this.getAttribute('data-taskid'));
     }
 
@@ -111,11 +111,11 @@ function taskbutton(options) {
     }
 
     if (options.mode == 'off') {
-        button.removeEventListener('click', onButtonClick);
+        button.removeEventListener('click', onButtonPress);
         Events.off(serverNotifications, 'ScheduledTasksInfo', onScheduledTasksUpdate);
         stopInterval();
     } else {
-        button.addEventListener('click', onButtonClick);
+        button.addEventListener('click', onButtonPress);
         pollTasks();
         startInterval();
         Events.on(serverNotifications, 'ScheduledTasksInfo', onScheduledTasksUpdate);

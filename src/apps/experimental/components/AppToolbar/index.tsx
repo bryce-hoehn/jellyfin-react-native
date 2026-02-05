@@ -14,13 +14,13 @@ import UserViewNav from './userViews/UserViewNav';
 interface AppToolbarProps {
     isDrawerAvailable: boolean
     isDrawerOpen: boolean
-    onDrawerButtonClick: (event: React.MouseEvent<HTMLElement>) => void
+    onDrawerButtonPress: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 const ExperimentalAppToolbar: FC<AppToolbarProps> = ({
     isDrawerAvailable,
     isDrawerOpen,
-    onDrawerButtonClick
+    onDrawerButtonPress
 }) => {
     const location = useLocation();
 
@@ -44,7 +44,7 @@ const ExperimentalAppToolbar: FC<AppToolbarProps> = ({
             )}
             isDrawerAvailable={isDrawerAvailable}
             isDrawerOpen={isDrawerOpen}
-            onDrawerButtonClick={onDrawerButtonClick}
+            onDrawerButtonPress={onDrawerButtonPress}
             isBackButtonAvailable={isBackButtonAvailable}
             isUserMenuAvailable={!isPublicPath}
         >

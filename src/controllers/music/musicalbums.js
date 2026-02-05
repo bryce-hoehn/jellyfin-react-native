@@ -240,25 +240,25 @@ export default function (view, params, tabContent) {
         tabElement.querySelector('.btnSort').addEventListener('click', (e) => {
             libraryBrowser.showSortMenu({
                 items: [{
-                    name: globalize.translate('Name'),
+                    name: translate('Name'),
                     id: 'SortName'
                 }, {
-                    name: globalize.translate('AlbumArtist'),
+                    name: translate('AlbumArtist'),
                     id: 'AlbumArtist,SortName'
                 }, {
-                    name: globalize.translate('OptionCommunityRating'),
+                    name: translate('OptionCommunityRating'),
                     id: 'CommunityRating,SortName'
                 }, {
-                    name: globalize.translate('OptionCriticRating'),
+                    name: translate('OptionCriticRating'),
                     id: 'CriticRating,SortName'
                 }, {
-                    name: globalize.translate('OptionDateAdded'),
+                    name: translate('OptionDateAdded'),
                     id: 'DateCreated,SortName'
                 }, {
-                    name: globalize.translate('OptionReleaseDate'),
+                    name: translate('OptionReleaseDate'),
                     id: 'ProductionYear,PremiereDate,SortName'
                 }, {
-                    name: globalize.translate('OptionRandom'),
+                    name: translate('OptionRandom'),
                     id: 'Random,SortName'
                 }],
                 callback: function () {

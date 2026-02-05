@@ -37,7 +37,7 @@ interface Options {
     offsetTop?: number;
     positionTo?: Element | null;
     positionY?: string;
-    resolveOnClick?: boolean | (string | null)[];
+    resolveonPress?: boolean | (string | null)[];
     shaded?: boolean;
     showCancel?: boolean;
     text?: string;
@@ -201,7 +201,7 @@ export function show(options: Options) {
     }
 
     if (layoutManager.tv) {
-        html += `<button is="paper-icon-button-light" class="btnCloseActionSheet hide-mouse-idle-tv" tabindex="-1" title="${globalize.translate('ButtonBack')}">
+        html += `<button is="paper-icon-button-light" class="btnCloseActionSheet hide-mouse-idle-tv" tabindex="-1" title="${translate('ButtonBack')}">
                      <span class="material-icons arrow_back" aria-hidden="true"></span>
                  </button>`;
     }
@@ -290,7 +290,7 @@ export function show(options: Options) {
 
     if (options.showCancel) {
         html += '<div class="buttons">';
-        html += `<button is="emby-button" type="button" class="btnCloseActionSheet">${globalize.translate('ButtonCancel')}</button>`;
+        html += `<button is="emby-button" type="button" class="btnCloseActionSheet">${translate('ButtonCancel')}</button>`;
         html += '</div>';
     }
     html += '</div>';
@@ -329,9 +329,9 @@ export function show(options: Options) {
             if (actionSheetMenuItem) {
                 selectedId = actionSheetMenuItem.getAttribute('data-id');
 
-                if (options.resolveOnClick) {
-                    if (Array.isArray(options.resolveOnClick)) {
-                        if (options.resolveOnClick.indexOf(selectedId) !== -1) {
+                if (options.resolveonPress) {
+                    if (Array.isArray(options.resolveonPress)) {
+                        if (options.resolveonPress.indexOf(selectedId) !== -1) {
                             resolve(selectedId);
                             isResolved = true;
                         }

@@ -7,7 +7,7 @@ import { getPlaylistsApi } from '@jellyfin/sdk/lib/utils/api/playlists-api';
 
 import { appHost } from './apphost';
 import { AppFeature } from 'constants/appFeature';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { toApi } from 'utils/jellyfin-apiclient/compat';
 
@@ -29,7 +29,7 @@ export function getDisplayName(item, options = {}) {
         return name;
     }
     if (item.Type === 'Episode' && item.ParentIndexNumber === 0) {
-        name = globalize.translate('ValueSpecialEpisodeName', name);
+        name = translate('ValueSpecialEpisodeName', name);
     } else if ((item.Type === 'Episode' || item.Type === 'Program' || item.Type === 'Recording') && item.IndexNumber != null && item.ParentIndexNumber != null && options.includeIndexNumber !== false) {
         let displayIndexNumber = item.IndexNumber;
 

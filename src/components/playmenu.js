@@ -21,12 +21,12 @@ export function show(options) {
     const menuItems = [];
 
     menuItems.push({
-        name: globalize.translate('ResumeAt', datetime.getDisplayRunningTime(resumePositionTicks)),
+        name: translate('ResumeAt', datetime.getDisplayRunningTime(resumePositionTicks)),
         id: 'resume'
     });
 
     menuItems.push({
-        name: globalize.translate('PlayFromBeginning'),
+        name: translate('PlayFromBeginning'),
         id: 'play'
     });
 

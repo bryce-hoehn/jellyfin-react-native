@@ -3,7 +3,7 @@ import type { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/bas
 import type { ApiClient } from 'jellyfin-apiclient';
 
 import cardBuilder from 'components/cardbuilder/cardBuilder';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import type { UserSettings } from 'scripts/settings/userSettings';
 import { getBackdropShape, getPortraitShape } from 'utils/card';
@@ -81,7 +81,7 @@ export function loadResume(
 
     const dataMonitor = dataMonitorHints[mediaType] ?? 'markplayed';
 
-    html += '<h2 class="sectionTitle sectionTitle-cards padded-left">' + globalize.translate(titleLabel) + '</h2>';
+    html += '<h2 class="sectionTitle sectionTitle-cards padded-left">' + translate(titleLabel) + '</h2>';
     if (options.enableOverflow) {
         html += '<div is="emby-scroller" class="padded-top-focusscale padded-bottom-focusscale" data-centerfocus="true">';
         html += `<div is="emby-itemscontainer" class="itemsContainer scrollSlider focuscontainer-x" data-monitor="${dataMonitor}">`;

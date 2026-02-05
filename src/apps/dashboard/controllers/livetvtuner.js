@@ -1,4 +1,4 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import loading from 'components/loading/loading';
 import dom from 'utils/dom';
 import 'elements/emby-input/emby-input';
@@ -20,7 +20,7 @@ function fillTypes(view, currentId) {
             return '<option value="' + tuner.Id + '">' + tuner.Name + '</option>';
         }).join('');
         html += '<option value="other">';
-        html += globalize.translate('TabOther');
+        html += translate('TabOther');
         html += '</option>';
         selectType.innerHTML = html;
         selectType.disabled = currentId != null;
@@ -108,7 +108,7 @@ function submitForm(page) {
     }, function () {
         loading.hide();
         Dashboard.alert({
-            message: globalize.translate('ErrorSavingTvProvider')
+            message: translate('ErrorSavingTvProvider')
         });
     });
 }
@@ -142,10 +142,10 @@ function onTypeChange() {
     const txtDevicePath = view.querySelector('.txtDevicePath');
 
     if (supportsTunerIpAddress) {
-        txtDevicePath.label(globalize.translate('LabelTunerIpAddress'));
+        txtDevicePath.label(translate('LabelTunerIpAddress'));
         view.querySelector('.fldPath').classList.remove('hide');
     } else if (supportsTunerFileOrUrl) {
-        txtDevicePath.label(globalize.translate('LabelFileOrUrl'));
+        txtDevicePath.label(translate('LabelFileOrUrl'));
         view.querySelector('.fldPath').classList.remove('hide');
     } else {
         view.querySelector('.fldPath').classList.add('hide');

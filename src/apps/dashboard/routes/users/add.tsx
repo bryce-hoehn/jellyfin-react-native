@@ -214,12 +214,12 @@ const UserNew = () => {
             <Toast
                 open={isErrorToastOpen}
                 onClose={handleToastClose}
-                message={globalize.translate('ErrorDefault')}
+                message={translate('ErrorDefault')}
             />
             <div ref={element} className='content-primary'>
                 <div className='verticalSection'>
                     <SectionTitleContainer
-                        title={globalize.translate('HeaderAddUser')}
+                        title={translate('HeaderAddUser')}
                     />
                 </div>
 
@@ -228,7 +228,7 @@ const UserNew = () => {
                         <Input
                             type='text'
                             id='txtUsername'
-                            label={globalize.translate('LabelName')}
+                            label={translate('LabelName')}
                             required
                         />
                     </div>
@@ -236,7 +236,7 @@ const UserNew = () => {
                         <Input
                             type='password'
                             id='txtPassword'
-                            label={globalize.translate('LabelPassword')}
+                            label={translate('LabelPassword')}
                         />
                     </div>
                     <AccessContainer
@@ -282,13 +282,13 @@ const UserNew = () => {
                         <Button
                             type='submit'
                             className='raised button-submit block'
-                            title={globalize.translate('Save')}
+                            title={translate('Save')}
                         />
                         <Button
                             type='button'
                             id='btnCancel'
                             className='raised button-cancel block'
-                            title={globalize.translate('ButtonCancel')}
+                            title={translate('ButtonCancel')}
                         />
                     </div>
                 </form>

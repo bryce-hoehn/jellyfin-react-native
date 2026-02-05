@@ -87,11 +87,11 @@ export function show(button) {
             loading.hide();
 
             const menuOptions = {
-                title: globalize.translate('HeaderPlayOn'),
+                title: translate('HeaderPlayOn'),
                 items: menuItems,
                 positionTo: button,
 
-                resolveOnClick: true,
+                resolveonPress: true,
                 border: true
             };
 
@@ -105,7 +105,7 @@ export function show(button) {
             const isChromecastPluginLoaded = !!pluginManager.plugins.find(plugin => plugin.id === 'chromecast');
             // TODO: Add other checks for support (Android app, secure context, etc)
             if (!isChromecastPluginLoaded) {
-                menuOptions.text = `(${globalize.translate('GoogleCastUnsupported')})`;
+                menuOptions.text = `(${translate('GoogleCastUnsupported')})`;
             }
 
             actionsheet.show(menuOptions).then(function (id) {
@@ -134,17 +134,17 @@ function disconnectFromPlayer(currentDeviceName) {
         const menuItems = [];
 
         menuItems.push({
-            name: globalize.translate('Yes'),
+            name: translate('Yes'),
             id: 'yes'
         });
         menuItems.push({
-            name: globalize.translate('No'),
+            name: translate('No'),
             id: 'no'
         });
 
         dialog.show({
             buttons: menuItems,
-            text: globalize.translate('ConfirmEndPlayerSession', currentDeviceName)
+            text: translate('ConfirmEndPlayerSession', currentDeviceName)
 
         }).then(function (id) {
             switch (id) {
@@ -195,7 +195,7 @@ function showActivePlayerMenuInternal(playerInfo) {
         html += '<label class="checkboxContainer">';
         const checkedHtml = playbackManager.enableDisplayMirroring() ? ' checked' : '';
         html += '<input type="checkbox" is="emby-checkbox" class="chkMirror"' + checkedHtml + '/>';
-        html += '<span>' + globalize.translate('EnableDisplayMirroring') + '</span>';
+        html += '<span>' + translate('EnableDisplayMirroring') + '</span>';
         html += '</label>';
     }
 
@@ -204,14 +204,14 @@ function showActivePlayerMenuInternal(playerInfo) {
     html += '<div><label class="checkboxContainer">';
     const checkedHtmlAC = isEnabled() ? ' checked' : '';
     html += '<input type="checkbox" is="emby-checkbox" class="chkAutoCast"' + checkedHtmlAC + '/>';
-    html += '<span>' + globalize.translate('EnableAutoCast') + '</span>';
+    html += '<span>' + translate('EnableAutoCast') + '</span>';
     html += '</label></div>';
 
     html += '<div style="margin-top:1em;display:flex;justify-content: flex-end;">';
 
-    html += '<button is="emby-button" type="button" class="button-flat btnRemoteControl promptDialogButton">' + globalize.translate('HeaderRemoteControl') + '</button>';
-    html += '<button is="emby-button" type="button" class="button-flat btnDisconnect promptDialogButton ">' + globalize.translate('Disconnect') + '</button>';
-    html += '<button is="emby-button" type="button" class="button-flat btnCancel promptDialogButton">' + globalize.translate('ButtonCancel') + '</button>';
+    html += '<button is="emby-button" type="button" class="button-flat btnRemoteControl promptDialogButton">' + translate('HeaderRemoteControl') + '</button>';
+    html += '<button is="emby-button" type="button" class="button-flat btnDisconnect promptDialogButton ">' + translate('Disconnect') + '</button>';
+    html += '<button is="emby-button" type="button" class="button-flat btnCancel promptDialogButton">' + translate('ButtonCancel') + '</button>';
     html += '</div>';
 
     html += '</div>';

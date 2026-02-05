@@ -168,11 +168,11 @@ class CastPlayer {
         if (message.type === 'playbackerror') {
             const errorCode = message.data;
             setTimeout(function () {
-                alertText(globalize.translate('MessagePlaybackError' + errorCode), globalize.translate('HeaderPlaybackError'));
+                alertText(translate('MessagePlaybackError' + errorCode), translate('HeaderPlaybackError'));
             }, 300);
         } else if (message.type === 'connectionerror') {
             setTimeout(function () {
-                alertText(globalize.translate('MessageChromecastConnectionError'), globalize.translate('HeaderError'));
+                alertText(translate('MessageChromecastConnectionError'), translate('HeaderError'));
             }, 300);
         } else if (message.type) {
             Events.trigger(this, message.type, [message.data]);

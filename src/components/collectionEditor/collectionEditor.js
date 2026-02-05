@@ -81,7 +81,7 @@ function addToCollection(apiClient, dlg, id) {
         dlg.submitted = true;
         dialogHelper.close(dlg);
 
-        toast(globalize.translate('MessageItemsAdded'));
+        toast(translate('MessageItemsAdded'));
     });
 }
 
@@ -108,7 +108,7 @@ function populateCollections(panel) {
     apiClient.getItems(apiClient.getCurrentUserId(), options).then(result => {
         let html = '';
 
-        html += `<option value="">${globalize.translate('OptionNew')}</option>`;
+        html += `<option value="">${translate('OptionNew')}</option>`;
 
         html += result.Items.map(i => {
             return `<option value="${i.Id}">${escapeHtml(i.Name)}</option>`;
@@ -130,34 +130,34 @@ function getEditorHtml() {
     html += '<form class="newCollectionForm" style="margin:auto;">';
 
     html += '<div>';
-    html += globalize.translate('NewCollectionHelp');
+    html += translate('NewCollectionHelp');
     html += '</div>';
 
     html += '<div class="fldSelectCollection">';
     html += '<br/>';
     html += '<br/>';
     html += '<div class="selectContainer">';
-    html += `<select is="emby-select" label="${globalize.translate('LabelCollection')}" id="selectCollectionToAddTo" autofocus></select>`;
+    html += `<select is="emby-select" label="${translate('LabelCollection')}" id="selectCollectionToAddTo" autofocus></select>`;
     html += '</div>';
     html += '</div>';
 
     html += '<div class="newCollectionInfo">';
 
     html += '<div class="inputContainer">';
-    html += `<input is="emby-input" type="text" id="txtNewCollectionName" required="required" label="${globalize.translate('LabelName')}" />`;
-    html += `<div class="fieldDescription">${globalize.translate('NewCollectionNameExample')}</div>`;
+    html += `<input is="emby-input" type="text" id="txtNewCollectionName" required="required" label="${translate('LabelName')}" />`;
+    html += `<div class="fieldDescription">${translate('NewCollectionNameExample')}</div>`;
     html += '</div>';
 
     html += '<label class="checkboxContainer">';
     html += '<input is="emby-checkbox" type="checkbox" id="chkEnableInternetMetadata" />';
-    html += `<span>${globalize.translate('SearchForCollectionInternetMetadata')}</span>`;
+    html += `<span>${translate('SearchForCollectionInternetMetadata')}</span>`;
     html += '</label>';
 
     // newCollectionInfo
     html += '</div>';
 
     html += '<div class="formDialogFooter">';
-    html += `<button is="emby-button" type="submit" class="raised btnSubmit block formDialogFooterItem button-submit">${globalize.translate('ButtonOk')}</button>`;
+    html += `<button is="emby-button" type="submit" class="raised btnSubmit block formDialogFooterItem button-submit">${translate('ButtonOk')}</button>`;
     html += '</div>';
 
     html += '<input type="hidden" class="fldSelectedItemIds" />';
@@ -225,10 +225,10 @@ class CollectionEditor {
         dlg.classList.add('formDialog');
 
         let html = '';
-        const title = items.length ? globalize.translate('HeaderAddToCollection') : globalize.translate('NewCollection');
+        const title = items.length ? translate('HeaderAddToCollection') : translate('NewCollection');
 
         html += '<div class="formDialogHeader">';
-        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${globalize.translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
         html += '<h3 class="formDialogHeaderTitle">';
         html += title;
         html += '</h3>';

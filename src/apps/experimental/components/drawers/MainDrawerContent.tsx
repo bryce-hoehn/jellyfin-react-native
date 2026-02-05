@@ -16,7 +16,7 @@ import { appRouter } from 'components/router/appRouter';
 import { useApi } from 'hooks/useApi';
 import { useUserViews } from 'hooks/useUserViews';
 import { useWebConfig } from 'hooks/useWebConfig';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import LibraryIcon from '../LibraryIcon';
 import DrawerHeaderLink from './DrawerHeaderLink';
@@ -42,7 +42,7 @@ const MainDrawerContent = () => {
                         <ListItemIcon>
                             <Home />
                         </ListItemIcon>
-                        <ListItemText primary={globalize.translate('Home')} />
+                        <ListItemText primary={translate('Home')} />
                     </ListItemLink>
                 </ListItem>
                 <ListItem disablePadding>
@@ -50,7 +50,7 @@ const MainDrawerContent = () => {
                         <ListItemIcon>
                             <Favorite />
                         </ListItemIcon>
-                        <ListItemText primary={globalize.translate('Favorites')} />
+                        <ListItemText primary={translate('Favorites')} />
                     </ListItemLink>
                 </ListItem>
             </List>
@@ -90,7 +90,7 @@ const MainDrawerContent = () => {
                         aria-labelledby='libraries-subheader'
                         subheader={
                             <ListSubheader component='div' id='libraries-subheader'>
-                                {globalize.translate('HeaderLibraries')}
+                                {translate('HeaderLibraries')}
                             </ListSubheader>
                         }
                     >

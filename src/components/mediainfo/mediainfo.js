@@ -115,7 +115,7 @@ export function getMediaInfoHtml(item, options = {}) {
         count = item.SongCount || item.ChildCount;
 
         if (count) {
-            miscInfo.push(globalize.translate('TrackCount', count));
+            miscInfo.push(translate('TrackCount', count));
         }
 
         if (item.RunTimeTicks) {
@@ -125,7 +125,7 @@ export function getMediaInfoHtml(item, options = {}) {
         count = item.ChildCount;
 
         if (count) {
-            miscInfo.push(globalize.translate('ItemCount', count));
+            miscInfo.push(translate('ItemCount', count));
         }
     }
 
@@ -146,15 +146,15 @@ export function getMediaInfoHtml(item, options = {}) {
 
     if (item.Type === 'SeriesTimer') {
         if (item.RecordAnyTime) {
-            miscInfo.push(globalize.translate('Anytime'));
+            miscInfo.push(translate('Anytime'));
         } else {
             miscInfo.push(datetime.getDisplayTime(item.StartDate));
         }
 
         if (item.RecordAnyChannel) {
-            miscInfo.push(globalize.translate('AllChannels'));
+            miscInfo.push(translate('AllChannels'));
         } else {
-            miscInfo.push(item.ChannelName || globalize.translate('OneChannel'));
+            miscInfo.push(item.ChannelName || translate('OneChannel'));
         }
     }
 
@@ -176,7 +176,7 @@ export function getMediaInfoHtml(item, options = {}) {
 
     if (options.year !== false && item.ProductionYear && item.Type === 'Series') {
         if (item.Status === 'Continuing') {
-            miscInfo.push(globalize.translate('SeriesYearToPresent', datetime.toLocaleString(item.ProductionYear, { useGrouping: false })));
+            miscInfo.push(translate('SeriesYearToPresent', datetime.toLocaleString(item.ProductionYear, { useGrouping: false })));
         } else if (item.ProductionYear) {
             text = datetime.toLocaleString(item.ProductionYear, { useGrouping: false });
 
@@ -205,19 +205,19 @@ export function getMediaInfoHtml(item, options = {}) {
         if (options.programIndicator !== false) {
             if (program.IsLive && userSettings.get('guide-indicator-live') === 'true') {
                 miscInfo.push({
-                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem liveTvProgram">${globalize.translate('Live')}</div>`
+                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem liveTvProgram">${translate('Live')}</div>`
                 });
             } else if (program.IsPremiere && userSettings.get('guide-indicator-premiere') === 'true') {
                 miscInfo.push({
-                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem premiereTvProgram">${globalize.translate('Premiere')}</div>`
+                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem premiereTvProgram">${translate('Premiere')}</div>`
                 });
             } else if (program.IsSeries && !program.IsRepeat && userSettings.get('guide-indicator-new') === 'true') {
                 miscInfo.push({
-                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem newTvProgram">${globalize.translate('New')}</div>`
+                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem newTvProgram">${translate('New')}</div>`
                 });
             } else if (program.IsSeries && program.IsRepeat && userSettings.get('guide-indicator-repeat') === 'true') {
                 miscInfo.push({
-                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem repeatTvProgram">${globalize.translate('Repeat')}</div>`
+                    html: `<div class="mediaInfoProgramAttribute mediaInfoItem repeatTvProgram">${translate('Repeat')}</div>`
                 });
             }
         }
@@ -235,7 +235,7 @@ export function getMediaInfoHtml(item, options = {}) {
         } else if (program.PremiereDate && options.originalAirDate !== false) {
             try {
                 date = datetime.parseISO8601Date(program.PremiereDate);
-                text = globalize.translate('OriginalAirDateValue', datetime.toLocaleDateString(date));
+                text = translate('OriginalAirDateValue', datetime.toLocaleDateString(date));
                 miscInfo.push(text);
             } catch (e) {
                 console.error('error parsing date:', program.PremiereDate, e);
@@ -337,7 +337,7 @@ export function getEndsAtFromPosition(runtimeTicks, positionTicks, playbackRate,
     if (includeText === false) {
         return displayTime;
     }
-    return globalize.translate('EndsAtValue', displayTime);
+    return translate('EndsAtValue', displayTime);
 }
 
 function getMediaInfoItem(m, cssClass) {
@@ -566,7 +566,7 @@ export function getMediaInfoStats(item) {
 
         list.push({
             type: 'added',
-            text: globalize.translate('AddedOnValue', `${datetime.toLocaleDateString(dateCreated)} ${datetime.getDisplayTime(dateCreated)}`)
+            text: translate('AddedOnValue', `${datetime.toLocaleDateString(dateCreated)} ${datetime.getDisplayTime(dateCreated)}`)
         });
     }
 

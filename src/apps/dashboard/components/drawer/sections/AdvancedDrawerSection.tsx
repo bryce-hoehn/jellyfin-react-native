@@ -11,7 +11,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 
 import ListItemLink from 'components/ListItemLink';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const AdvancedDrawerSection = () => {
     return (
@@ -19,7 +19,7 @@ const AdvancedDrawerSection = () => {
             aria-labelledby='advanced-subheader'
             subheader={
                 <ListSubheader component='div' id='advanced-subheader'>
-                    {globalize.translate('TabAdvanced')}
+                    {translate('TabAdvanced')}
                 </ListSubheader>
             }
         >
@@ -28,7 +28,7 @@ const AdvancedDrawerSection = () => {
                     <ListItemIcon>
                         <Lan />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('TabNetworking')} />
+                    <ListItemText primary={translate('TabNetworking')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
@@ -36,7 +36,7 @@ const AdvancedDrawerSection = () => {
                     <ListItemIcon>
                         <VpnKey />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('HeaderApiKeys')} />
+                    <ListItemText primary={translate('HeaderApiKeys')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
@@ -44,7 +44,7 @@ const AdvancedDrawerSection = () => {
                     <ListItemIcon>
                         <Backup />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('HeaderBackups')} />
+                    <ListItemText primary={translate('HeaderBackups')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
@@ -52,7 +52,7 @@ const AdvancedDrawerSection = () => {
                     <ListItemIcon>
                         <Article />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('TabLogs')} />
+                    <ListItemText primary={translate('TabLogs')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
@@ -60,7 +60,7 @@ const AdvancedDrawerSection = () => {
                     <ListItemIcon>
                         <Schedule />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('TabScheduledTasks')} />
+                    <ListItemText primary={translate('TabScheduledTasks')} />
                 </ListItemLink>
             </ListItem>
         </List>

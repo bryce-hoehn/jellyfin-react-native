@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -51,19 +51,19 @@ export const Component = () => {
     return (
         <Page
             id='streamingSettingsPage'
-            title={globalize.translate('TabStreaming')}
+            title={translate('TabStreaming')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>
                 <Form method='POST'>
                     <Stack spacing={3}>
                         <Typography variant='h1'>
-                            {globalize.translate('TabStreaming')}
+                            {translate('TabStreaming')}
                         </Typography>
 
                         {!isSubmitting && actionData?.isSaved && (
                             <Alert severity='success'>
-                                {globalize.translate('SettingsSaved')}
+                                {translate('SettingsSaved')}
                             </Alert>
                         )}
 
@@ -71,8 +71,8 @@ export const Component = () => {
                             type='number'
                             inputMode='decimal'
                             name='StreamingBitrateLimit'
-                            label={globalize.translate('LabelRemoteClientBitrateLimit')}
-                            helperText={globalize.translate('LabelRemoteClientBitrateLimitHelp')}
+                            label={translate('LabelRemoteClientBitrateLimit')}
+                            helperText={translate('LabelRemoteClientBitrateLimitHelp')}
                             defaultValue={defaultConfiguration?.RemoteClientBitrateLimit ? defaultConfiguration?.RemoteClientBitrateLimit / 1e6 : ''}
                             slotProps={{
                                 htmlInput: {
@@ -86,7 +86,7 @@ export const Component = () => {
                             type='submit'
                             size='large'
                         >
-                            {globalize.translate('Save')}
+                            {translate('Save')}
                         </Button>
                     </Stack>
                 </Form>

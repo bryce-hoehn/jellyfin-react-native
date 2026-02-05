@@ -8,7 +8,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 
 import ListItemLink from 'components/ListItemLink';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const DevicesDrawerSection = () => {
     return (
@@ -16,7 +16,7 @@ const DevicesDrawerSection = () => {
             aria-labelledby='devices-subheader'
             subheader={
                 <ListSubheader component='div' id='devices-subheader'>
-                    {globalize.translate('HeaderDevices')}
+                    {translate('HeaderDevices')}
                 </ListSubheader>
             }
         >
@@ -25,7 +25,7 @@ const DevicesDrawerSection = () => {
                     <ListItemIcon>
                         <Devices />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('HeaderDevices')} />
+                    <ListItemText primary={translate('HeaderDevices')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
@@ -33,7 +33,7 @@ const DevicesDrawerSection = () => {
                     <ListItemIcon>
                         <Analytics />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('HeaderActivity')} />
+                    <ListItemText primary={translate('HeaderActivity')} />
                 </ListItemLink>
             </ListItem>
         </List>

@@ -13,14 +13,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import Menu, { MenuProps } from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import type { ApiClient } from 'jellyfin-apiclient';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { pluginManager } from 'components/pluginManager';
 import { useApi } from 'hooks/useApi';
 import { useSyncPlayGroups } from 'hooks/useSyncPlayGroups';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { PluginType } from 'types/plugin';
 import Events, { Event } from 'utils/events';
 
@@ -62,7 +62,7 @@ const SyncPlayMenu: FC<SyncPlayMenuProps> = ({
             getSyncPlayApi(api)
                 .syncPlayCreateGroup({
                     newGroupRequestDto: {
-                        GroupName: globalize.translate('SyncPlayGroupDefaultTitle', user.Name)
+                        GroupName: translate('SyncPlayGroupDefaultTitle', user.Name)
                     }
                 })
                 .catch(err => {
@@ -160,24 +160,24 @@ const SyncPlayMenu: FC<SyncPlayMenuProps> = ({
             menuItems.push(
                 <MenuItem
                     key='sync-play-start-playback'
-                    onClick={onStartGroupPlaybackClick}
+                    onPress={onStartGroupPlaybackClick}
                 >
                     <ListItemIcon>
                         <PlayCircle />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('LabelSyncPlayResumePlayback')} />
+                    <ListItemText primary={translate('LabelSyncPlayResumePlayback')} />
                 </MenuItem>
             );
         } else if (syncPlay?.Manager.isPlaybackActive()) {
             menuItems.push(
                 <MenuItem
                     key='sync-play-stop-playback'
-                    onClick={onStopGroupPlaybackClick}
+                    onPress={onStopGroupPlaybackClick}
                 >
                     <ListItemIcon>
                         <StopCircle />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('LabelSyncPlayHaltPlayback')} />
+                    <ListItemText primary={translate('LabelSyncPlayHaltPlayback')} />
                 </MenuItem>
             );
         }
@@ -185,13 +185,13 @@ const SyncPlayMenu: FC<SyncPlayMenuProps> = ({
         menuItems.push(
             <MenuItem
                 key='sync-play-settings'
-                onClick={onGroupSettingsClick}
+                onPress={onGroupSettingsClick}
             >
                 <ListItemIcon>
                     <Tune />
                 </ListItemIcon>
                 <ListItemText
-                    primary={globalize.translate('Settings')}
+                    primary={translate('Settings')}
                 />
             </MenuItem>
         );
@@ -203,13 +203,13 @@ const SyncPlayMenu: FC<SyncPlayMenuProps> = ({
         menuItems.push(
             <MenuItem
                 key='sync-play-exit'
-                onClick={onGroupLeaveClick}
+                onPress={onGroupLeaveClick}
             >
                 <ListItemIcon>
                     <PersonRemove />
                 </ListItemIcon>
                 <ListItemText
-                    primary={globalize.translate('LabelSyncPlayLeaveGroup')}
+                    primary={translate('LabelSyncPlayLeaveGroup')}
                 />
             </MenuItem>
         );
@@ -219,7 +219,7 @@ const SyncPlayMenu: FC<SyncPlayMenuProps> = ({
                 <ListItemIcon>
                     <PersonOff />
                 </ListItemIcon>
-                <ListItemText primary={globalize.translate('LabelSyncPlayNoGroups')} />
+                <ListItemText primary={translate('LabelSyncPlayNoGroups')} />
             </MenuItem>
         );
     } else {
@@ -230,7 +230,7 @@ const SyncPlayMenu: FC<SyncPlayMenuProps> = ({
                         key={group.GroupId}
                         // Since we are looping over groups there is no good way to avoid creating a new function here
                         // eslint-disable-next-line react/jsx-no-bind
-                        onClick={() => group.GroupId && onGroupJoinClick(group.GroupId)}
+                        onPress={() => group.GroupId && onGroupJoinClick(group.GroupId)}
                     >
                         <ListItemIcon>
                             <PersonAdd />
@@ -252,12 +252,12 @@ const SyncPlayMenu: FC<SyncPlayMenuProps> = ({
             menuItems.push(
                 <MenuItem
                     key='sync-play-new-group'
-                    onClick={onGroupAddClick}
+                    onPress={onGroupAddClick}
                 >
                     <ListItemIcon>
                         <GroupAdd />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('LabelSyncPlayNewGroupDescription')} />
+                    <ListItemText primary={translate('LabelSyncPlayNewGroupDescription')} />
                 </MenuItem>
             );
         }

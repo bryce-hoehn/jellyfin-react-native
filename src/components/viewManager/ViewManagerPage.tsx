@@ -2,7 +2,7 @@ import { Action } from 'history';
 import { FunctionComponent, useEffect } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import type { RestoreViewFailResponse } from 'types/viewManager';
 
 import viewManager from './viewManager';
@@ -43,19 +43,19 @@ const importController = (
             return Promise.all([
                 import(/* webpackChunkName: "[request]" */ `../../apps/dashboard/controllers/${controller}`),
                 import(/* webpackChunkName: "[request]" */ `../../apps/dashboard/controllers/${view}`)
-                    .then(html => globalize.translateHtml(html))
+                    .then(html => translateHtml(html))
             ]);
         case AppType.Wizard:
             return Promise.all([
                 import(/* webpackChunkName: "[request]" */ `../../apps/wizard/controllers/${controller}`),
                 import(/* webpackChunkName: "[request]" */ `../../apps/wizard/controllers/${view}`)
-                    .then(html => globalize.translateHtml(html))
+                    .then(html => translateHtml(html))
             ]);
         default:
             return Promise.all([
                 import(/* webpackChunkName: "[request]" */ `../../controllers/${controller}`),
                 import(/* webpackChunkName: "[request]" */ `../../controllers/${view}`)
-                    .then(html => globalize.translateHtml(html))
+                    .then(html => translateHtml(html))
             ]);
     }
 };

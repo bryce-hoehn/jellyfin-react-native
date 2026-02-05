@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ServerPathWidget from '../components/widgets/ServerPathWidget';
@@ -70,25 +70,25 @@ export const Component = () => {
     return (
         <Page
             id='dashboardPage'
-            title={globalize.translate('TabDashboard')}
+            title={translate('TabDashboard')}
             className='mainAnimatedPage type-interior'
         >
             <ConfirmDialog
                 open={isRestartConfirmDialogOpen}
-                title={globalize.translate('Restart')}
-                text={globalize.translate('MessageConfirmRestart')}
+                title={translate('Restart')}
+                text={translate('MessageConfirmRestart')}
                 onConfirm={onRestartConfirm}
                 onCancel={closeRestartDialog}
-                confirmButtonText={globalize.translate('Restart')}
+                confirmButtonText={translate('Restart')}
                 confirmButtonColor='error'
             />
             <ConfirmDialog
                 open={isShutdownConfirmDialogOpen}
-                title={globalize.translate('ButtonShutdown')}
-                text={globalize.translate('MessageConfirmShutdown')}
+                title={translate('ButtonShutdown')}
+                text={translate('MessageConfirmShutdown')}
                 onConfirm={onShutdownConfirm}
                 onCancel={closeShutdownDialog}
-                confirmButtonText={globalize.translate('ButtonShutdown')}
+                confirmButtonText={translate('ButtonShutdown')}
                 confirmButtonColor='error'
             />
             <Box className='content-primary'>

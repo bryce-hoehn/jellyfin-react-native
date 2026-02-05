@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import type { RepositoryInfo } from '@jellyfin/sdk/lib/generated-client/models/repository-info';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
@@ -44,14 +44,14 @@ const NewRepositoryForm = ({ open, onClose, onAdd }: IProps) => {
                 }
             }}
         >
-            <DialogTitle>{globalize.translate('HeaderNewRepository')}</DialogTitle>
+            <DialogTitle>{translate('HeaderNewRepository')}</DialogTitle>
 
             <DialogContent>
                 <Stack spacing={3}>
                     <TextField
                         name='Name'
-                        label={globalize.translate('LabelRepositoryName')}
-                        helperText={globalize.translate('LabelRepositoryNameHelp')}
+                        label={translate('LabelRepositoryName')}
+                        helperText={translate('LabelRepositoryNameHelp')}
                         slotProps={{
                             htmlInput: {
                                 required: true
@@ -61,8 +61,8 @@ const NewRepositoryForm = ({ open, onClose, onAdd }: IProps) => {
 
                     <TextField
                         name='Url'
-                        label={globalize.translate('LabelRepositoryUrl')}
-                        helperText={globalize.translate('LabelRepositoryUrlHelp')}
+                        label={translate('LabelRepositoryUrl')}
+                        helperText={translate('LabelRepositoryUrlHelp')}
                         type='url'
                     />
                 </Stack>
@@ -70,10 +70,10 @@ const NewRepositoryForm = ({ open, onClose, onAdd }: IProps) => {
 
             <DialogActions>
                 <Button
-                    onClick={onClose}
+                    onPress={onClose}
                     variant='text'
-                >{globalize.translate('ButtonCancel')}</Button>
-                <Button type='submit'>{globalize.translate('Add')}</Button>
+                >{translate('ButtonCancel')}</Button>
+                <Button type='submit'>{translate('Add')}</Button>
             </DialogActions>
         </Dialog>
     );

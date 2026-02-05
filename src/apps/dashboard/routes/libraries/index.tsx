@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -55,7 +55,7 @@ export const Component = () => {
     return (
         <Page
             id='mediaLibraryPage'
-            title={globalize.translate('HeaderLibraries')}
+            title={translate('HeaderLibraries')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>
@@ -63,18 +63,18 @@ export const Component = () => {
                     <Stack direction='row' alignItems={'center'} spacing={1.5}>
                         <Button
                             startIcon={<Add />}
-                            onClick={showMediaLibraryCreator}
+                            onPress={showMediaLibraryCreator}
                         >
-                            {globalize.translate('ButtonAddMediaLibrary')}
+                            {translate('ButtonAddMediaLibrary')}
                         </Button>
                         <Button
-                            onClick={onScanLibraries}
+                            onPress={onScanLibraries}
                             startIcon={<RefreshIcon />}
                             loading={librariesTask && librariesTask.State !== TaskState.Idle}
                             loadingPosition='start'
                             variant='outlined'
                         >
-                            {globalize.translate('ButtonScanAllLibraries')}
+                            {translate('ButtonScanAllLibraries')}
                         </Button>
                         {(librariesTask && librariesTask.State == TaskState.Running) && (
                             <TaskProgress task={librariesTask} />

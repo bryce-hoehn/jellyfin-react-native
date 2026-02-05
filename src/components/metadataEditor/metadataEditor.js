@@ -41,7 +41,7 @@ function closeDialog() {
 
 function submitUpdatedItem(form, item) {
     function afterContentTypeUpdated() {
-        toast(globalize.translate('MessageItemSaved'));
+        toast(translate('MessageItemSaved'));
 
         loading.hide();
         closeDialog();
@@ -473,10 +473,10 @@ function loadExternalIds(context, item, externalIds) {
 
         let fullName = idInfo.Name;
         if (idInfo.Type) {
-            fullName = idInfo.Name + ' ' + globalize.translate(idInfo.Type);
+            fullName = idInfo.Name + ' ' + translate(idInfo.Type);
         }
 
-        const labelText = globalize.translate('LabelDynamicExternalId', escapeHtml(fullName));
+        const labelText = translate('LabelDynamicExternalId', escapeHtml(fullName));
 
         html += '<div class="inputContainer">';
         html += '<div class="flex align-items-center">';
@@ -659,17 +659,17 @@ function setFieldVisibilities(context, item) {
     }
 
     if (item.Type === 'Person') {
-        context.querySelector('#txtName').label(globalize.translate('LabelName'));
-        context.querySelector('#txtSortName').label(globalize.translate('LabelSortName'));
-        context.querySelector('#txtOriginalName').label(globalize.translate('LabelOriginalName'));
-        context.querySelector('#txtProductionYear').label(globalize.translate('LabelBirthYear'));
-        context.querySelector('#txtPremiereDate').label(globalize.translate('LabelBirthDate'));
-        context.querySelector('#txtEndDate').label(globalize.translate('LabelDeathDate'));
+        context.querySelector('#txtName').label(translate('LabelName'));
+        context.querySelector('#txtSortName').label(translate('LabelSortName'));
+        context.querySelector('#txtOriginalName').label(translate('LabelOriginalName'));
+        context.querySelector('#txtProductionYear').label(translate('LabelBirthYear'));
+        context.querySelector('#txtPremiereDate').label(translate('LabelBirthDate'));
+        context.querySelector('#txtEndDate').label(translate('LabelDeathDate'));
         showElement('#fldPlaceOfBirth');
     } else {
-        context.querySelector('#txtProductionYear').label(globalize.translate('LabelYear'));
-        context.querySelector('#txtPremiereDate').label(globalize.translate('LabelReleaseDate'));
-        context.querySelector('#txtEndDate').label(globalize.translate('LabelEndDate'));
+        context.querySelector('#txtProductionYear').label(translate('LabelYear'));
+        context.querySelector('#txtPremiereDate').label(translate('LabelReleaseDate'));
+        context.querySelector('#txtEndDate').label(translate('LabelEndDate'));
         hideElement('#fldPlaceOfBirth');
     }
 
@@ -689,13 +689,13 @@ function setFieldVisibilities(context, item) {
         showElement('#fldIndexNumber');
 
         if (item.Type === 'Episode') {
-            context.querySelector('#txtIndexNumber').label(globalize.translate('LabelEpisodeNumber'));
+            context.querySelector('#txtIndexNumber').label(translate('LabelEpisodeNumber'));
         } else if (item.Type === 'Season') {
-            context.querySelector('#txtIndexNumber').label(globalize.translate('LabelSeasonNumber'));
+            context.querySelector('#txtIndexNumber').label(translate('LabelSeasonNumber'));
         } else if (item.Type === 'Audio') {
-            context.querySelector('#txtIndexNumber').label(globalize.translate('LabelTrackNumber'));
+            context.querySelector('#txtIndexNumber').label(translate('LabelTrackNumber'));
         } else {
-            context.querySelector('#txtIndexNumber').label(globalize.translate('LabelNumber'));
+            context.querySelector('#txtIndexNumber').label(translate('LabelNumber'));
         }
     } else {
         hideElement('#fldIndexNumber');
@@ -705,11 +705,11 @@ function setFieldVisibilities(context, item) {
         showElement('#fldParentIndexNumber');
 
         if (item.Type === 'Episode') {
-            context.querySelector('#txtParentIndexNumber').label(globalize.translate('LabelSeasonNumber'));
+            context.querySelector('#txtParentIndexNumber').label(translate('LabelSeasonNumber'));
         } else if (item.Type === 'Audio') {
-            context.querySelector('#txtParentIndexNumber').label(globalize.translate('LabelDiscNumber'));
+            context.querySelector('#txtParentIndexNumber').label(translate('LabelDiscNumber'));
         } else {
-            context.querySelector('#txtParentIndexNumber').label(globalize.translate('LabelParentNumber'));
+            context.querySelector('#txtParentIndexNumber').label(translate('LabelParentNumber'));
         }
     } else {
         hideElement('#fldParentIndexNumber', context);
@@ -719,23 +719,23 @@ function setFieldVisibilities(context, item) {
         showElement('#fldDisplayOrder', context);
         hideElement('.seriesDisplayOrderDescription', context);
 
-        context.querySelector('#selectDisplayOrder').innerHTML = '<option value="Default">' + globalize.translate('DateModified') + '<option value="SortName">' + globalize.translate('SortName') + '</option><option value="PremiereDate">' + globalize.translate('ReleaseDate') + '</option>';
+        context.querySelector('#selectDisplayOrder').innerHTML = '<option value="Default">' + translate('DateModified') + '<option value="SortName">' + translate('SortName') + '</option><option value="PremiereDate">' + translate('ReleaseDate') + '</option>';
     } else if (item.Type === 'Series') {
         showElement('#fldDisplayOrder', context);
         showElement('.seriesDisplayOrderDescription', context);
 
         let html = '';
-        html += '<option value="">' + globalize.translate('Aired') + '</option>';
-        html += '<option value="originalAirDate">' + globalize.translate('OriginalAirDate') + '</option>';
-        html += '<option value="absolute">' + globalize.translate('Absolute') + '</option>';
+        html += '<option value="">' + translate('Aired') + '</option>';
+        html += '<option value="originalAirDate">' + translate('OriginalAirDate') + '</option>';
+        html += '<option value="absolute">' + translate('Absolute') + '</option>';
         html += '<option value="dvd">DVD</option></option>';
-        html += '<option value="digital">' + globalize.translate('Digital') + '</option>';
-        html += '<option value="storyArc">' + globalize.translate('StoryArc') + '</option>';
-        html += '<option value="production">' + globalize.translate('Production') + '</option>';
+        html += '<option value="digital">' + translate('Digital') + '</option>';
+        html += '<option value="storyArc">' + translate('StoryArc') + '</option>';
+        html += '<option value="production">' + translate('Production') + '</option>';
         html += '<option value="tv">TV</option>';
-        html += '<option value="alternate">' + globalize.translate('Alternate') + '</option>';
-        html += '<option value="regional">' + globalize.translate('Regional') + '</option>';
-        html += '<option value="altdvd">' + globalize.translate('AlternateDVD') + '</option>';
+        html += '<option value="alternate">' + translate('Alternate') + '</option>';
+        html += '<option value="regional">' + translate('Regional') + '</option>';
+        html += '<option value="altdvd">' + translate('AlternateDVD') + '</option>';
 
         context.querySelector('#selectDisplayOrder').innerHTML = html;
     } else {
@@ -912,9 +912,9 @@ function populateRatings(allParentalRatings, select, currentValue) {
 function populateStatus(select) {
     let html = '';
     html += '<option value=""></option>';
-    html += `<option value="${SeriesStatus.Continuing}">${escapeHtml(globalize.translate('Continuing'))}</option>`;
-    html += `<option value="${SeriesStatus.Ended}">${escapeHtml(globalize.translate('Ended'))}</option>`;
-    html += `<option value="${SeriesStatus.Unreleased}">${escapeHtml(globalize.translate('Unreleased'))}</option>`;
+    html += `<option value="${SeriesStatus.Continuing}">${escapeHtml(translate('Continuing'))}</option>`;
+    html += `<option value="${SeriesStatus.Ended}">${escapeHtml(translate('Ended'))}</option>`;
+    html += `<option value="${SeriesStatus.Unreleased}">${escapeHtml(translate('Unreleased'))}</option>`;
     select.innerHTML = html;
 }
 
@@ -972,7 +972,7 @@ function populatePeople(context, people) {
         if (person.Role && person.Role !== lastType) {
             html += '<div class="secondary">' + escapeHtml(person.Role) + '</div>';
         } else {
-            html += '<div class="secondary">' + globalize.translate(person.Type) + '</div>';
+            html += '<div class="secondary">' + translate(person.Type) + '</div>';
         }
 
         html += '</button>';
@@ -1005,30 +1005,30 @@ function fillMetadataSettings(context, item, lockedFields) {
     lockedFields = lockedFields || [];
 
     const lockedFieldsList = [
-        { name: globalize.translate('Name'), value: 'Name' },
-        { name: globalize.translate('Overview'), value: 'Overview' },
-        { name: globalize.translate('Genres'), value: 'Genres' },
-        { name: globalize.translate('ParentalRating'), value: 'OfficialRating' },
-        { name: globalize.translate('People'), value: 'Cast' }
+        { name: translate('Name'), value: 'Name' },
+        { name: translate('Overview'), value: 'Overview' },
+        { name: translate('Genres'), value: 'Genres' },
+        { name: translate('ParentalRating'), value: 'OfficialRating' },
+        { name: translate('People'), value: 'Cast' }
     ];
 
     if (item.Type === 'Person') {
-        lockedFieldsList.push({ name: globalize.translate('BirthLocation'), value: 'ProductionLocations' });
+        lockedFieldsList.push({ name: translate('BirthLocation'), value: 'ProductionLocations' });
     } else {
-        lockedFieldsList.push({ name: globalize.translate('ProductionLocations'), value: 'ProductionLocations' });
+        lockedFieldsList.push({ name: translate('ProductionLocations'), value: 'ProductionLocations' });
     }
 
     if (item.Type === 'Series') {
-        lockedFieldsList.push({ name: globalize.translate('Runtime'), value: 'Runtime' });
+        lockedFieldsList.push({ name: translate('Runtime'), value: 'Runtime' });
     }
 
-    lockedFieldsList.push({ name: globalize.translate('Studios'), value: 'Studios' });
-    lockedFieldsList.push({ name: globalize.translate('Tags'), value: 'Tags' });
+    lockedFieldsList.push({ name: translate('Studios'), value: 'Studios' });
+    lockedFieldsList.push({ name: translate('Tags'), value: 'Tags' });
 
     let html = '';
 
-    html += '<h2>' + globalize.translate('HeaderEnabledFields') + '</h2>';
-    html += '<p>' + globalize.translate('HeaderEnabledFieldsHelp') + '</p>';
+    html += '<h2>' + translate('HeaderEnabledFields') + '</h2>';
+    html += '<p>' + translate('HeaderEnabledFieldsHelp') + '</p>';
     html += getLockedFieldsHtml(lockedFieldsList, lockedFields);
     container.innerHTML = html;
 }
@@ -1092,7 +1092,7 @@ function show(itemId, serverId, resolve) {
 
     let html = '';
 
-    html += globalize.translateHtml(template, 'core');
+    html += translateHtml(template, 'core');
 
     dlg.innerHTML = html;
 
@@ -1126,7 +1126,7 @@ export default {
         return new Promise(function () {
             loading.show();
 
-            elem.innerHTML = globalize.translateHtml(template, 'core');
+            elem.innerHTML = translateHtml(template, 'core');
 
             elem.querySelector('.formDialogFooter').classList.remove('formDialogFooter');
             elem.querySelector('.btnClose').classList.add('hide');

@@ -3,7 +3,7 @@ import type { RepositoryInfo } from '@jellyfin/sdk/lib/generated-client/models/r
 import ListItem from '@mui/material/ListItem';
 import Tooltip from '@mui/material/Tooltip';
 import Delete from '@mui/icons-material/Delete';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -38,18 +38,18 @@ const RepositoryListItem = ({ repository, onDelete }: IProps) => {
         <>
             <ConfirmDialog
                 open={isConfirmDeleteOpen}
-                title={globalize.translate('ConfirmDeleteRepository')}
-                text={globalize.translate('DeleteRepositoryConfirmation')}
+                title={translate('ConfirmDeleteRepository')}
+                text={translate('DeleteRepositoryConfirmation')}
                 onConfirm={onConfirmDelete}
                 onCancel={onCancel}
                 confirmButtonColor='error'
-                confirmButtonText={globalize.translate('Delete')}
+                confirmButtonText={translate('Delete')}
             />
             <ListItem
                 disablePadding
                 secondaryAction={
-                    <Tooltip disableInteractive title={globalize.translate('ButtonRemove')}>
-                        <IconButton onClick={confirmDeletePrompt}>
+                    <Tooltip disableInteractive title={translate('ButtonRemove')}>
+                        <IconButton onPress={confirmDeletePrompt}>
                             <Delete />
                         </IconButton>
                     </Tooltip>

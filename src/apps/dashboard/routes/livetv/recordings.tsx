@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Page from 'components/Page';
 import { QUERY_KEY, useNamedConfiguration } from 'hooks/useNamedConfiguration';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ActionFunctionArgs, Form, useActionData, useNavigation, useSubmit } from 'react-router-dom';
 import type { LiveTvOptions } from '@jellyfin/sdk/lib/generated-client/models/live-tv-options';
 import Loading from 'components/loading/LoadingComponent';
@@ -186,28 +186,28 @@ export const Component = () => {
     return (
         <Page
             id='liveTvSettingsPage'
-            title={globalize.translate('HeaderDVR')}
+            title={translate('HeaderDVR')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>
                 {isError ? (
-                    <Alert severity='error'>{globalize.translate('LiveTVPageLoadError')}</Alert>
+                    <Alert severity='error'>{translate('LiveTVPageLoadError')}</Alert>
                 ) : (
                     <Form method='POST' onSubmit={onSubmit}>
                         <Stack spacing={3}>
-                            <Typography variant='h1'>{globalize.translate('HeaderDVR')}</Typography>
+                            <Typography variant='h1'>{translate('HeaderDVR')}</Typography>
 
                             {(!isSubmitting && actionData?.isSaved) && (
                                 <Alert severity='success'>
-                                    {globalize.translate('SettingsSaved')}
+                                    {translate('SettingsSaved')}
                                 </Alert>
                             )}
 
                             <TextField
                                 select
                                 name='GuideDays'
-                                label={globalize.translate('LabelNumberOfGuideDays')}
-                                helperText={globalize.translate('LabelNumberOfGuideDaysHelp')}
+                                label={translate('LabelNumberOfGuideDays')}
+                                helperText={translate('LabelNumberOfGuideDaysHelp')}
                                 value={config.GuideDays || ''}
                                 onChange={onChange}
                                 slotProps={{
@@ -220,7 +220,7 @@ export const Component = () => {
                                     }
                                 }}
                             >
-                                <MenuItem value=''>{globalize.translate('Auto')}</MenuItem>
+                                <MenuItem value=''>{translate('Auto')}</MenuItem>
                                 <MenuItem value='1'>1</MenuItem>
                                 <MenuItem value='2'>2</MenuItem>
                                 <MenuItem value='3'>3</MenuItem>
@@ -239,15 +239,15 @@ export const Component = () => {
 
                             <TextField
                                 name='RecordingPath'
-                                label={globalize.translate('LabelRecordingPath')}
-                                helperText={globalize.translate('LabelRecordingPathHelp')}
+                                label={translate('LabelRecordingPath')}
+                                helperText={translate('LabelRecordingPathHelp')}
                                 value={config.RecordingPath}
                                 onChange={onChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <IconButton edge='end' onClick={showRecordingPathPicker}>
+                                                <IconButton edge='end' onPress={showRecordingPathPicker}>
                                                     <SearchIcon />
                                                 </IconButton>
                                             </InputAdornment>
@@ -262,14 +262,14 @@ export const Component = () => {
 
                             <TextField
                                 name='MovieRecordingPath'
-                                label={globalize.translate('LabelMovieRecordingPath')}
+                                label={translate('LabelMovieRecordingPath')}
                                 value={config.MovieRecordingPath}
                                 onChange={onChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <IconButton edge='end' onClick={showMovieRecordingPathPicker}>
+                                                <IconButton edge='end' onPress={showMovieRecordingPathPicker}>
                                                     <SearchIcon />
                                                 </IconButton>
                                             </InputAdornment>
@@ -284,14 +284,14 @@ export const Component = () => {
 
                             <TextField
                                 name='SeriesRecordingPath'
-                                label={globalize.translate('LabelSeriesRecordingPath')}
+                                label={translate('LabelSeriesRecordingPath')}
                                 value={config.SeriesRecordingPath}
                                 onChange={onChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <IconButton edge='end' onClick={showSeriesRecordingPathPicker}>
+                                                <IconButton edge='end' onPress={showSeriesRecordingPathPicker}>
                                                     <SearchIcon />
                                                 </IconButton>
                                             </InputAdornment>
@@ -304,18 +304,18 @@ export const Component = () => {
                                 }}
                             />
 
-                            <Typography variant='h2'>{globalize.translate('HeaderDefaultRecordingSettings')}</Typography>
+                            <Typography variant='h2'>{translate('HeaderDefaultRecordingSettings')}</Typography>
 
                             <TextField
                                 name='PrePaddingMinutes'
-                                label={globalize.translate('LabelStartWhenPossible')}
+                                label={translate('LabelStartWhenPossible')}
                                 value={prePaddingMinutes}
                                 onChange={onPrePaddingMinutesChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <Typography variant='body1' color='text.secondary'>{globalize.translate('MinutesBefore')}</Typography>
+                                                <Typography variant='body1' color='text.secondary'>{translate('MinutesBefore')}</Typography>
                                             </InputAdornment>
                                         )
                                     }
@@ -324,32 +324,32 @@ export const Component = () => {
 
                             <TextField
                                 name='PostPaddingMinutes'
-                                label={globalize.translate('LabelStopWhenPossible')}
+                                label={translate('LabelStopWhenPossible')}
                                 value={postPaddingMinutes}
                                 onChange={onPostPaddingMinutesChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <Typography variant='body1' color='text.secondary'>{globalize.translate('MinutesAfter')}</Typography>
+                                                <Typography variant='body1' color='text.secondary'>{translate('MinutesAfter')}</Typography>
                                             </InputAdornment>
                                         )
                                     }
                                 }}
                             />
 
-                            <Typography variant='h2'>{globalize.translate('HeaderRecordingPostProcessing')}</Typography>
+                            <Typography variant='h2'>{translate('HeaderRecordingPostProcessing')}</Typography>
 
                             <TextField
                                 name='RecordingPostProcessor'
-                                label={globalize.translate('LabelPostProcessor')}
+                                label={translate('LabelPostProcessor')}
                                 value={config.RecordingPostProcessor}
                                 onChange={onChange}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position='end'>
-                                                <IconButton edge='end' onClick={showPostProcessorPicker}>
+                                                <IconButton edge='end' onPress={showPostProcessorPicker}>
                                                     <SearchIcon />
                                                 </IconButton>
                                             </InputAdornment>
@@ -364,13 +364,13 @@ export const Component = () => {
 
                             <TextField
                                 name='RecordingPostProcessorArguments'
-                                label={globalize.translate('LabelPostProcessorArguments')}
-                                helperText={globalize.translate('LabelPostProcessorArgumentsHelp')}
+                                label={translate('LabelPostProcessorArguments')}
+                                helperText={translate('LabelPostProcessorArgumentsHelp')}
                                 value={config.RecordingPostProcessorArguments}
                                 onChange={onChange}
                             />
 
-                            <Typography variant='h2'>{globalize.translate('HeaderRecordingMetadataSaving')}</Typography>
+                            <Typography variant='h2'>{translate('HeaderRecordingMetadataSaving')}</Typography>
 
                             <FormControl>
                                 <FormControlLabel
@@ -381,9 +381,9 @@ export const Component = () => {
                                             onChange={onCheckboxChange}
                                         />
                                     }
-                                    label={globalize.translate('SaveRecordingNFO')}
+                                    label={translate('SaveRecordingNFO')}
                                 />
-                                <FormHelperText>{globalize.translate('SaveRecordingNFOHelp')}</FormHelperText>
+                                <FormHelperText>{translate('SaveRecordingNFOHelp')}</FormHelperText>
                             </FormControl>
 
                             <FormControl>
@@ -395,13 +395,13 @@ export const Component = () => {
                                             onChange={onCheckboxChange}
                                         />
                                     }
-                                    label={globalize.translate('SaveRecordingImages')}
+                                    label={translate('SaveRecordingImages')}
                                 />
-                                <FormHelperText>{globalize.translate('SaveRecordingImagesHelp')}</FormHelperText>
+                                <FormHelperText>{translate('SaveRecordingImagesHelp')}</FormHelperText>
                             </FormControl>
 
                             <Button type='submit' size='large'>
-                                {globalize.translate('Save')}
+                                {translate('Save')}
                             </Button>
                         </Stack>
                     </Form>

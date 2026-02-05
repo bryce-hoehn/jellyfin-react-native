@@ -114,7 +114,7 @@ function showEditor(itemId, serverId, options) {
 
         let html = '';
 
-        html += globalize.translateHtml(template, 'core');
+        html += translateHtml(template, 'core');
 
         dlg.innerHTML = html;
 

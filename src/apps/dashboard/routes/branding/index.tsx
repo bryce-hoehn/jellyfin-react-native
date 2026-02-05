@@ -20,7 +20,7 @@ import Image from 'components/Image';
 import Page from 'components/Page';
 import { SPLASHSCREEN_URL } from 'constants/branding';
 import { useApi } from 'hooks/useApi';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { queryClient } from 'utils/query/queryClient';
 import { ActionData } from 'types/actionData';
@@ -178,7 +178,7 @@ export const Component = () => {
     return (
         <Page
             id='brandingPage'
-            title={globalize.translate('HeaderBranding')}
+            title={translate('HeaderBranding')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>
@@ -188,18 +188,18 @@ export const Component = () => {
                 >
                     <Stack spacing={3}>
                         <Typography variant='h1'>
-                            {globalize.translate('HeaderBranding')}
+                            {translate('HeaderBranding')}
                         </Typography>
 
                         {!isSubmitting && actionData?.isSaved && (
                             <Alert severity='success'>
-                                {globalize.translate('SettingsSaved')}
+                                {translate('SettingsSaved')}
                             </Alert>
                         )}
 
                         {error && (
                             <Alert severity='error'>
-                                {globalize.translate(error)}
+                                {translate(error)}
                             </Alert>
                         )}
 
@@ -233,11 +233,11 @@ export const Component = () => {
                                             onChange={setSplashscreenEnabled}
                                         />
                                     }
-                                    label={globalize.translate('EnableSplashScreen')}
+                                    label={translate('EnableSplashScreen')}
                                 />
 
                                 <Typography variant='body2'>
-                                    {globalize.translate('CustomSplashScreenSize')}
+                                    {translate('CustomSplashScreenSize')}
                                 </Typography>
 
                                 <Button
@@ -252,7 +252,7 @@ export const Component = () => {
                                         hidden
                                         onChange={onSplashscreenUpload}
                                     />
-                                    {globalize.translate('UploadCustomImage')}
+                                    {translate('UploadCustomImage')}
                                 </Button>
 
                                 <Button
@@ -260,9 +260,9 @@ export const Component = () => {
                                     color='error'
                                     startIcon={<Delete />}
                                     disabled={!isSplashscreenEnabled}
-                                    onClick={onSplashscreenDelete}
+                                    onPress={onSplashscreenDelete}
                                 >
-                                    {globalize.translate('DeleteCustomImage')}
+                                    {translate('DeleteCustomImage')}
                                 </Button>
                             </Stack>
                         </Stack>
@@ -273,8 +273,8 @@ export const Component = () => {
                             minRows={5}
                             maxRows={5}
                             name={BrandingOption.LoginDisclaimer}
-                            label={globalize.translate('LabelLoginDisclaimer')}
-                            helperText={globalize.translate('LabelLoginDisclaimerHelp')}
+                            label={translate('LabelLoginDisclaimer')}
+                            helperText={translate('LabelLoginDisclaimerHelp')}
                             value={brandingOptions?.LoginDisclaimer}
                             onChange={setBrandingOption}
                             slotProps={{
@@ -290,8 +290,8 @@ export const Component = () => {
                             minRows={5}
                             maxRows={20}
                             name={BrandingOption.CustomCss}
-                            label={globalize.translate('LabelCustomCss')}
-                            helperText={globalize.translate('LabelCustomCssHelp')}
+                            label={translate('LabelCustomCss')}
+                            helperText={translate('LabelCustomCssHelp')}
                             spellCheck={false}
                             value={brandingOptions?.CustomCss}
                             onChange={setBrandingOption}
@@ -306,7 +306,7 @@ export const Component = () => {
                             type='submit'
                             size='large'
                         >
-                            {globalize.translate('Save')}
+                            {translate('Save')}
                         </Button>
                     </Stack>
                 </Form>

@@ -177,8 +177,8 @@ export default function (view, params, tabContent) {
                 html = '';
 
                 html += '<div class="noItemsMessage centerMessage">';
-                html += '<h1>' + globalize.translate('MessageNothingHere') + '</h1>';
-                html += '<p>' + globalize.translate('MessageNoCollectionsAvailable') + '</p>';
+                html += '<h1>' + translate('MessageNothingHere') + '</h1>';
+                html += '<p>' + translate('MessageNoCollectionsAvailable') + '</p>';
                 html += '</div>';
             }
 
@@ -206,19 +206,19 @@ export default function (view, params, tabContent) {
         tabElement.querySelector('.btnSort').addEventListener('click', function (e) {
             libraryBrowser.showSortMenu({
                 items: [{
-                    name: globalize.translate('Name'),
+                    name: translate('Name'),
                     id: 'SortName'
                 }, {
-                    name: globalize.translate('OptionCommunityRating'),
+                    name: translate('OptionCommunityRating'),
                     id: 'CommunityRating,SortName'
                 }, {
-                    name: globalize.translate('OptionDateAdded'),
+                    name: translate('OptionDateAdded'),
                     id: 'DateCreated,SortName'
                 }, {
-                    name: globalize.translate('OptionParentalRating'),
+                    name: translate('OptionParentalRating'),
                     id: 'OfficialRating,SortName'
                 }, {
-                    name: globalize.translate('OptionReleaseDate'),
+                    name: translate('OptionReleaseDate'),
                     id: 'PremiereDate,SortName'
                 }],
                 callback: function () {

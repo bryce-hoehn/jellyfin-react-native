@@ -1,5 +1,5 @@
 import React from 'react';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Widget from './Widget';
 import DeviceCard from 'apps/dashboard/features/devices/components/DeviceCard';
 import Stack from '@mui/material/Stack';
@@ -10,7 +10,7 @@ const DevicesWidget = () => {
 
     return (
         <Widget
-            title={globalize.translate('HeaderDevices')}
+            title={translate('HeaderDevices')}
             href='/dashboard/devices'
         >
             <Stack direction='row' flexWrap='wrap' gap={2}>

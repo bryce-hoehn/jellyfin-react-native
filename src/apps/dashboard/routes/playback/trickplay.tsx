@@ -1,6 +1,6 @@
 import React from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { type ActionFunctionArgs, Form, useActionData, useNavigation } from 'react-router-dom';
 import { QUERY_KEY, useConfiguration } from 'hooks/useConfiguration';
@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import Loading from 'components/loading/LoadingComponent';
 import FormHelperText from '@mui/material/FormHelperText';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
@@ -74,18 +74,18 @@ export const Component = () => {
         <Page
             id='trickplayConfigurationPage'
             className='mainAnimatedPage type-interior'
-            title={globalize.translate('Trickplay')}
+            title={translate('Trickplay')}
         >
             <Box className='content-primary'>
                 <Form method='POST'>
                     <Stack spacing={3}>
                         <Typography variant='h1'>
-                            {globalize.translate('Trickplay')}
+                            {translate('Trickplay')}
                         </Typography>
 
                         {!isSubmitting && actionData?.isSaved && (
                             <Alert severity='success'>
-                                {globalize.translate('SettingsSaved')}
+                                {translate('SettingsSaved')}
                             </Alert>
                         )}
 
@@ -97,7 +97,7 @@ export const Component = () => {
                                         defaultChecked={defaultConfig.TrickplayOptions?.EnableHwAcceleration}
                                     />
                                 }
-                                label={globalize.translate('LabelTrickplayAccel')}
+                                label={translate('LabelTrickplayAccel')}
                             />
                         </FormControl>
 
@@ -109,9 +109,9 @@ export const Component = () => {
                                         defaultChecked={defaultConfig.TrickplayOptions?.EnableHwEncoding}
                                     />
                                 }
-                                label={globalize.translate('LabelTrickplayAccelEncoding')}
+                                label={translate('LabelTrickplayAccelEncoding')}
                             />
-                            <FormHelperText>{globalize.translate('LabelTrickplayAccelEncodingHelp')}</FormHelperText>
+                            <FormHelperText>{translate('LabelTrickplayAccelEncodingHelp')}</FormHelperText>
                         </FormControl>
 
                         <FormControl>
@@ -122,43 +122,43 @@ export const Component = () => {
                                         defaultChecked={defaultConfig.TrickplayOptions?.EnableKeyFrameOnlyExtraction}
                                     />
                                 }
-                                label={globalize.translate('LabelTrickplayKeyFrameOnlyExtraction')}
+                                label={translate('LabelTrickplayKeyFrameOnlyExtraction')}
                             />
-                            <FormHelperText>{globalize.translate('LabelTrickplayKeyFrameOnlyExtractionHelp')}</FormHelperText>
+                            <FormHelperText>{translate('LabelTrickplayKeyFrameOnlyExtractionHelp')}</FormHelperText>
                         </FormControl>
 
                         <TextField
                             name='ScanBehavior'
                             select
                             defaultValue={defaultConfig.TrickplayOptions?.ScanBehavior}
-                            label={globalize.translate('LabelScanBehavior')}
-                            helperText={globalize.translate('LabelScanBehaviorHelp')}
+                            label={translate('LabelScanBehavior')}
+                            helperText={translate('LabelScanBehaviorHelp')}
                         >
-                            <MenuItem value={TrickplayScanBehavior.NonBlocking}>{globalize.translate('NonBlockingScan')}</MenuItem>
-                            <MenuItem value={TrickplayScanBehavior.Blocking}>{globalize.translate('BlockingScan')}</MenuItem>
+                            <MenuItem value={TrickplayScanBehavior.NonBlocking}>{translate('NonBlockingScan')}</MenuItem>
+                            <MenuItem value={TrickplayScanBehavior.Blocking}>{translate('BlockingScan')}</MenuItem>
                         </TextField>
 
                         <TextField
                             name='ProcessPriority'
                             select
                             defaultValue={defaultConfig.TrickplayOptions?.ProcessPriority}
-                            label={globalize.translate('LabelProcessPriority')}
-                            helperText={globalize.translate('LabelProcessPriorityHelp')}
+                            label={translate('LabelProcessPriority')}
+                            helperText={translate('LabelProcessPriorityHelp')}
                         >
-                            <MenuItem value={ProcessPriorityClass.High}>{globalize.translate('PriorityHigh')}</MenuItem>
-                            <MenuItem value={ProcessPriorityClass.AboveNormal}>{globalize.translate('PriorityAboveNormal')}</MenuItem>
-                            <MenuItem value={ProcessPriorityClass.Normal}>{globalize.translate('PriorityNormal')}</MenuItem>
-                            <MenuItem value={ProcessPriorityClass.BelowNormal}>{globalize.translate('PriorityBelowNormal')}</MenuItem>
-                            <MenuItem value={ProcessPriorityClass.Idle}>{globalize.translate('PriorityIdle')}</MenuItem>
+                            <MenuItem value={ProcessPriorityClass.High}>{translate('PriorityHigh')}</MenuItem>
+                            <MenuItem value={ProcessPriorityClass.AboveNormal}>{translate('PriorityAboveNormal')}</MenuItem>
+                            <MenuItem value={ProcessPriorityClass.Normal}>{translate('PriorityNormal')}</MenuItem>
+                            <MenuItem value={ProcessPriorityClass.BelowNormal}>{translate('PriorityBelowNormal')}</MenuItem>
+                            <MenuItem value={ProcessPriorityClass.Idle}>{translate('PriorityIdle')}</MenuItem>
                         </TextField>
 
                         <TextField
-                            label={globalize.translate('LabelImageInterval')}
+                            label={translate('LabelImageInterval')}
                             name='ImageInterval'
                             type='number'
                             inputMode='numeric'
                             defaultValue={defaultConfig.TrickplayOptions?.Interval}
-                            helperText={globalize.translate('LabelImageIntervalHelp')}
+                            helperText={translate('LabelImageIntervalHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 1,
@@ -168,10 +168,10 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelWidthResolutions')}
+                            label={translate('LabelWidthResolutions')}
                             name='WidthResolutions'
                             defaultValue={defaultConfig.TrickplayOptions?.WidthResolutions}
-                            helperText={globalize.translate('LabelWidthResolutionsHelp')}
+                            helperText={translate('LabelWidthResolutionsHelp')}
                             slotProps={{
                                 htmlInput: {
                                     required: true,
@@ -181,12 +181,12 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelTileWidth')}
+                            label={translate('LabelTileWidth')}
                             name='TileWidth'
                             type='number'
                             inputMode='numeric'
                             defaultValue={defaultConfig.TrickplayOptions?.TileWidth}
-                            helperText={globalize.translate('LabelTileWidthHelp')}
+                            helperText={translate('LabelTileWidthHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 1,
@@ -196,12 +196,12 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelTileHeight')}
+                            label={translate('LabelTileHeight')}
                             name='TileHeight'
                             type='number'
                             inputMode='numeric'
                             defaultValue={defaultConfig.TrickplayOptions?.TileHeight}
-                            helperText={globalize.translate('LabelTileHeightHelp')}
+                            helperText={translate('LabelTileHeightHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 1,
@@ -211,12 +211,12 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelJpegQuality')}
+                            label={translate('LabelJpegQuality')}
                             name='JpegQuality'
                             type='number'
                             inputMode='numeric'
                             defaultValue={defaultConfig.TrickplayOptions?.JpegQuality}
-                            helperText={globalize.translate('LabelJpegQualityHelp')}
+                            helperText={translate('LabelJpegQualityHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 1,
@@ -227,12 +227,12 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelQscale')}
+                            label={translate('LabelQscale')}
                             name='Qscale'
                             type='number'
                             inputMode='numeric'
                             defaultValue={defaultConfig.TrickplayOptions?.Qscale}
-                            helperText={globalize.translate('LabelQscaleHelp')}
+                            helperText={translate('LabelQscaleHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 2,
@@ -243,12 +243,12 @@ export const Component = () => {
                         />
 
                         <TextField
-                            label={globalize.translate('LabelTrickplayThreads')}
+                            label={translate('LabelTrickplayThreads')}
                             name='TrickplayThreads'
                             type='number'
                             inputMode='numeric'
                             defaultValue={defaultConfig.TrickplayOptions?.ProcessThreads}
-                            helperText={globalize.translate('LabelTrickplayThreadsHelp')}
+                            helperText={translate('LabelTrickplayThreadsHelp')}
                             slotProps={{
                                 htmlInput: {
                                     min: 0,
@@ -261,7 +261,7 @@ export const Component = () => {
                             type='submit'
                             size='large'
                         >
-                            {globalize.translate('Save')}
+                            {translate('Save')}
                         </Button>
                     </Stack>
                 </Form>

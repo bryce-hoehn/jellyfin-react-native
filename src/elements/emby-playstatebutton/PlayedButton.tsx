@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import CheckIcon from '@mui/icons-material/Check';
 
 import { ItemAction } from 'constants/itemAction';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { useTogglePlayedMutation } from 'hooks/useFetchItems';
 
 interface PlayedButtonProps {
@@ -29,15 +29,15 @@ const PlayedButton: FC<PlayedButtonProps> = ({
     const getTitle = useCallback(() => {
         let buttonTitle;
         if (itemType !== BaseItemKind.AudioBook) {
-            buttonTitle = isPlayed ? globalize.translate('Watched') : globalize.translate('MarkPlayed');
+            buttonTitle = isPlayed ? translate('Watched') : translate('MarkPlayed');
         } else {
-            buttonTitle = isPlayed ? globalize.translate('Played') : globalize.translate('MarkPlayed');
+            buttonTitle = isPlayed ? translate('Played') : translate('MarkPlayed');
         }
 
         return buttonTitle;
     }, [itemType, isPlayed]);
 
-    const onClick = useCallback(async () => {
+    const onPress = useCallback(async () => {
         try {
             if (!itemId) {
                 throw new Error('Item has no Id');
@@ -65,7 +65,7 @@ const PlayedButton: FC<PlayedButtonProps> = ({
             title={getTitle()}
             className={className}
             size='small'
-            onClick={onClick}
+            onPress={onPress}
         >
             <CheckIcon
                 color={isPlayed ? 'error' : undefined}

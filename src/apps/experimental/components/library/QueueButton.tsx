@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Queue from '@mui/icons-material/Queue';
 
 import { playbackManager } from 'components/playback/playbackmanager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import type { ItemDto } from 'types/base/models/item-dto';
 
 interface QueueButtonProps {
@@ -37,12 +37,12 @@ const QueueButton: FC<QueueButtonProps> = ({
 
     return (
         <Button
-            title={globalize.translate('AddToPlayQueue')}
+            title={translate('AddToPlayQueue')}
             startIcon={isTextVisible ? <Queue /> : undefined}
-            onClick={queue}
+            onPress={queue}
         >
             {isTextVisible ? (
-                globalize.translate('AddToPlayQueue')
+                translate('AddToPlayQueue')
             ) : (
                 <Queue />
             )}

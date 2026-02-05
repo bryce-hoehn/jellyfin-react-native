@@ -46,7 +46,7 @@ export default class TableOfContents {
         links.forEach((link) => {
             const href = link.getAttribute('href');
 
-            link.onclick = () => {
+            link.onPress = () => {
                 f(href);
                 return false;
             };

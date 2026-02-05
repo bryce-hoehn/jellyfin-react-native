@@ -38,11 +38,11 @@ function authenticateUserByName(page, apiClient, url, username, password) {
         const UnauthorizedOrForbidden = [401, 403];
         if (UnauthorizedOrForbidden.includes(response.status)) {
             const messageKey = response.status === 401 ? 'MessageInvalidUser' : 'MessageUnauthorizedUser';
-            toast(globalize.translate(messageKey));
+            toast(translate(messageKey));
         } else {
             Dashboard.alert({
-                message: globalize.translate('MessageUnableToConnectToServer'),
-                title: globalize.translate('HeaderConnectionFailure')
+                message: translate('MessageUnableToConnectToServer'),
+                title: translate('HeaderConnectionFailure')
             });
         }
     });
@@ -60,8 +60,8 @@ function authenticateQuickConnect(apiClient, targetUrl) {
             dialogOptions: {
                 id: 'quickConnectAlert'
             },
-            title: globalize.translate('QuickConnect'),
-            text: globalize.translate('QuickConnectAuthorizeCode', json.Code)
+            title: translate('QuickConnect'),
+            text: translate('QuickConnectAuthorizeCode', json.Code)
         });
 
         const connectUrl = apiClient.getUrl('/QuickConnect/Connect?Secret=' + json.Secret);
@@ -92,8 +92,8 @@ function authenticateQuickConnect(apiClient, targetUrl) {
                 }
 
                 Dashboard.alert({
-                    message: globalize.translate('QuickConnectDeactivated'),
-                    title: globalize.translate('HeaderError')
+                    message: translate('QuickConnectDeactivated'),
+                    title: translate('HeaderError')
                 });
 
                 console.error('Unable to login with quick connect', e);
@@ -103,8 +103,8 @@ function authenticateQuickConnect(apiClient, targetUrl) {
         return true;
     }, function(e) {
         Dashboard.alert({
-            message: globalize.translate('QuickConnectNotActive'),
-            title: globalize.translate('HeaderError')
+            message: translate('QuickConnectNotActive'),
+            title: translate('HeaderError')
         });
 
         console.error('Quick connect error: ', e);

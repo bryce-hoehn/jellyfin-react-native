@@ -278,7 +278,7 @@ function executeAction(card, target, action) {
                     ids: [playableItemId],
                     serverId: serverId
                 });
-                toast(globalize.translate('MediaQueued'));
+                toast(translate('MediaQueued'));
             } else {
                 playbackManager.queue({
                     ids: [playableItemId],
@@ -396,7 +396,7 @@ function onRecordCommand(serverId, id, type, timerId, seriesTimerId) {
     }
 }
 
-export function onClick(e) {
+export function onPress(e) {
     const card = dom.parentWithClass(e.target, 'itemAction');
 
     if (card) {
@@ -439,7 +439,7 @@ export function on(context, options) {
     options = options || {};
 
     if (options.click !== false) {
-        context.addEventListener('click', onClick);
+        context.addEventListener('click', onPress);
     }
 
     if (options.command !== false) {
@@ -450,7 +450,7 @@ export function on(context, options) {
 export function off(context, options) {
     options = options || {};
 
-    context.removeEventListener('click', onClick);
+    context.removeEventListener('click', onPress);
 
     if (options.command !== false) {
         inputManager.off(context, onCommand);
@@ -471,6 +471,6 @@ export function getShortcutAttributesHtml(item, serverId) {
 export default {
     on,
     off,
-    onClick,
+    onPress,
     getShortcutAttributesHtml
 };

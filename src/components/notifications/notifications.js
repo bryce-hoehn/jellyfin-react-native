@@ -182,21 +182,21 @@ function showPackageInstallNotification(apiClient, installation, status) {
         };
 
         if (status === 'completed') {
-            notification.title = globalize.translate('PackageInstallCompleted', installation.Name, installation.Version);
+            notification.title = translate('PackageInstallCompleted', installation.Name, installation.Version);
             notification.vibrate = true;
         } else if (status === 'cancelled') {
-            notification.title = globalize.translate('PackageInstallCancelled', installation.Name, installation.Version);
+            notification.title = translate('PackageInstallCancelled', installation.Name, installation.Version);
         } else if (status === 'failed') {
-            notification.title = globalize.translate('PackageInstallFailed', installation.Name, installation.Version);
+            notification.title = translate('PackageInstallFailed', installation.Name, installation.Version);
             notification.vibrate = true;
         } else if (status === 'progress') {
-            notification.title = globalize.translate('InstallingPackage', installation.Name, installation.Version);
+            notification.title = translate('InstallingPackage', installation.Name, installation.Version);
 
             notification.actions =
                 [
                     {
                         action: 'cancel-install',
-                        title: globalize.translate('ButtonCancel'),
+                        title: translate('ButtonCancel'),
                         icon: NotificationIcon
                     }
                 ];
@@ -240,7 +240,7 @@ Events.on(serverNotifications, 'ServerShuttingDown', function (e, apiClient) {
     const serverId = apiClient.serverInfo().Id;
     const notification = {
         tag: 'restart' + serverId,
-        title: globalize.translate('ServerNameIsShuttingDown', apiClient.serverInfo().Name)
+        title: translate('ServerNameIsShuttingDown', apiClient.serverInfo().Name)
     };
     showNotification(notification, 0, apiClient);
 });
@@ -249,7 +249,7 @@ Events.on(serverNotifications, 'ServerRestarting', function (e, apiClient) {
     const serverId = apiClient.serverInfo().Id;
     const notification = {
         tag: 'restart' + serverId,
-        title: globalize.translate('ServerNameIsRestarting', apiClient.serverInfo().Name)
+        title: translate('ServerNameIsRestarting', apiClient.serverInfo().Name)
     };
     showNotification(notification, 0, apiClient);
 });
@@ -258,14 +258,14 @@ Events.on(serverNotifications, 'RestartRequired', function (e, apiClient) {
     const serverId = apiClient.serverInfo().Id;
     const notification = {
         tag: 'restart' + serverId,
-        title: globalize.translate('PleaseRestartServerName', apiClient.serverInfo().Name)
+        title: translate('PleaseRestartServerName', apiClient.serverInfo().Name)
     };
 
     notification.actions =
         [
             {
                 action: 'restart',
-                title: globalize.translate('Restart'),
+                title: translate('Restart'),
                 icon: NotificationIcon
             }
         ];

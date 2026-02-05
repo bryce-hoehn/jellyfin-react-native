@@ -26,9 +26,9 @@ class HomeView extends TabbedView {
 
     getTabs() {
         return [{
-            name: globalize.translate('Home')
+            name: translate('Home')
         }, {
-            name: globalize.translate('Favorites')
+            name: translate('Favorites')
         }];
     }
 

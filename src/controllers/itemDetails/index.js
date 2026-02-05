@@ -24,7 +24,7 @@ import { appRouter } from 'components/router/appRouter';
 import itemShortcuts from 'components/shortcuts';
 import { AppFeature } from 'constants/appFeature';
 import { ItemAction } from 'constants/itemAction';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import browser from 'scripts/browser';
 import datetime from 'scripts/datetime';
@@ -206,7 +206,7 @@ function renderTrackSelections(page, instance, item, forceReload) {
     instance._currentPlaybackMediaSources = mediaSources;
 
     page.querySelector('.trackSelections').classList.remove('hide');
-    select.setLabel(globalize.translate('LabelVersion'));
+    select.setLabel(translate('LabelVersion'));
 
     const currentValue = select.value;
 
@@ -237,7 +237,7 @@ function renderVideoSelections(page, mediaSources) {
     });
 
     const select = page.querySelector('.selectVideo');
-    select.setLabel(globalize.translate('Video'));
+    select.setLabel(translate('Video'));
     const selectedId = tracks.length ? tracks[0].Index : -1;
     select.innerHTML = tracks.map(function (v) {
         const selected = v.Index === selectedId ? ' selected' : '';
@@ -271,7 +271,7 @@ function renderAudioSelections(page, mediaSources) {
     });
     tracks.sort(itemHelper.sortTracks);
     const select = page.querySelector('.selectAudio');
-    select.setLabel(globalize.translate('Audio'));
+    select.setLabel(translate('Audio'));
     const selectedId = mediaSource.DefaultAudioStreamIndex;
     select.innerHTML = tracks.map(function (v) {
         const selected = v.Index === selectedId ? ' selected' : '';
@@ -299,11 +299,11 @@ function renderSubtitleSelections(page, mediaSources) {
     });
     tracks.sort(itemHelper.sortTracks);
     const select = page.querySelector('.selectSubtitles');
-    select.setLabel(globalize.translate('Subtitles'));
+    select.setLabel(translate('Subtitles'));
     const selectedId = mediaSource.DefaultSubtitleStreamIndex == null ? -1 : mediaSource.DefaultSubtitleStreamIndex;
 
     let selected = selectedId === -1 ? ' selected' : '';
-    select.innerHTML = '<option value="-1">' + globalize.translate('Off') + '</option>' + tracks.map(function (v) {
+    select.innerHTML = '<option value="-1">' + translate('Off') + '</option>' + tracks.map(function (v) {
         selected = v.Index === selectedId ? ' selected' : '';
         return '<option value="' + v.Index + '" ' + selected + '>' + v.DisplayTitle + '</option>';
     }).join('');
@@ -350,9 +350,9 @@ function reloadPlayButtons(page, item) {
 
         for (const btnPlay of page.querySelectorAll('.btnPlay')) {
             if (isResumable) {
-                btnPlay.title = globalize.translate('ButtonResume');
+                btnPlay.title = translate('ButtonResume');
             } else {
-                btnPlay.title = globalize.translate('Play');
+                btnPlay.title = translate('Play');
             }
         }
     } else {
@@ -414,7 +414,7 @@ function getArtistLinksHtml(artists, serverId, context) {
     let fullHtml = html.join(' / ');
 
     if (numberOfArtists > 10) {
-        fullHtml = globalize.translate('AndOtherArtists', fullHtml, numberOfArtists - 10);
+        fullHtml = translate('AndOtherArtists', fullHtml, numberOfArtists - 10);
     }
 
     return fullHtml;
@@ -609,9 +609,9 @@ function reloadFromItem(instance, page, params, item, user) {
             const durationSinceBorn = intervalToDuration({ start: birthday, end: Date.now() });
             itemBirthday.classList.remove('hide');
             if (item.EndDate) {
-                itemBirthday.innerHTML = globalize.translate('BirthDateValue', birthday.toLocaleDateString());
+                itemBirthday.innerHTML = translate('BirthDateValue', birthday.toLocaleDateString());
             } else {
-                itemBirthday.innerHTML = `${globalize.translate('BirthDateValue', birthday.toLocaleDateString())} ${globalize.translate('AgeValue', durationSinceBorn.years)}`;
+                itemBirthday.innerHTML = `${translate('BirthDateValue', birthday.toLocaleDateString())} ${translate('AgeValue', durationSinceBorn.years)}`;
             }
         } catch (err) {
             console.error(err);
@@ -631,9 +631,9 @@ function reloadFromItem(instance, page, params, item, user) {
                 const birthday = datetime.parseISO8601Date(item.PremiereDate, true);
                 const durationSinceBorn = intervalToDuration({ start: birthday, end: deathday });
 
-                itemDeathDate.innerHTML = `${globalize.translate('DeathDateValue', deathday.toLocaleDateString())} ${globalize.translate('AgeValue', durationSinceBorn.years)}`;
+                itemDeathDate.innerHTML = `${translate('DeathDateValue', deathday.toLocaleDateString())} ${translate('AgeValue', durationSinceBorn.years)}`;
             } else {
-                itemDeathDate.innerHTML = globalize.translate('DeathDateValue', deathday.toLocaleDateString());
+                itemDeathDate.innerHTML = translate('DeathDateValue', deathday.toLocaleDateString());
             }
         } catch (err) {
             console.error(err);
@@ -653,7 +653,7 @@ function reloadFromItem(instance, page, params, item, user) {
             location = escapeHtml(location);
         }
         itemBirthLocation.classList.remove('hide');
-        itemBirthLocation.innerHTML = globalize.translate('BirthPlaceValue', location);
+        itemBirthLocation.innerHTML = translate('BirthPlaceValue', location);
     } else {
         itemBirthLocation.classList.add('hide');
     }
@@ -724,7 +724,7 @@ function renderLinks(page, item) {
     const links = [];
 
     if (!layoutManager.tv && item.HomePageUrl) {
-        links.push(`<a is="emby-linkbutton" class="button-link" href="${item.HomePageUrl}" target="_blank">${globalize.translate('ButtonWebsite')}</a>`);
+        links.push(`<a is="emby-linkbutton" class="button-link" href="${item.HomePageUrl}" target="_blank">${translate('ButtonWebsite')}</a>`);
     }
 
     if (item.ExternalUrls) {
@@ -772,9 +772,9 @@ function renderImage(page, item, apiClient) {
 
 function setPeopleHeader(page, item) {
     if (item.MediaType == 'Audio' || item.Type == 'MusicAlbum' || item.MediaType == 'Book' || item.MediaType == 'Photo') {
-        page.querySelector('#peopleHeader').innerHTML = globalize.translate('People');
+        page.querySelector('#peopleHeader').innerHTML = translate('People');
     } else {
-        page.querySelector('#peopleHeader').innerHTML = globalize.translate('HeaderCastAndCrew');
+        page.querySelector('#peopleHeader').innerHTML = translate('HeaderCastAndCrew');
     }
 }
 
@@ -884,10 +884,10 @@ function toggleLineClamp(clampTarget, e) {
 
     if (clampTarget.classList.contains(clampClassName)) {
         clampTarget.classList.remove(clampClassName);
-        expandButton.innerHTML = globalize.translate('ShowLess');
+        expandButton.innerHTML = translate('ShowLess');
     } else {
         clampTarget.classList.add(clampClassName);
-        expandButton.innerHTML = globalize.translate('ShowMore');
+        expandButton.innerHTML = translate('ShowMore');
     }
 }
 
@@ -946,7 +946,7 @@ function renderGenres(page, item, context = inferContext(item)) {
     }).join(', ');
 
     const genresLabel = page.querySelector('.genresLabel');
-    genresLabel.innerHTML = globalize.translate(genres.length > 1 ? 'Genres' : 'Genre');
+    genresLabel.innerHTML = translate(genres.length > 1 ? 'Genres' : 'Genre');
     const genresValue = page.querySelector('.genres');
     genresValue.innerHTML = html;
 
@@ -975,7 +975,7 @@ function renderWriter(page, item, context) {
     }).join(', ');
 
     const writersLabel = page.querySelector('.writersLabel');
-    writersLabel.innerHTML = globalize.translate(writers.length > 1 ? 'Writers' : 'Writer');
+    writersLabel.innerHTML = translate(writers.length > 1 ? 'Writers' : 'Writer');
     const writersValue = page.querySelector('.writers');
     writersValue.innerHTML = html;
 
@@ -1004,7 +1004,7 @@ function renderDirector(page, item, context) {
     }).join(', ');
 
     const directorsLabel = page.querySelector('.directorsLabel');
-    directorsLabel.innerHTML = globalize.translate(directors.length > 1 ? 'Directors' : 'Director');
+    directorsLabel.innerHTML = translate(directors.length > 1 ? 'Directors' : 'Director');
     const directorsValue = page.querySelector('.directors');
     directorsValue.innerHTML = html;
 
@@ -1034,7 +1034,7 @@ function renderStudio(page, item, context) {
     }).join(', ');
 
     const studiosLabel = page.querySelector('.studiosLabel');
-    studiosLabel.innerText = globalize.translate(studios.length > 1 ? 'Studios' : 'Studio');
+    studiosLabel.innerText = translate(studios.length > 1 ? 'Studios' : 'Studio');
     const studiosValue = page.querySelector('.studios');
     studiosValue.innerHTML = html;
 
@@ -1166,7 +1166,7 @@ function renderMoreFromSeason(view, item, apiClient) {
             }
 
             section.classList.remove('hide');
-            section.querySelector('h2').innerText = globalize.translate('MoreFromValue', item.SeasonName);
+            section.querySelector('h2').innerText = translate('MoreFromValue', item.SeasonName);
             const itemsContainer = section.querySelector('.itemsContainer');
             cardBuilder.buildCards(result.Items, {
                 parentContainer: section,
@@ -1223,9 +1223,9 @@ function renderMoreFromArtist(view, item, apiClient) {
             section.classList.remove('hide');
 
             if (item.Type === 'MusicArtist') {
-                section.querySelector('h2').innerText = globalize.translate('HeaderAppearsOn');
+                section.querySelector('h2').innerText = translate('HeaderAppearsOn');
             } else {
-                section.querySelector('h2').innerText = globalize.translate('MoreFromValue', item.AlbumArtists[0].Name);
+                section.querySelector('h2').innerText = translate('MoreFromValue', item.AlbumArtists[0].Name);
             }
 
             cardBuilder.buildCards(result.Items, {
@@ -1346,7 +1346,7 @@ function renderTags(page, item) {
     });
 
     if (tagElements.length) {
-        itemTags.innerHTML = globalize.translate('TagsValue', tagElements.join(', '));
+        itemTags.innerHTML = translate('TagsValue', tagElements.join(', '));
         itemTags.classList.remove('hide');
     } else {
         itemTags.innerHTML = '';
@@ -1496,38 +1496,38 @@ function renderChildren(page, item) {
         imageLoader.lazyChildren(childrenItemsContainer);
         if (item.Type == 'BoxSet') {
             const collectionItemTypes = [{
-                name: globalize.translate('Movies'),
+                name: translate('Movies'),
                 type: 'Movie'
             }, {
-                name: globalize.translate('Series'),
+                name: translate('Series'),
                 type: 'Series'
             }, {
-                name: globalize.translate('Episodes'),
+                name: translate('Episodes'),
                 type: 'Episode'
             }, {
-                name: globalize.translate('HeaderVideos'),
+                name: translate('HeaderVideos'),
                 mediaType: 'Video'
             }, {
-                name: globalize.translate('Albums'),
+                name: translate('Albums'),
                 type: 'MusicAlbum'
             }, {
-                name: globalize.translate('Books'),
+                name: translate('Books'),
                 type: 'Book'
             }, {
-                name: globalize.translate('Collections'),
+                name: translate('Collections'),
                 type: 'BoxSet'
             }];
             renderCollectionItems(page, item, collectionItemTypes, result.Items);
         }
     });
 
-    let childrenTitle = globalize.translate('Items');
+    let childrenTitle = translate('Items');
     if (item.Type == 'Season') {
-        childrenTitle = globalize.translate('Episodes');
+        childrenTitle = translate('Episodes');
     } else if (item.Type == 'Series') {
-        childrenTitle = globalize.translate('HeaderSeasons');
+        childrenTitle = translate('HeaderSeasons');
     } else if (item.Type == 'MusicAlbum') {
-        childrenTitle = globalize.translate('HeaderTracks');
+        childrenTitle = translate('HeaderTracks');
     }
     childrenCollapsible.querySelectorAll('.sectionTitle > span').forEach(el => {
         el.innerText = childrenTitle;
@@ -1706,7 +1706,7 @@ function renderCollectionItems(page, parentItem, types, items) {
 
     if (!items.length) {
         renderCollectionItemType(page, parentItem, {
-            name: globalize.translate('Items')
+            name: translate('Items')
         }, items);
     } else {
         let typeItems = [];
@@ -1722,7 +1722,7 @@ function renderCollectionItems(page, parentItem, types, items) {
 
         if (otherTypeItems.length) {
             const otherType = {
-                name: globalize.translate('HeaderOtherItems')
+                name: translate('HeaderOtherItems')
             };
             renderCollectionItemType(page, parentItem, otherType, otherTypeItems);
         }

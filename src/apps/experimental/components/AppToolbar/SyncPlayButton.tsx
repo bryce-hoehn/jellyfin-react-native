@@ -6,7 +6,7 @@ import React, { useCallback, useState } from 'react';
 
 import { pluginManager } from 'components/pluginManager';
 import { useApi } from 'hooks/useApi';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { PluginType } from 'types/plugin';
 
 import AppSyncPlayMenu, { ID } from './menus/SyncPlayMenu';
@@ -17,7 +17,7 @@ const SyncPlayButton = () => {
     const [ syncPlayMenuAnchorEl, setSyncPlayMenuAnchorEl ] = useState<null | HTMLElement>(null);
     const isSyncPlayMenuOpen = Boolean(syncPlayMenuAnchorEl);
 
-    const onSyncPlayButtonClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    const onSyncPlayButtonPress = useCallback((event: React.MouseEvent<HTMLElement>) => {
         setSyncPlayMenuAnchorEl(event.currentTarget);
     }, [ setSyncPlayMenuAnchorEl ]);
 
@@ -36,13 +36,13 @@ const SyncPlayButton = () => {
 
     return (
         <>
-            <Tooltip title={globalize.translate('ButtonSyncPlay')}>
+            <Tooltip title={translate('ButtonSyncPlay')}>
                 <IconButton
                     size='large'
-                    aria-label={globalize.translate('ButtonSyncPlay')}
+                    aria-label={translate('ButtonSyncPlay')}
                     aria-controls={ID}
                     aria-haspopup='true'
-                    onClick={onSyncPlayButtonClick}
+                    onPress={onSyncPlayButtonPress}
                     color='inherit'
                 >
                     <Groups />

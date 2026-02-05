@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import { useSearchItems } from '../api/useSearchItems';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Loading from 'components/loading/LoadingComponent';
 import SearchResultsRow from './SearchResultsRow';
 import { CardShape } from 'utils/card';
@@ -29,13 +29,13 @@ const SearchResults: FC<SearchResultsProps> = ({
     if (!data?.length) {
         return (
             <div className='noItemsMessage centerMessage'>
-                {globalize.translate('SearchResultsEmpty', query)}
+                {translate('SearchResultsEmpty', query)}
                 {collectionType && (
                     <div>
                         <Link
                             className='emby-button'
                             to={`/search?query=${encodeURIComponent(query || '')}`}
-                        >{globalize.translate('RetryWithGlobalSearch')}</Link>
+                        >{translate('RetryWithGlobalSearch')}</Link>
                     </div>
                 )}
             </div>
@@ -46,7 +46,7 @@ const SearchResults: FC<SearchResultsProps> = ({
         return (
             <SearchResultsRow
                 key={`${section.title}-${index}`}
-                title={globalize.translate(section.title)}
+                title={translate(section.title)}
                 items={section.items}
                 cardOptions={{
                     shape: CardShape.AutoOverflow,

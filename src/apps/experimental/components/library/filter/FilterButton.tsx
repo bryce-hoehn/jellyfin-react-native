@@ -14,7 +14,7 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import { useGetQueryFiltersLegacy, useGetStudios } from 'hooks/useFetchItems';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import FiltersFeatures from './FiltersFeatures';
 import FiltersGenres from './FiltersGenres';
@@ -159,9 +159,9 @@ const FilterButton: FC<FilterButtonProps> = ({
     return (
         <>
             <Button
-                title={globalize.translate('Filter')}
+                title={translate('Filter')}
                 aria-describedby={id}
-                onClick={handleClick}
+                onPress={handleClick}
             >
                 <Badge color='info' variant='dot' invisible={!hasFilters}>
                     <FilterAlt />
@@ -198,7 +198,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                         id='filtersStatus-header'
                     >
                         <Typography>
-                            {globalize.translate('Filters')}
+                            {translate('Filters')}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -219,7 +219,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                             id='filtersSeriesStatus-header'
                         >
                             <Typography>
-                                {globalize.translate('HeaderSeriesStatus')}
+                                {translate('HeaderSeriesStatus')}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -242,7 +242,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                             id='filtersEpisodesStatus-header'
                         >
                             <Typography>
-                                {globalize.translate(
+                                {translate(
                                     'HeaderEpisodesStatus'
                                 )}
                             </Typography>
@@ -267,7 +267,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                             id='filtersFeatures-header'
                         >
                             <Typography>
-                                {globalize.translate('Features')}
+                                {translate('Features')}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -291,7 +291,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                             id='filtersVideoTypes-header'
                         >
                             <Typography>
-                                {globalize.translate('HeaderVideoType')}
+                                {translate('HeaderVideoType')}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -317,7 +317,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                                     id='filtersGenres-header'
                                 >
                                     <Typography>
-                                        {globalize.translate('Genres')}
+                                        {translate('Genres')}
                                     </Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
@@ -349,7 +349,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                                     id='filtersOfficialRatings-header'
                                 >
                                     <Typography>
-                                        {globalize.translate(
+                                        {translate(
                                             'HeaderParentalRatings'
                                         )}
                                     </Typography>
@@ -378,7 +378,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                                     id='filtersTags-header'
                                 >
                                     <Typography>
-                                        {globalize.translate('Tags')}
+                                        {translate('Tags')}
                                     </Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
@@ -405,7 +405,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                                     id='filtersYears-header'
                                 >
                                     <Typography>
-                                        {globalize.translate('HeaderYears')}
+                                        {translate('HeaderYears')}
                                     </Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
@@ -433,7 +433,7 @@ const FilterButton: FC<FilterButtonProps> = ({
                             id='filtersStudios-header'
                         >
                             <Typography>
-                                {globalize.translate('Studios')}
+                                {translate('Studios')}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>

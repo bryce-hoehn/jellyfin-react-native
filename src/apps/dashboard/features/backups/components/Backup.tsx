@@ -6,7 +6,7 @@ import Restore from '@mui/icons-material/Restore';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Tooltip from '@mui/material/Tooltip';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import BackupInfoDialog from './BackupInfoDialog';
 
 type BackupProps = {
@@ -39,14 +39,14 @@ const Backup: FunctionComponent<BackupProps> = ({ backup, onRestore }) => {
             <ListItem
                 disablePadding
                 secondaryAction={
-                    <Tooltip disableInteractive title={globalize.translate('LabelRestore')}>
-                        <IconButton onClick={restore}>
+                    <Tooltip disableInteractive title={translate('LabelRestore')}>
+                        <IconButton onPress={restore}>
                             <Restore />
                         </IconButton>
                     </Tooltip>
                 }
             >
-                <ListItemButton onClick={openDialog}>
+                <ListItemButton onPress={openDialog}>
                     <ListItemText
                         primary={backup.DateCreated}
                         secondary={backup.Path}

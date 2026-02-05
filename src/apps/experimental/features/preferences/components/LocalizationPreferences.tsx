@@ -2,7 +2,7 @@ import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -11,7 +11,7 @@ import React from 'react';
 import { DATE_LOCALE_OPTIONS, LANGUAGE_OPTIONS } from 'apps/experimental/features/preferences/constants/locales';
 import { appHost } from 'components/apphost';
 import { AppFeature } from 'constants/appFeature';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import datetime from 'scripts/datetime';
 
 import type { DisplaySettingsValues } from '../types/displaySettingsValues';
@@ -27,11 +27,11 @@ export function LocalizationPreferences({ onChange, values }: Readonly<Localizat
     }
     return (
         <Stack spacing={3}>
-            <Typography variant='h2'>{globalize.translate('Localization')}</Typography>
+            <Typography variant='h2'>{translate('Localization')}</Typography>
 
             { appHost.supports(AppFeature.DisplayLanguage) && (
                 <FormControl fullWidth>
-                    <InputLabel id='display-settings-language-label'>{globalize.translate('LabelDisplayLanguage')}</InputLabel>
+                    <InputLabel id='display-settings-language-label'>{translate('LabelDisplayLanguage')}</InputLabel>
                     <Select
                         aria-describedby='display-settings-language-description'
                         inputProps={{
@@ -46,14 +46,14 @@ export function LocalizationPreferences({ onChange, values }: Readonly<Localizat
                         ))}
                     </Select>
                     <FormHelperText component={Stack} id='display-settings-language-description'>
-                        <span>{globalize.translate('LabelDisplayLanguageHelp')}</span>
+                        <span>{translate('LabelDisplayLanguageHelp')}</span>
                         { appHost.supports(AppFeature.ExternalLinks) && (
                             <Link
                                 href='https://github.com/jellyfin/jellyfin'
                                 rel='noopener noreferrer'
                                 target='_blank'
                             >
-                                {globalize.translate('LearnHowYouCanContribute')}
+                                {translate('LearnHowYouCanContribute')}
                             </Link>
                         ) }
                     </FormHelperText>
@@ -62,7 +62,7 @@ export function LocalizationPreferences({ onChange, values }: Readonly<Localizat
 
             { datetime.supportsLocalization() && (
                 <FormControl fullWidth>
-                    <InputLabel id='display-settings-locale-label'>{globalize.translate('LabelDateTimeLocale')}</InputLabel>
+                    <InputLabel id='display-settings-locale-label'>{translate('LabelDateTimeLocale')}</InputLabel>
                     <Select
                         inputProps={{
                             name: 'dateTimeLocale'

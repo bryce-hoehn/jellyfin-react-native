@@ -7,7 +7,7 @@ import dom from '../../utils/dom';
 import loading from '../../components/loading/loading';
 import scrollHelper from '../../scripts/scrollHelper';
 import layoutManager from '../layoutManager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import template from './lyricsuploader.template.html';
 import toast from '../toast/toast';
@@ -27,7 +27,7 @@ function onFileReaderError(evt) {
 
     const error = evt.target.error;
     if (error.code !== error.ABORT_ERR) {
-        toast(globalize.translate('MessageFileReadError'));
+        toast(translate('MessageFileReadError'));
     }
 }
 
@@ -83,7 +83,7 @@ async function onSubmit(e) {
     const file = currentFile;
 
     if (!isValidLyricsFile(file)) {
-        toast(globalize.translate('MessageLyricsFileTypeAllowed'));
+        toast(translate('MessageLyricsFileTypeAllowed'));
         return;
     }
 
@@ -135,7 +135,7 @@ function showEditor(options, resolve) {
     dlg.classList.add('formDialog');
     dlg.classList.add('lyricsUploaderDialog');
 
-    dlg.innerHTML = globalize.translateHtml(template, 'core');
+    dlg.innerHTML = translateHtml(template, 'core');
 
     if (layoutManager.tv) {
         scrollHelper.centerFocus.on(dlg, false);

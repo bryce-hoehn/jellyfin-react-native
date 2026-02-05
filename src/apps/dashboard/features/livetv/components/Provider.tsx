@@ -11,9 +11,9 @@ import ListItemText from '@mui/material/ListItemText';
 import getProviderName from '../utils/getProviderName';
 import IconButton from '@mui/material/IconButton';
 import ConfirmDialog from 'components/ConfirmDialog';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -77,17 +77,17 @@ const Provider = ({ provider }: ProviderProps) => {
         <>
             <ConfirmDialog
                 open={isDeleteProviderDialogOpen}
-                title={globalize.translate('HeaderDeleteProvider')}
-                text={globalize.translate('MessageConfirmDeleteGuideProvider')}
+                title={translate('HeaderDeleteProvider')}
+                text={translate('MessageConfirmDeleteGuideProvider')}
                 onCancel={onDeleteProviderDialogCancel}
                 onConfirm={onConfirmDelete}
-                confirmButtonText={globalize.translate('Delete')}
+                confirmButtonText={translate('Delete')}
                 confirmButtonColor='error'
             />
             <ListItem
                 disablePadding key={provider.Id}
                 secondaryAction={
-                    <IconButton ref={actionsRef} onClick={showContextMenu}>
+                    <IconButton ref={actionsRef} onPress={showContextMenu}>
                         <MoreVertIcon />
                     </IconButton>
                 }
@@ -118,17 +118,17 @@ const Provider = ({ provider }: ProviderProps) => {
                 open={isMenuOpen}
                 onClose={onMenuClose}
             >
-                <MenuItem onClick={showChannelMapper}>
+                <MenuItem onPress={showChannelMapper}>
                     <ListItemIcon>
                         <LocationSearchingIcon />
                     </ListItemIcon>
-                    <ListItemText>{globalize.translate('MapChannels')}</ListItemText>
+                    <ListItemText>{translate('MapChannels')}</ListItemText>
                 </MenuItem>
-                <MenuItem onClick={showDeleteDialog}>
+                <MenuItem onPress={showDeleteDialog}>
                     <ListItemIcon>
                         <DeleteIcon />
                     </ListItemIcon>
-                    <ListItemText>{globalize.translate('Delete')}</ListItemText>
+                    <ListItemText>{translate('Delete')}</ListItemText>
                 </MenuItem>
             </Menu>
         </>

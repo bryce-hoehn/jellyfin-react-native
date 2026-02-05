@@ -1,6 +1,6 @@
 import actionsheet from '../actionSheet/actionSheet';
 import { playbackManager } from '../playback/playbackmanager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import qualityoptions from '../qualityOptions';
 
@@ -59,19 +59,19 @@ function showRepeatModeMenu(player, btn) {
     const currentValue = playbackManager.getRepeatMode(player);
 
     menuItems.push({
-        name: globalize.translate('RepeatAll'),
+        name: translate('RepeatAll'),
         id: 'RepeatAll',
         selected: currentValue === 'RepeatAll'
     });
 
     menuItems.push({
-        name: globalize.translate('RepeatOne'),
+        name: translate('RepeatOne'),
         id: 'RepeatOne',
         selected: currentValue === 'RepeatOne'
     });
 
     menuItems.push({
-        name: globalize.translate('None'),
+        name: translate('None'),
         id: 'RepeatNone',
         selected: currentValue === 'RepeatNone'
     });
@@ -186,7 +186,7 @@ function showWithUser(options, player, user) {
         })[0];
 
         menuItems.push({
-            name: globalize.translate('AspectRatio'),
+            name: translate('AspectRatio'),
             id: 'aspectratio',
             asideText: currentAspectRatio ? currentAspectRatio.name : null
         });
@@ -197,7 +197,7 @@ function showWithUser(options, player, user) {
         const currentPlaybackRate = playbackManager.getSupportedPlaybackRates(player).filter(i => i.id === currentPlaybackRateId)[0];
 
         menuItems.push({
-            name: globalize.translate('PlaybackRate'),
+            name: translate('PlaybackRate'),
             id: 'playbackrate',
             asideText: currentPlaybackRate ? currentPlaybackRate.name : null
         });
@@ -208,7 +208,7 @@ function showWithUser(options, player, user) {
         const secondaryQualityText = getQualitySecondaryText(player);
 
         menuItems.push({
-            name: globalize.translate('Quality'),
+            name: translate('Quality'),
             id: 'quality',
             asideText: secondaryQualityText
         });
@@ -218,15 +218,15 @@ function showWithUser(options, player, user) {
 
     if (supportedCommands.indexOf('SetRepeatMode') !== -1 && playbackManager.currentMediaSource(player).RunTimeTicks) {
         menuItems.push({
-            name: globalize.translate('RepeatMode'),
+            name: translate('RepeatMode'),
             id: 'repeatmode',
-            asideText: repeatMode === 'RepeatNone' ? globalize.translate('None') : globalize.translate('' + repeatMode)
+            asideText: repeatMode === 'RepeatNone' ? translate('None') : translate('' + repeatMode)
         });
     }
 
     if (options.suboffset) {
         menuItems.push({
-            name: globalize.translate('SubtitleOffset'),
+            name: translate('SubtitleOffset'),
             id: 'suboffset',
             asideText: null
         });
@@ -234,7 +234,7 @@ function showWithUser(options, player, user) {
 
     if (options.stats) {
         menuItems.push({
-            name: globalize.translate('PlaybackData'),
+            name: translate('PlaybackData'),
             id: 'stats',
             asideText: null
         });

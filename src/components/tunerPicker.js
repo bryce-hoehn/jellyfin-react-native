@@ -19,10 +19,10 @@ function getEditorHtml() {
     html += '<div class="formDialogContent scrollY">';
     html += '<div class="dialogContentInner dialog-content-centered">';
     html += '<div class="loadingContent hide">';
-    html += '<h1>' + globalize.translate('DetectingDevices') + '...</h1>';
-    html += '<p>' + globalize.translate('MessagePleaseWait') + '</p>';
+    html += '<h1>' + translate('DetectingDevices') + '...</h1>';
+    html += '<p>' + translate('MessagePleaseWait') + '</p>';
     html += '</div>';
-    html += '<h1 style="margin-bottom:.25em;" class="devicesHeader hide">' + globalize.translate('HeaderNewDevices') + '</h1>';
+    html += '<h1 style="margin-bottom:.25em;" class="devicesHeader hide">' + translate('HeaderNewDevices') + '</h1>';
     html += '<div is="emby-itemscontainer" class="results vertical-wrap">';
     html += '</div>';
     html += '</div>';
@@ -95,7 +95,7 @@ function renderDevices(view, devices) {
     if (devices.length) {
         view.querySelector('.devicesHeader').classList.remove('hide');
     } else {
-        html = '<p><br/>' + globalize.translate('NoNewDevicesFound') + '</p>';
+        html = '<p><br/>' + translate('NoNewDevicesFound') + '</p>';
         view.querySelector('.devicesHeader').classList.add('hide');
     }
 
@@ -137,9 +137,9 @@ function TunerPicker() {
         dlg.classList.add('formDialog');
         let html = '';
         html += '<div class="formDialogHeader">';
-        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${globalize.translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
+        html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
         html += '<h3 class="formDialogHeaderTitle">';
-        html += globalize.translate('HeaderLiveTvTunerSetup');
+        html += translate('HeaderLiveTvTunerSetup');
         html += '</h3>';
         html += '</div>';
         html += getEditorHtml();

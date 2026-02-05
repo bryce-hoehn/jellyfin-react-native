@@ -18,7 +18,7 @@ function removeNotificationEvent(instance, name) {
     }
 }
 
-function onClick() {
+function onPress() {
     const button = this;
     const id = button.getAttribute('data-id');
     const serverId = button.getAttribute('data-serverid');
@@ -70,9 +70,9 @@ function setState(button, played, updateAttribute) {
 
 function setTitle(button, itemType, played) {
     if (itemType !== 'AudioBook') {
-        button.title = played ? globalize.translate('Watched') : globalize.translate('MarkPlayed');
+        button.title = played ? translate('Watched') : translate('MarkPlayed');
     } else {
-        button.title = played ? globalize.translate('Played') : globalize.translate('MarkPlayed');
+        button.title = played ? translate('Played') : translate('MarkPlayed');
     }
 
     const text = button.querySelector('.button-text');
@@ -82,14 +82,14 @@ function setTitle(button, itemType, played) {
 }
 
 function clearEvents(button) {
-    button.removeEventListener('click', onClick);
+    button.removeEventListener('click', onPress);
     removeNotificationEvent(button, 'UserDataChanged');
 }
 
 function bindEvents(button) {
     clearEvents(button);
 
-    button.addEventListener('click', onClick);
+    button.addEventListener('click', onPress);
     addNotificationEvent(button, 'UserDataChanged', onUserDataChanged);
 }
 

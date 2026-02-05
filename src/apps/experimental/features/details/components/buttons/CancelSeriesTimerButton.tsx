@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useCancelSeriesTimer } from 'hooks/api/liveTvHooks';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import loading from 'components/loading/loading';
 import toast from 'components/toast/toast';
 import confirm from 'components/confirm/confirm';
@@ -21,10 +21,10 @@ const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
 
     const onCancelSeriesTimerClick = useCallback(() => {
         confirm({
-            text: globalize.translate('MessageConfirmRecordingCancellation'),
+            text: translate('MessageConfirmRecordingCancellation'),
             primary: 'delete',
-            confirmText: globalize.translate('HeaderCancelSeries'),
-            cancelText: globalize.translate('HeaderKeepSeries')
+            confirmText: translate('HeaderCancelSeries'),
+            cancelText: translate('HeaderKeepSeries')
         })
             .then(function () {
                 loading.show();
@@ -34,13 +34,13 @@ const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
                     },
                     {
                         onSuccess: async () => {
-                            toast(globalize.translate('SeriesCancelled'));
+                            toast(translate('SeriesCancelled'));
                             loading.hide();
                             navigate('/livetv');
                         },
                         onError: (err: unknown) => {
                             loading.hide();
-                            toast(globalize.translate('MessageCancelSeriesTimerError'));
+                            toast(translate('MessageCancelSeriesTimerError'));
                             console.error(
                                 '[cancelSeriesTimer] failed to cancel series timer',
                                 err
@@ -57,8 +57,8 @@ const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
     return (
         <IconButton
             className='button-flat btnCancelSeriesTimer'
-            title={globalize.translate('CancelSeries')}
-            onClick={onCancelSeriesTimerClick}
+            title={translate('CancelSeries')}
+            onPress={onCancelSeriesTimerClick}
         >
             <DeleteIcon />
         </IconButton>

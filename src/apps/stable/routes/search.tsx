@@ -8,7 +8,7 @@ import SearchResults from 'apps/stable/features/search/components/SearchResults'
 import SearchSuggestions from 'apps/stable/features/search/components/SearchSuggestions';
 import Page from 'components/Page';
 import useSearchParam from 'hooks/useSearchParam';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const COLLECTION_TYPE_PARAM = 'collectionType';
 const PARENT_ID_PARAM = 'parentId';
@@ -24,7 +24,7 @@ const Search: FC = () => {
     return (
         <Page
             id='searchPage'
-            title={globalize.translate('Search')}
+            title={translate('Search')}
             className='mainAnimatedPage libraryPage allLibraryPage noSecondaryNavPage'
         >
             <SearchFields query={query} onSearch={setQuery} />

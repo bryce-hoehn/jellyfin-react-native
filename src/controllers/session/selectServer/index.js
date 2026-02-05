@@ -69,7 +69,7 @@ function renderSelectServerItems(view, servers) {
     const itemsContainer = view.querySelector('.servers');
 
     if (!items.length) {
-        html = '<p>' + globalize.translate('MessageNoServersAvailable') + '</p>';
+        html = '<p>' + translate('MessageNoServersAvailable') + '</p>';
     }
 
     itemsContainer.innerHTML = html;
@@ -99,7 +99,7 @@ function alertTextWithOptions(options) {
 }
 
 function showServerConnectionFailure() {
-    alertText(globalize.translate('MessageUnableToConnectToServer'));
+    alertText(translate('MessageUnableToConnectToServer'));
 }
 
 export default function (view, params) {
@@ -124,8 +124,8 @@ export default function (view, params) {
 
                 case ConnectionState.ServerUpdateNeeded:
                     alertTextWithOptions({
-                        text: globalize.translate('core#ServerUpdateNeeded', 'https://github.com/jellyfin/jellyfin'),
-                        html: globalize.translate('core#ServerUpdateNeeded', '<a href="https://github.com/jellyfin/jellyfin">https://github.com/jellyfin/jellyfin</a>')
+                        text: translate('core#ServerUpdateNeeded', 'https://github.com/jellyfin/jellyfin'),
+                        html: translate('core#ServerUpdateNeeded', '<a href="https://github.com/jellyfin/jellyfin">https://github.com/jellyfin/jellyfin</a>')
                     });
                     break;
 
@@ -137,9 +137,9 @@ export default function (view, params) {
 
     function deleteServer(server) {
         confirm({
-            title: globalize.translate('DeleteName', server.Name),
-            text: globalize.translate('DeleteServerConfirmation'),
-            confirmText: globalize.translate('Delete'),
+            title: translate('DeleteName', server.Name),
+            text: translate('DeleteServerConfirmation'),
+            confirmText: translate('Delete'),
             primary: 'delete'
         }).then(function () {
             loading.show();
@@ -157,11 +157,11 @@ export default function (view, params) {
     function onServerClick(server) {
         const menuItems = [];
         menuItems.push({
-            name: globalize.translate('Connect'),
+            name: translate('Connect'),
             id: 'connect'
         });
         menuItems.push({
-            name: globalize.translate('Delete'),
+            name: translate('Delete'),
             id: 'delete'
         });
         actionSheet.show({

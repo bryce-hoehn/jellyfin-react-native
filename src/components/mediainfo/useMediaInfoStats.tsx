@@ -3,7 +3,7 @@ import { VideoType } from '@jellyfin/sdk/lib/generated-client/models/video-type'
 import type { MediaStream } from '@jellyfin/sdk/lib/generated-client/models/media-stream';
 import itemHelper from 'components/itemHelper';
 import datetime from 'scripts/datetime';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import type { ItemDto } from 'types/base/models/item-dto';
 import type { MiscInfo } from 'types/mediaInfoItem';
@@ -172,7 +172,7 @@ function addDateAdded(
         const dateCreated = datetime.parseISO8601Date(item.DateCreated);
         addMiscInfo({
             type: 'added',
-            text: globalize.translate(
+            text: translate(
                 'AddedOnValue',
                 `${datetime.toLocaleDateString(
                     dateCreated

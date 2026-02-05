@@ -1,6 +1,6 @@
 import layoutManager from 'components/layoutManager';
 import { getUserViewsQuery } from 'hooks/useUserViews';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { DEFAULT_SECTIONS, HomeSectionType } from 'types/homeSectionType';
 import Dashboard from 'utils/dashboard';
 import { toApi } from 'utils/jellyfin-apiclient/compat';
@@ -88,13 +88,13 @@ export function loadSections(elem, apiClient, user, userSettings) {
             } else {
                 let noLibDescription;
                 if (user.Policy?.IsAdministrator) {
-                    noLibDescription = globalize.translate('NoCreatedLibraries', '<br><a id="button-createLibrary" class="button-link">', '</a>');
+                    noLibDescription = translate('NoCreatedLibraries', '<br><a id="button-createLibrary" class="button-link">', '</a>');
                 } else {
-                    noLibDescription = globalize.translate('AskAdminToCreateLibrary');
+                    noLibDescription = translate('AskAdminToCreateLibrary');
                 }
 
                 html += '<div class="centerMessage padded-left padded-right">';
-                html += '<h2>' + globalize.translate('MessageNothingHere') + '</h2>';
+                html += '<h2>' + translate('MessageNothingHere') + '</h2>';
                 html += '<p>' + noLibDescription + '</p>';
                 html += '</div>';
                 elem.innerHTML = html;

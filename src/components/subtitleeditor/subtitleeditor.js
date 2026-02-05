@@ -38,20 +38,20 @@ function downloadRemoteSubtitles(context, id) {
     }).then(function () {
         hasChanges = true;
 
-        toast(globalize.translate('MessageDownloadQueued'));
+        toast(translate('MessageDownloadQueued'));
 
         focusManager.autoFocus(context);
     });
 }
 
 function deleteLocalSubtitle(context, index) {
-    const msg = globalize.translate('MessageAreYouSureDeleteSubtitles');
+    const msg = translate('MessageAreYouSureDeleteSubtitles');
 
     confirm({
 
-        title: globalize.translate('ConfirmDeletion'),
+        title: translate('ConfirmDeletion'),
         text: msg,
-        confirmText: globalize.translate('Delete'),
+        confirmText: translate('Delete'),
         primary: 'delete'
 
     }).then(function () {
@@ -84,7 +84,7 @@ function fillSubtitleList(context, item) {
     let html = '';
 
     if (subs.length) {
-        html += '<h2>' + globalize.translate('MySubtitles') + '</h2>';
+        html += '<h2>' + translate('MySubtitles') + '</h2>';
 
         html += '<div>';
 
@@ -118,7 +118,7 @@ function fillSubtitleList(context, item) {
             itemHtml += '</div>';
 
             if (!layoutManager.tv && s.Path) {
-                itemHtml += '<button is="paper-icon-button-light" data-index="' + s.Index + '" title="' + globalize.translate('Delete') + '" class="btnDelete listItemButton"><span class="material-icons delete" aria-hidden="true"></span></button>';
+                itemHtml += '<button is="paper-icon-button-light" data-index="' + s.Index + '" title="' + translate('Delete') + '" class="btnDelete listItemButton"><span class="material-icons delete" aria-hidden="true"></span></button>';
             }
 
             itemHtml += '</' + tagName + '>';
@@ -206,15 +206,15 @@ function renderSearchResults(context, results) {
         html += '<div class="secondary listItemBodyText">';
 
         if (result.Format) {
-            html += '<span style="margin-right:1em;">' + globalize.translate('FormatValue', result.Format) + '</span>';
+            html += '<span style="margin-right:1em;">' + translate('FormatValue', result.Format) + '</span>';
         }
 
         if (result.DownloadCount != null) {
-            html += '<span style="margin-right:1em;">' + globalize.translate('DownloadsValue', result.DownloadCount) + '</span>';
+            html += '<span style="margin-right:1em;">' + translate('DownloadsValue', result.DownloadCount) + '</span>';
         }
 
         if (result.FrameRate) {
-            html += '<span>' + globalize.translate('Framerate') + ': ' + result.FrameRate + '</span>';
+            html += '<span>' + translate('Framerate') + ': ' + result.FrameRate + '</span>';
         }
 
         html += '</div>';
@@ -229,23 +229,23 @@ function renderSearchResults(context, results) {
             const spanOpen = '<span class="inline-flex align-items-center justify-content-center subtitleFeaturePillow">';
 
             if (result.IsHashMatch) {
-                html += spanOpen + globalize.translate('PerfectMatch') + '</span>';
+                html += spanOpen + translate('PerfectMatch') + '</span>';
             }
 
             if (result.AiTranslated) {
-                html += spanOpen + globalize.translate('AiTranslated') + '</span>';
+                html += spanOpen + translate('AiTranslated') + '</span>';
             }
 
             if (result.MachineTranslated) {
-                html += spanOpen + globalize.translate('MachineTranslated') + '</span>';
+                html += spanOpen + translate('MachineTranslated') + '</span>';
             }
 
             if (result.Forced) {
-                html += spanOpen + globalize.translate('ForeignPartsOnly') + '</span>';
+                html += spanOpen + translate('ForeignPartsOnly') + '</span>';
             }
 
             if (result.HearingImpaired) {
-                html += spanOpen + globalize.translate('HearingImpairedShort') + '</span>';
+                html += spanOpen + translate('HearingImpairedShort') + '</span>';
             }
 
             html += '</div>';
@@ -357,7 +357,7 @@ function showDownloadOptions(button, context, subtitleId) {
     const items = [];
 
     items.push({
-        name: globalize.translate('Download'),
+        name: translate('Download'),
         id: 'download'
     });
 
@@ -424,9 +424,9 @@ function showEditorInternal(itemId, serverId) {
         dlg.classList.add('formDialog');
         dlg.classList.add('subtitleEditorDialog');
 
-        dlg.innerHTML = globalize.translateHtml(template, 'core');
+        dlg.innerHTML = translateHtml(template, 'core');
 
-        dlg.querySelector('.originalSubtitleFileLabel').innerHTML = globalize.translate('File');
+        dlg.querySelector('.originalSubtitleFileLabel').innerHTML = translate('File');
 
         dlg.querySelector('.subtitleSearchForm').addEventListener('submit', onSearchSubmit);
 

@@ -8,7 +8,7 @@ import {
     useGetSuggestionSectionsWithItems
 } from 'hooks/useFetchItems';
 import { appRouter } from 'components/router/appRouter';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Loading from 'components/loading/LoadingComponent';
 import NoItemsMessage from 'components/common/NoItemsMessage';
 import SectionContainer from '../../../../components/common/SectionContainer';
@@ -58,14 +58,14 @@ const SuggestionsSectionView: FC<SuggestionsSectionViewProps> = ({
 
         switch (recommendation.RecommendationType) {
             case RecommendationType.SimilarToRecentlyPlayed:
-                title = globalize.translate(
+                title = translate(
                     'RecommendationBecauseYouWatched',
                     recommendation.BaselineItemName
                 );
                 break;
 
             case RecommendationType.SimilarToLikedItem:
-                title = globalize.translate(
+                title = translate(
                     'RecommendationBecauseYouLike',
                     recommendation.BaselineItemName
                 );
@@ -73,7 +73,7 @@ const SuggestionsSectionView: FC<SuggestionsSectionViewProps> = ({
 
             case RecommendationType.HasDirectorFromRecentlyPlayed:
             case RecommendationType.HasLikedDirector:
-                title = globalize.translate(
+                title = translate(
                     'RecommendationDirectedBy',
                     recommendation.BaselineItemName
                 );
@@ -81,7 +81,7 @@ const SuggestionsSectionView: FC<SuggestionsSectionViewProps> = ({
 
             case RecommendationType.HasActorFromRecentlyPlayed:
             case RecommendationType.HasLikedActor:
-                title = globalize.translate(
+                title = translate(
                     'RecommendationStarring',
                     recommendation.BaselineItemName
                 );
@@ -96,7 +96,7 @@ const SuggestionsSectionView: FC<SuggestionsSectionViewProps> = ({
                 <SectionContainer
                     key={section.type}
                     sectionHeaderProps={{
-                        title: globalize.translate(section.name),
+                        title: translate(section.name),
                         url: getRouteUrl(section)
                     }}
                     itemsContainerProps={{

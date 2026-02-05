@@ -251,7 +251,7 @@ const UserLibraryAccess = () => {
             <Toast
                 open={isSettingsSavedToastOpen}
                 onClose={handleToastClose}
-                message={globalize.translate('SettingsSaved')}
+                message={translate('SettingsSaved')}
             />
             <div ref={element} className='content-primary'>
                 <div className='verticalSection'>
@@ -329,7 +329,7 @@ const UserLibraryAccess = () => {
                         <Button
                             type='submit'
                             className='raised button-submit block'
-                            title={globalize.translate('Save')}
+                            title={translate('Save')}
                         />
                     </div>
                 </form>

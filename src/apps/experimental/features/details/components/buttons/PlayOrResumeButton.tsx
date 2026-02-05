@@ -7,7 +7,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { ItemAction } from 'constants/itemAction';
 import { useApi } from 'hooks/useApi';
 import { getChannelQuery } from 'hooks/api/liveTvHooks/useGetChannel';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { playbackManager } from 'components/playback/playbackmanager';
 import type { ItemDto } from 'types/base/models/item-dto';
 import { ItemKind } from 'types/base/models/item-kind';
@@ -80,10 +80,10 @@ const PlayOrResumeButton: FC<PlayOrResumeButtonProps> = ({
             data-action={isResumable ? ItemAction.Resume : ItemAction.Play}
             title={
                 isResumable ?
-                    globalize.translate('ButtonResume') :
-                    globalize.translate('Play')
+                    translate('ButtonResume') :
+                    translate('Play')
             }
-            onClick={onPlayClick}
+            onPress={onPlayClick}
         >
             {isResumable ? <ReplayIcon /> : <PlayArrowIcon />}
         </IconButton>

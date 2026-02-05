@@ -4,7 +4,7 @@ import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-ite
 import alert from 'components/alert';
 import confirm from 'components/confirm/confirm';
 import { appRouter } from 'components/router/appRouter';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 
 function alertText(options) {
@@ -15,35 +15,35 @@ function getDeletionConfirmContent(item) {
     if (item.Type === BaseItemKind.Series) {
         const totalEpisodes = item.RecursiveItemCount;
         return {
-            title: globalize.translate('HeaderDeleteSeries'),
-            text: globalize.translate('ConfirmDeleteSeries', totalEpisodes),
-            confirmText: globalize.translate('DeleteEntireSeries', totalEpisodes),
+            title: translate('HeaderDeleteSeries'),
+            text: translate('ConfirmDeleteSeries', totalEpisodes),
+            confirmText: translate('DeleteEntireSeries', totalEpisodes),
             primary: 'delete'
         };
     }
 
     if (item.Type === BaseItemKind.BoxSet) {
         return {
-            title: globalize.translate('HeaderDeleteCollection'),
-            text: globalize.translate('ConfirmDeleteCollection'),
-            confirmText: globalize.translate('Delete'),
+            title: translate('HeaderDeleteCollection'),
+            text: translate('ConfirmDeleteCollection'),
+            confirmText: translate('Delete'),
             primary: 'delete'
         };
     }
 
     if (item.Type === BaseItemKind.Playlist) {
         return {
-            title: globalize.translate('HeaderDeletePlaylist'),
-            text: globalize.translate('ConfirmDeletePlaylist'),
-            confirmText: globalize.translate('Delete'),
+            title: translate('HeaderDeletePlaylist'),
+            text: translate('ConfirmDeletePlaylist'),
+            confirmText: translate('Delete'),
             primary: 'delete'
         };
     }
 
     return {
-        title: globalize.translate('HeaderDeleteItem'),
-        text: globalize.translate('ConfirmDeleteItem'),
-        confirmText: globalize.translate('Delete'),
+        title: translate('HeaderDeleteItem'),
+        text: translate('ConfirmDeleteItem'),
+        confirmText: translate('Delete'),
         primary: 'delete'
     };
 }
@@ -68,16 +68,16 @@ export function deleteItem(options) {
                 return Promise.reject(err);
             };
 
-            return alertText(globalize.translate('ErrorDeletingItem')).then(result, result);
+            return alertText(translate('ErrorDeletingItem')).then(result, result);
         });
     });
 }
 
 export function deleteLyrics (item) {
     return confirm({
-        title: globalize.translate('HeaderDeleteLyrics'),
-        text: globalize.translate('ConfirmDeleteLyrics'),
-        confirmText: globalize.translate('Delete'),
+        title: translate('HeaderDeleteLyrics'),
+        text: translate('ConfirmDeleteLyrics'),
+        confirmText: translate('Delete'),
         primary: 'delete'
     }).then(() => {
         const apiClient = ServerConnections.getApiClient(item.ServerId);
@@ -89,7 +89,7 @@ export function deleteLyrics (item) {
                 return Promise.reject(err);
             };
 
-            return alertText(globalize.translate('ErrorDeletingLyrics')).then(result, result);
+            return alertText(translate('ErrorDeletingLyrics')).then(result, result);
         });
     });
 }

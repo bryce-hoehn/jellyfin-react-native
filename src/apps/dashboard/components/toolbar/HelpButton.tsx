@@ -5,7 +5,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { HelpLinks } from 'apps/dashboard/constants/helpLinks';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const HelpButton = () => (
     <Routes>
@@ -15,7 +15,7 @@ const HelpButton = () => (
                     key={[url, path].join('-')}
                     path={path}
                     element={
-                        <Tooltip title={globalize.translate('Help')}>
+                        <Tooltip title={translate('Help')}>
                             <IconButton
                                 href={url}
                                 rel='noopener noreferrer'

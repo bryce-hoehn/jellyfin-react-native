@@ -38,7 +38,7 @@ function onEditLibrary() {
         loading.hide();
         dialogHelper.close(dlg);
         alert({
-            text: globalize.translate('LibraryInvalidItemIdError')
+            text: translate('LibraryInvalidItemIdError')
         });
         return false;
     }
@@ -63,7 +63,7 @@ function addMediaLocation(page, path) {
         hasChanges = true;
         refreshLibraryFromServer(page);
     }, () => {
-        toast(globalize.translate('ErrorAddingMediaPathToVirtualFolder'));
+        toast(translate('ErrorAddingMediaPathToVirtualFolder'));
     });
 }
 
@@ -75,7 +75,7 @@ function updateMediaLocation(page, path) {
         hasChanges = true;
         refreshLibraryFromServer(page);
     }, () => {
-        toast(globalize.translate('ErrorAddingMediaPathToVirtualFolder'));
+        toast(translate('ErrorAddingMediaPathToVirtualFolder'));
     });
 }
 
@@ -84,9 +84,9 @@ function onRemoveClick(btnRemovePath, location) {
     const virtualFolder = currentOptions.library;
 
     confirm({
-        title: globalize.translate('HeaderRemoveMediaLocation'),
-        text: globalize.translate('MessageConfirmRemoveMediaLocation'),
-        confirmText: globalize.translate('Delete'),
+        title: translate('HeaderRemoveMediaLocation'),
+        text: translate('MessageConfirmRemoveMediaLocation'),
+        confirmText: translate('Delete'),
         primary: 'delete'
     }).then(() => {
         const refreshAfterChange = currentOptions.refresh;
@@ -94,7 +94,7 @@ function onRemoveClick(btnRemovePath, location) {
             hasChanges = true;
             refreshLibraryFromServer(dom.parentWithClass(button, 'dlg-libraryeditor'));
         }, () => {
-            toast(globalize.translate('ErrorDefault'));
+            toast(translate('ErrorDefault'));
         });
     });
 }
@@ -169,7 +169,7 @@ function renderLibrary(page, options) {
     page.querySelector('.folderList').innerHTML = pathInfos.map(getFolderHtml).join('');
 }
 
-function onAddButtonClick() {
+function onAddButtonPress() {
     showDirectoryBrowser(dom.parentWithClass(this, 'dlg-libraryeditor'));
 }
 
@@ -196,7 +196,7 @@ function showDirectoryBrowser(context, originalPath) {
 
 function initEditor(dlg, options) {
     renderLibrary(dlg, options);
-    dlg.querySelector('.btnAddFolder').addEventListener('click', onAddButtonClick);
+    dlg.querySelector('.btnAddFolder').addEventListener('click', onAddButtonPress);
     dlg.querySelector('.folderList').addEventListener('click', onListItemClick);
     dlg.querySelector('.btnSubmit').addEventListener('click', onEditLibrary);
     libraryoptionseditor.embed(dlg.querySelector('.libraryOptions'), options.library.CollectionType, options.library.LibraryOptions);
@@ -222,7 +222,7 @@ export class MediaLibraryEditor {
         dlg.classList.add('ui-body-a');
         dlg.classList.add('background-theme-a');
         dlg.classList.add('formDialog');
-        dlg.innerHTML = globalize.translateHtml(template);
+        dlg.innerHTML = translateHtml(template);
         dlg.querySelector('.formDialogHeaderTitle').innerText = options.library.Name;
         initEditor(dlg, options);
         dlg.addEventListener('close', onDialogClosed);

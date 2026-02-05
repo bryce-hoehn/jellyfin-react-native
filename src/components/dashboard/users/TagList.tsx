@@ -8,7 +8,7 @@ type IProps = {
 };
 
 const TagList: FunctionComponent<IProps> = ({ tag, tagType, removeTagCallback }: IProps) => {
-    const onClick = useCallback(() => {
+    const onPress = useCallback(() => {
         tag !== undefined && removeTagCallback !== undefined && removeTagCallback(tag);
     }, [tag, removeTagCallback]);
     return (
@@ -25,7 +25,7 @@ const TagList: FunctionComponent<IProps> = ({ tag, tagType, removeTagCallback }:
                     title='Delete'
                     icon='delete'
                     dataTag={tag}
-                    onClick={onClick}
+                    onPress={onPress}
                 />
             </div>
         </div>

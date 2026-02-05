@@ -117,7 +117,7 @@ export default function (page, providerId, options) {
             page.querySelector('.txtZipCode').dispatchEvent(new Event('change'));
         }, function () { // ApiClient.getJSON() error handler
             Dashboard.alert({
-                message: globalize.translate('ErrorGettingTvLineups')
+                message: translate('ErrorGettingTvLineups')
             });
         });
         loading.hide();
@@ -151,7 +151,7 @@ export default function (page, providerId, options) {
             reload();
         }, function () {
             Dashboard.alert({
-                message: globalize.translate('ErrorSavingTvProvider')
+                message: translate('ErrorSavingTvProvider')
             });
         });
     }
@@ -161,7 +161,7 @@ export default function (page, providerId, options) {
 
         if (!selectedListingsId) {
             Dashboard.alert({
-                message: globalize.translate('ErrorPleaseSelectLineup')
+                message: translate('ErrorPleaseSelectLineup')
             });
             return;
         }
@@ -199,7 +199,7 @@ export default function (page, providerId, options) {
             }, function () {
                 loading.hide();
                 Dashboard.alert({
-                    message: globalize.translate('ErrorAddingListingsToSchedulesDirect')
+                    message: translate('ErrorAddingListingsToSchedulesDirect')
                 });
             });
         });
@@ -232,7 +232,7 @@ export default function (page, providerId, options) {
             loading.hide();
         }, function () {
             Dashboard.alert({
-                message: globalize.translate('ErrorGettingTvLineups')
+                message: translate('ErrorGettingTvLineups')
             });
             refreshListings('');
             loading.hide();
@@ -277,7 +277,7 @@ export default function (page, providerId, options) {
                 page.querySelector('.selectTunersSection').classList.remove('hide');
             }
         });
-        $('.createAccountHelp', page).html(globalize.translate('MessageCreateAccountAt', '<a is="emby-linkbutton" class="button-link" href="http://www.schedulesdirect.org" target="_blank">http://www.schedulesdirect.org</a>'));
+        $('.createAccountHelp', page).html(translate('MessageCreateAccountAt', '<a is="emby-linkbutton" class="button-link" href="http://www.schedulesdirect.org" target="_blank">http://www.schedulesdirect.org</a>'));
         reload();
     };
 }

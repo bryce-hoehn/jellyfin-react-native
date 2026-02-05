@@ -3,7 +3,7 @@ import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-ite
 import listView from 'components/listview/listview';
 import cardBuilder from 'components/cardbuilder/cardBuilder';
 import imageLoader from 'components/images/imageLoader';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 
 import 'elements/emby-itemscontainer/emby-itemscontainer';
@@ -14,56 +14,56 @@ function renderItems(page, item) {
 
     if (item.ArtistCount) {
         sections.push({
-            name: globalize.translate('Artists'),
+            name: translate('Artists'),
             type: 'MusicArtist'
         });
     }
 
     if (item.ProgramCount && item.Type === 'Person') {
         sections.push({
-            name: globalize.translate('HeaderUpcomingOnTV'),
+            name: translate('HeaderUpcomingOnTV'),
             type: 'Program'
         });
     }
 
     if (item.MovieCount) {
         sections.push({
-            name: globalize.translate('Movies'),
+            name: translate('Movies'),
             type: 'Movie'
         });
     }
 
     if (item.SeriesCount) {
         sections.push({
-            name: globalize.translate('Shows'),
+            name: translate('Shows'),
             type: 'Series'
         });
     }
 
     if (item.EpisodeCount) {
         sections.push({
-            name: globalize.translate('Episodes'),
+            name: translate('Episodes'),
             type: 'Episode'
         });
     }
 
     if (item.TrailerCount) {
         sections.push({
-            name: globalize.translate('Trailers'),
+            name: translate('Trailers'),
             type: 'Trailer'
         });
     }
 
     if (item.AlbumCount) {
         sections.push({
-            name: globalize.translate('Albums'),
+            name: translate('Albums'),
             type: 'MusicAlbum'
         });
     }
 
     if (item.MusicVideoCount) {
         sections.push({
-            name: globalize.translate('MusicVideos'),
+            name: translate('MusicVideos'),
             type: 'MusicVideo'
         });
     }
@@ -82,7 +82,7 @@ function renderItems(page, item) {
         html += '<h2 class="sectionTitle sectionTitle-cards">';
         html += section.name;
         html += '</h2>';
-        html += '<a is="emby-linkbutton" href="#" class="clearLink hide" style="margin-left:1em;vertical-align:middle;"><button is="emby-button" type="button" class="raised more raised-mini noIcon">' + globalize.translate('ButtonMore') + '</button></a>';
+        html += '<a is="emby-linkbutton" href="#" class="clearLink hide" style="margin-left:1em;vertical-align:middle;"><button is="emby-button" type="button" class="raised more raised-mini noIcon">' + translate('ButtonMore') + '</button></a>';
         html += '</div>';
         html += '<div is="emby-itemscontainer" class="itemsContainer padded-right">';
         html += '</div>';

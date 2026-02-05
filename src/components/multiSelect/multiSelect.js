@@ -146,19 +146,19 @@ function alertText(options) {
 
 function deleteItems(apiClient, itemIds) {
     return new Promise((resolve, reject) => {
-        let msg = globalize.translate('ConfirmDeleteItem');
-        let title = globalize.translate('HeaderDeleteItem');
+        let msg = translate('ConfirmDeleteItem');
+        let title = translate('HeaderDeleteItem');
 
         if (itemIds.length > 1) {
-            msg = globalize.translate('ConfirmDeleteItems');
-            title = globalize.translate('HeaderDeleteItems');
+            msg = translate('ConfirmDeleteItems');
+            title = translate('HeaderDeleteItems');
         }
 
         confirm(msg, title).then(() => {
             const promises = itemIds.map(itemId => apiClient.deleteItem(itemId));
 
             Promise.all(promises).then(resolve, () => {
-                alertText(globalize.translate('ErrorDeletingItem')).then(reject, reject);
+                alertText(translate('ErrorDeletingItem')).then(reject, reject);
             });
         }, reject);
     });
@@ -173,19 +173,19 @@ function showMenuForSelectedItems(e) {
             const menuItems = [];
 
             menuItems.push({
-                name: globalize.translate('SelectAll'),
+                name: translate('SelectAll'),
                 id: 'selectall',
                 icon: 'select_all'
             });
 
             menuItems.push({
-                name: globalize.translate('AddToCollection'),
+                name: translate('AddToCollection'),
                 id: 'addtocollection',
                 icon: 'add'
             });
 
             menuItems.push({
-                name: globalize.translate('AddToPlaylist'),
+                name: translate('AddToPlaylist'),
                 id: 'playlist',
                 icon: 'playlist_add'
             });
@@ -193,7 +193,7 @@ function showMenuForSelectedItems(e) {
             // TODO: Be more dynamic based on what is selected
             if (user.Policy.EnableContentDeletion) {
                 menuItems.push({
-                    name: globalize.translate('Delete'),
+                    name: translate('Delete'),
                     id: 'delete',
                     icon: 'delete'
                 });
@@ -205,20 +205,20 @@ function showMenuForSelectedItems(e) {
 
             if (user.Policy.IsAdministrator) {
                 menuItems.push({
-                    name: globalize.translate('GroupVersions'),
+                    name: translate('GroupVersions'),
                     id: 'groupvideos',
                     icon: 'call_merge'
                 });
             }
 
             menuItems.push({
-                name: globalize.translate('MarkPlayed'),
+                name: translate('MarkPlayed'),
                 id: 'markplayed',
                 icon: 'check_box'
             });
 
             menuItems.push({
-                name: globalize.translate('MarkUnplayed'),
+                name: translate('MarkUnplayed'),
                 id: 'markunplayed',
                 icon: 'check_box_outline_blank'
             });
@@ -227,7 +227,7 @@ function showMenuForSelectedItems(e) {
             // they can refresh metadata for all items
             if (itemHelper.canRefreshMetadata(firstItem, user)) {
                 menuItems.push({
-                    name: globalize.translate('RefreshMetadata'),
+                    name: translate('RefreshMetadata'),
                     id: 'refresh',
                     icon: 'refresh'
                 });
@@ -342,7 +342,7 @@ function dispatchNeedsRefresh() {
 function combineVersions(apiClient, selection) {
     if (selection.length < 2) {
         alert({
-            text: globalize.translate('PleaseSelectTwoItems')
+            text: translate('PleaseSelectTwoItems')
         });
 
         return;
@@ -536,7 +536,7 @@ export default function (options) {
 
     initTapHold(container);
 
-    if (options.bindOnClick !== false) {
+    if (options.bindonPress !== false) {
         container.addEventListener('click', onContainerClick);
     }
 

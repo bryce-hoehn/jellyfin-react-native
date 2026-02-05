@@ -1,6 +1,6 @@
 import loading from 'components/loading/loading';
 import toast from 'components/toast/toast';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import Dashboard from 'utils/dashboard';
 
@@ -24,7 +24,7 @@ function onUpdateUserComplete(result) {
 async function onUpdateUserError(result) {
     const message = await result.text();
     console.warn('[Wizard > User] user update failed:', message);
-    toast(globalize.translate('ErrorDefault'));
+    toast(translate('ErrorDefault'));
     loading.hide();
 }
 
@@ -49,7 +49,7 @@ function onSubmit(e) {
     const form = this;
 
     if (form.querySelector('#txtManualPassword').value != form.querySelector('#txtPasswordConfirm').value) {
-        toast(globalize.translate('PasswordMatchError'));
+        toast(translate('PasswordMatchError'));
     } else {
         submit(form);
     }

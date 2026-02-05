@@ -3,7 +3,7 @@ import React, { FC, FormEvent, useCallback, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Input from 'elements/emby-input/Input';
 import Button from 'elements/emby-button/Button';
 import { useApi } from 'hooks/useApi';
@@ -57,7 +57,7 @@ const QuickConnectPage: FC = () => {
     return (
         <Page
             id='quickConnectPreferencesPage'
-            title={globalize.translate('QuickConnect')}
+            title={translate('QuickConnect')}
             className='mainAnimatedPage libraryPage userPreferencesPage noSecondaryNavPage'
             shouldAutoFocus
         >
@@ -65,26 +65,26 @@ const QuickConnectPage: FC = () => {
                 <form onSubmit={onSubmitCode}>
                     <div className='verticalSection'>
                         <h2 className='sectionTitle'>
-                            {globalize.translate('QuickConnect')}
+                            {translate('QuickConnect')}
                         </h2>
                         <div>
-                            {globalize.translate('QuickConnectDescription')}
+                            {translate('QuickConnectDescription')}
                         </div>
                         <br />
 
                         {error && (
                             <div className='quickConnectError'>
-                                {globalize.translate(error)}
+                                {translate(error)}
                             </div>
                         )}
 
                         {success ? (
                             <div style={{ textAlign: 'center' }}>
                                 <p>
-                                    {globalize.translate('QuickConnectAuthorizeSuccess')}
+                                    {translate('QuickConnectAuthorizeSuccess')}
                                 </p>
                                 <Link to='/home' className='button-link emby-button'>
-                                    {globalize.translate('GoHome')}
+                                    {translate('GoHome')}
                                 </Link>
                             </div>
                         ) : (
@@ -94,7 +94,7 @@ const QuickConnectPage: FC = () => {
                                         value={code}
                                         onChange={onCodeChange}
                                         id='txtQuickConnectCode'
-                                        label={globalize.translate('LabelQuickConnectCode')}
+                                        label={translate('LabelQuickConnectCode')}
                                         type='text'
                                         inputMode='numeric'
                                         pattern='[0-9\s]*'
@@ -106,7 +106,7 @@ const QuickConnectPage: FC = () => {
                                 <Button
                                     type='submit'
                                     className='raised button-submit block'
-                                    title={globalize.translate('Authorize')}
+                                    title={translate('Authorize')}
                                 />
                             </>
                         )}

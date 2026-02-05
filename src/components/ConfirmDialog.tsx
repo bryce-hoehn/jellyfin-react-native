@@ -6,7 +6,7 @@ import DialogContentText from '@mui/material/DialogContentText/DialogContentText
 import DialogTitle from '@mui/material/DialogTitle/DialogTitle';
 import React, { type FC } from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface ConfirmDialogProps extends DialogProps {
     confirmButtonColor?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
@@ -39,15 +39,15 @@ const ConfirmDialog: FC<ConfirmDialogProps> = ({
         <DialogActions>
             <Button
                 variant='text'
-                onClick={onCancel}
+                onPress={onCancel}
             >
-                {globalize.translate('ButtonCancel')}
+                {translate('ButtonCancel')}
             </Button>
             <Button
                 color={confirmButtonColor}
-                onClick={onConfirm}
+                onPress={onConfirm}
             >
-                {confirmButtonText || globalize.translate('ButtonOk')}
+                {confirmButtonText || translate('ButtonOk')}
             </Button>
         </DialogActions>
     </Dialog>

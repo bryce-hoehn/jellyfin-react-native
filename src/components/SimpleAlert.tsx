@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import React from 'react';
 
 interface SimpleAlertDialog extends DialogProps {
@@ -27,8 +27,8 @@ const SimpleAlert = ({ open, title, text, onClose }: SimpleAlertDialog) => {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose}>
-                    {globalize.translate('ButtonGotIt')}
+                <Button onPress={onClose}>
+                    {translate('ButtonGotIt')}
                 </Button>
             </DialogActions>
         </Dialog>

@@ -1,10 +1,10 @@
 import { ImageResolution } from '@jellyfin/sdk/lib/generated-client/models/image-resolution';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 export function getImageResolutionOptions() {
     return [
         {
-            name: globalize.translate('ResolutionMatchSource'),
+            name: translate('ResolutionMatchSource'),
             value: ImageResolution.MatchSource
         },
         { name: '2160p', value: ImageResolution.P2160 },

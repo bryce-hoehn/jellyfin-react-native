@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { getTriggerFriendlyName } from '../utils/edit';
 import type { TaskTriggerInfo } from '@jellyfin/sdk/lib/generated-client/models/task-trigger-info';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface CellProps {
     cell: MRT_Cell<MRT_RowData>
@@ -23,8 +23,8 @@ const TaskTriggerCell: FC<CellProps> = ({ cell }) => {
             {timeLimitHours && (
                 <Typography variant='body2' color={'text.secondary'}>
                     {timeLimitHours == 1 ?
-                        globalize.translate('ValueTimeLimitSingleHour') :
-                        globalize.translate('ValueTimeLimitMultiHour', timeLimitHours)}
+                        translate('ValueTimeLimitSingleHour') :
+                        translate('ValueTimeLimitMultiHour', timeLimitHours)}
                 </Typography>
             )}
         </Box>

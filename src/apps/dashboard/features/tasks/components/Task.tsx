@@ -35,7 +35,7 @@ const Task: FunctionComponent<TaskProps> = ({ task }: TaskProps) => {
         <ListItem
             disablePadding
             secondaryAction={
-                <IconButton onClick={task.State == 'Running' ? handleStopTask : handleStartTask}>
+                <IconButton onPress={task.State == 'Running' ? handleStopTask : handleStartTask}>
                     {task.State == 'Running' ? <Stop /> : <PlayArrow />}
                 </IconButton>
             }

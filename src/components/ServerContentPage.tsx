@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import viewManager from './viewManager/viewManager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import type { RestoreViewFailResponse } from 'types/viewManager';
 
@@ -36,7 +36,7 @@ const ServerContentPage: FunctionComponent<ServerContentPageProps> = ({ view }) 
 
                         // Fetch the view html from the server and translate it
                         const viewHtml = await apiClient?.get(apiClient.getUrl(view + location.search))
-                            .then((html: string) => globalize.translateHtml(html));
+                            .then((html: string) => translateHtml(html));
 
                         viewManager.loadView({
                             ...viewOptions,

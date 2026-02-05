@@ -9,7 +9,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const getUrlParams = (searchParams: URLSearchParams) => {
     const parentId =
@@ -40,10 +40,10 @@ const SearchButton: FC = () => {
         };
 
     return (
-        <Tooltip title={globalize.translate('Search')}>
+        <Tooltip title={translate('Search')}>
             <IconButton
                 size='large'
-                aria-label={globalize.translate('Search')}
+                aria-label={translate('Search')}
                 color='inherit'
                 component={Link}
                 disabled={isSearchPath}

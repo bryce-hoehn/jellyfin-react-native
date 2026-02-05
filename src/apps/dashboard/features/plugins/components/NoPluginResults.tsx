@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import React, { type FC } from 'react';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 interface NoPluginResultsProps {
     isFiltered: boolean
@@ -31,17 +31,17 @@ const NoPluginResults: FC<NoPluginResultsProps> = ({
             >
                 {
                     query ?
-                        globalize.translate('SearchResultsEmpty', query) :
-                        globalize.translate('NoSubtitleSearchResultsFound')
+                        translate('SearchResultsEmpty', query) :
+                        translate('NoSubtitleSearchResultsFound')
                 }
             </Typography>
 
             {isFiltered && (
                 <Button
                     variant='text'
-                    onClick={onViewAll}
+                    onPress={onViewAll}
                 >
-                    {globalize.translate('ViewAllPlugins')}
+                    {translate('ViewAllPlugins')}
                 </Button>
             )}
         </Box>

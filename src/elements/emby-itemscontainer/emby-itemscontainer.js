@@ -16,7 +16,7 @@ import Events from '../../utils/events.ts';
 
 const ItemsContainerPrototype = Object.create(HTMLDivElement.prototype);
 
-function onClick(e) {
+function onPress(e) {
     const itemsContainer = this;
     const multiSelect = itemsContainer.multiSelect;
 
@@ -24,7 +24,7 @@ function onClick(e) {
         return;
     }
 
-    itemShortcuts.onClick.call(itemsContainer, e);
+    itemShortcuts.onPress.call(itemsContainer, e);
 }
 
 function disableEvent(e) {
@@ -74,7 +74,7 @@ ItemsContainerPrototype.enableMultiSelect = function (enabled) {
     import('../../components/multiSelect/multiSelect').then(({ default: MultiSelect }) => {
         self.multiSelect = new MultiSelect({
             container: self,
-            bindOnClick: false
+            bindonPress: false
         });
     });
 };
@@ -282,7 +282,7 @@ ItemsContainerPrototype.createdCallback = function () {
 };
 
 ItemsContainerPrototype.attachedCallback = function () {
-    this.addEventListener('click', onClick);
+    this.addEventListener('click', onPress);
 
     if (browser.touch) {
         this.addEventListener('contextmenu', disableEvent);
@@ -318,7 +318,7 @@ ItemsContainerPrototype.detachedCallback = function () {
 
     this.enableMultiSelect(false);
     this.enableDragReordering(false);
-    this.removeEventListener('click', onClick);
+    this.removeEventListener('click', onPress);
     this.removeEventListener('contextmenu', onContextMenu);
     this.removeEventListener('contextmenu', disableEvent);
 

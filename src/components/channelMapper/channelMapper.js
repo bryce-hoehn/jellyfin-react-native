@@ -96,7 +96,7 @@ export default class ChannelMapper {
             html += '<div class="formDialogContent smoothScrollY">';
             html += '<div class="dialogContentInner dialog-content-centered">';
             html += '<form style="margin:auto;">';
-            html += `<h1>${globalize.translate('Channels')}</h1>`;
+            html += `<h1>${translate('Channels')}</h1>`;
             html += '<div class="channels paperList">';
             html += '</div>';
             html += '</form>';
@@ -128,9 +128,9 @@ export default class ChannelMapper {
             dlg.classList.add('ui-body-a');
             dlg.classList.add('background-theme-a');
             let html = '';
-            const title = globalize.translate('MapChannels');
+            const title = translate('MapChannels');
             html += '<div class="formDialogHeader">';
-            html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${globalize.translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
+            html += `<button is="paper-icon-button-light" class="btnCancel autoSize" tabindex="-1" title="${translate('ButtonBack')}"><span class="material-icons arrow_back" aria-hidden="true"></span></button>`;
             html += '<h3 class="formDialogHeaderTitle">';
             html += title;
             html += '</h3>';

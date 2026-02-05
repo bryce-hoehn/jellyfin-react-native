@@ -71,7 +71,7 @@ function searchForIdentificationResults(page) {
     }
 
     if (!hasId && !lookupInfo.Name) {
-        toast(globalize.translate('PleaseEnterNameOrId'));
+        toast(translate('PleaseEnterNameOrId'));
         return;
     }
 
@@ -297,10 +297,10 @@ function showIdentificationForm(page, item) {
 
             let fullName = idInfo.Name;
             if (idInfo.Type) {
-                fullName = `${idInfo.Name} ${globalize.translate(idInfo.Type)}`;
+                fullName = `${idInfo.Name} ${translate(idInfo.Type)}`;
             }
 
-            const idLabel = globalize.translate('LabelDynamicExternalId', escapeHtml(fullName));
+            const idLabel = translate('LabelDynamicExternalId', escapeHtml(fullName));
 
             html += `<input is="emby-input" class="txtLookupId" data-providerkey="${idInfo.Key}" id="${id}" label="${idLabel}"/>`;
 
@@ -319,7 +319,7 @@ function showIdentificationForm(page, item) {
 
         page.querySelector('.identifyProviderIds').innerHTML = html;
 
-        page.querySelector('.formDialogHeaderTitle').innerHTML = globalize.translate('Identify');
+        page.querySelector('.formDialogHeaderTitle').innerHTML = translate('Identify');
     });
 }
 
@@ -348,7 +348,7 @@ function showEditor(itemId) {
         dlg.classList.add('recordingDialog');
 
         let html = '';
-        html += globalize.translateHtml(template, 'core');
+        html += translateHtml(template, 'core');
 
         dlg.innerHTML = html;
 

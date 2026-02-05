@@ -1,6 +1,6 @@
 import * as userSettings from 'scripts/settings/userSettings';
 import datetime from 'scripts/datetime';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import itemHelper from '../itemHelper';
 
 import { ItemKind } from 'types/base/models/item-kind';
@@ -41,7 +41,7 @@ function addTrackCountOrItemCount(
     if (isFolderRuntimeEnabled) {
         const count = itemSongCount || itemChildCount;
         if (count) {
-            addMiscInfo({ text: globalize.translate('TrackCount', count) });
+            addMiscInfo({ text: translate('TrackCount', count) });
         }
 
         if (itemRunTimeTicks) {
@@ -55,7 +55,7 @@ function addTrackCountOrItemCount(
     ) {
         const count = itemChildCount;
         if (count) {
-            addMiscInfo({ text: globalize.translate('ItemCount', count) });
+            addMiscInfo({ text: translate('ItemCount', count) });
         }
     }
 }
@@ -97,16 +97,16 @@ function addSeriesTimerInfo(
 ): void {
     if (showSeriesTimerInfo && itemType === ItemKind.SeriesTimer) {
         if (itemRecordAnyTime) {
-            addMiscInfo({ text: globalize.translate('Anytime') });
+            addMiscInfo({ text: translate('Anytime') });
         } else {
             addMiscInfo({ text: datetime.getDisplayTime(itemStartDate) });
         }
 
         if (itemRecordAnyChannel) {
-            addMiscInfo({ text: globalize.translate('AllChannels') });
+            addMiscInfo({ text: translate('AllChannels') });
         } else {
             addMiscInfo({
-                text: itemChannelName || globalize.translate('OneChannel')
+                text: itemChannelName || translate('OneChannel')
             });
         }
     }
@@ -121,7 +121,7 @@ function addProgramIndicatorInfo(
         && userSettings.get('guide-indicator-live') === 'true'
     ) {
         addMiscInfo({
-            text: globalize.translate('Live'),
+            text: translate('Live'),
             cssClass: 'mediaInfoProgramAttribute liveTvProgram'
         });
     } else if (
@@ -129,7 +129,7 @@ function addProgramIndicatorInfo(
         && userSettings.get('guide-indicator-premiere') === 'true'
     ) {
         addMiscInfo({
-            text: globalize.translate('Premiere'),
+            text: translate('Premiere'),
             cssClass: 'mediaInfoProgramAttribute premiereTvProgram'
         });
     } else if (
@@ -138,7 +138,7 @@ function addProgramIndicatorInfo(
         && userSettings.get('guide-indicator-new') === 'true'
     ) {
         addMiscInfo({
-            text: globalize.translate('New'),
+            text: translate('New'),
             cssClass: 'mediaInfoProgramAttribute newTvProgram'
         });
     } else if (
@@ -147,7 +147,7 @@ function addProgramIndicatorInfo(
         && userSettings.get('guide-indicator-repeat') === 'true'
     ) {
         addMiscInfo({
-            text: globalize.translate('Repeat'),
+            text: translate('Repeat'),
             cssClass: 'mediaInfoProgramAttribute repeatTvProgram'
         });
     }
@@ -207,7 +207,7 @@ function addProgramTextInfo(
     } else if (showOriginalAirDateInfo && program.PremiereDate) {
         try {
             const date = datetime.parseISO8601Date(program.PremiereDate);
-            const text = globalize.translate(
+            const text = translate(
                 'OriginalAirDateValue',
                 datetime.toLocaleDateString(date)
             );
@@ -255,7 +255,7 @@ function addSeriesProductionYearInfo(
     if (showYearInfo && itemProductionYear && itemType === ItemKind.Series) {
         if (itemStatus === ItemStatus.Continuing) {
             addMiscInfo({
-                text: globalize.translate(
+                text: translate(
                     'SeriesYearToPresent',
                     datetime.toLocaleString(itemProductionYear, {
                         useGrouping: false

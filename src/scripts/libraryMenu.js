@@ -6,7 +6,7 @@ import { ApiClient } from 'jellyfin-apiclient';
 
 import { AppFeature } from 'constants/appFeature';
 import { getUserViewsQuery } from 'hooks/useUserViews';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { EventType } from 'constants/eventType';
 import { toApi } from 'utils/jellyfin-apiclient/compat';
@@ -101,35 +101,35 @@ function onBackClick() {
 
 function retranslateUi() {
     if (headerBackButton) {
-        headerBackButton.title = globalize.translate('ButtonBack');
+        headerBackButton.title = translate('ButtonBack');
     }
 
     if (headerHomeButton) {
-        headerHomeButton.title = globalize.translate('Home');
+        headerHomeButton.title = translate('Home');
     }
 
     if (mainDrawerButton) {
-        mainDrawerButton.title = globalize.translate('Menu');
+        mainDrawerButton.title = translate('Menu');
     }
 
     if (headerSyncButton) {
-        headerSyncButton.title = globalize.translate('ButtonSyncPlay');
+        headerSyncButton.title = translate('ButtonSyncPlay');
     }
 
     if (headerAudioPlayerButton) {
-        headerAudioPlayerButton.title = globalize.translate('ButtonPlayer');
+        headerAudioPlayerButton.title = translate('ButtonPlayer');
     }
 
     if (headerCastButton) {
-        headerCastButton.title = globalize.translate('ButtonCast');
+        headerCastButton.title = translate('ButtonCast');
     }
 
     if (headerSearchButton) {
-        headerSearchButton.title = globalize.translate('Search');
+        headerSearchButton.title = translate('Search');
     }
 
     if (headerUserButton) {
-        headerUserButton.title = globalize.translate('Settings');
+        headerUserButton.title = translate('Settings');
     }
 }
 
@@ -217,11 +217,11 @@ function showSearch() {
     inputManager.handleCommand('search');
 }
 
-function onHeaderUserButtonClick() {
+function onHeaderUserButtonPress() {
     Dashboard.navigate('mypreferencesmenu');
 }
 
-function onHeaderHomeButtonClick() {
+function onHeaderHomeButtonPress() {
     Dashboard.navigate('home');
 }
 
@@ -242,15 +242,15 @@ function bindMenuEvents() {
         headerSearchButton.addEventListener('click', showSearch);
     }
 
-    headerUserButton.addEventListener('click', onHeaderUserButtonClick);
-    headerHomeButton.addEventListener('click', onHeaderHomeButtonClick);
+    headerUserButton.addEventListener('click', onHeaderUserButtonPress);
+    headerHomeButton.addEventListener('click', onHeaderHomeButtonPress);
 
     if (!layoutManager.tv) {
-        headerCastButton.addEventListener('click', onCastButtonClicked);
+        headerCastButton.addEventListener('click', onCastButtonPressed);
     }
 
     headerAudioPlayerButton.addEventListener('click', showAudioPlayer);
-    headerSyncButton.addEventListener('click', onSyncButtonClicked);
+    headerSyncButton.addEventListener('click', onSyncButtonPressed);
 
     if (layoutManager.mobile) {
         initHeadRoom(skinHeader);
@@ -273,7 +273,7 @@ function onPlaybackStop(e, stopInfo) {
     }
 }
 
-function onCastButtonClicked() {
+function onCastButtonPressed() {
     const btn = this;
 
     import('../components/playback/playerSelectionMenu').then((playerSelectionMenu) => {
@@ -281,7 +281,7 @@ function onCastButtonClicked() {
     });
 }
 
-function onSyncButtonClicked() {
+function onSyncButtonPressed() {
     const btn = this;
     groupSelectionMenu.show(btn);
 }
@@ -325,7 +325,7 @@ function onMainDrawerSelect() {
 function refreshLibraryInfoInDrawer(user) {
     let html = '';
     html += '<div style="height:.5em;"></div>';
-    html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder" href="#/home"><span class="material-icons navMenuOptionIcon home" aria-hidden="true"></span><span class="navMenuOptionText">${globalize.translate('Home')}</span></a>`;
+    html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder" href="#/home"><span class="material-icons navMenuOptionIcon home" aria-hidden="true"></span><span class="navMenuOptionText">${translate('Home')}</span></a>`;
 
     // placeholder for custom menu links
     html += '<div class="customMenuOptions"></div>';
@@ -336,28 +336,28 @@ function refreshLibraryInfoInDrawer(user) {
     if (user.localUser?.Policy.IsAdministrator) {
         html += '<div class="adminMenuOptions">';
         html += '<h3 class="sidebarHeader">';
-        html += globalize.translate('HeaderAdmin');
+        html += translate('HeaderAdmin');
         html += '</h3>';
-        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder lnkManageServer" data-itemid="dashboard" href="#/dashboard"><span class="material-icons navMenuOptionIcon dashboard" aria-hidden="true"></span><span class="navMenuOptionText">${globalize.translate('TabDashboard')}</span></a>`;
-        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder editorViewMenu" data-itemid="editor" href="#/metadata"><span class="material-icons navMenuOptionIcon mode_edit" aria-hidden="true"></span><span class="navMenuOptionText">${globalize.translate('MetadataManager')}</span></a>`;
+        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder lnkManageServer" data-itemid="dashboard" href="#/dashboard"><span class="material-icons navMenuOptionIcon dashboard" aria-hidden="true"></span><span class="navMenuOptionText">${translate('TabDashboard')}</span></a>`;
+        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder editorViewMenu" data-itemid="editor" href="#/metadata"><span class="material-icons navMenuOptionIcon mode_edit" aria-hidden="true"></span><span class="navMenuOptionText">${translate('MetadataManager')}</span></a>`;
         html += '</div>';
     }
 
     if (user.localUser) {
         html += '<div class="userMenuOptions">';
         html += '<h3 class="sidebarHeader">';
-        html += globalize.translate('HeaderUser');
+        html += translate('HeaderUser');
         html += '</h3>';
 
         if (appHost.supports(AppFeature.MultiServer)) {
-            html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder btnSelectServer" data-itemid="selectserver" href="#"><span class="material-icons navMenuOptionIcon storage" aria-hidden="true"></span><span class="navMenuOptionText">${globalize.translate('SelectServer')}</span></a>`;
+            html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder btnSelectServer" data-itemid="selectserver" href="#"><span class="material-icons navMenuOptionIcon storage" aria-hidden="true"></span><span class="navMenuOptionText">${translate('SelectServer')}</span></a>`;
         }
 
-        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder btnSettings" data-itemid="settings" href="#"><span class="material-icons navMenuOptionIcon settings" aria-hidden="true"></span><span class="navMenuOptionText">${globalize.translate('Settings')}</span></a>`;
-        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder btnLogout" data-itemid="logout" href="#"><span class="material-icons navMenuOptionIcon exit_to_app" aria-hidden="true"></span><span class="navMenuOptionText">${globalize.translate('ButtonSignOut')}</span></a>`;
+        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder btnSettings" data-itemid="settings" href="#"><span class="material-icons navMenuOptionIcon settings" aria-hidden="true"></span><span class="navMenuOptionText">${translate('Settings')}</span></a>`;
+        html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder btnLogout" data-itemid="logout" href="#"><span class="material-icons navMenuOptionIcon exit_to_app" aria-hidden="true"></span><span class="navMenuOptionText">${translate('ButtonSignOut')}</span></a>`;
 
         if (appHost.supports(AppFeature.ExitMenu)) {
-            html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder exitApp" data-itemid="exitapp" href="#"><span class="material-icons navMenuOptionIcon close" aria-hidden="true"></span><span class="navMenuOptionText">${globalize.translate('ButtonExitApp')}</span></a>`;
+            html += `<a is="emby-linkbutton" class="navMenuOption lnkMediaFolder exitApp" data-itemid="exitapp" href="#"><span class="material-icons navMenuOptionIcon close" aria-hidden="true"></span><span class="navMenuOptionText">${translate('ButtonExitApp')}</span></a>`;
         }
 
         html += '</div>';
@@ -407,7 +407,7 @@ function getUserViews(apiClient, userId) {
                 if (view.CollectionType == 'livetv') {
                     view.icon = 'live_tv';
                     const guideView = Object.assign({}, view);
-                    guideView.Name = globalize.translate('Guide');
+                    guideView.Name = translate('Guide');
                     guideView.ImageTags = {};
                     guideView.icon = 'dvr';
                     guideView.url = '#/livetv?tab=1';
@@ -470,7 +470,7 @@ function updateLibraryMenu(user) {
     if (libraryMenuOptions) {
         getUserViews(apiClient, userId).then(function (result) {
             const items = result;
-            let html = `<h3 class="sidebarHeader">${globalize.translate('HeaderMedia')}</h3>`;
+            let html = `<h3 class="sidebarHeader">${translate('HeaderMedia')}</h3>`;
             html += items.map(function (i) {
                 const icon = i.icon || imageHelper.getLibraryIcon(i.CollectionType);
                 const itemId = i.Id;
@@ -856,7 +856,7 @@ loadNavDrawer();
 
 const LibraryMenu = {
     getTopParentId,
-    onHardwareMenuButtonClick: function () {
+    onHardwareMenuButtonPress: function () {
         toggleMainDrawer();
     },
     setTabs,

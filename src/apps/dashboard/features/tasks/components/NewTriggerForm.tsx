@@ -4,13 +4,13 @@ import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import MenuItem from '@mui/material/MenuItem';
+import { Menu } from 'react-native-paper';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import type { TaskTriggerInfo } from '@jellyfin/sdk/lib/generated-client/models/task-trigger-info';
 import { TaskTriggerInfoType } from '@jellyfin/sdk/lib/generated-client/models/task-trigger-info-type';
 import { DayOfWeek } from '@jellyfin/sdk/lib/generated-client/models/day-of-week';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { getIntervalOptions, getTimeOfDayOptions } from '../utils/edit';
 import { useLocale } from 'hooks/useLocale';
 
@@ -85,12 +85,12 @@ const NewTriggerForm: FunctionComponent<IProps> = ({ open, title, onClose, onAdd
                         fullWidth
                         value={triggerType}
                         onChange={onTriggerTypeChange}
-                        label={globalize.translate('LabelTriggerType')}
+                        label={translate('LabelTriggerType')}
                     >
-                        <MenuItem value={TaskTriggerInfoType.DailyTrigger}>{globalize.translate('OptionDaily')}</MenuItem>
-                        <MenuItem value={TaskTriggerInfoType.WeeklyTrigger}>{globalize.translate('OptionWeekly')}</MenuItem>
-                        <MenuItem value={TaskTriggerInfoType.IntervalTrigger}>{globalize.translate('OptionOnInterval')}</MenuItem>
-                        <MenuItem value={TaskTriggerInfoType.StartupTrigger}>{globalize.translate('OnApplicationStartup')}</MenuItem>
+                        <MenuItem value={TaskTriggerInfoType.DailyTrigger}>{translate('OptionDaily')}</MenuItem>
+                        <MenuItem value={TaskTriggerInfoType.WeeklyTrigger}>{translate('OptionWeekly')}</MenuItem>
+                        <MenuItem value={TaskTriggerInfoType.IntervalTrigger}>{translate('OptionOnInterval')}</MenuItem>
+                        <MenuItem value={TaskTriggerInfoType.StartupTrigger}>{translate('OnApplicationStartup')}</MenuItem>
                     </TextField>
 
                     {triggerType == TaskTriggerInfoType.WeeklyTrigger && (
@@ -99,15 +99,15 @@ const NewTriggerForm: FunctionComponent<IProps> = ({ open, title, onClose, onAdd
                             select
                             fullWidth
                             defaultValue={DayOfWeek.Sunday}
-                            label={globalize.translate('LabelDay')}
+                            label={translate('LabelDay')}
                         >
-                            <MenuItem value={DayOfWeek.Sunday}>{globalize.translate('Sunday')}</MenuItem>
-                            <MenuItem value={DayOfWeek.Monday}>{globalize.translate('Monday')}</MenuItem>
-                            <MenuItem value={DayOfWeek.Tuesday}>{globalize.translate('Tuesday')}</MenuItem>
-                            <MenuItem value={DayOfWeek.Wednesday}>{globalize.translate('Wednesday')}</MenuItem>
-                            <MenuItem value={DayOfWeek.Thursday}>{globalize.translate('Thursday')}</MenuItem>
-                            <MenuItem value={DayOfWeek.Friday}>{globalize.translate('Friday')}</MenuItem>
-                            <MenuItem value={DayOfWeek.Saturday}>{globalize.translate('Saturday')}</MenuItem>
+                            <MenuItem value={DayOfWeek.Sunday}>{translate('Sunday')}</MenuItem>
+                            <MenuItem value={DayOfWeek.Monday}>{translate('Monday')}</MenuItem>
+                            <MenuItem value={DayOfWeek.Tuesday}>{translate('Tuesday')}</MenuItem>
+                            <MenuItem value={DayOfWeek.Wednesday}>{translate('Wednesday')}</MenuItem>
+                            <MenuItem value={DayOfWeek.Thursday}>{translate('Thursday')}</MenuItem>
+                            <MenuItem value={DayOfWeek.Friday}>{translate('Friday')}</MenuItem>
+                            <MenuItem value={DayOfWeek.Saturday}>{translate('Saturday')}</MenuItem>
                         </TextField>
                     )}
 
@@ -117,7 +117,7 @@ const NewTriggerForm: FunctionComponent<IProps> = ({ open, title, onClose, onAdd
                             select
                             fullWidth
                             defaultValue={'0'}
-                            label={globalize.translate('LabelTime')}
+                            label={translate('LabelTime')}
                         >
                             {timeOfDayOptions.map((option) => {
                                 return <MenuItem
@@ -134,7 +134,7 @@ const NewTriggerForm: FunctionComponent<IProps> = ({ open, title, onClose, onAdd
                             select
                             fullWidth
                             defaultValue={intervalOptions[0].value}
-                            label={globalize.translate('LabelEveryXMinutes')}
+                            label={translate('LabelEveryXMinutes')}
                         >
                             {intervalOptions.map((option) => {
                                 return <MenuItem
@@ -150,7 +150,7 @@ const NewTriggerForm: FunctionComponent<IProps> = ({ open, title, onClose, onAdd
                         fullWidth
                         defaultValue={''}
                         type='number'
-                        label={globalize.translate('LabelTimeLimitHours')}
+                        label={translate('LabelTimeLimitHours')}
                         slotProps={{
                             htmlInput: {
                                 min: 1,
@@ -163,10 +163,10 @@ const NewTriggerForm: FunctionComponent<IProps> = ({ open, title, onClose, onAdd
 
             <DialogActions>
                 <Button
-                    onClick={onClose}
+                    onPress={onClose}
                     variant='text'
-                >{globalize.translate('ButtonCancel')}</Button>
-                <Button type='submit'>{globalize.translate('Add')}</Button>
+                >{translate('ButtonCancel')}</Button>
+                <Button type='submit'>{translate('Add')}</Button>
             </DialogActions>
         </Dialog>
     );

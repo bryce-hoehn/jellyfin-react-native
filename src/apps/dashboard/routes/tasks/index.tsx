@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from 'components/Page';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { getCategories, getTasksByCategory } from '../../features/tasks/utils/tasks';
@@ -20,7 +20,7 @@ export const Component = () => {
     return (
         <Page
             id='scheduledTasksPage'
-            title={globalize.translate('TabScheduledTasks')}
+            title={translate('TabScheduledTasks')}
             className='mainAnimatedPage type-interior'
         >
             <Box className='content-primary'>

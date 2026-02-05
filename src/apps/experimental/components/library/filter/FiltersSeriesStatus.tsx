@@ -4,7 +4,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { LibraryViewSettings } from 'types/library';
 
 const statusFiltersOptions = [
@@ -58,7 +58,7 @@ const FiltersSeriesStatus: FC<FiltersSeriesStatusProps> = ({
                             value={filter.value}
                         />
                     }
-                    label={globalize.translate(filter.label)}
+                    label={translate(filter.label)}
                 />
             ))}
         </FormGroup>

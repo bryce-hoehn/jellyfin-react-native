@@ -12,7 +12,7 @@ const Toast = (props: SnackbarProps) => {
         <IconButton
             size='small'
             color='inherit'
-            onClick={onCloseClick}
+            onPress={onCloseClick}
         >
             <CloseIcon fontSize='small' />
         </IconButton>

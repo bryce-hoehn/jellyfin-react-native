@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback } from 'react';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import type { BackupOptionsDto } from '@jellyfin/sdk/lib/generated-client/models/backup-options-dto';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -49,12 +49,12 @@ const CreateBackupForm: FunctionComponent<IProps> = ({ open, onClose, onCreate }
                 }
             }}
         >
-            <DialogTitle>{globalize.translate('ButtonCreateBackup')}</DialogTitle>
+            <DialogTitle>{translate('ButtonCreateBackup')}</DialogTitle>
 
             <DialogContent>
                 <Stack spacing={2}>
                     <DialogContentText>
-                        {globalize.translate('MessageBackupDisclaimer')}
+                        {translate('MessageBackupDisclaimer')}
                     </DialogContentText>
                     <FormGroup>
                         <FormControl>
@@ -66,7 +66,7 @@ const CreateBackupForm: FunctionComponent<IProps> = ({ open, onClose, onCreate }
                                         disabled
                                     />
                                 }
-                                label={globalize.translate('LabelDatabase')}
+                                label={translate('LabelDatabase')}
                             />
                         </FormControl>
 
@@ -78,7 +78,7 @@ const CreateBackupForm: FunctionComponent<IProps> = ({ open, onClose, onCreate }
                                         defaultChecked={false}
                                     />
                                 }
-                                label={globalize.translate('LabelMetadata')}
+                                label={translate('LabelMetadata')}
                             />
                         </FormControl>
 
@@ -90,7 +90,7 @@ const CreateBackupForm: FunctionComponent<IProps> = ({ open, onClose, onCreate }
                                         defaultChecked={false}
                                     />
                                 }
-                                label={globalize.translate('Subtitles')}
+                                label={translate('Subtitles')}
                             />
                         </FormControl>
 
@@ -102,7 +102,7 @@ const CreateBackupForm: FunctionComponent<IProps> = ({ open, onClose, onCreate }
                                         defaultChecked={false}
                                     />
                                 }
-                                label={globalize.translate('Trickplay')}
+                                label={translate('Trickplay')}
                             />
                         </FormControl>
                     </FormGroup>
@@ -111,10 +111,10 @@ const CreateBackupForm: FunctionComponent<IProps> = ({ open, onClose, onCreate }
 
             <DialogActions>
                 <Button
-                    onClick={onClose}
+                    onPress={onClose}
                     variant='text'
-                >{globalize.translate('ButtonCancel')}</Button>
-                <Button type='submit'>{globalize.translate('Create')}</Button>
+                >{translate('ButtonCancel')}</Button>
+                <Button type='submit'>{translate('Create')}</Button>
             </DialogActions>
         </Dialog>
     );

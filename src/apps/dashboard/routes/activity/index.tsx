@@ -17,7 +17,7 @@ import OverviewCell from 'apps/dashboard/features/activity/components/OverviewCe
 import UserAvatarButton from 'apps/dashboard/components/UserAvatarButton';
 import type { ActivityLogEntryCell } from 'apps/dashboard/features/activity/types/ActivityLogEntryCell';
 import { type UsersRecords, useUsersDetails } from 'hooks/useUsers';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { toBoolean } from 'utils/string';
 
 const DEFAULT_PAGE_SIZE = 25;
@@ -78,7 +78,7 @@ export const Component = () => {
         (activityView === ActivityView.System) ? [] : [{
             id: 'User',
             accessorFn: row => row.UserId && users[row.UserId]?.Name,
-            header: globalize.translate('LabelUser'),
+            header: translate('LabelUser'),
             size: 75,
             Cell: UserCell,
             enableResizing: false,
@@ -93,14 +93,14 @@ export const Component = () => {
         {
             id: 'Date',
             accessorFn: row => row.Date ? parseISO(row.Date) : undefined,
-            header: globalize.translate('LabelTime'),
+            header: translate('LabelTime'),
             size: 160,
             Cell: DateTimeCell,
             filterVariant: 'datetime-range'
         },
         {
             accessorKey: 'Severity',
-            header: globalize.translate('LabelLevel'),
+            header: translate('LabelLevel'),
             size: 90,
             Cell: LogLevelCell,
             enableResizing: false,
@@ -108,24 +108,24 @@ export const Component = () => {
                 align: 'center'
             },
             filterVariant: 'multi-select',
-            filterSelectOptions: Object.values(LogLevel).map(level => globalize.translate(`LogLevel.${level}`))
+            filterSelectOptions: Object.values(LogLevel).map(level => translate(`LogLevel.${level}`))
         },
         ...userColumn,
         {
             accessorKey: 'Name',
-            header: globalize.translate('LabelName'),
+            header: translate('LabelName'),
             size: 270
         },
         {
             id: 'Overview',
             accessorFn: row => row.ShortOverview || row.Overview,
-            header: globalize.translate('LabelOverview'),
+            header: translate('LabelOverview'),
             size: 170,
             Cell: OverviewCell
         },
         {
             accessorKey: 'Type',
-            header: globalize.translate('LabelType'),
+            header: translate('LabelType'),
             size: 150
         },
         {
@@ -195,13 +195,13 @@ export const Component = () => {
                 exclusive
             >
                 <ToggleButton value={ActivityView.All}>
-                    {globalize.translate('All')}
+                    {translate('All')}
                 </ToggleButton>
                 <ToggleButton value={ActivityView.User}>
-                    {globalize.translate('LabelUser')}
+                    {translate('LabelUser')}
                 </ToggleButton>
                 <ToggleButton value={ActivityView.System}>
-                    {globalize.translate('LabelSystem')}
+                    {translate('LabelSystem')}
                 </ToggleButton>
             </ToggleButtonGroup>
         )
@@ -210,7 +210,7 @@ export const Component = () => {
     return (
         <TablePage
             id='serverActivityPage'
-            title={globalize.translate('HeaderActivity')}
+            title={translate('HeaderActivity')}
             className='mainAnimatedPage type-interior'
             table={table}
         />

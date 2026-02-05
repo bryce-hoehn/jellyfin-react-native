@@ -29,12 +29,12 @@ function onFileReaderError(evt) {
 
     switch (evt.target.error.code) {
         case evt.target.error.NOT_FOUND_ERR:
-            toast(globalize.translate('MessageFileReadError'));
+            toast(translate('MessageFileReadError'));
             break;
         case evt.target.error.ABORT_ERR:
             break; // noop
         default:
-            toast(globalize.translate('MessageFileReadError'));
+            toast(translate('MessageFileReadError'));
             break;
     }
 }
@@ -87,7 +87,7 @@ function onSubmit(e) {
     }
 
     if (!file.type.startsWith('image/')) {
-        toast(globalize.translate('MessageImageFileTypeAllowed'));
+        toast(translate('MessageImageFileTypeAllowed'));
         e.preventDefault();
         return false;
     }
@@ -98,7 +98,7 @@ function onSubmit(e) {
 
     const imageType = dlg.querySelector('#selectImageType').value;
     if (imageType === 'None') {
-        toast(globalize.translate('MessageImageTypeNotSelected'));
+        toast(translate('MessageImageTypeNotSelected'));
         e.preventDefault();
         return false;
     }
@@ -147,7 +147,7 @@ function showEditor(options, resolve) {
 
     dlg.classList.add('formDialog');
 
-    dlg.innerHTML = globalize.translateHtml(template, 'core');
+    dlg.innerHTML = translateHtml(template, 'core');
 
     if (layoutManager.tv) {
         scrollHelper.centerFocus.on(dlg, false);

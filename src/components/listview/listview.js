@@ -26,7 +26,7 @@ import '../../elements/emby-playstatebutton/emby-playstatebutton';
 
 function getIndex(item, options) {
     if (options.index === 'disc') {
-        return item.ParentIndexNumber == null ? '' : globalize.translate('ValueDiscNumber', item.ParentIndexNumber);
+        return item.ParentIndexNumber == null ? '' : translate('ValueDiscNumber', item.ParentIndexNumber);
     }
 
     const sortBy = (options.sortBy || '').toLowerCase();
@@ -49,18 +49,18 @@ function getIndex(item, options) {
         return name.toUpperCase();
     }
     if (sortBy.indexOf('officialrating') === 0) {
-        return item.OfficialRating || globalize.translate('Unrated');
+        return item.OfficialRating || translate('Unrated');
     }
     if (sortBy.indexOf('communityrating') === 0) {
         if (item.CommunityRating == null) {
-            return globalize.translate('Unrated');
+            return translate('Unrated');
         }
 
         return Math.floor(item.CommunityRating);
     }
     if (sortBy.indexOf('criticrating') === 0) {
         if (item.CriticRating == null) {
-            return globalize.translate('Unrated');
+            return translate('Unrated');
         }
 
         return Math.floor(item.CriticRating);
@@ -302,7 +302,7 @@ export function getListViewHtml(options) {
             }
 
             if (playOnImageClick) {
-                html += `<button is="paper-icon-button-light" class="listItemImageButton itemAction" data-action="${ItemAction.Resume}" title="${globalize.translate('Play')}"><span class="material-icons listItemImageButton-icon play_arrow" aria-hidden="true"></span></button>`;
+                html += `<button is="paper-icon-button-light" class="listItemImageButton itemAction" data-action="${ItemAction.Resume}" title="${translate('Play')}"><span class="material-icons listItemImageButton-icon play_arrow" aria-hidden="true"></span></button>`;
             }
 
             const progressHtml = indicators.getProgressBarHtml(item, {
@@ -453,11 +453,11 @@ export function getListViewHtml(options) {
 
         if (!clickEntireItem) {
             if (options.addToListButton) {
-                html += `<button is="paper-icon-button-light" class="listItemButton itemAction" data-action="${ItemAction.AddToPlaylist}" title="${globalize.translate('AddToPlaylist')}"><span class="material-icons playlist_add" aria-hidden="true"></span></button>`;
+                html += `<button is="paper-icon-button-light" class="listItemButton itemAction" data-action="${ItemAction.AddToPlaylist}" title="${translate('AddToPlaylist')}"><span class="material-icons playlist_add" aria-hidden="true"></span></button>`;
             }
 
             if (options.infoButton) {
-                html += `<button is="paper-icon-button-light" class="listItemButton itemAction" data-action="${ItemAction.Link}" title="${globalize.translate('ButtonInfo')}"><span class="material-icons info_outline" aria-hidden="true"></span></button>`;
+                html += `<button is="paper-icon-button-light" class="listItemButton itemAction" data-action="${ItemAction.Link}" title="${translate('ButtonInfo')}"><span class="material-icons info_outline" aria-hidden="true"></span></button>`;
             }
 
             if (options.rightButtons) {
@@ -478,7 +478,7 @@ export function getListViewHtml(options) {
             }
 
             if (options.moreButton !== false) {
-                html += `<button is="paper-icon-button-light" class="listItemButton itemAction" data-action="${ItemAction.Menu}" title="${globalize.translate('ButtonMore')}"><span class="material-icons more_vert" aria-hidden="true"></span></button>`;
+                html += `<button is="paper-icon-button-light" class="listItemButton itemAction" data-action="${ItemAction.Menu}" title="${translate('ButtonMore')}"><span class="material-icons more_vert" aria-hidden="true"></span></button>`;
             }
         }
         html += '</div>';

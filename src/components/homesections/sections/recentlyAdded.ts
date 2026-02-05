@@ -8,7 +8,7 @@ import type { ApiClient } from 'jellyfin-apiclient';
 import cardBuilder from 'components/cardbuilder/cardBuilder';
 import layoutManager from 'components/layoutManager';
 import { appRouter } from 'components/router/appRouter';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { getBackdropShape, getPortraitShape, getSquareShape } from 'utils/card';
 
@@ -99,12 +99,12 @@ function renderLatestSection(
             section: 'latest'
         }) + '" class="more button-flat button-flat-mini sectionTitleTextButton">';
         html += '<h2 class="sectionTitle sectionTitle-cards">';
-        html += globalize.translate('LatestFromLibrary', escapeHtml(parent.Name));
+        html += translate('LatestFromLibrary', escapeHtml(parent.Name));
         html += '</h2>';
         html += '<span class="material-icons chevron_right" aria-hidden="true"></span>';
         html += '</a>';
     } else {
-        html += '<h2 class="sectionTitle sectionTitle-cards">' + globalize.translate('LatestFromLibrary', escapeHtml(parent.Name)) + '</h2>';
+        html += '<h2 class="sectionTitle sectionTitle-cards">' + translate('LatestFromLibrary', escapeHtml(parent.Name)) + '</h2>';
     }
     html += '</div>';
 

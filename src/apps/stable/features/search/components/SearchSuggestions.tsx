@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import Loading from 'components/loading/LoadingComponent';
 import { appRouter } from 'components/router/appRouter';
 import { useSearchSuggestions } from '../api/useSearchSuggestions';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import LinkButton from 'elements/emby-button/LinkButton';
 
 import 'elements/emby-button/emby-button';
@@ -24,7 +24,7 @@ const SearchSuggestions: FunctionComponent<SearchSuggestionsProps> = ({ parentId
         >
             <div>
                 <h2 className='sectionTitle padded-left padded-right'>
-                    {globalize.translate('Suggestions')}
+                    {translate('Suggestions')}
                 </h2>
             </div>
 

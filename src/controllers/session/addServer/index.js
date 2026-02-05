@@ -1,5 +1,5 @@
 import loading from 'components/loading/loading';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ConnectionState, ServerConnections } from 'lib/jellyfin-apiclient';
 import appSettings from 'scripts/settings/appSettings';
 import Dashboard from 'utils/dashboard';
@@ -27,13 +27,13 @@ function handleConnectionResult(page, result) {
             break;
         case ConnectionState.ServerUpdateNeeded:
             Dashboard.alert({
-                message: globalize.translate('ServerUpdateNeeded', '<a href="https://github.com/jellyfin/jellyfin">https://github.com/jellyfin/jellyfin</a>')
+                message: translate('ServerUpdateNeeded', '<a href="https://github.com/jellyfin/jellyfin">https://github.com/jellyfin/jellyfin</a>')
             });
             break;
         case ConnectionState.Unavailable:
             Dashboard.alert({
-                message: globalize.translate('MessageUnableToConnectToServer'),
-                title: globalize.translate('HeaderConnectionFailure')
+                message: translate('MessageUnableToConnectToServer'),
+                title: translate('HeaderConnectionFailure')
             });
     }
 }

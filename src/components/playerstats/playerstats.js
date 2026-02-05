@@ -1,4 +1,4 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { PluginType } from 'types/plugin';
 import Events from 'utils/events';
@@ -39,7 +39,7 @@ function init(instance) {
     button = parent.querySelector('.playerStats-closeButton');
 
     if (button) {
-        button.addEventListener('click', onCloseButtonClick.bind(instance));
+        button.addEventListener('click', onCloseButtonPress.bind(instance));
     }
 
     document.body.appendChild(parent);
@@ -47,7 +47,7 @@ function init(instance) {
     instance.element = parent;
 }
 
-function onCloseButtonClick() {
+function onCloseButtonPress() {
     this.enabled(false);
 }
 
@@ -113,7 +113,7 @@ function getSession(instance, player) {
 }
 
 function translateReason(reason) {
-    return globalize.translate('' + reason);
+    return translate('' + reason);
 }
 
 function getTranscodingStats(session, player, displayPlayMethod) {
@@ -133,14 +133,14 @@ function getTranscodingStats(session, player, displayPlayMethod) {
 
     if (videoCodec) {
         sessionStats.push({
-            label: globalize.translate('LabelVideoCodec'),
+            label: translate('LabelVideoCodec'),
             value: session.TranscodingInfo.IsVideoDirect ? (videoCodec.toUpperCase() + ' (direct)') : videoCodec.toUpperCase()
         });
     }
 
     if (audioCodec) {
         sessionStats.push({
-            label: globalize.translate('LabelAudioCodec'),
+            label: translate('LabelAudioCodec'),
             value: session.TranscodingInfo.IsAudioDirect ? (audioCodec.toUpperCase() + ' (direct)') : audioCodec.toUpperCase()
         });
     }
@@ -148,31 +148,31 @@ function getTranscodingStats(session, player, displayPlayMethod) {
     if (displayPlayMethod === 'Transcode') {
         if (audioChannels) {
             sessionStats.push({
-                label: globalize.translate('LabelAudioChannels'),
+                label: translate('LabelAudioChannels'),
                 value: audioChannels
             });
         }
         if (totalBitrate) {
             sessionStats.push({
-                label: globalize.translate('LabelBitrate'),
+                label: translate('LabelBitrate'),
                 value: getDisplayBitrate(totalBitrate)
             });
         }
         if (session.TranscodingInfo.CompletionPercentage) {
             sessionStats.push({
-                label: globalize.translate('LabelTranscodingProgress'),
+                label: translate('LabelTranscodingProgress'),
                 value: session.TranscodingInfo.CompletionPercentage.toFixed(1) + '%'
             });
         }
         if (session.TranscodingInfo.Framerate) {
             sessionStats.push({
-                label: globalize.translate('LabelTranscodingFramerate'),
+                label: translate('LabelTranscodingFramerate'),
                 value: getDisplayTranscodeFps(session, player)
             });
         }
         if (session.TranscodingInfo.TranscodeReasons?.length) {
             sessionStats.push({
-                label: globalize.translate('LabelReasonForTranscoding'),
+                label: translate('LabelReasonForTranscoding'),
                 value: session.TranscodingInfo.TranscodeReasons.map(translateReason).join('<br/>')
             });
         }
@@ -183,7 +183,7 @@ function getTranscodingStats(session, player, displayPlayMethod) {
         // making the display of hardware acceleration misleading.
         // if (session.TranscodingInfo.HardwareAccelerationType) {
         //     sessionStats.push({
-        //         label: globalize.translate('LabelHardwareEncoding'),
+        //         label: translate('LabelHardwareEncoding'),
         //         value: session.TranscodingInfo.HardwareAccelerationType
         //     });
         // }
@@ -223,21 +223,21 @@ function getMediaSourceStats(session, player) {
 
     if (mediaSource.Container) {
         sessionStats.push({
-            label: globalize.translate('LabelProfileContainer'),
+            label: translate('LabelProfileContainer'),
             value: mediaSource.Container
         });
     }
 
     if (mediaFileSize) {
         sessionStats.push({
-            label: globalize.translate('LabelSize'),
+            label: translate('LabelSize'),
             value: getReadableSize(mediaFileSize)
         });
     }
 
     if (totalBitrate) {
         sessionStats.push({
-            label: globalize.translate('LabelBitrate'),
+            label: translate('LabelBitrate'),
             value: getDisplayBitrate(totalBitrate)
         });
     }
@@ -269,21 +269,21 @@ function getMediaSourceStats(session, player) {
 
     if (videoInfos.length) {
         sessionStats.push({
-            label: globalize.translate('LabelVideoCodec'),
+            label: translate('LabelVideoCodec'),
             value: videoInfos.join(' ')
         });
     }
 
     if (videoStream.BitRate) {
         sessionStats.push({
-            label: globalize.translate('LabelVideoBitrate'),
+            label: translate('LabelVideoBitrate'),
             value: getDisplayBitrate(videoStream.BitRate)
         });
     }
 
     if (videoStream.VideoRangeType) {
         sessionStats.push({
-            label: globalize.translate('LabelVideoRangeType'),
+            label: translate('LabelVideoRangeType'),
             value: videoStream.VideoDoViTitle || videoStream.VideoRangeType
         });
     }
@@ -300,35 +300,35 @@ function getMediaSourceStats(session, player) {
 
     if (audioInfos.length) {
         sessionStats.push({
-            label: globalize.translate('LabelAudioCodec'),
+            label: translate('LabelAudioCodec'),
             value: audioInfos.join(' ')
         });
     }
 
     if (audioStream.BitRate) {
         sessionStats.push({
-            label: globalize.translate('LabelAudioBitrate'),
+            label: translate('LabelAudioBitrate'),
             value: getDisplayBitrate(audioStream.BitRate)
         });
     }
 
     if (audioChannels) {
         sessionStats.push({
-            label: globalize.translate('LabelAudioChannels'),
+            label: translate('LabelAudioChannels'),
             value: audioChannels
         });
     }
 
     if (audioStream.SampleRate) {
         sessionStats.push({
-            label: globalize.translate('LabelAudioSampleRate'),
+            label: translate('LabelAudioSampleRate'),
             value: audioStream.SampleRate + ' Hz'
         });
     }
 
     if (audioStream.BitDepth) {
         sessionStats.push({
-            label: globalize.translate('LabelAudioBitDepth'),
+            label: translate('LabelAudioBitDepth'),
             value: audioStream.BitDepth
         });
     }
@@ -347,22 +347,22 @@ function getSyncPlayStats() {
     const stats = SyncPlay.Manager.getStats();
 
     syncStats.push({
-        label: globalize.translate('LabelSyncPlayTimeSyncDevice'),
+        label: translate('LabelSyncPlayTimeSyncDevice'),
         value: stats.TimeSyncDevice
     });
 
     syncStats.push({
-        label: globalize.translate('LabelSyncPlayTimeSyncOffset'),
-        value: stats.TimeSyncOffset + ' ' + globalize.translate('MillisecondsUnit')
+        label: translate('LabelSyncPlayTimeSyncOffset'),
+        value: stats.TimeSyncOffset + ' ' + translate('MillisecondsUnit')
     });
 
     syncStats.push({
-        label: globalize.translate('LabelSyncPlayPlaybackDiff'),
-        value: stats.PlaybackDiff + ' ' + globalize.translate('MillisecondsUnit')
+        label: translate('LabelSyncPlayPlaybackDiff'),
+        value: stats.PlaybackDiff + ' ' + translate('MillisecondsUnit')
     });
 
     syncStats.push({
-        label: globalize.translate('LabelSyncPlaySyncMethod'),
+        label: translate('LabelSyncPlaySyncMethod'),
         value: stats.SyncMethod
     });
 
@@ -382,27 +382,27 @@ function getStats(instance, player) {
         let localizedDisplayMethod = displayPlayMethod;
 
         if (displayPlayMethod === 'DirectPlay') {
-            localizedDisplayMethod = globalize.translate('DirectPlaying');
+            localizedDisplayMethod = translate('DirectPlaying');
         } else if (displayPlayMethod === 'Remux') {
-            localizedDisplayMethod = globalize.translate('Remuxing');
+            localizedDisplayMethod = translate('Remuxing');
         } else if (displayPlayMethod === 'DirectStream') {
-            localizedDisplayMethod = globalize.translate('DirectStreaming');
+            localizedDisplayMethod = translate('DirectStreaming');
         } else if (displayPlayMethod === 'Transcode') {
-            localizedDisplayMethod = globalize.translate('Transcoding');
+            localizedDisplayMethod = translate('Transcoding');
         }
 
         const baseCategory = {
             stats: [],
-            name: globalize.translate('LabelPlaybackInfo')
+            name: translate('LabelPlaybackInfo')
         };
 
         baseCategory.stats.unshift({
-            label: globalize.translate('LabelPlayMethod'),
+            label: translate('LabelPlayMethod'),
             value: localizedDisplayMethod
         });
 
         baseCategory.stats.unshift({
-            label: globalize.translate('LabelPlayer'),
+            label: translate('LabelPlayer'),
             value: player.name
         });
 
@@ -413,18 +413,18 @@ function getStats(instance, player) {
         for (let i = 0, length = playerStats.length; i < length; i++) {
             const category = playerStats[i];
             if (category.type === 'audio') {
-                category.name = globalize.translate('LabelAudioInfo');
+                category.name = translate('LabelAudioInfo');
             } else if (category.type === 'video') {
-                category.name = globalize.translate('LabelVideoInfo');
+                category.name = translate('LabelVideoInfo');
             }
             categories.push(category);
         }
 
-        let localizedTranscodingInfo = globalize.translate('LabelTranscodingInfo');
+        let localizedTranscodingInfo = translate('LabelTranscodingInfo');
         if (displayPlayMethod === 'Remux') {
-            localizedTranscodingInfo = globalize.translate('LabelRemuxingInfo');
+            localizedTranscodingInfo = translate('LabelRemuxingInfo');
         } else if (displayPlayMethod === 'DirectStream') {
-            localizedTranscodingInfo = globalize.translate('LabelDirectStreamingInfo');
+            localizedTranscodingInfo = translate('LabelDirectStreamingInfo');
         }
 
         if (session.TranscodingInfo) {
@@ -436,14 +436,14 @@ function getStats(instance, player) {
 
         categories.push({
             stats: getMediaSourceStats(session, player),
-            name: globalize.translate('LabelOriginalMediaInfo')
+            name: translate('LabelOriginalMediaInfo')
         });
 
         const syncPlayStats = getSyncPlayStats();
         if (syncPlayStats.length > 0) {
             categories.push({
                 stats: syncPlayStats,
-                name: globalize.translate('LabelSyncPlayInfo')
+                name: translate('LabelSyncPlayInfo')
             });
         }
 

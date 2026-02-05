@@ -11,7 +11,7 @@ import React, { type FC } from 'react';
 
 import MarkdownBox from 'components/MarkdownBox';
 import { getDisplayDateTime } from 'scripts/datetime';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 import type { PluginDetails } from '../types/PluginDetails';
 
@@ -38,7 +38,7 @@ const PluginRevisions: FC<PluginRevisionsProps> = ({
             <AccordionDetails>
                 <Stack spacing={2}>
                     <MarkdownBox
-                        fallback={globalize.translate('LabelNoChangelog')}
+                        fallback={translate('LabelNoChangelog')}
                         markdown={version.changelog}
                     />
                     {pluginDetails.status && version.version === pluginDetails.version?.version ? (
@@ -47,15 +47,15 @@ const PluginRevisions: FC<PluginRevisionsProps> = ({
                             startIcon={<DownloadDone />}
                             variant='outlined'
                         >
-                            {globalize.translate('LabelInstalled')}
+                            {translate('LabelInstalled')}
                         </Button>
                     ) : (
                         <Button
                             startIcon={<Download />}
                             variant='outlined'
-                            onClick={onInstall(version)}
+                            onPress={onInstall(version)}
                         >
-                            {globalize.translate('HeaderInstall')}
+                            {translate('HeaderInstall')}
                         </Button>
                     )}
                 </Stack>

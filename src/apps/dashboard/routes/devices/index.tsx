@@ -21,7 +21,7 @@ import type { DeviceInfoCell } from 'apps/dashboard/features/devices/types/devic
 import ConfirmDialog from 'components/ConfirmDialog';
 import { useApi } from 'hooks/useApi';
 import { type UsersRecords, useUsersDetails } from 'hooks/useUsers';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const getUserCell = (users: UsersRecords) => function UserCell({ renderedCellValue, row }: DeviceInfoCell) {
     return (
@@ -106,7 +106,7 @@ export const Component = () => {
         {
             id: 'DateLastActivity',
             accessorFn: row => row.DateLastActivity ? parseISO(row.DateLastActivity) : undefined,
-            header: globalize.translate('LastActive'),
+            header: translate('LastActive'),
             size: 160,
             Cell: DateTimeCell,
             filterVariant: 'datetime-range',
@@ -115,7 +115,7 @@ export const Component = () => {
         {
             id: 'Name',
             accessorFn: row => row.CustomName || row.Name,
-            header: globalize.translate('LabelDevice'),
+            header: translate('LabelDevice'),
             size: 200,
             Cell: DeviceNameCell
         },
@@ -124,13 +124,13 @@ export const Component = () => {
             accessorFn: row => [row.AppName, row.AppVersion]
                 .filter(v => !!v) // filter missing values
                 .join(' '),
-            header: globalize.translate('LabelAppName'),
+            header: translate('LabelAppName'),
             size: 200,
             enableEditing: false
         },
         {
             accessorKey: 'LastUserName',
-            header: globalize.translate('LabelUser'),
+            header: translate('LabelUser'),
             size: 120,
             enableEditing: false,
             Cell: UserCell,
@@ -209,10 +209,10 @@ export const Component = () => {
                         }
                     }}
                 >
-                    <Tooltip title={globalize.translate('Edit')}>
+                    <Tooltip title={translate('Edit')}>
                         <IconButton
                             // eslint-disable-next-line react/jsx-no-bind
-                            onClick={() => table.setEditingRow(row)}
+                            onPress={() => table.setEditingRow(row)}
                         >
                             <Edit />
                         </IconButton>
@@ -226,10 +226,10 @@ export const Component = () => {
                             <Delete />
                         </IconButton>
                     ) : (
-                        <Tooltip title={globalize.translate('Delete')}>
+                        <Tooltip title={translate('Delete')}>
                             <IconButton
                                 color='error'
-                                onClick={onDeleteDevice(row.original.Id)}
+                                onPress={onDeleteDevice(row.original.Id)}
                             >
                                 <Delete />
                             </IconButton>
@@ -244,9 +244,9 @@ export const Component = () => {
             <Button
                 color='error'
                 startIcon={<Delete />}
-                onClick={onDeleteAll}
+                onPress={onDeleteAll}
             >
-                {globalize.translate('DeleteAll')}
+                {translate('DeleteAll')}
             </Button>
         )
     });
@@ -254,27 +254,27 @@ export const Component = () => {
     return (
         <TablePage
             id='devicesPage'
-            title={globalize.translate('HeaderDevices')}
+            title={translate('HeaderDevices')}
             className='mainAnimatedPage type-interior'
             table={mrTable}
         >
             <ConfirmDialog
                 open={isDeleteConfirmOpen}
-                title={globalize.translate('HeaderDeleteDevice')}
-                text={globalize.translate('DeleteDeviceConfirmation')}
+                title={translate('HeaderDeleteDevice')}
+                text={translate('DeleteDeviceConfirmation')}
                 onCancel={onCloseDeleteConfirmDialog}
                 onConfirm={onConfirmDelete}
                 confirmButtonColor='error'
-                confirmButtonText={globalize.translate('Delete')}
+                confirmButtonText={translate('Delete')}
             />
             <ConfirmDialog
                 open={isDeleteAllConfirmOpen}
-                title={globalize.translate('HeaderDeleteDevices')}
-                text={globalize.translate('DeleteDevicesConfirmation')}
+                title={translate('HeaderDeleteDevices')}
+                text={translate('DeleteDevicesConfirmation')}
                 onCancel={onCloseDeleteAllConfirmDialog}
                 onConfirm={onConfirmDeleteAll}
                 confirmButtonColor='error'
-                confirmButtonText={globalize.translate('Delete')}
+                confirmButtonText={translate('Delete')}
             />
         </TablePage>
     );

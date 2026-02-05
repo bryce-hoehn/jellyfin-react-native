@@ -1,15 +1,15 @@
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import Dashboard from 'utils/dashboard';
 
 function processForgotPasswordResult(result) {
     if (result.Success) {
-        let msg = globalize.translate('MessagePasswordResetForUsers');
+        let msg = translate('MessagePasswordResetForUsers');
         msg += '<br/>';
         msg += '<br/>';
         msg += result.UsersReset.join('<br/>');
         Dashboard.alert({
             message: msg,
-            title: globalize.translate('HeaderPasswordReset'),
+            title: translate('HeaderPasswordReset'),
             callback: function () {
                 window.location.href = '';
             }
@@ -18,8 +18,8 @@ function processForgotPasswordResult(result) {
     }
 
     Dashboard.alert({
-        message: globalize.translate('MessageInvalidForgotPasswordPin'),
-        title: globalize.translate('HeaderPasswordReset')
+        message: translate('MessageInvalidForgotPasswordPin'),
+        title: translate('HeaderPasswordReset')
     });
 }
 

@@ -165,34 +165,34 @@ export default function (view, params, tabContent) {
         tabElement.querySelector('.btnSort').addEventListener('click', function (e) {
             libraryBrowser.showSortMenu({
                 items: [{
-                    name: globalize.translate('OptionTrackName'),
+                    name: translate('OptionTrackName'),
                     id: 'Name'
                 }, {
-                    name: globalize.translate('Album'),
+                    name: translate('Album'),
                     id: 'Album,AlbumArtist,SortName'
                 }, {
-                    name: globalize.translate('AlbumArtist'),
+                    name: translate('AlbumArtist'),
                     id: 'AlbumArtist,Album,SortName'
                 }, {
-                    name: globalize.translate('Artist'),
+                    name: translate('Artist'),
                     id: 'Artist,Album,SortName'
                 }, {
-                    name: globalize.translate('OptionDateAdded'),
+                    name: translate('OptionDateAdded'),
                     id: 'DateCreated,SortName'
                 }, {
-                    name: globalize.translate('OptionDatePlayed'),
+                    name: translate('OptionDatePlayed'),
                     id: 'DatePlayed,SortName'
                 }, {
-                    name: globalize.translate('OptionPlayCount'),
+                    name: translate('OptionPlayCount'),
                     id: 'PlayCount,SortName'
                 }, {
-                    name: globalize.translate('OptionReleaseDate'),
+                    name: translate('OptionReleaseDate'),
                     id: 'PremiereDate,AlbumArtist,Album,SortName'
                 }, {
-                    name: globalize.translate('Runtime'),
+                    name: translate('Runtime'),
                     id: 'Runtime,AlbumArtist,Album,SortName'
                 }, {
-                    name: globalize.translate('OptionRandom'),
+                    name: translate('OptionRandom'),
                     id: 'Random,SortName'
                 }],
                 callback: function () {

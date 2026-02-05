@@ -1,5 +1,5 @@
 import loading from 'components/loading/loading';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import 'elements/emby-checkbox/emby-checkbox';
 import 'elements/emby-select/emby-select';
 import Dashboard from 'utils/dashboard';
@@ -94,8 +94,8 @@ function validateHttps(form) {
 
     if (httpsEnabled && !certPath) {
         return showAlertText({
-            title: globalize.translate('TitleHostingSettings'),
-            text: globalize.translate('HttpsRequiresCert')
+            title: translate('TitleHostingSettings'),
+            text: translate('HttpsRequiresCert')
         }).then(Promise.reject);
     }
 
@@ -111,8 +111,8 @@ function showAlertText(options) {
 function confirmSelections(localAddress, callback) {
     if (localAddress) {
         showAlertText({
-            title: globalize.translate('TitleHostingSettings'),
-            text: globalize.translate('SettingsWarning')
+            title: translate('TitleHostingSettings'),
+            text: translate('SettingsWarning')
         }).then(callback);
     } else {
         callback();
@@ -171,7 +171,7 @@ export default function (view) {
 
                     picker.close();
                 },
-                header: globalize.translate('HeaderSelectCertificatePath')
+                header: translate('HeaderSelectCertificatePath')
             });
         });
     });

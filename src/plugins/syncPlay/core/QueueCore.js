@@ -189,7 +189,7 @@ class QueueCore {
         }).catch((error) => {
             console.error('Error while waiting for `playbackstart` event!', origin, error);
             if (!this.manager.isSyncPlayEnabled()) {
-                toast(globalize.translate('MessageSyncPlayErrorMedia'));
+                toast(translate('MessageSyncPlayErrorMedia'));
             }
 
             this.manager.haltGroupPlayback(apiClient);
@@ -237,7 +237,7 @@ class QueueCore {
             serverId: serverId
         }).catch((error) => {
             console.error(error);
-            toast(globalize.translate('MessageSyncPlayErrorMedia'));
+            toast(translate('MessageSyncPlayErrorMedia'));
         });
     }
 

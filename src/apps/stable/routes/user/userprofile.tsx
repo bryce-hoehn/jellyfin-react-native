@@ -79,19 +79,19 @@ const UserProfile: FunctionComponent = () => {
             loading.hide();
             switch (evt.target?.error?.code) {
                 case DOMException.NOT_FOUND_ERR:
-                    toast(globalize.translate('FileNotFound'));
+                    toast(translate('FileNotFound'));
                     break;
                 case DOMException.ABORT_ERR:
                     onFileReaderAbort();
                     break;
                 default:
-                    toast(globalize.translate('FileReadError'));
+                    toast(translate('FileReadError'));
             }
         };
 
         const onFileReaderAbort = () => {
             loading.hide();
-            toast(globalize.translate('FileReadCancelled'));
+            toast(translate('FileReadCancelled'));
         };
 
         const setFiles = (evt: Event) => {
@@ -133,8 +133,8 @@ const UserProfile: FunctionComponent = () => {
             }
 
             confirm(
-                globalize.translate('DeleteImageConfirmation'),
-                globalize.translate('DeleteImage')
+                translate('DeleteImageConfirmation'),
+                translate('DeleteImage')
             ).then(function () {
                 loading.show();
                 window.ApiClient.deleteUserImage(userId, ImageType.Primary).then(function () {
@@ -178,7 +178,7 @@ const UserProfile: FunctionComponent = () => {
     return (
         <Page
             id='userProfilePage'
-            title={globalize.translate('Profile')}
+            title={translate('Profile')}
             className='mainAnimatedPage libraryPage userPreferencesPage userPasswordPage noSecondaryNavPage'
         >
             <div ref={element} className='padded-left padded-right padded-bottom-page'>
@@ -210,13 +210,13 @@ const UserProfile: FunctionComponent = () => {
                             type='button'
                             id='btnAddImage'
                             className='raised button-submit hide'
-                            title={globalize.translate('ButtonAddImage')}
+                            title={translate('ButtonAddImage')}
                         />
                         <Button
                             type='button'
                             id='btnDeleteImage'
                             className='raised hide'
-                            title={globalize.translate('DeleteImage')}
+                            title={translate('DeleteImage')}
                         />
                     </div>
                 </div>

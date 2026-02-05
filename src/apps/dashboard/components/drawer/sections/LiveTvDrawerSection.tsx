@@ -8,7 +8,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 
 import ListItemLink from 'components/ListItemLink';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 
 const LiveTvDrawerSection = () => {
     return (
@@ -16,7 +16,7 @@ const LiveTvDrawerSection = () => {
             aria-labelledby='livetv-subheader'
             subheader={
                 <ListSubheader component='div' id='livetv-subheader'>
-                    {globalize.translate('LiveTV')}
+                    {translate('LiveTV')}
                 </ListSubheader>
             }
         >
@@ -25,7 +25,7 @@ const LiveTvDrawerSection = () => {
                     <ListItemIcon>
                         <LiveTv />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('LiveTV')} />
+                    <ListItemText primary={translate('LiveTV')} />
                 </ListItemLink>
             </ListItem>
             <ListItem disablePadding>
@@ -33,7 +33,7 @@ const LiveTvDrawerSection = () => {
                     <ListItemIcon>
                         <Dvr />
                     </ListItemIcon>
-                    <ListItemText primary={globalize.translate('HeaderDVR')} />
+                    <ListItemText primary={translate('HeaderDVR')} />
                 </ListItemLink>
             </ListItem>
         </List>

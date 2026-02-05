@@ -4,7 +4,7 @@ import Shuffle from '@mui/icons-material/Shuffle';
 import Button from '@mui/material/Button';
 
 import { playbackManager } from 'components/playback/playbackmanager';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import { getFiltersQuery } from 'utils/items';
 import { LibraryViewSettings } from 'types/library';
 import { LibraryTab } from 'types/libraryTab';
@@ -47,12 +47,12 @@ const ShuffleButton: FC<ShuffleButtonProps> = ({
 
     return (
         <Button
-            title={globalize.translate('Shuffle')}
+            title={translate('Shuffle')}
             startIcon={isTextVisible ? <Shuffle /> : undefined}
-            onClick={shuffle}
+            onPress={shuffle}
         >
             {isTextVisible ? (
-                globalize.translate('Shuffle')
+                translate('Shuffle')
             ) : (
                 <Shuffle />
             )}

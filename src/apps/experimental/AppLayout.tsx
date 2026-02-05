@@ -44,7 +44,7 @@ export const Component = () => {
                             <AppToolbar
                                 isDrawerAvailable={!isMediumScreen && isDrawerAvailable}
                                 isDrawerOpen={isDrawerOpen}
-                                onDrawerButtonClick={onToggleDrawer}
+                                onDrawerButtonPress={onToggleDrawer}
                             />
                         </AppBar>
                     </ElevationScroll>

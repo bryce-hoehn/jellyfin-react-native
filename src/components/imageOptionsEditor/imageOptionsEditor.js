@@ -88,7 +88,7 @@ class ImageOptionsEditor {
             scrollY: false
         });
         dlg.classList.add('formDialog');
-        dlg.innerHTML = globalize.translateHtml(template);
+        dlg.innerHTML = translateHtml(template);
         dlg.addEventListener('close', function () {
             saveValues(dlg, options);
         });

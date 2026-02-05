@@ -5,7 +5,7 @@ import lazyLoader from 'components/lazyLoader/lazyLoaderIntersectionObserver';
 import layoutManager from 'components/layoutManager';
 import loading from 'components/loading/loading';
 import { appRouter } from 'components/router/appRouter';
-import globalize from 'lib/globalize';
+import { translate } from 'lib/globalize';
 import * as userSettings from 'scripts/settings/userSettings';
 import { getBackdropShape, getPortraitShape } from 'utils/card';
 
@@ -170,8 +170,8 @@ export default function (view, params, tabContent) {
                 html = '';
 
                 html += '<div class="noItemsMessage centerMessage">';
-                html += '<h1>' + globalize.translate('MessageNothingHere') + '</h1>';
-                html += '<p>' + globalize.translate('MessageNoGenresAvailable') + '</p>';
+                html += '<h1>' + translate('MessageNothingHere') + '</h1>';
+                html += '<p>' + translate('MessageNoGenresAvailable') + '</p>';
                 html += '</div>';
             }
 
