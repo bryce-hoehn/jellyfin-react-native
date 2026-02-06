@@ -1,8 +1,8 @@
 import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-item-kind';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { type FC, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import CheckIcon from '@mui/icons-material/Check';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ItemAction } from 'constants/itemAction';
 import { translate } from 'lib/globalize';
@@ -61,16 +61,23 @@ const PlayedButton: FC<PlayedButtonProps> = ({
 
     return (
         <IconButton
-            data-action={ItemAction.None}
-            title={getTitle()}
+            // TODO: data-action not supported
+            // data-action={ItemAction.None}
+            // TODO: title prop not supported - use accessibility label
+            // title={getTitle()}
             className={className}
-            size='small'
+            // TODO: IconButton size prop not available in RN Paper
+            // size='small'
             onPress={onPress}
-        >
-            <CheckIcon
-                color={isPlayed ? 'error' : undefined}
-            />
-        </IconButton>
+            icon={() => (
+                <Icon
+                    name="check"
+                    size={24}
+                    // TODO: color prop may need adjustment - 'error' is MUI specific
+                    color={isPlayed ? 'error' : undefined}
+                />
+            )}
+        />
     );
 };
 

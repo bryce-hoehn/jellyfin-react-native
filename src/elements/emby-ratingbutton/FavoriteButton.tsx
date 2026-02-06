@@ -1,7 +1,7 @@
 import React, { type FC, useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import IconButton from '@mui/material/IconButton';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ItemAction } from 'constants/itemAction';
 import { useToggleFavoriteMutation } from 'hooks/useFetchItems';
@@ -47,16 +47,23 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
 
     return (
         <IconButton
-            data-action={ItemAction.None}
+            // TODO: data-action not supported
+            // data-action={ItemAction.None}
             className={className}
-            title={isFavorite ? translate('Favorite') : translate('AddToFavorites')}
-            size='small'
+            // TODO: title prop not supported - use accessibility label
+            // title={isFavorite ? translate('Favorite') : translate('AddToFavorites')}
+            // TODO: IconButton size prop not available in RN Paper
+            // size='small'
             onPress={onPress}
-        >
-            <FavoriteIcon
-                color={isFavorite ? 'error' : undefined}
-            />
-        </IconButton>
+            icon={() => (
+                <Icon
+                    name="favorite"
+                    size={24}
+                    // TODO: color prop may need adjustment - 'error' is MUI specific
+                    color={isFavorite ? 'error' : undefined}
+                />
+            )}
+        />
     );
 };
 
