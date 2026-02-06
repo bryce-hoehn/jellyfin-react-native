@@ -1,11 +1,9 @@
-import Button from '@mui/material/Button';
-import Dialog, { type DialogProps } from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Button, Dialog, Portal, Text } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 import React from 'react';
+
+// TODO: DialogProps type needs to be updated for React Native Paper Dialog
+type DialogProps = React.ComponentProps<typeof Dialog>;
 
 interface SimpleAlertDialog extends DialogProps {
     title?: string;
@@ -23,7 +21,7 @@ const SimpleAlert = ({ open, title, text, onClose }: SimpleAlertDialog) => {
                     </Dialog.Title>
                 )}
                 <Dialog.Content>
-                    <Text style={{ whiteSpace: 'pre-wrap' }}>
+                    <Text>
                         {text}
                     </Text>
                 </Dialog.Content>

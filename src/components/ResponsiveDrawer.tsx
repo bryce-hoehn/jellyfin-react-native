@@ -47,7 +47,8 @@ const ResponsiveDrawer: FC<PropsWithChildren<ResponsiveDrawerProps>> = ({
             // TODO: anchor, disableDiscovery, ModalProps don't exist
         >
             <View
-                role='presentation'
+                // TODO: React Native doesn't have 'role' prop - use accessibilityRole instead
+                accessibilityRole='none'
                 // TODO: onPress and onKeyDown work differently in React Native
             >
                 {children}

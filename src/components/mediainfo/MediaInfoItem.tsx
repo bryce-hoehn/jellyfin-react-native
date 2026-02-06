@@ -29,7 +29,7 @@ const MediaInfoItem: FC<MediaInfoItemProps> = ({ className, miscInfo }) => {
                     }}
                     accessibilityLabel={textAction.title}
                 >
-                    <Text style={{ color: 'inherit' }}>
+                    <Text>
                         {textAction.title}
                     </Text>
                 </TouchableOpacity>

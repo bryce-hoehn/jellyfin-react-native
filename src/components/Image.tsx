@@ -43,8 +43,9 @@ const Image: FC<ImageProps> = ({
                 <RNImage
                     source={{ uri: url }}
                     alt={alt}
-                    style={{ width: '100%' }}
+                    style={{ flex: 1, width: '100%' }}
                     accessibilityLabel={alt}
+                    resizeMode="cover"
                 />
             ) : (
                 <View
