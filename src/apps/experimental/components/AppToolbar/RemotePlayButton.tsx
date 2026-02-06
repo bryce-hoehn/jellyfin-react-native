@@ -1,11 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import CastConnected from '@mui/icons-material/CastConnected';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Cast from '@mui/icons-material/Cast';
-import IconButton from '@mui/material/IconButton';
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import Tooltip from '@mui/material/Tooltip';
+import { View } from 'react-native';
+import { Button, IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { playbackManager } from 'components/playback/playbackmanager';
 import { translate } from 'lib/globalize';
@@ -51,46 +47,40 @@ const RemotePlayButton = () => {
         setRemotePlayActiveMenuAnchorEl(null);
     }, [ setRemotePlayActiveMenuAnchorEl ]);
 
+    // TODO: Tooltip, Menu components need complex refactoring
     return (
         <>
             {(playerInfo && !playerInfo.isLocalPlayer) ? (
-                <Box
-                    sx={{
+                // TODO: Box sx prop needs conversion to React Native styles
+                <View
+                    style={{
                         alignSelf: 'center'
                     }}
                 >
-                    <Tooltip title={translate('ButtonCast')}>
-                        <Button
-                            variant='text'
-                            size='large'
-                            startIcon={<CastConnected />}
-                            aria-label={translate('ButtonCast')}
-                            aria-controls={ACTIVE_ID}
-                            aria-haspopup='true'
-                            onPress={onRemotePlayActiveButtonPress}
-                            color='inherit'
-                            // eslint-disable-next-line react/jsx-no-bind
-                            sx={(theme) => ({
-                                color: theme.vars.palette.primary.main
-                            })}
-                        >
-                            {playerInfo.deviceName || playerInfo.name}
-                        </Button>
-                    </Tooltip>
-                </Box>
-            ) : (
-                <Tooltip title={translate('ButtonCast')}>
-                    <IconButton
-                        size='large'
-                        aria-label={translate('ButtonCast')}
-                        aria-controls={ID}
-                        aria-haspopup='true'
-                        onPress={onRemotePlayButtonPress}
-                        color='inherit'
+                    {/* TODO: Tooltip not available */}
+                    {/* TODO: Button startIcon prop not supported - use icon prop or custom layout */}
+                    {/* TODO: variant='text' maps to mode='text' */}
+                    {/* TODO: size prop not directly supported */}
+                    {/* TODO: color='inherit' not supported */}
+                    {/* TODO: sx prop needs conversion to styles */}
+                    {/* TODO: aria-* props not supported */}
+                    <Button
+                        mode='text'
+                        onPress={onRemotePlayActiveButtonPress}
+                        icon={() => <Icon name="cast-connected" size={24} />}
                     >
-                        <Cast />
-                    </IconButton>
-                </Tooltip>
+                        {playerInfo.deviceName || playerInfo.name}
+                    </Button>
+                </View>
+            ) : (
+                // TODO: Tooltip not available
+                // TODO: size prop not directly supported
+                // TODO: color='inherit' not supported
+                // TODO: aria-* props not supported
+                <IconButton
+                    icon={() => <Icon name="cast" size={24} />}
+                    onPress={onRemotePlayButtonPress}
+                />
             )}
 
             <RemotePlayMenu
