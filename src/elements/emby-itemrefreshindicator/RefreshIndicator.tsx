@@ -14,7 +14,7 @@ import type { ItemDto } from 'types/base/models/item-dto';
 function CircularProgressWithLabel({ value }: { value: number }) {
     // TODO: Need to implement custom styling for View to replicate sx props
     return (
-        <View style={{ position: 'relative', display: 'inline-flex' }}>
+        <View style={{ position: 'relative' }}>
             {/* TODO: React Native ActivityIndicator doesn't support determinate progress - consider using react-native-progress library */}
             <ActivityIndicator size="large" />
             <View
@@ -24,7 +24,6 @@ function CircularProgressWithLabel({ value }: { value: number }) {
                     bottom: 0,
                     right: 0,
                     position: 'absolute',
-                    display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}

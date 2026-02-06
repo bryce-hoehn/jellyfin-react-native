@@ -49,7 +49,8 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
         <IconButton
             // TODO: data-action not supported
             // data-action={ItemAction.None}
-            className={className}
+            // TODO: className prop not supported in RN - need to convert to style prop
+            // className={className}
             // TODO: title prop not supported - use accessibility label
             // title={isFavorite ? translate('Favorite') : translate('AddToFavorites')}
             // TODO: IconButton size prop not available in RN Paper
@@ -59,8 +60,8 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
                 <Icon
                     name="favorite"
                     size={24}
-                    // TODO: color prop may need adjustment - 'error' is MUI specific
-                    color={isFavorite ? 'error' : undefined}
+                    // TODO: Need to get actual color value from theme - 'error' is MUI specific
+                    color={isFavorite ? '#d32f2f' : undefined}
                 />
             )}
         />

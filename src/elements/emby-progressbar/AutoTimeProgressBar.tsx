@@ -62,7 +62,8 @@ const AutoTimeProgressBar: FC<AutoTimeProgressBarProps> = ({
 
     return (
         <ProgressBar
-            className={progressBarClass}
+            // TODO: className prop not supported in RN - need to convert to style prop
+            // className={progressBarClass}
             progress={progress / 100}
             // TODO: RN Paper ProgressBar doesn't support sx styling - need alternative for recording color
             // Original sx: borderRadius: 5, backgroundColor: isRecording ? error.main : primary.main

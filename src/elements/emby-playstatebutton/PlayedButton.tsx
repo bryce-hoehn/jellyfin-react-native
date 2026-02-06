@@ -65,7 +65,8 @@ const PlayedButton: FC<PlayedButtonProps> = ({
             // data-action={ItemAction.None}
             // TODO: title prop not supported - use accessibility label
             // title={getTitle()}
-            className={className}
+            // TODO: className prop not supported in RN - need to convert to style prop
+            // className={className}
             // TODO: IconButton size prop not available in RN Paper
             // size='small'
             onPress={onPress}
@@ -73,8 +74,8 @@ const PlayedButton: FC<PlayedButtonProps> = ({
                 <Icon
                     name="check"
                     size={24}
-                    // TODO: color prop may need adjustment - 'error' is MUI specific
-                    color={isPlayed ? 'error' : undefined}
+                    // TODO: Need to get actual color value from theme - 'error' is MUI specific
+                    color={isPlayed ? '#d32f2f' : undefined}
                 />
             )}
         />
