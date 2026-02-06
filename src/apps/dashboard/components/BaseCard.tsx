@@ -55,8 +55,10 @@ const BaseCard = ({
                         {/* TODO: Implement Image component here */}
                     </View>
                 ) : (
-                    <View className={getDefaultBackgroundClass(title)}
-                        // TODO: Remove className and sx props - convert to React Native style
+                    <View
+                        // TODO: Remove className prop - React Native View doesn't support className
+                        // Original: className={getDefaultBackgroundClass(title)}
+                        // TODO: Convert sx to React Native style prop
                         // Original sx: flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'
                     >
                         {icon}
