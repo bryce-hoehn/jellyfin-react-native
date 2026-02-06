@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 
 interface NoItemsMessageProps {
@@ -11,14 +11,14 @@ const NoItemsMessage: FC<NoItemsMessageProps> = ({
     message = 'MessageNoItemsAvailable'
 }) => {
     return (
-        <Box className='noItemsMessage centerMessage'>
-            <Typography variant='h1'>
+        <View className='noItemsMessage centerMessage'>
+            <Text variant='headlineLarge'>
                 {translate('MessageNothingHere')}
-            </Typography>
-            <Typography sx={{ marginBottom: '16px' }}>
+            </Text>
+            <Text style={{ marginBottom: 16 }}>
                 {translate(message)}
-            </Typography>
-        </Box>
+            </Text>
+        </View>
     );
 };
 

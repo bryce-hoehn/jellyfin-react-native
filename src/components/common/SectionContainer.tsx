@@ -1,8 +1,7 @@
 import React, { type FC, type PropsWithChildren } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { View, Linking, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import classNames from 'classnames';
 import ItemsContainer, {
     type ItemsContainerProps
@@ -33,31 +32,36 @@ const SectionHeader: FC<SectionHeaderProps> = ({
         className
     );
 
+    // TODO: Link component and classNames need adaptation for React Native
     return (
-        <Box className={sectionHeaderClass}>
+        <View className={sectionHeaderClass}>
             {url && itemsLength > 5 ? (
-                <Link
+                <TouchableOpacity
                     className='clearLink button-flat sectionTitleTextButton'
-                    underline='none'
-                    href={url}
+                    onPress={() => {
+                        // TODO: Navigation needs proper implementation
+                        if (url.startsWith('http')) {
+                            Linking.openURL(url);
+                        }
+                    }}
                 >
-                    <Typography
+                    <Text
                         className='sectionTitle sectionTitle-cards'
-                        variant='h2'
+                        variant='headlineMedium'
                     >
                         {title}
-                    </Typography>
-                    <ChevronRightIcon sx={{ pt: '5px' }} />
-                </Link>
+                    </Text>
+                    <Icon name="chevron-right" size={24} style={{ paddingTop: 5 }} />
+                </TouchableOpacity>
             ) : (
-                <Typography
+                <Text
                     className='sectionTitle sectionTitle-cards'
-                    variant='h2'
+                    variant='headlineMedium'
                 >
                     {title}
-                </Typography>
+                </Text>
             )}
-        </Box>
+        </View>
     );
 };
 
@@ -114,7 +118,7 @@ const SectionContainer: FC<PropsWithChildren<SectionContainerProps>> = ({
     );
 
     return (
-        <Box className={sectionClass}>
+        <View className={sectionClass}>
             {sectionHeaderProps?.title && (
                 <SectionHeader
                     className={classNames(
@@ -138,7 +142,7 @@ const SectionContainer: FC<PropsWithChildren<SectionContainerProps>> = ({
             ) : (
                 content
             )}
-        </Box>
+        </View>
     );
 };
 

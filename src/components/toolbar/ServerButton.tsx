@@ -1,7 +1,8 @@
 import icon from '@jellyfin/ux-web/icon-transparent.png';
-import Button from '@mui/material/Button/Button';
+import { Button } from 'react-native-paper';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from 'react-native';
 
 import { useSystemInfo } from 'hooks/useSystemInfo';
 
@@ -11,24 +12,13 @@ const ServerButton: FC = () => {
         isPending
     } = useSystemInfo();
 
+    // TODO: React Native Paper Button doesn't support startIcon prop like MUI
+    // Need to refactor this component to use custom layout with icon and button
     return (
         <Button
-            variant='text'
-            size='large'
-            color='inherit'
-            startIcon={
-                <img
-                    src={icon}
-                    alt=''
-                    aria-hidden
-                    style={{
-                        maxHeight: '1.25em',
-                        maxWidth: '1.25em'
-                    }}
-                />
-            }
-            component={Link}
-            to='/'
+            mode='text'
+            // TODO: size prop not available in RN Paper Button
+            // TODO: component and to props for Link not supported, need alternative navigation approach
         >
             {isPending ? '' : (systemInfo?.ServerName || 'Jellyfin')}
         </Button>

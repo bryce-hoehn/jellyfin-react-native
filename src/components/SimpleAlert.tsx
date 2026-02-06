@@ -15,23 +15,25 @@ interface SimpleAlertDialog extends DialogProps {
 
 const SimpleAlert = ({ open, title, text, onClose }: SimpleAlertDialog) => {
     return (
-        <Dialog open={open} onClose={onClose}>
-            {title && (
-                <DialogTitle>
-                    {title}
-                </DialogTitle>
-            )}
-            <DialogContent>
-                <DialogContentText sx={{ whiteSpace: 'pre-wrap' }}>
-                    {text}
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button onPress={onClose}>
-                    {translate('ButtonGotIt')}
-                </Button>
-            </DialogActions>
-        </Dialog>
+        <Portal>
+            <Dialog visible={open} onDismiss={onClose}>
+                {title && (
+                    <Dialog.Title>
+                        {title}
+                    </Dialog.Title>
+                )}
+                <Dialog.Content>
+                    <Text style={{ whiteSpace: 'pre-wrap' }}>
+                        {text}
+                    </Text>
+                </Dialog.Content>
+                <Dialog.Actions>
+                    <Button onPress={onClose}>
+                        {translate('ButtonGotIt')}
+                    </Button>
+                </Dialog.Actions>
+            </Dialog>
+        </Portal>
     );
 };
 
