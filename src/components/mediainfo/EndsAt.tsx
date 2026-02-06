@@ -1,6 +1,7 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 import mediainfo from './mediainfo';
 
 interface EndsAtProps {
@@ -19,9 +20,9 @@ const EndsAt: FC<EndsAtProps> = ({ runTimeTicks, positionTicks, className }) => 
     const displayTime = mediainfo.getEndsAtFromPosition(runTimeTicks, positionTicks, 1, true);
 
     return (
-        <Box className={cssClass}>
-            {displayTime}
-        </Box>
+        <View className={cssClass}>
+            <Text>{displayTime}</Text>
+        </View>
     );
 };
 

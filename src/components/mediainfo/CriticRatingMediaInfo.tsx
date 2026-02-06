@@ -1,6 +1,7 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 
 interface CriticRatingMediaInfoProps {
     className?: string;
@@ -19,7 +20,7 @@ const CriticRatingMediaInfo: FC<CriticRatingMediaInfoProps> = ({
             'mediaInfoCriticRatingRotten',
         className
     );
-    return <Box className={cssClass}>{criticRating}</Box>;
+    return <View className={cssClass}><Text>{criticRating}</Text></View>;
 };
 
 export default CriticRatingMediaInfo;

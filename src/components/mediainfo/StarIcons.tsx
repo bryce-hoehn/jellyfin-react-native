@@ -1,8 +1,8 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import StarIcon from '@mui/icons-material/Star';
-import Box from '@mui/material/Box';
-import type {} from '@mui/material/themeCssVarsAugmentation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View } from 'react-native';
+import { Text, useTheme } from 'react-native-paper';
 
 interface StarIconsProps {
     className?: string;
@@ -10,6 +10,7 @@ interface StarIconsProps {
 }
 
 const StarIcons: FC<StarIconsProps> = ({ className, communityRating }) => {
+    const theme = useTheme();
     const cssClass = classNames(
         'mediaInfoItem',
         'starRatingContainer',
@@ -17,16 +18,15 @@ const StarIcons: FC<StarIconsProps> = ({ className, communityRating }) => {
     );
 
     return (
-        <Box className={cssClass}>
-            <StarIcon
-                fontSize={'small'}
-                // eslint-disable-next-line react/jsx-no-bind
-                sx={(theme) => ({
-                    color: theme.vars.palette.starIcon.main
-                })}
+        <View className={cssClass} style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Icon
+                name="star"
+                size={20}
+                // TODO: theme.vars.palette doesn't exist in RN Paper - use theme.colors
+                color={theme.colors.primary}
             />
-            {communityRating.toFixed(1)}
-        </Box>
+            <Text>{communityRating.toFixed(1)}</Text>
+        </View>
     );
 };
 

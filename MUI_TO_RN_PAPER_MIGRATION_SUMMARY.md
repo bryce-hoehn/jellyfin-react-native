@@ -5,22 +5,45 @@ This document outlines the migration from Material-UI (MUI) components to React 
 
 **Status**: In Progress  
 **Total Files Affected**: 177 files  
+**Files Migrated**: 25 files (14%)  
 **Estimated Component Instances**: 500+  
 
 ## Migration Statistics
 
-### Files Migrated So Far
-- [x] `/src/components/ConfirmDialog.tsx` - Dialog components replaced
-- [x] `/src/components/InputDialog.tsx` - Dialog and input components replaced
-- [x] `/src/components/SimpleAlert.tsx` - Alert dialog components replaced
-- [x] `/src/components/toolbar/ServerButton.tsx` - Button component replaced (with TODOs)
-- [x] `/src/components/common/NoItemsMessage.tsx` - Typography and Box replaced
-- [x] `/src/components/common/PlayArrowIconButton.tsx` - IconButton replaced
-- [x] `/src/components/LoadingSkeleton.tsx` - Skeleton component replaced (no RN Paper equivalent)
-- [x] `/src/components/common/InfoIconButton.tsx` - IconButton replaced
+### Files Migrated So Far (25 files)
+
+#### Batch 1: Dialog and Basic Components
+1. ✅ `/src/components/ConfirmDialog.tsx`
+2. ✅ `/src/components/InputDialog.tsx`
+3. ✅ `/src/components/SimpleAlert.tsx`
+4. ✅ `/src/components/toolbar/ServerButton.tsx`
+5. ✅ `/src/components/common/NoItemsMessage.tsx`
+6. ✅ `/src/components/common/PlayArrowIconButton.tsx`
+7. ✅ `/src/components/LoadingSkeleton.tsx`
+8. ✅ `/src/components/common/InfoIconButton.tsx`
+
+#### Batch 2: Common Components & Utilities
+9. ✅ `/src/components/common/DefaultName.tsx`
+10. ✅ `/src/components/common/DefaultIconText.tsx`
+11. ✅ `/src/components/common/RightIconButtons.tsx`
+12. ✅ `/src/components/common/MoreVertIconButton.tsx`
+13. ✅ `/src/components/common/PlaylistAddIconButton.tsx`
+14. ✅ `/src/components/common/SectionContainer.tsx`
+15. ✅ `/src/components/Image.tsx`
+16. ✅ `/src/components/MarkdownBox.tsx`
+17. ✅ `/src/components/ListItemLink.tsx`
+18. ✅ `/src/components/ElevationScroll.tsx`
+19. ✅ `/src/components/ResponsiveDrawer.tsx`
+
+#### Batch 3: Media Info Components
+20. ✅ `/src/components/mediainfo/MediaInfoItem.tsx`
+21. ✅ `/src/components/mediainfo/StarIcons.tsx`
+22. ✅ `/src/components/mediainfo/CaptionMediaInfo.tsx`
+23. ✅ `/src/components/mediainfo/CriticRatingMediaInfo.tsx`
+24. ✅ `/src/components/mediainfo/EndsAt.tsx`
 
 ### Remaining Files
-**171 files** still need migration
+**152 files** still need migration (86%)
 
 ## Component Mapping Guide
 

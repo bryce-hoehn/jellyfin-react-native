@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import { View, Linking, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native-paper';
 import classNames from 'classnames';
 import type { MiscInfo } from 'types/mediaInfoItem';
 
@@ -17,24 +17,32 @@ const MediaInfoItem: FC<MediaInfoItemProps> = ({ className, miscInfo }) => {
     const renderText = () => {
         if (textAction) {
             return (
-                <Link
+                <TouchableOpacity
                     className={classNames(textAction.cssClass, className)}
-                    href={textAction.url}
-                    title={textAction.title}
-                    color='inherit'
+                    onPress={() => {
+                        if (textAction.url) {
+                            if (textAction.url.startsWith('http')) {
+                                Linking.openURL(textAction.url);
+                            }
+                            // TODO: Handle internal navigation
+                        }
+                    }}
+                    accessibilityLabel={textAction.title}
                 >
-                    {textAction.title}
-                </Link>
+                    <Text style={{ color: 'inherit' }}>
+                        {textAction.title}
+                    </Text>
+                </TouchableOpacity>
             );
         } else {
-            return text;
+            return <Text>{text}</Text>;
         }
     };
 
     return (
-        <Box className={classNames('mediaInfoItem', cssClass, type, className)}>
+        <View className={classNames('mediaInfoItem', cssClass, type, className)}>
             {renderText()}
-        </Box>
+        </View>
     );
 };
 
