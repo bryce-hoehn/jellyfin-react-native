@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import usePrimaryMediaInfo from './usePrimaryMediaInfo';
 
 import MediaInfoItem from './MediaInfoItem';
@@ -83,7 +83,7 @@ const PrimaryMediaInfo: FC<PrimaryMediaInfoProps> = ({
     );
 
     return (
-        <Box className={cssClass}>
+        <View className={cssClass}>
             {miscInfo.map((info, index) => renderMediaInfo(info, index))}
 
             {showStarRatingInfo && CommunityRating && (
@@ -112,7 +112,7 @@ const PrimaryMediaInfo: FC<PrimaryMediaInfoProps> = ({
             )}
 
             {getMissingIndicator?.()}
-        </Box>
+        </View>
     );
 };
 
