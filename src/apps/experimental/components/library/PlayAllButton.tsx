@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import Button from '@mui/material/Button';
-import PlayArrow from '@mui/icons-material/PlayArrow';
+import { Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { playbackManager } from 'components/playback/playbackmanager';
 import { translate } from 'lib/globalize';
@@ -56,14 +56,14 @@ const PlayAllButton: FC<PlayAllButtonProps> = ({
 
     return (
         <Button
-            title={translate('HeaderPlayAll')}
-            startIcon={isTextVisible ? <PlayArrow /> : undefined}
+            // TODO: title prop not supported - use tooltip or accessibility label
+            // TODO: startIcon not directly supported in RN Paper Button - use icon prop or custom layout
             onPress={play}
         >
             {isTextVisible ? (
                 translate('HeaderPlayAll')
             ) : (
-                <PlayArrow />
+                <Icon name="play-arrow" size={24} />
             )}
         </Button>
     );
