@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import CallSplitIcon from '@mui/icons-material/CallSplit';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { useDeleteAlternateSources } from 'hooks/api/videosHooks';
@@ -57,12 +57,11 @@ const SplitVersionsButton: FC<SplitVersionsButtonProps> = ({
 
     return (
         <IconButton
-            className='button-flat btnSplitVersions'
-            title={translate('ButtonSplit')}
+            // TODO: className prop not supported in RN Paper
+            // TODO: title prop not supported - use accessibility label
             onPress={splitVersions}
-        >
-            <CallSplitIcon />
-        </IconButton>
+            icon={() => <Icon name="call-split" size={24} />}
+        />
     );
 };
 
