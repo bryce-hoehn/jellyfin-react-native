@@ -1,17 +1,19 @@
-import type { SvgIconComponent } from '@mui/icons-material';
-import ImageNotSupported from '@mui/icons-material/ImageNotSupported';
-import Box from '@mui/material/Box/Box';
-import Paper from '@mui/material/Paper/Paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, Image as RNImage, StyleSheet } from 'react-native';
+import { Surface } from 'react-native-paper';
 import React, { type FC } from 'react';
 
 import { LoadingSkeleton } from './LoadingSkeleton';
+
+// TODO: SvgIconComponent type not available in React Native
+type IconComponent = React.ComponentType<any>;
 
 interface ImageProps {
     isLoading: boolean
     alt?: string
     url?: string
     aspectRatio?: number
-    FallbackIcon?: SvgIconComponent
+    FallbackIcon?: IconComponent
 }
 
 const Image: FC<ImageProps> = ({
@@ -19,10 +21,10 @@ const Image: FC<ImageProps> = ({
     alt,
     url,
     aspectRatio = 16 / 9,
-    FallbackIcon = ImageNotSupported
+    FallbackIcon = Icon
 }) => (
-    <Paper
-        sx={{
+    <Surface
+        style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -38,30 +40,26 @@ const Image: FC<ImageProps> = ({
             height='100%'
         >
             {url ? (
-                <img
-                    src={url}
+                <RNImage
+                    source={{ uri: url }}
                     alt={alt}
-                    width='100%'
+                    style={{ width: '100%' }}
+                    accessibilityLabel={alt}
                 />
             ) : (
-                <Box
-                    sx={{
+                <View
+                    style={{
                         height: '100%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}
                 >
-                    <FallbackIcon
-                        sx={{
-                            height: '25%',
-                            width: 'auto'
-                        }}
-                    />
-                </Box>
+                    {FallbackIcon && <Icon name="image-not-supported" size={100} />}
+                </View>
             )}
         </LoadingSkeleton>
-    </Paper>
+    </Surface>
 );
 
 export default Image;

@@ -1,6 +1,6 @@
 import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-item-kind';
 import React, { type FC } from 'react';
-import Icon from '@mui/material/Icon';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getItemTypeIcon, getLibraryIcon } from 'utils/image';
 import DefaultName from './DefaultName';
 import type { ItemDto } from 'types/base/models/item-dto';
@@ -27,12 +27,13 @@ const DefaultIconText: FC<DefaultIconTextProps> = ({
     if (icon) {
         return (
             <Icon
-                className='cardImageIcon'
-                sx={{ color: 'inherit', fontSize: '5em' }}
+                // TODO: className not supported in React Native - use style prop
+                name={icon}
+                size={80}
+                // TODO: sx prop doesn't exist - use style instead
+                style={{ color: 'inherit' }}
                 aria-hidden='true'
-            >
-                {icon}
-            </Icon>
+            />
         );
     }
 

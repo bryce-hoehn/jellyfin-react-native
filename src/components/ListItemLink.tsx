@@ -1,11 +1,14 @@
-import ListItemButton, { ListItemButtonBaseProps } from '@mui/material/ListItemButton';
+import { List } from 'react-native-paper';
 import React, { FC } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { TouchableOpacity } from 'react-native';
 
-interface ListItemLinkProps extends ListItemButtonBaseProps {
+// TODO: ListItemButtonBaseProps not available in React Native Paper
+interface ListItemLinkProps {
     to: string
     includePaths?: string[]
     excludePaths?: string[]
+    children?: React.ReactNode
 }
 
 const isMatchingParams = (routeParams: URLSearchParams, currentParams: URLSearchParams) => {
@@ -37,15 +40,18 @@ const ListItemLink: FC<ListItemLinkProps> = ({
         && !excludePaths.includes(location.pathname + location.search)
         && (!toParams || isMatchingParams(toSearchParams, searchParams));
 
+    // TODO: List.Item doesn't have 'selected' prop like MUI ListItemButton
+    // TODO: component={Link} pattern doesn't work in React Native - need custom navigation
     return (
-        <ListItemButton
-            component={Link}
-            to={to}
-            selected={selected}
+        <List.Item
+            // TODO: Need to implement selection styling manually
+            onPress={() => {
+                // TODO: Implement navigation
+            }}
             {...params}
         >
             {children}
-        </ListItemButton>
+        </List.Item>
     );
 };
 
