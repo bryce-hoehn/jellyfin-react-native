@@ -1,6 +1,6 @@
-import Box from '@mui/material/Box/Box';
-import Fade from '@mui/material/Fade/Fade';
 import React, { useRef, type FC, useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 
 import RemotePlayButton from 'apps/experimental/components/AppToolbar/RemotePlayButton';
 import SyncPlayButton from 'apps/experimental/components/AppToolbar/SyncPlayButton';
@@ -8,7 +8,8 @@ import AppToolbar from 'components/toolbar/AppToolbar';
 import ViewManagerPage from 'components/viewManager/ViewManagerPage';
 import { EventType } from 'constants/eventType';
 import Events, { type Event } from 'utils/events';
-import Typography from '@mui/material/Typography';
+
+// TODO: Fade component needs React Native Animated API
 
 /**
  * Video player page component that renders mui controls for the top controls and the legacy view for everything else.
@@ -44,33 +45,29 @@ const VideoPage: FC = () => {
 
     return (
         <>
-            <Fade
-                in={isVisible}
-                easing='fade-out'
-            >
-                <Box sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    color: 'white'
-                }}>
-                    <AppToolbar
-                        isDrawerAvailable={false}
-                        isDrawerOpen={false}
-                        isBackButtonAvailable
-                        isUserMenuAvailable={false}
-                        buttons={
-                            <>
-                                <SyncPlayButton />
-                                <RemotePlayButton />
-                            </>
-                        }
-                    >
-                        <Typography>{videoTitle}</Typography>
-                    </AppToolbar>
-                </Box>
-            </Fade>
+            {/* TODO: Fade wrapper removed - needs React Native Animated API */}
+            <View style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                color: 'white'
+            }}>
+                <AppToolbar
+                    isDrawerAvailable={false}
+                    isDrawerOpen={false}
+                    isBackButtonAvailable
+                    isUserMenuAvailable={false}
+                    buttons={
+                        <>
+                            <SyncPlayButton />
+                            <RemotePlayButton />
+                        </>
+                    }
+                >
+                    <Text>{videoTitle}</Text>
+                </AppToolbar>
+            </View>
 
             <ViewManagerPage
                 controller='playback/video/index'
