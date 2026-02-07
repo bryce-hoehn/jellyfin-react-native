@@ -1,9 +1,5 @@
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-import SvgIcon from '@mui/material/SvgIcon';
-import Typography from '@mui/material/Typography';
+import { View, ActivityIndicator } from 'react-native';
+import { Card, Text } from 'react-native-paper';
 import React, { type FC } from 'react';
 
 import { useLocale } from 'hooks/useLocale';
@@ -14,9 +10,10 @@ interface Metric {
     value?: number
 }
 
+// TODO: Update Icon type from MUI SvgIcon to react-native-vector-icons component type
 export interface MetricCardProps {
     metrics: Metric[]
-    Icon: typeof SvgIcon
+    Icon: any
 }
 
 const MetricCard: FC<MetricCardProps> = ({
@@ -25,45 +22,27 @@ const MetricCard: FC<MetricCardProps> = ({
 }) => {
     const { dateTimeLocale } = useLocale();
 
+    // TODO: Replace Card sx prop with React Native StyleSheet
+    // TODO: Replace Stack with View and add flexbox styling (direction='row', justifyContent, alignItems, padding)
     return (
-        <Card
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                height: '100%'
-            }}
-        >
-            <Stack
-                direction='row'
-                sx={{
-                    width: '100%',
-                    padding: 2,
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                }}
-            >
+        <Card>
+            <View>
                 {metrics.map(({ label, value }) => (
-                    <Box key={label}>
-                        <Typography
-                            variant='body2'
-                            color='text.secondary'
-                        >
+                    <View key={label}>
+                        <Text variant='bodyMedium'>
                             {label}
-                        </Typography>
-                        <Typography
-                            variant='h5'
-                            component='div'
-                        >
+                        </Text>
+                        <Text variant='headlineSmall'>
                             {typeof value !== 'undefined' ? (
                                 toDecimalString(value, dateTimeLocale)
                             ) : (
-                                <Skeleton />
+                                <ActivityIndicator />
                             )}
-                        </Typography>
-                    </Box>
+                        </Text>
+                    </View>
                 ))}
-                <Icon fontSize='large' />
-            </Stack>
+                <Icon />
+            </View>
         </Card>
     );
 };

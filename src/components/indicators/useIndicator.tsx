@@ -1,16 +1,8 @@
 import { LocationType } from '@jellyfin/sdk/lib/generated-client/models/location-type';
 import React from 'react';
-import Box from '@mui/material/Box';
-import LinearProgress, {
-    linearProgressClasses
-} from '@mui/material/LinearProgress';
-import FiberSmartRecordIcon from '@mui/icons-material/FiberSmartRecord';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import CheckIcon from '@mui/icons-material/Check';
-import VideocamIcon from '@mui/icons-material/Videocam';
-import FolderIcon from '@mui/icons-material/Folder';
-import PhotoAlbumIcon from '@mui/icons-material/PhotoAlbum';
-import PhotoIcon from '@mui/icons-material/Photo';
+import { View } from 'react-native';
+import { ProgressBar } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import classNames from 'classnames';
 
 import datetime from 'scripts/datetime';
@@ -26,10 +18,10 @@ import type { ItemDto } from 'types/base/models/item-dto';
 import type { ProgressOptions } from 'types/progressOptions';
 
 const TypeIcon = {
-    Video: <VideocamIcon className='indicatorIcon' />,
-    Folder: <FolderIcon className='indicatorIcon' />,
-    PhotoAlbum: <PhotoAlbumIcon className='indicatorIcon' />,
-    Photo: <PhotoIcon className='indicatorIcon' />
+    Video: <Icon name="videocam" className='indicatorIcon' />,
+    Folder: <Icon name="folder" className='indicatorIcon' />,
+    PhotoAlbum: <Icon name="photo-album" className='indicatorIcon' />,
+    Photo: <Icon name="photo" className='indicatorIcon' />
 };
 
 const getTypeIcon = (itemType: NullableString) => {
@@ -72,7 +64,7 @@ const useIndicator = (item: ItemDto) => {
     const getMediaSourceIndicator = () => {
         const mediaSourceCount = item.MediaSourceCount ?? 0;
         if (mediaSourceCount > 1) {
-            return <Box className='mediaSourceIndicator'>{mediaSourceCount}</Box>;
+            return <View className='mediaSourceIndicator'>{mediaSourceCount}</View>;
         }
 
         return null;
@@ -107,7 +99,7 @@ const useIndicator = (item: ItemDto) => {
         let status;
 
         if (item.Type === ItemKind.SeriesTimer) {
-            return <FiberSmartRecordIcon className={indicatorIconClass} />;
+            return <Icon name="fiber-smart-record" className={indicatorIconClass} />;
         } else if (item.TimerId || item.SeriesTimerId) {
             status = item.Status || ItemStatus.Cancelled;
         } else if (item.Type === ItemKind.Timer) {
@@ -118,7 +110,8 @@ const useIndicator = (item: ItemDto) => {
 
         if (item.SeriesTimerId) {
             return (
-                <FiberSmartRecordIcon
+                <Icon
+                    name="fiber-smart-record"
                     className={`${indicatorIconClass} ${
                         status === ItemStatus.Cancelled ? 'timerIndicator-inactive' : ''
                     }`}
@@ -126,13 +119,13 @@ const useIndicator = (item: ItemDto) => {
             );
         }
 
-        return <FiberManualRecordIcon className={indicatorIconClass} />;
+        return <Icon name="fiber-manual-record" className={indicatorIconClass} />;
     };
 
     const getTypeIndicator = () => {
         const icon = getTypeIcon(item.Type);
         if (icon) {
-            return <Box className='indicator videoIndicator'>{icon}</Box>;
+            return <View className='indicator videoIndicator'>{icon}</View>;
         }
         return null;
     };
@@ -142,9 +135,9 @@ const useIndicator = (item: ItemDto) => {
 
         if (childCount > 1) {
             return (
-                <Box className='countIndicator indicator childCountIndicator'>
+                <View className='countIndicator indicator childCountIndicator'>
                     {formatCountIndicator(childCount)}
-                </Box>
+                </View>
             );
         }
 
@@ -156,9 +149,9 @@ const useIndicator = (item: ItemDto) => {
             const userData = item.UserData;
             if (userData?.UnplayedItemCount) {
                 return (
-                    <Box className='countIndicator indicator unplayedItemCount'>
+                    <View className='countIndicator indicator unplayedItemCount'>
                         {formatCountIndicator(userData.UnplayedItemCount)}
-                    </Box>
+                    </View>
                 );
             }
 
@@ -168,9 +161,9 @@ const useIndicator = (item: ItemDto) => {
                 || userData?.Played
             ) {
                 return (
-                    <Box className='playedIndicator indicator'>
-                        <CheckIcon className='indicatorIcon' />
-                    </Box>
+                    <View className='playedIndicator indicator'>
+                        <Icon name="check" className='indicatorIcon' />
+                    </View>
                 );
             }
         }
@@ -184,17 +177,12 @@ const useIndicator = (item: ItemDto) => {
             progressOptions?.containerClass
         );
 
+        // TODO: Replace LinearProgress sx prop with React Native StyleSheet
+        // TODO: Map progress percentage (0-100) to ProgressBar progress (0-1)
         return (
-            <LinearProgress
+            <ProgressBar
                 className={progressBarClass}
-                variant='determinate'
-                value={pct}
-                sx={{
-                    [`& .${linearProgressClasses.bar}`]: {
-                        borderRadius: 5,
-                        backgroundColor: '#00a4dc'
-                    }
-                }}
+                progress={pct / 100}
             />
         );
     };
