@@ -1,69 +1,36 @@
-import Search from '@mui/icons-material/Search';
-import InputBase, { type InputBaseProps } from '@mui/material/InputBase';
-import { alpha, styled } from '@mui/material/styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TextInput } from 'react-native-paper';
 import React, { type FC } from 'react';
+import { View } from 'react-native';
 
-const SearchContainer = styled('div')(({ theme }) => ({
-    display: 'flex',
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25)
-    },
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        width: 'auto'
-    }
-}));
+// TODO: MUI styled components not available - need custom styling with StyleSheet
+// TODO: Theme-based styling needs manual implementation
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    flexGrow: 1,
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch'
-        }
-    }
-}));
-
-interface SearchInputProps extends InputBaseProps {
+interface SearchInputProps {
     label?: string
+    value?: string
+    onChange?: (text: string) => void
+    placeholder?: string
 }
 
 const SearchInput: FC<SearchInputProps> = ({
     label,
+    value,
+    onChange,
+    placeholder,
     ...props
 }) => {
     return (
-        <SearchContainer>
-            <SearchIconWrapper>
-                <Search />
-            </SearchIconWrapper>
-            <StyledInputBase
-                placeholder={label}
-                inputProps={{
-                    'aria-label': label,
-                    ...props.inputProps
-                }}
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Icon name="search" size={24} />
+            <TextInput
+                placeholder={placeholder || label}
+                value={value}
+                onChangeText={onChange}
+                style={{ flex: 1 }}
                 {...props}
             />
-        </SearchContainer>
+        </View>
     );
 };
 
