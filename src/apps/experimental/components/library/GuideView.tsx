@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useRef } from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import Guide from 'components/guide/guide';
 import 'material-design-icons-iconfont';
 import 'elements/emby-programcell/emby-programcell';
@@ -46,19 +46,10 @@ const GuideView: FC = () => {
         };
     }, [initGuide]);
 
-    return <Box
+    {/* TODO: sx prop with responsive styles not available in RN - need to implement with StyleSheet */}
+    return <View
         ref={tvGuideContainerRef}
         className='absolutePageTabContent'
-        sx={{
-            display: 'flex !important',
-            width: 'auto',
-            paddingTop: '0',
-            paddingBottom: '0 !important',
-            top: {
-                xs: '6.9em !important',
-                lg: '4em !important'
-            }
-        }}
     />;
 };
 

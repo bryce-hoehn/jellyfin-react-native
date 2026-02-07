@@ -1,4 +1,4 @@
-import ExtensionIcon from '@mui/icons-material/Extension';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import React, { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ const PluginCard = ({ plugin }: PluginCardProps) => {
             to={pluginPage}
             text={[plugin.version?.VersionNumber, plugin.status].filter(t => t).join(' ')}
             image={plugin.imageUrl}
-            icon={<ExtensionIcon sx={{ width: 80, height: 80 }} />}
+            icon={<Icon name="extension" size={80} />}
         />
     );
 };
