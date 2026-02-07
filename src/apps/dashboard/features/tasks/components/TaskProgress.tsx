@@ -1,39 +1,33 @@
 import React, { FunctionComponent } from 'react';
+import { View } from 'react-native';
+import { ProgressBar, Text } from 'react-native-paper';
 import { TaskProps } from '../types/taskProps';
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
-import Typography from '@mui/material/Typography';
 
 const TaskProgress: FunctionComponent<TaskProps> = ({ task }: TaskProps) => {
     const progress = task.CurrentProgressPercentage;
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                height: '1.2rem',
-                mr: 2,
-                minWidth: '170px'
-            }}
-        >
+        <View>
+            {/* TODO: sx props (display, alignItems, height, mr, minWidth) need RN style conversion */}
             {progress != null ? (
                 <>
-                    <Box sx={{ width: '100%', mr: 1 }}>
-                        <LinearProgress variant='determinate' value={progress} />
-                    </Box>
-                    <Box>
-                        <Typography
-                            variant='body1'
-                        >{`${Math.round(progress)}%`}</Typography>
-                    </Box>
+                    <View>
+                        {/* TODO: sx props (width, mr) need RN style conversion */}
+                        <ProgressBar progress={progress / 100} />
+                    </View>
+                    <View>
+                        <Text
+                            variant='bodyLarge'
+                        >{`${Math.round(progress)}%`}</Text>
+                    </View>
                 </>
             ) : (
-                <Box sx={{ width: '100%' }}>
-                    <LinearProgress />
-                </Box>
+                <View>
+                    {/* TODO: sx props (width) need RN style conversion */}
+                    <ProgressBar indeterminate />
+                </View>
             )}
-        </Box>
+        </View>
     );
 };
 
