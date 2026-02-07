@@ -81,13 +81,13 @@ const useIndicator = (item: ItemDto) => {
                         .parseISO8601Date(item.PremiereDate)
                         .getTime();
                     if (premiereDate > new Date().getTime()) {
-                        return <Box className='unairedIndicator'>Unaired</Box>;
+                        return <View className='unairedIndicator'>Unaired</View>;
                     }
                 } catch (err) {
                     console.error(err);
                 }
             }
-            return <Box className='missingIndicator'>Missing</Box>;
+            return <View className='missingIndicator'>Missing</View>;
         }
 
         return null;
