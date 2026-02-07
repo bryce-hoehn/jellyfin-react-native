@@ -50,8 +50,7 @@ const VideoPage: FC = () => {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                right: 0,
-                color: 'white'
+                right: 0
             }}>
                 <AppToolbar
                     isDrawerAvailable={false}
