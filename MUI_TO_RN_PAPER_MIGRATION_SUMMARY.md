@@ -3,14 +3,23 @@
 ## Overview
 This document outlines the migration from Material-UI (MUI) components to React Native Paper components in the Jellyfin React Native project.
 
-**Status**: In Progress  
+**Status**: In Progress - Direct Equivalents Phase  
 **Total Files Affected**: 177 files  
-**Files Migrated**: 25 files (14%)  
+**Files Migrated**: 75 files (42%)  
+**TODO Comments Added**: 150+  
 **Estimated Component Instances**: 500+  
+
+**Major Milestones**:
+- ✅ List View Components: 100% Complete (10/10 files)
+- ✅ Dialog Components: 100% Complete (3/3 files)
+- ✅ Progress Components: 100% Complete (2/2 files)
+- 🟢 Card Builder: 85% Complete (10/12 files)
+- 🟢 IconButton: 93% Complete (28/30 files)
+- 🟢 Box → View: 70% Complete (35/50 files)  
 
 ## Migration Statistics
 
-### Files Migrated So Far (25 files)
+### Files Migrated So Far (75 files - 42%)
 
 #### Batch 1: Dialog and Basic Components
 1. ✅ `/src/components/ConfirmDialog.tsx`
