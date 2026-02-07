@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 
 import Media from 'components/common/Media';
 import PlayArrowIconButton from 'components/common/PlayArrowIconButton';
@@ -68,7 +68,8 @@ const ListImageContainer: FC<ListImageContainerProps> = ({
     const playbackPositionTicks = item?.UserData?.PlaybackPositionTicks;
 
     return (
-        <Box
+        // TODO: data-action not supported in React Native
+        <View
             data-action={imageAction}
             className={imageClass}
         >
@@ -78,9 +79,9 @@ const ListImageContainer: FC<ListImageContainerProps> = ({
             {disableIndicators !== true && mediaSourceIndicator}
 
             {playedIndicator && (
-                <Box className='indicators listItemIndicators'>
+                <View className='indicators listItemIndicators'>
                     {playedIndicator}
-                </Box>
+                </View>
             )}
 
             {playOnImageClick && (
@@ -98,7 +99,7 @@ const ListImageContainer: FC<ListImageContainerProps> = ({
             )}
 
             {progressBar}
-        </Box>
+        </View>
     );
 };
 
