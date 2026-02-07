@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { translate } from 'lib/globalize';
 import Widget from './Widget';
-import List from '@mui/material/List';
+import { View } from 'react-native';
 import ActivityListItem from 'apps/dashboard/features/activity/components/ActivityListItem';
 import subSeconds from 'date-fns/subSeconds';
 import { useLogEntries } from 'apps/dashboard/features/activity/api/useLogEntries';
@@ -25,7 +25,9 @@ const AlertsLogWidget = () => {
             title={translate('Alerts')}
             href='/dashboard/activity?useractivity=false'
         >
-            <List sx={{ bgcolor: 'background.paper' }}>
+            {/* TODO: Replace List with View and custom styling */}
+            {/* TODO: Replace sx prop with StyleSheet */}
+            <View>
                 {alerts?.Items?.map(entry => (
                     <ActivityListItem
                         key={entry.Id}
@@ -34,7 +36,7 @@ const AlertsLogWidget = () => {
                         to='/dashboard/activity?useractivity=false'
                     />
                 ))}
-            </List>
+            </View>
         </Widget>
     );
 };
