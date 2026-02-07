@@ -1,6 +1,6 @@
 import { View, ActivityIndicator } from 'react-native';
 import { Card, Text } from 'react-native-paper';
-import React, { type FC } from 'react';
+import React, { type FC, type ComponentType } from 'react';
 
 import { useLocale } from 'hooks/useLocale';
 import { toDecimalString } from 'utils/number';
@@ -13,7 +13,7 @@ interface Metric {
 // TODO: Update Icon type from MUI SvgIcon to react-native-vector-icons component type
 export interface MetricCardProps {
     metrics: Metric[]
-    Icon: any
+    Icon: ComponentType<{ size?: number; color?: string }>
 }
 
 const MetricCard: FC<MetricCardProps> = ({
