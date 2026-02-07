@@ -28,19 +28,19 @@ const CARD_DEFINITIONS: CardDefinition[] = [
             { key: 'EpisodeCount', i18n: 'Episodes' }
         ]
     }, {
-        iconName: 'music-note',
+        iconName: 'music_note',
         metrics: [
             { key: 'AlbumCount', i18n: 'Albums' },
             { key: 'SongCount', i18n: 'Songs' }
         ]
     }, {
-        iconName: 'music-video',
+        iconName: 'music_video',
         metrics: [{ key: 'MusicVideoCount', i18n: 'MusicVideos' }]
     }, {
         iconName: 'book',
         metrics: [{ key: 'BookCount', i18n: 'Books' }]
     }, {
-        iconName: 'video-library',
+        iconName: 'video_library',
         metrics: [{ key: 'BoxSetCount', i18n: 'Collections' }]
     }
 ];
