@@ -68,7 +68,7 @@ const AlphabetPicker: React.FC<AlphabetPickerProps> = ({
                         className={btnClassName}
                         /* TODO: ToggleButton/ToggleButtonGroup need custom implementation */
                     >
-                        {/* {l} */}
+                        {l}
                     </View>
                 ))}
             </View>

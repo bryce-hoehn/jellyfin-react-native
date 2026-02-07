@@ -4,7 +4,6 @@ import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 // TODO: ButtonGroup not available - using View
 // TODO: useMediaQuery needs useWindowDimensions
-import type { Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { translate } from 'lib/globalize';
@@ -24,7 +23,7 @@ const Pagination: FC<PaginationProps> = ({
     totalRecordCount,
     isPlaceholderData
 }) => {
-    const isSmallScreen = useMediaQuery((t: Theme) => t.breakpoints.up('sm'));
+    const isSmallScreen = useMediaQuery((t: any) => t.breakpoints.up('sm'));
 
     const limit = userSettings.libraryPageSize(undefined);
     const startIndex = libraryViewSettings.StartIndex ?? 0;
