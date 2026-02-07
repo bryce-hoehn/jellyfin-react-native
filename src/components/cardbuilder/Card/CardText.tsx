@@ -1,5 +1,5 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 
 import { ensureArray } from 'utils/array';
 
@@ -15,8 +15,10 @@ const SEPARATOR = ' / ';
 const CardText: FC<CardTextProps> = ({ className, textLine }) => {
     const { title, titleAction } = textLine;
 
+    // TODO: href and data attributes not supported in React Native - need alternative
+    // TODO: title attribute needs accessible label pattern
     return (
-        <Box className={className}>
+        <View className={className}>
             {titleAction ? (
                 ensureArray(titleAction).map((action, i, arr) => (
                     <>
@@ -35,7 +37,7 @@ const CardText: FC<CardTextProps> = ({ className, textLine }) => {
             ) : (
                 ensureArray(title).join(SEPARATOR)
             )}
-        </Box>
+        </View>
     );
 };
 
