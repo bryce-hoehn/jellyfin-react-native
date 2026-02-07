@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box/Box';
+import { View } from 'react-native';
 import React, { type FC } from 'react';
 import SuggestionsSectionView from './SuggestionsSectionView';
 import UpcomingView from './UpcomingView';
@@ -20,9 +20,9 @@ const PageTabContent: FC<PageTabContentProps> = ({ parentId, currentTab }) => {
     if (currentTab.viewType === LibraryTab.Suggestions) {
         return (
             <>
-                <Box className='padded-top padded-left padded-right padded-bottom'>
+                <View className='padded-top padded-left padded-right padded-bottom'>
                     <LibraryViewMenu />
-                </Box>
+                </View>
 
                 <SuggestionsSectionView
                     parentId={parentId}
@@ -40,9 +40,9 @@ const PageTabContent: FC<PageTabContentProps> = ({ parentId, currentTab }) => {
     if (currentTab.viewType === LibraryTab.Programs || currentTab.viewType === LibraryTab.Recordings || currentTab.viewType === LibraryTab.Schedule) {
         return (
             <>
-                <Box className='padded-top padded-left padded-right padded-bottom'>
+                <View className='padded-top padded-left padded-right padded-bottom'>
                     <LibraryViewMenu />
-                </Box>
+                </View>
 
                 <ProgramsSectionView
                     parentId={parentId}
@@ -58,9 +58,9 @@ const PageTabContent: FC<PageTabContentProps> = ({ parentId, currentTab }) => {
     if (currentTab.viewType === LibraryTab.Upcoming) {
         return (
             <>
-                <Box className='padded-top padded-left padded-right padded-bottom'>
+                <View className='padded-top padded-left padded-right padded-bottom'>
                     <LibraryViewMenu />
-                </Box>
+                </View>
 
                 <UpcomingView parentId={parentId} />
             </>
@@ -70,9 +70,9 @@ const PageTabContent: FC<PageTabContentProps> = ({ parentId, currentTab }) => {
     if (currentTab.viewType === LibraryTab.Genres) {
         return (
             <>
-                <Box className='padded-top padded-left padded-right padded-bottom'>
+                <View className='padded-top padded-left padded-right padded-bottom'>
                     <LibraryViewMenu />
-                </Box>
+                </View>
 
                 <GenresView
                     parentId={parentId}
@@ -86,15 +86,12 @@ const PageTabContent: FC<PageTabContentProps> = ({ parentId, currentTab }) => {
     if (currentTab.viewType === LibraryTab.Guide) {
         return (
             <>
-                <Box
+                <View
                     className='padded-top padded-left padded-right padded-bottom'
-                    sx={{
-                        position: 'relative',
-                        zIndex: 2
-                    }}
+                    /* TODO: sx prop needs StyleSheet styling - position: 'relative', zIndex: 2 */
                 >
                     <LibraryViewMenu />
-                </Box>
+                </View>
 
                 <GuideView />
             </>

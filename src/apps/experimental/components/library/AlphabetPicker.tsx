@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
 
-import Box from '@mui/material/Box';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { View } from 'react-native';
+// TODO: ToggleButton/ToggleButtonGroup need custom implementation
 
 import { LibraryViewSettings } from 'types/library';
 import 'components/alphaPicker/style.scss';
@@ -49,36 +48,31 @@ const AlphabetPicker: React.FC<AlphabetPickerProps> = ({
     const letters = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
     return (
-        <Box
+        <View
             className={containerClassName}
-            sx={{
-                position: 'fixed',
-                bottom: '1.5em',
-                fontSize: {
-                    xs: '80%',
-                    lg: '88%'
-                }
-            }}
+            /* TODO: sx prop needs StyleSheet styling - position: 'fixed', bottom: '1.5em', fontSize responsive */
         >
-            <ToggleButtonGroup
-                orientation='vertical'
-                value={libraryViewSettings.Alphabet}
-                exclusive
-                color='primary'
-                size='small'
-                onChange={handleValue}
+            <View
+                /* TODO: ToggleButton/ToggleButtonGroup need custom implementation */
+                /* orientation='vertical' */
+                /* value={libraryViewSettings.Alphabet} */
+                /* exclusive */
+                /* TODO: color prop needs theme color mapping */
+                /* size='small' */
+                /* onChange={handleValue} */
             >
                 {letters.map((l) => (
-                    <ToggleButton
+                    <View
                         key={l}
-                        value={l}
+                        /* value={l} */
                         className={btnClassName}
+                        /* TODO: ToggleButton/ToggleButtonGroup need custom implementation */
                     >
-                        {l}
-                    </ToggleButton>
+                        {/* {l} */}
+                    </View>
                 ))}
-            </ToggleButtonGroup>
-        </Box>
+            </View>
+        </View>
     );
 };
 
