@@ -1,7 +1,7 @@
 import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-item-kind';
 import React, { type FC } from 'react';
-import DragHandleIcon from '@mui/icons-material/DragHandle';
-import Box from '@mui/material/Box';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View } from 'react-native';
 
 import useIndicator from 'components/indicators/useIndicator';
 import { ItemAction } from 'constants/itemAction';
@@ -47,7 +47,7 @@ const ListContent: FC<ListContentProps> = ({
         >
 
             {!clickEntireItem && listOptions.dragHandle && (
-                <DragHandleIcon className='listViewDragHandle listItemIcon listItemIcon-transparent' />
+                <Icon name="drag-handle" size={24} className='listViewDragHandle listItemIcon listItemIcon-transparent' />
             )}
 
             {listOptions.image !== false && (
@@ -62,9 +62,9 @@ const ListContent: FC<ListContentProps> = ({
             )}
 
             {listOptions.showIndexNumberLeft && (
-                <Box className='listItem-indexnumberleft'>
+                <View className='listItem-indexnumberleft'>
                     {item.IndexNumber ?? <span>&nbsp;</span>}
-                </Box>
+                </View>
             )}
 
             <ListItemBody

@@ -1,11 +1,12 @@
+// TODO: MUI List components (ListItem, ListItemIcon, ListItemText, etc.) need custom RN Paper List.Item implementation
 import React, { FunctionComponent, useCallback, useState } from 'react';
 import type { BackupManifestDto } from '@jellyfin/sdk/lib/generated-client/models/backup-manifest-dto';
-import IconButton from '@mui/material/IconButton';
+import { IconButton } from 'react-native-paper';
 import ListItem from '@mui/material/ListItem';
-import Restore from '@mui/icons-material/Restore';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import Tooltip from '@mui/material/Tooltip';
+// TODO: Tooltip - Replace with React Native alternative or remove
 import { translate } from 'lib/globalize';
 import BackupInfoDialog from './BackupInfoDialog';
 
@@ -39,11 +40,10 @@ const Backup: FunctionComponent<BackupProps> = ({ backup, onRestore }) => {
             <ListItem
                 disablePadding
                 secondaryAction={
-                    <Tooltip disableInteractive title={translate('LabelRestore')}>
-                        <IconButton onPress={restore}>
-                            <Restore />
-                        </IconButton>
-                    </Tooltip>
+                    // TODO: Restore Tooltip with title={translate('LabelRestore')}
+                    <IconButton onPress={restore}>
+                        <Icon name="restore" size={24} />
+                    </IconButton>
                 }
             >
                 <ListItemButton onPress={openDialog}>

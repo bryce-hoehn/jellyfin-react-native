@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import useSecondaryMediaInfo from './useSecondaryMediaInfo';
 import useIndicator from 'components/indicators/useIndicator';
 import MediaInfoItem from './MediaInfoItem';
@@ -44,11 +44,11 @@ const SecondaryMediaInfo: FC<SecondaryMediaInfoProps> = ({
     );
 
     return (
-        <Box className={cssClass}>
+        <View className={cssClass}>
             {miscInfo.map((info, index) => renderMediaInfo(info, index))}
 
             {showTimerIndicatorInfo !== false && indicator.getTimerIndicator()}
-        </Box>
+        </View>
     );
 };
 

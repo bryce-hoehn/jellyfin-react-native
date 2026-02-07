@@ -1,6 +1,5 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { View } from 'react-native';
+import { Button, Text } from 'react-native-paper';
 import React, { type FC } from 'react';
 
 import { translate } from 'lib/globalize';
@@ -16,35 +15,26 @@ const NoPluginResults: FC<NoPluginResultsProps> = ({
     onViewAll,
     query
 }) => {
+    // TODO: Replace Box sx prop with React Native StyleSheet (textAlign: 'center')
     return (
-        <Box
-            sx={{
-                textAlign: 'center'
-            }}
-        >
-            <Typography
-                component='div'
-                sx={{
-                    marginTop: 2,
-                    marginBottom: 1
-                }}
-            >
+        <View>
+            <Text>
                 {
                     query ?
                         translate('SearchResultsEmpty', query) :
                         translate('NoSubtitleSearchResultsFound')
                 }
-            </Typography>
+            </Text>
 
             {isFiltered && (
                 <Button
-                    variant='text'
+                    mode='text'
                     onPress={onViewAll}
                 >
                     {translate('ViewAllPlugins')}
                 </Button>
             )}
-        </Box>
+        </View>
     );
 };
 

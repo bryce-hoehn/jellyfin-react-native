@@ -2,12 +2,10 @@ import React, { useMemo } from 'react';
 import { translate } from 'lib/globalize';
 import Widget from './Widget';
 import type { TaskInfo } from '@jellyfin/sdk/lib/generated-client/models/task-info';
-import Paper from '@mui/material/Paper';
+import { View } from 'react-native';
 import { TaskState } from '@jellyfin/sdk/lib/generated-client/models/task-state';
-import Typography from '@mui/material/Typography';
+import { Text } from 'react-native-paper';
 import TaskProgress from 'apps/dashboard/features/tasks/components/TaskProgress';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 
 type RunningTasksWidgetProps = {
     tasks?: TaskInfo[];
@@ -25,16 +23,19 @@ const RunningTasksWidget = ({ tasks }: RunningTasksWidgetProps) => {
             title={translate('HeaderRunningTasks')}
             href='/dashboard/tasks'
         >
-            <Paper sx={{ padding: 2 }}>
-                <Stack spacing={2} maxWidth={'330px'}>
+            {/* TODO: Replace Paper with View and custom styling */}
+            {/* TODO: Replace Stack with View and custom layout */}
+            {/* TODO: Replace sx prop with StyleSheet */}
+            <View>
+                <View>
                     {runningTasks.map((task => (
-                        <Box key={task.Id}>
-                            <Typography>{task.Name}</Typography>
+                        <View key={task.Id}>
+                            <Text>{task.Name}</Text>
                             <TaskProgress task={task} />
-                        </Box>
+                        </View>
                     )))}
-                </Stack>
-            </Paper>
+                </View>
+            </View>
         </Widget>
     );
 };

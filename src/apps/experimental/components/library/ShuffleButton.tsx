@@ -1,7 +1,7 @@
 import { ItemSortBy } from '@jellyfin/sdk/lib/generated-client/models/item-sort-by';
 import React, { FC, useCallback } from 'react';
-import Shuffle from '@mui/icons-material/Shuffle';
-import Button from '@mui/material/Button';
+import { Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { playbackManager } from 'components/playback/playbackmanager';
 import { translate } from 'lib/globalize';
@@ -47,14 +47,14 @@ const ShuffleButton: FC<ShuffleButtonProps> = ({
 
     return (
         <Button
-            title={translate('Shuffle')}
-            startIcon={isTextVisible ? <Shuffle /> : undefined}
+            // TODO: title prop not supported - use tooltip or accessibility label
+            // TODO: startIcon not directly supported in RN Paper Button - use icon prop or custom layout
             onPress={shuffle}
         >
             {isTextVisible ? (
                 translate('Shuffle')
             ) : (
-                <Shuffle />
+                <Icon name="shuffle" size={24} />
             )}
         </Button>
     );

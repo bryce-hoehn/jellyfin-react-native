@@ -6,9 +6,8 @@ import {
     useLocation,
     useSearchParams
 } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { IconButton } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 
 const getUrlParams = (searchParams: URLSearchParams) => {
@@ -40,18 +39,16 @@ const SearchButton: FC = () => {
         };
 
     return (
-        <Tooltip title={translate('Search')}>
-            <IconButton
-                size='large'
-                aria-label={translate('Search')}
-                color='inherit'
-                component={Link}
-                disabled={isSearchPath}
-                to={createSearchLink}
-            >
-                <SearchIcon />
-            </IconButton>
-        </Tooltip>
+        // TODO: Tooltip not available in RN Paper - consider react-native-paper-tooltip
+        // TODO: size prop not directly supported in RN Paper IconButton
+        // TODO: color='inherit' not supported - use theme colors
+        // TODO: component={Link} not supported - needs navigation handling
+        // TODO: disabled prop styling may differ
+        // TODO: aria-* props not supported in React Native
+        <IconButton
+            icon={() => <Icon name="search" size={24} />}
+            onPress={() => {/* TODO: navigation handling */}}
+        />
     );
 };
 

@@ -1,7 +1,7 @@
 import React, { type FC, type PropsWithChildren } from 'react';
 import classNames from 'classnames';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { Text } from 'react-native-paper';
+import { View } from 'react-native';
 import useTextLines from './useTextLines';
 
 import type { ItemDto } from 'types/base/models/item-dto';
@@ -21,15 +21,15 @@ const TextWrapper: FC<PropsWithChildren<TextWrapperProps>> = ({
 }) => {
     if (isHeading) {
         return (
-            <Typography className={classNames('primary', className)} variant={isLargeStyle ? 'h1' : 'h3'}>
+            <Text className={classNames('primary', className)} variant={isLargeStyle ? 'headlineLarge' : 'headlineMedium'}>
                 {children}
-            </Typography>
+            </Text>
         );
     } else {
         return (
-            <Box className={classNames('secondary', className )}>
+            <View className={classNames('secondary', className )}>
                 {children}
-            </Box>
+            </View>
         );
     }
 };
@@ -65,9 +65,9 @@ const TextLines: FC<TextLinesProps> = ({
     };
 
     return (
-        <Box className={className}>
+        <View className={className}>
             {textLines?.map((text, index) => renderTextlines(text, index))}
-        </Box>
+        </View>
     );
 };
 

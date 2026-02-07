@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import useMediaInfoStats from './useMediaInfoStats';
 
 import MediaInfoItem from './MediaInfoItem';
@@ -40,9 +40,9 @@ const MediaInfoStats: FC<MediaInfoStatsProps> = ({
     );
 
     return (
-        <Box className={cssClass}>
+        <View className={cssClass}>
             {mediaInfoStats.map((info, index) => renderMediaInfo(info, index))}
-        </Box>
+        </View>
     );
 };
 

@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import StopIcon from '@mui/icons-material/Stop';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { useCancelTimer } from 'hooks/api/liveTvHooks';
@@ -49,12 +49,11 @@ const CancelTimerButton: FC<CancelTimerButtonProps> = ({
 
     return (
         <IconButton
-            className='button-flat btnCancelTimer'
-            title={translate('StopRecording')}
+            // TODO: className prop not supported in RN Paper
+            // TODO: title prop not supported - use accessibility label
             onPress={onCancelTimerClick}
-        >
-            <StopIcon />
-        </IconButton>
+            icon={() => <Icon name="stop" size={24} />}
+        />
     );
 };
 

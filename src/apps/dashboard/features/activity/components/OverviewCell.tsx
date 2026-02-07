@@ -1,11 +1,11 @@
-import Info from '@mui/icons-material/Info';
-import Box from '@mui/material/Box';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import React, { type FC, useCallback, useState } from 'react';
+import { View } from 'react-native';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import type { ActivityLogEntryCell } from '../types/ActivityLogEntryCell';
+
+// TODO: Tooltip and ClickAwayListener need custom implementation
 
 const OverviewCell: FC<ActivityLogEntryCell> = ({ row }) => {
     const { ShortOverview, Overview } = row.original;
@@ -23,43 +23,32 @@ const OverviewCell: FC<ActivityLogEntryCell> = ({ row }) => {
     if (!displayValue) return null;
 
     return (
-        <Box
-            sx={{
+        <View
+            style={{
                 display: 'flex',
                 width: '100%',
                 alignItems: 'center'
             }}
         >
-            <Box
-                sx={{
+            <View
+                style={{
                     flexGrow: 1,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis'
+                    overflow: 'hidden'
                 }}
-                component='div'
-                title={displayValue}
             >
+                {/* TODO: component='div' prop needs alternative */}
                 {displayValue}
-            </Box>
+            </View>
             {ShortOverview && Overview && (
-                <ClickAwayListener onPressAway={onTooltipClose}>
-                    <Tooltip
-                        title={Overview}
-                        placement='top'
-                        arrow
-                        onClose={onTooltipClose}
-                        open={open}
-                        disableFocusListener
-                        disableHoverListener
-                        disableTouchListener
-                    >
-                        <IconButton onPress={onTooltipOpen}>
-                            <Info />
-                        </IconButton>
-                    </Tooltip>
-                </ClickAwayListener>
+                <>
+                    {/* TODO: ClickAwayListener wrapper removed - needs custom implementation */}
+                    {/* TODO: Tooltip wrapper removed - needs custom implementation */}
+                    <IconButton onPress={onTooltipOpen}>
+                        <Icon name="info" size={24} />
+                    </IconButton>
+                </>
             )}
-        </Box>
+        </View>
     );
 };
 

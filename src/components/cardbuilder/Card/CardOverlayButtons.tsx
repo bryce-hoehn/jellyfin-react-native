@@ -1,6 +1,6 @@
 import { LocationType } from '@jellyfin/sdk/lib/generated-client/models/location-type';
 import React, { type FC } from 'react';
-import ButtonGroup from '@mui/material/ButtonGroup';
+// TODO: ButtonGroup not available in React Native
 import classNames from 'classnames';
 
 import { appRouter } from 'components/router/appRouter';
@@ -63,6 +63,10 @@ const CardOverlayButtons: FC<CardOverlayButtonsProps> = ({
     );
 
     return (
+        // TODO: Replace <a> with TouchableOpacity and handle navigation
+        // TODO: Convert href to onPress navigation
+        // TODO: aria-label not available in RN (use accessibilityLabel)
+        // TODO: userSelect style not available in RN
         <a
             href={url}
             aria-label={item.Name || ''}
@@ -85,7 +89,8 @@ const CardOverlayButtons: FC<CardOverlayButtonsProps> = ({
                 />
             )}
 
-            <ButtonGroup className='cardOverlayButton-br'>
+            {/* TODO: ButtonGroup not available in RN, using View instead */}
+            <View className='cardOverlayButton-br'>
                 {sholudShowOverlayPlayButton(overlayPlayButton, item) && (
                     <PlayArrowIconButton
                         className={btnCssClass}
@@ -99,7 +104,7 @@ const CardOverlayButtons: FC<CardOverlayButtonsProps> = ({
                         className={btnCssClass}
                     />
                 )}
-            </ButtonGroup>
+            </View>
         </a>
     );
 };

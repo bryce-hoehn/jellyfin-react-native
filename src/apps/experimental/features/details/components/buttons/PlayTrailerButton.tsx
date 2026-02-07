@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import TheatersIcon from '@mui/icons-material/Theaters';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { playbackManager } from 'components/playback/playbackmanager';
 import { translate } from 'lib/globalize';
@@ -17,12 +17,11 @@ const PlayTrailerButton: FC<PlayTrailerButtonProps> = ({ item }) => {
 
     return (
         <IconButton
-            className='button-flat btnPlayTrailer'
-            title={translate('ButtonTrailer')}
+            // TODO: className prop not supported in RN Paper
+            // TODO: title prop not supported - use accessibility label
             onPress={onPlayTrailerClick}
-        >
-            <TheatersIcon />
-        </IconButton>
+            icon={() => <Icon name="theaters" size={24} />}
+        />
     );
 };
 

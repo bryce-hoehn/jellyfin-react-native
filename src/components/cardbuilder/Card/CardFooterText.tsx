@@ -1,5 +1,5 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import useCardText from './useCardText';
 import layoutManager from 'components/layoutManager';
 import MoreVertIconButton from 'components/common/MoreVertIconButton';
@@ -26,12 +26,12 @@ interface LogoComponentProps {
 }
 
 const LogoComponent: FC<LogoComponentProps> = ({ logoUrl }) => (
-    <Box className='cardFooterLogo'>
+    <View className='cardFooterLogo'>
         <Image
             imgUrl={logoUrl}
             containImage
         />
-    </Box>
+    </View>
 );
 
 interface CardFooterTextProps {
@@ -72,7 +72,7 @@ const CardFooterText: FC<CardFooterTextProps> = ({
     });
 
     return (
-        <Box className={footerClass}>
+        <View className={footerClass}>
             {logoUrl && <LogoComponent logoUrl={logoUrl} />}
             {shouldShowDetailsMenu(cardOptions, isOuterFooter) && (
                 <MoreVertIconButton className='itemAction btnCardOptions' />
@@ -81,7 +81,7 @@ const CardFooterText: FC<CardFooterTextProps> = ({
             {cardTextLines}
 
             {progressBar}
-        </Box>
+        </View>
     );
 };
 

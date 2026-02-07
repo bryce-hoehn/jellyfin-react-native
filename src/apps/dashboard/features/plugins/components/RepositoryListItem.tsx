@@ -1,16 +1,16 @@
+// TODO: MUI List components (ListItem, ListItemIcon, ListItemText, etc.) need custom RN Paper List.Item implementation
 import React, { useCallback, useState } from 'react';
 import type { RepositoryInfo } from '@jellyfin/sdk/lib/generated-client/models/repository-info';
 import ListItem from '@mui/material/ListItem';
-import Tooltip from '@mui/material/Tooltip';
-import Delete from '@mui/icons-material/Delete';
+// TODO: Tooltip - Replace with React Native alternative or remove
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { translate } from 'lib/globalize';
-import IconButton from '@mui/material/IconButton';
+import { IconButton } from 'react-native-paper';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import OpenInNew from '@mui/icons-material/OpenInNew';
 import Avatar from '@mui/material/Avatar';
 import ListItemButton from '@mui/material/ListItemButton';
-import Link from '@mui/material/Link';
+// TODO: Link - Implement navigation with React Navigation or Linking API
 import ConfirmDialog from 'components/ConfirmDialog';
 
 type IProps = {
@@ -48,21 +48,19 @@ const RepositoryListItem = ({ repository, onDelete }: IProps) => {
             <ListItem
                 disablePadding
                 secondaryAction={
-                    <Tooltip disableInteractive title={translate('ButtonRemove')}>
-                        <IconButton onPress={confirmDeletePrompt}>
-                            <Delete />
-                        </IconButton>
-                    </Tooltip>
+                    // TODO: Restore Tooltip with title={translate('ButtonRemove')}
+                    <IconButton onPress={confirmDeletePrompt}>
+                        <Icon name="delete" size={24} />
+                    </IconButton>
                 }
             >
                 <ListItemButton>
-                    <Link href={repository.Url || '#'} target='_blank' rel='noopener noreferrer'>
-                        <ListItemAvatar>
-                            <Avatar sx={{ bgcolor: 'primary.main' }}>
-                                <OpenInNew sx={{ color: '#fff' }} />
-                            </Avatar>
-                        </ListItemAvatar>
-                    </Link>
+                    {/* TODO: Implement Link navigation to {repository.Url} */}
+                    <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: 'primary.main' }}>
+                            <Icon name="open-in-new" size={24} color="#fff" />
+                        </Avatar>
+                    </ListItemAvatar>
                     <ListItemText
                         primary={repository.Name}
                         secondary={repository.Url}

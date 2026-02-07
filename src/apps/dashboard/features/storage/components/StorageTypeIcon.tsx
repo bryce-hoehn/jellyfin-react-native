@@ -1,30 +1,28 @@
-import Album from '@mui/icons-material/Album';
-import Lan from '@mui/icons-material/Lan';
-import Memory from '@mui/icons-material/Memory';
-import Storage from '@mui/icons-material/Storage';
-import Usb from '@mui/icons-material/Usb';
 import React, { type FC } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { StorageType } from '../constants/StorageType';
 
 interface StorageTypeIconProps {
     type?: string | null
+    size?: number
 }
 
 const StorageTypeIcon: FC<StorageTypeIconProps> = ({
-    type
+    type,
+    size = 24
 }) => {
     switch (type) {
         case StorageType.CDRom:
-            return <Album />;
+            return <Icon name="album" size={size} />;
         case StorageType.Network:
-            return <Lan />;
+            return <Icon name="lan" size={size} />;
         case StorageType.Ram:
-            return <Memory />;
+            return <Icon name="memory" size={size} />;
         case StorageType.Removable:
-            return <Usb />;
+            return <Icon name="usb" size={size} />;
         default:
-            return <Storage />;
+            return <Icon name="storage" size={size} />;
     }
 };
 

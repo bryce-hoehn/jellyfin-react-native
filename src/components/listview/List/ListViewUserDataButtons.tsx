@@ -1,5 +1,5 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 
 import itemHelper from '../../itemHelper';
 import PlayedButton from 'elements/emby-playstatebutton/PlayedButton';
@@ -37,7 +37,7 @@ const ListViewUserDataButtons: FC<ListViewUserDataButtonsProps> = ({
     };
 
     return (
-        <Box className='listViewUserDataButtons'>
+        <View className='listViewUserDataButtons'>
             {listOptions.addToListButton && (
                 <PlaylistAddIconButton
                     className='paper-icon-button-light listItemButton itemAction'
@@ -81,7 +81,7 @@ const ListViewUserDataButtons: FC<ListViewUserDataButtonsProps> = ({
                     className='paper-icon-button-light listItemButton itemAction'
                 />
             )}
-        </Box>
+        </View>
     );
 };
 

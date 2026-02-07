@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import Add from '@mui/icons-material/Add';
-import Button from '@mui/material/Button';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Button } from 'react-native-paper';
 
 import { translate } from 'lib/globalize';
 
@@ -8,6 +8,7 @@ interface NewCollectionButtonProps {
     isTextVisible: boolean
 }
 
+// TODO: startIcon not directly supported in RN Paper Button
 const NewCollectionButton: FC<NewCollectionButtonProps> = ({
     isTextVisible
 }) => {
@@ -29,14 +30,13 @@ const NewCollectionButton: FC<NewCollectionButtonProps> = ({
 
     return (
         <Button
-            variant='contained'
-            startIcon={isTextVisible ? <Add /> : undefined}
+            mode='contained'
             onPress={showCollectionEditor}
         >
             {isTextVisible ? (
                 translate('NewCollection')
             ) : (
-                <Add />
+                <Icon name="add" size={24} />
             )}
         </Button>
     );

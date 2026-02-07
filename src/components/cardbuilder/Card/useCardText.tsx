@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import classNames from 'classnames';
 import layoutManager from 'components/layoutManager';
 import CardText from './CardText';
@@ -92,9 +92,9 @@ function useCardText({
             const linesLength = maxLines ?? Math.min(textLines.length, maxLines ?? textLines.length);
             while (valid < linesLength) {
                 components.push(
-                    <Box key={valid} className={cssClass}>
+                    <View key={valid} className={cssClass}>
                         &nbsp;
-                    </Box>
+                    </View>
                 );
                 valid++;
             }

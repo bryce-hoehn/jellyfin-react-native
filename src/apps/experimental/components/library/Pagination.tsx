@@ -1,12 +1,9 @@
 import React, { FC, useCallback } from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Stack from '@mui/material/Stack';
-import type { Theme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View } from 'react-native';
+import { Button, Text } from 'react-native-paper';
+// TODO: ButtonGroup not available - using View
+// TODO: useMediaQuery needs useWindowDimensions
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { translate } from 'lib/globalize';
@@ -26,7 +23,7 @@ const Pagination: FC<PaginationProps> = ({
     totalRecordCount,
     isPlaceholderData
 }) => {
-    const isSmallScreen = useMediaQuery((t: Theme) => t.breakpoints.up('sm'));
+    const isSmallScreen = useMediaQuery((t: any) => t.breakpoints.up('sm'));
 
     const limit = userSettings.libraryPageSize(undefined);
     const startIndex = libraryViewSettings.StartIndex ?? 0;
@@ -53,88 +50,69 @@ const Pagination: FC<PaginationProps> = ({
     }, [limit, setLibraryViewSettings, startIndex]);
 
     return (
-        <Stack
-            direction='row'
-            spacing={0.5}
-            sx={{
-                alignItems: 'center',
-                flexGrow: {
-                    xs: 1,
-                    sm: 0
-                },
-                marginLeft: {
-                    xs: 0,
-                    sm: 0.5
-                }
-            }}
+        <View
+            /* TODO: Add flexbox styling for direction='row', spacing={0.5}, alignItems: 'center', flexGrow, marginLeft */
         >
             {!isSmallScreen && (
                 <Button
-                    color='inherit'
-                    variant='text'
-                    title={translate('Previous')}
+                    /* TODO: color prop needs theme color mapping */
+                    mode='text'
+                    accessibilityLabel={translate('Previous')} /* TODO: title prop mapped to accessibilityLabel */
                     disabled={!showControls || startIndex == 0 || isPlaceholderData}
                     onPress={onPreviousPageClick}
                 >
-                    <ArrowBackIcon />
+                    <Icon name="arrow-back" size={24} />
                 </Button>
             )}
 
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexGrow: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 1,
-                    marginRight: 1
-                }}
+            <View
+                /* TODO: sx prop needs StyleSheet styling - display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center', marginLeft: 1, marginRight: 1 */
             >
-                <Typography variant='body2'>
+                <Text variant='bodyMedium'>
                     {translate(
                         'ListPaging',
                         recordsStart,
                         recordsEnd,
                         totalRecordCount
                     )}
-                </Typography>
-            </Box>
+                </Text>
+            </View>
 
             {isSmallScreen && (
-                <ButtonGroup
-                    color='inherit'
-                    variant='text'
+                <View
+                    /* TODO: color prop needs theme color mapping */
+                    /* TODO: ButtonGroup not available - using View */
                 >
                     <Button
-                        title={translate('Previous')}
+                        accessibilityLabel={translate('Previous')} /* TODO: title prop mapped to accessibilityLabel */
                         disabled={!showControls || startIndex == 0 || isPlaceholderData}
                         onPress={onPreviousPageClick}
                     >
-                        <ArrowBackIcon />
+                        <Icon name="arrow-back" size={24} />
                     </Button>
 
                     <Button
-                        title={translate('Next')}
+                        accessibilityLabel={translate('Next')} /* TODO: title prop mapped to accessibilityLabel */
                         disabled={!showControls || startIndex + limit >= totalRecordCount || isPlaceholderData }
                         onPress={onNextPageClick}
                     >
-                        <ArrowForwardIcon />
+                        <Icon name="arrow-forward" size={24} />
                     </Button>
-                </ButtonGroup>
+                </View>
             )}
 
             {!isSmallScreen && (
                 <Button
-                    color='inherit'
-                    variant='text'
-                    title={translate('Next')}
+                    /* TODO: color prop needs theme color mapping */
+                    mode='text'
+                    accessibilityLabel={translate('Next')} /* TODO: title prop mapped to accessibilityLabel */
                     disabled={!showControls || startIndex + limit >= totalRecordCount || isPlaceholderData }
                     onPress={onNextPageClick}
                 >
-                    <ArrowForwardIcon />
+                    <Icon name="arrow-forward" size={24} />
                 </Button>
             )}
-        </Stack>
+        </View>
     );
 };
 

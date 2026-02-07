@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import ExploreIcon from '@mui/icons-material/Explore';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { playbackManager } from 'components/playback/playbackmanager';
 import { translate } from 'lib/globalize';
@@ -17,12 +17,11 @@ const InstantMixButton: FC<InstantMixButtonProps> = ({ item }) => {
 
     return (
         <IconButton
-            className='button-flat btnInstantMix'
-            title={translate('HeaderInstantMix')}
+            // TODO: className prop not supported in RN Paper
+            // TODO: title prop not supported - use accessibility label
             onPress={onInstantMixClick}
-        >
-            <ExploreIcon />
-        </IconButton>
+            icon={() => <Icon name="explore" size={24} />}
+        />
     );
 };
 

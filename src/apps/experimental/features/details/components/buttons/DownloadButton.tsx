@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { useGetDownload } from 'hooks/api/libraryHooks';
 import { translate } from 'lib/globalize';
@@ -31,12 +31,11 @@ const DownloadButton: FC<DownloadButtonProps> = ({ itemId, itemServerId, itemNam
 
     return (
         <IconButton
-            className='button-flat btnDownload'
-            title={translate('Download')}
+            // TODO: className prop not supported in RN Paper
+            // TODO: title prop not supported - use accessibility label
             onPress={onDownloadClick}
-        >
-            <FileDownloadIcon />
-        </IconButton>
+            icon={() => <Icon name="file-download" size={24} />}
+        />
     );
 };
 

@@ -1,11 +1,9 @@
-import Button from '@mui/material/Button';
-import Dialog, { type DialogProps } from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Button, Dialog, Portal, Text } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 import React from 'react';
+
+// TODO: DialogProps type needs to be updated for React Native Paper Dialog
+type DialogProps = React.ComponentProps<typeof Dialog>;
 
 interface SimpleAlertDialog extends DialogProps {
     title?: string;
@@ -15,23 +13,25 @@ interface SimpleAlertDialog extends DialogProps {
 
 const SimpleAlert = ({ open, title, text, onClose }: SimpleAlertDialog) => {
     return (
-        <Dialog open={open} onClose={onClose}>
-            {title && (
-                <DialogTitle>
-                    {title}
-                </DialogTitle>
-            )}
-            <DialogContent>
-                <DialogContentText sx={{ whiteSpace: 'pre-wrap' }}>
-                    {text}
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button onPress={onClose}>
-                    {translate('ButtonGotIt')}
-                </Button>
-            </DialogActions>
-        </Dialog>
+        <Portal>
+            <Dialog visible={open} onDismiss={onClose}>
+                {title && (
+                    <Dialog.Title>
+                        {title}
+                    </Dialog.Title>
+                )}
+                <Dialog.Content>
+                    <Text>
+                        {text}
+                    </Text>
+                </Dialog.Content>
+                <Dialog.Actions>
+                    <Button onPress={onClose}>
+                        {translate('ButtonGotIt')}
+                    </Button>
+                </Dialog.Actions>
+            </Dialog>
+        </Portal>
     );
 };
 

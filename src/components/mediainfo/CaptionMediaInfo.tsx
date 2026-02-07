@@ -1,7 +1,7 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import ClosedCaptionIcon from '@mui/icons-material/ClosedCaption';
-import Box from '@mui/material/Box';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View } from 'react-native';
 
 interface CaptionMediaInfoProps {
     className?: string;
@@ -15,9 +15,9 @@ const CaptionMediaInfo: FC<CaptionMediaInfoProps> = ({ className }) => {
     );
 
     return (
-        <Box className={cssClass}>
-            <ClosedCaptionIcon />
-        </Box>
+        <View className={cssClass}>
+            <Icon name="closed-caption" size={24} />
+        </View>
     );
 };
 

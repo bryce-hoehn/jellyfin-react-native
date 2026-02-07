@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 
 import TextLines from 'components/common/textLines/TextLines';
 import { ItemAction } from 'constants/itemAction';
@@ -39,7 +39,8 @@ const ListItemBody: FC<ListItemBodyProps> = ({
     );
 
     return (
-        <Box data-action={action} className={cssClass}>
+        // TODO: data-action not supported in React Native
+        <View data-action={action} className={cssClass}>
 
             <TextLines
                 item={item}
@@ -72,11 +73,11 @@ const ListItemBody: FC<ListItemBodyProps> = ({
             )}
 
             {!enableContentWrapper && enableOverview && item.Overview && (
-                <Box className='secondary listItem-overview listItemBodyText'>
+                <View className='secondary listItem-overview listItemBodyText'>
                     <bdi>{item.Overview}</bdi>
-                </Box>
+                </View>
             )}
-        </Box>
+        </View>
     );
 };
 

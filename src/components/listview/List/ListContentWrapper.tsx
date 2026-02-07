@@ -1,5 +1,5 @@
 import React, { type FC, type PropsWithChildren } from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 
 interface ListContentWrapperProps {
     itemOverview: string | null | undefined;
@@ -16,12 +16,12 @@ const ListContentWrapper: FC<PropsWithChildren<ListContentWrapperProps>> = ({
     if (enableContentWrapper) {
         return (
             <>
-                <Box className='listItem-content'>{children}</Box>
+                <View className='listItem-content'>{children}</View>
 
                 {enableOverview && itemOverview && (
-                    <Box className='listItem-bottomoverview secondary'>
+                    <View className='listItem-bottomoverview secondary'>
                         <bdi>{itemOverview}</bdi>
-                    </Box>
+                    </View>
                 )}
             </>
         );

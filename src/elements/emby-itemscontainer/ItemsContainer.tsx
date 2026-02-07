@@ -3,7 +3,7 @@ import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type'
 import { ApiClient } from 'jellyfin-apiclient';
 import React, { type FC, type PropsWithChildren, useCallback, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import Sortable from 'sortablejs';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -411,9 +411,9 @@ const ItemsContainer: FC<PropsWithChildren<ItemsContainerProps>> = ({
     );
 
     return (
-        <Box ref={itemsContainerRef} className={itemsContainerClass}>
+        <View ref={itemsContainerRef} className={itemsContainerClass}>
             {children}
-        </Box>
+        </View>
     );
 };
 

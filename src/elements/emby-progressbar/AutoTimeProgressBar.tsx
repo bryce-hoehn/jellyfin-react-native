@@ -1,7 +1,6 @@
 import React, { type FC, useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-import type {} from '@mui/material/themeCssVarsAugmentation';
+import { ProgressBar } from 'react-native-paper';
 
 import type { ProgressOptions } from 'types/progressOptions';
 
@@ -62,19 +61,12 @@ const AutoTimeProgressBar: FC<AutoTimeProgressBarProps> = ({
     );
 
     return (
-        <LinearProgress
-            className={progressBarClass}
-            variant='determinate'
-            value={progress}
-            // eslint-disable-next-line react/jsx-no-bind
-            sx={(theme) => ({
-                [`& .${linearProgressClasses.bar}`]: {
-                    borderRadius: 5,
-                    backgroundColor: isRecording ?
-                        theme.vars.palette.error.main :
-                        theme.vars.palette.primary.main
-                }
-            })}
+        <ProgressBar
+            // TODO: className prop not supported in RN - need to convert to style prop
+            // className={progressBarClass}
+            progress={progress / 100}
+            // TODO: RN Paper ProgressBar doesn't support sx styling - need alternative for recording color
+            // Original sx: borderRadius: 5, backgroundColor: isRecording ? error.main : primary.main
         />
     );
 };

@@ -1,14 +1,9 @@
 import React from 'react';
 import { translate } from 'lib/globalize';
 import Widget from './Widget';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Skeleton from '@mui/material/Skeleton';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { View } from 'react-native';
+import { Text, Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useSystemInfo } from 'hooks/useSystemInfo';
 
 type ServerInfoWidgetProps = {
@@ -31,44 +26,43 @@ const ServerInfoWidget = ({
             title={translate('TabServer')}
             href='/dashboard/settings'
         >
-            <Stack spacing={2}>
-                <Paper sx={{
-                    padding: 2
-                }}>
-                    <Stack direction='row'>
-                        <Stack flexGrow={1} spacing={1}>
-                            <Typography fontWeight='bold'>{translate('LabelServerName')}</Typography>
-                            <Typography fontWeight='bold'>{translate('LabelServerVersion')}</Typography>
-                            <Typography fontWeight='bold'>{translate('LabelWebVersion')}</Typography>
-                            <Typography fontWeight='bold'>{translate('LabelBuildVersion')}</Typography>
-                        </Stack>
-                        <Stack flexGrow={5} spacing={1}>
+            {/* TODO: Replace Stack with View and custom layout */}
+            {/* TODO: Replace Paper with View and custom styling */}
+            {/* TODO: Replace Skeleton with ActivityIndicator or custom skeleton */}
+            <View>
+                <View>
+                    <View>
+                        <View>
+                            <Text style={{ fontWeight: 'bold' }}>{translate('LabelServerName')}</Text>
+                            <Text style={{ fontWeight: 'bold' }}>{translate('LabelServerVersion')}</Text>
+                            <Text style={{ fontWeight: 'bold' }}>{translate('LabelWebVersion')}</Text>
+                            <Text style={{ fontWeight: 'bold' }}>{translate('LabelBuildVersion')}</Text>
+                        </View>
+                        <View>
                             {isPending ? (
                                 <>
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
+                                    <Text>Loading...</Text>
+                                    <Text>Loading...</Text>
+                                    <Text>Loading...</Text>
+                                    <Text>Loading...</Text>
                                 </>
                             ) : (
                                 <>
-                                    <Typography>{systemInfo?.ServerName}</Typography>
-                                    <Typography>{systemInfo?.Version}</Typography>
-                                    <Typography>{__PACKAGE_JSON_VERSION__}</Typography>
-                                    <Typography>{__JF_BUILD_VERSION__}</Typography>
+                                    <Text>{systemInfo?.ServerName}</Text>
+                                    <Text>{systemInfo?.Version}</Text>
+                                    <Text>{__PACKAGE_JSON_VERSION__}</Text>
+                                    <Text>{__JF_BUILD_VERSION__}</Text>
                                 </>
                             )}
-                        </Stack>
-                    </Stack>
-                </Paper>
+                        </View>
+                    </View>
+                </View>
 
-                <Stack direction='row' spacing={1.5}>
+                {/* TODO: Replace startIcon with icon prop */}
+                {/* TODO: Replace sx prop with StyleSheet */}
+                <View>
                     <Button
                         onPress={onScanLibrariesClick}
-                        startIcon={<RefreshIcon />}
-                        sx={{
-                            fontWeight: 'bold'
-                        }}
                         disabled={isScanning}
                     >
                         {translate('ButtonScanAllLibraries')}
@@ -76,27 +70,17 @@ const ServerInfoWidget = ({
 
                     <Button
                         onPress={onRestartClick}
-                        startIcon={<RestartAltIcon />}
-                        color='error'
-                        sx={{
-                            fontWeight: 'bold'
-                        }}
                     >
                         {translate('Restart')}
                     </Button>
 
                     <Button
                         onPress={onShutdownClick}
-                        startIcon={<PowerSettingsNewIcon />}
-                        color='error'
-                        sx={{
-                            fontWeight: 'bold'
-                        }}
                     >
                         {translate('ButtonShutdown')}
                     </Button>
-                </Stack>
-            </Stack>
+                </View>
+            </View>
         </Widget>
     );
 };

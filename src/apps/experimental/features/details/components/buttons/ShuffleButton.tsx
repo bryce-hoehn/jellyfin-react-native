@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import IconButton from '@mui/material/IconButton';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { playbackManager } from 'components/playback/playbackmanager';
 import { translate } from 'lib/globalize';
@@ -17,12 +17,11 @@ const ShuffleButton: FC<ShuffleButtonProps> = ({ item }) => {
 
     return (
         <IconButton
-            title={translate('Shuffle')}
-            className='button-flat btnShuffle'
+            // TODO: title prop not supported - use accessibility label
+            // TODO: className prop not supported in RN Paper
             onPress={shuffle}
-        >
-            <ShuffleIcon />
-        </IconButton>
+            icon={() => <Icon name="shuffle" size={24} />}
+        />
     );
 };
 

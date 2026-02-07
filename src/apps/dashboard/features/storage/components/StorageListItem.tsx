@@ -1,10 +1,10 @@
+// TODO: MUI List components (ListItem, ListItemIcon, ListItemText, etc.) need custom RN Paper List.Item implementation
 import type { FolderStorageDto } from '@jellyfin/sdk/lib/generated-client';
-import LinearProgress from '@mui/material/LinearProgress';
+import { ProgressBar, Text } from 'react-native-paper';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
+import { ActivityIndicator } from 'react-native';
 import React, { type FC } from 'react';
 
 import { translate } from 'lib/globalize';
@@ -54,40 +54,33 @@ const StorageListItem: FC<StorageListItemProps> = ({
             </ListItemIcon>
             <ListItemText
                 primary={
-                    <Typography
-                        component='span'
-                        variant='body2'
-                    >
+                    <Text variant='bodyMedium'>
                         {label}
-                    </Typography>
+                    </Text>
                 }
                 secondary={
                     <>
-                        <Typography
-                            color='textPrimary'
-                            sx={{
-                                paddingBottom: 0.5,
-                                lineBreak: 'anywhere'
+                        <Text
+                            style={{
+                                paddingBottom: 4,
                             }}
                         >
                             {folder ? folder.Path : (
-                                <Skeleton />
+                                <ActivityIndicator size='small' />
                             )}
-                        </Typography>
-                        <LinearProgress
-                            variant={folder ? 'determinate' : 'indeterminate'}
-                            color={statusColor}
-                            value={usedPercentage}
+                        </Text>
+                        <ProgressBar
+                            progress={folder ? usedPercentage / 100 : undefined}
+                            indeterminate={!folder}
                         />
-                        <Typography
-                            variant='body2'
-                            color='textSecondary'
-                            sx={{
-                                textAlign: 'end'
+                        <Text
+                            variant='bodySmall'
+                            style={{
+                                textAlign: 'right'
                             }}
                         >
                             {`${readableUsedSpace} / ${readableTotalSpace}`}
-                        </Typography>
+                        </Text>
                     </>
                 }
                 slots={{

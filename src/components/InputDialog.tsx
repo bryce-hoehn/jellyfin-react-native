@@ -1,12 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import Button from '@mui/material/Button';
-import Dialog, { type DialogProps } from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
+import { Button, Dialog, Portal, TextInput } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
 import { translate } from 'lib/globalize';
-import Stack from '@mui/material/Stack';
+
+// TODO: DialogProps type needs to be updated for React Native Paper Dialog
+type DialogProps = React.ComponentProps<typeof Dialog>;
 
 interface InputDialogProps extends DialogProps {
     title: string;
@@ -30,8 +28,8 @@ const InputDialog = ({
 }: InputDialogProps) => {
     const [ text, setText ] = useState(initialText || '');
 
-    const onTextChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setText(e.target.value);
+    const onTextChange = useCallback((value: string) => {
+        setText(value);
     }, []);
 
     const onConfirmClick = useCallback(() => {
@@ -40,34 +38,33 @@ const InputDialog = ({
     }, [ text, onConfirm ]);
 
     return (
-        <Dialog
-            open={open}
-            onClose={onClose}
-            maxWidth='xs'
-            fullWidth
-        >
-            {title && (
-                <DialogTitle>
-                    {title || ''}
-                </DialogTitle>
-            )}
-            <DialogContent>
-                <Stack>
-                    <TextField
+        <Portal>
+            <Dialog
+                visible={open}
+                onDismiss={onClose}
+                // TODO: maxWidth and fullWidth props don't exist in RN Paper Dialog
+            >
+                {title && (
+                    <Dialog.Title>
+                        {title || ''}
+                    </Dialog.Title>
+                )}
+                <Dialog.Content>
+                    <TextInput
                         label={label}
                         value={text}
-                        helperText={helperText}
-                        onChange={onTextChange}
-                        variant='standard'
+                        // TODO: helperText is not a direct prop in RN Paper TextInput - needs separate Text component
+                        onChangeText={onTextChange}
+                        mode='flat'
                     />
-                </Stack>
-            </DialogContent>
-            <DialogActions>
-                <Button onPress={onConfirmClick}>
-                    {confirmButtonText || translate('ButtonOk')}
-                </Button>
-            </DialogActions>
-        </Dialog>
+                </Dialog.Content>
+                <Dialog.Actions>
+                    <Button onPress={onConfirmClick}>
+                        {confirmButtonText || translate('ButtonOk')}
+                    </Button>
+                </Dialog.Actions>
+            </Dialog>
+        </Portal>
     );
 };
 

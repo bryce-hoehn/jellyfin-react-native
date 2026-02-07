@@ -1,10 +1,5 @@
 import React from 'react';
-import Cast from '@mui/icons-material/Cast';
-import Computer from '@mui/icons-material/Computer';
-import Devices from '@mui/icons-material/Devices';
-import Smartphone from '@mui/icons-material/Smartphone';
-import Tablet from '@mui/icons-material/Tablet';
-import Tv from '@mui/icons-material/Tv';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import browser from 'scripts/browser';
 import type { PlayTarget } from 'types/playTarget';
@@ -12,26 +7,26 @@ import type { PlayTarget } from 'types/playTarget';
 const PlayTargetIcon = ({ target }: { target: PlayTarget }) => {
     if (!target.deviceType && target.isLocalPlayer) {
         if (browser.tv) {
-            return <Tv />;
+            return <Icon name="tv" size={24} />;
         } else if (browser.mobile) {
-            return <Smartphone />;
+            return <Icon name="smartphone" size={24} />;
         }
-        return <Computer />;
+        return <Icon name="computer" size={24} />;
     }
 
     switch (target.deviceType) {
         case 'smartphone':
-            return <Smartphone />;
+            return <Icon name="smartphone" size={24} />;
         case 'tablet':
-            return <Tablet />;
+            return <Icon name="tablet" size={24} />;
         case 'desktop':
-            return <Computer />;
+            return <Icon name="computer" size={24} />;
         case 'cast':
-            return <Cast />;
+            return <Icon name="cast" size={24} />;
         case 'tv':
-            return <Tv />;
+            return <Icon name="tv" size={24} />;
         default:
-            return <Devices />;
+            return <Icon name="devices" size={24} />;
     }
 };
 

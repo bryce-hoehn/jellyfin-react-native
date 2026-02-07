@@ -4,42 +4,35 @@ import Events, { Event } from 'utils/events';
 import serverNotifications from 'scripts/serverNotifications';
 import classNames from 'classnames';
 
-import CircularProgress, {
-    CircularProgressProps
-} from '@mui/material/CircularProgress';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { ActivityIndicator } from 'react-native';
+import { Text } from 'react-native-paper';
+import { View } from 'react-native';
 import { toPercentString } from 'utils/number';
 import { getCurrentDateTimeLocale } from 'lib/globalize';
 import type { ItemDto } from 'types/base/models/item-dto';
 
-function CircularProgressWithLabel(
-    props: CircularProgressProps & { value: number }
-) {
+function CircularProgressWithLabel({ value }: { value: number }) {
+    // TODO: Need to implement custom styling for View to replicate sx props
     return (
-        <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-            <CircularProgress variant='determinate' {...props} />
-            <Box
-                sx={{
+        <View style={{ position: 'relative' }}>
+            {/* TODO: React Native ActivityIndicator doesn't support determinate progress - consider using react-native-progress library */}
+            <ActivityIndicator size="large" />
+            <View
+                style={{
                     top: 0,
                     left: 0,
                     bottom: 0,
                     right: 0,
                     position: 'absolute',
-                    display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}
             >
-                <Typography
-                    variant='caption'
-                    component='div'
-                    color='text.secondary'
-                >
-                    {toPercentString(props.value / 100, getCurrentDateTimeLocale())}
-                </Typography>
-            </Box>
-        </Box>
+                <Text variant='labelSmall'>
+                    {toPercentString(value / 100, getCurrentDateTimeLocale())}
+                </Text>
+            </View>
+        </View>
     );
 }
 

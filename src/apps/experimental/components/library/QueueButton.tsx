@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
-import Button from '@mui/material/Button';
-import Queue from '@mui/icons-material/Queue';
+import { Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { playbackManager } from 'components/playback/playbackmanager';
 import { translate } from 'lib/globalize';
@@ -37,14 +37,14 @@ const QueueButton: FC<QueueButtonProps> = ({
 
     return (
         <Button
-            title={translate('AddToPlayQueue')}
-            startIcon={isTextVisible ? <Queue /> : undefined}
+            // TODO: title prop not supported - use tooltip or accessibility label
+            // TODO: startIcon not directly supported in RN Paper Button - use icon prop or custom layout
             onPress={queue}
         >
             {isTextVisible ? (
                 translate('AddToPlayQueue')
             ) : (
-                <Queue />
+                <Icon name="queue" size={24} />
             )}
         </Button>
     );

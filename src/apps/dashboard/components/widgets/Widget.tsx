@@ -1,7 +1,6 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import ChevronRight from '@mui/icons-material/ChevronRight';
+import { View } from 'react-native';
+import { Button, Text } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -13,25 +12,20 @@ type WidgetProps = {
 
 const Widget = ({ title, href, children }: WidgetProps) => {
     return (
-        <Box>
+        <View>
+            {/* TODO: Replace component={RouterLink} and to={href} with navigation logic */}
+            {/* TODO: Replace sx prop with StyleSheet */}
+            {/* TODO: Replace endIcon prop with icon prop or custom implementation */}
             <Button
-                component={RouterLink}
-                to={href}
-                variant='text'
-                color='inherit'
-                endIcon={<ChevronRight />}
-                sx={{
-                    marginTop: 1,
-                    marginBottom: 1
-                }}
+                mode='text'
             >
-                <Typography variant='h3' component='span'>
+                <Text variant='headlineMedium'>
                     {title}
-                </Typography>
+                </Text>
             </Button>
 
             {children}
-        </Box>
+        </View>
     );
 };
 

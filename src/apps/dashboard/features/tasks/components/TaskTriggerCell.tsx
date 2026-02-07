@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import type { MRT_Cell, MRT_RowData } from 'material-react-table';
 import { useLocale } from 'hooks/useLocale';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 import { getTriggerFriendlyName } from '../utils/edit';
 import type { TaskTriggerInfo } from '@jellyfin/sdk/lib/generated-client/models/task-trigger-info';
 import { translate } from 'lib/globalize';
@@ -18,16 +18,16 @@ const TaskTriggerCell: FC<CellProps> = ({ cell }) => {
     const timeLimitHours = trigger.MaxRuntimeTicks ? trigger.MaxRuntimeTicks / 36e9 : false;
 
     return (
-        <Box>
-            <Typography variant='body1'>{getTriggerFriendlyName(trigger, dateFnsLocale)}</Typography>
+        <View>
+            <Text variant='bodyLarge'>{getTriggerFriendlyName(trigger, dateFnsLocale)}</Text>
             {timeLimitHours && (
-                <Typography variant='body2' color={'text.secondary'}>
+                <Text variant='bodyMedium' /* TODO: color prop needs theme color mapping */>
                     {timeLimitHours == 1 ?
                         translate('ValueTimeLimitSingleHour') :
                         translate('ValueTimeLimitMultiHour', timeLimitHours)}
-                </Typography>
+                </Text>
             )}
-        </Box>
+        </View>
     );
 };
 

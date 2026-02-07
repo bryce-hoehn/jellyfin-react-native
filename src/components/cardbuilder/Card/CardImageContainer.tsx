@@ -1,5 +1,5 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import classNames from 'classnames';
 import useIndicator from 'components/indicators/useIndicator';
 import RefreshIndicator from 'elements/emby-itemrefreshindicator/RefreshIndicator';
@@ -39,10 +39,10 @@ const CardImageContainer: FC<CardImageContainerProps> = ({
     return (
         <div className={cardImageClass}>
             {cardOptions.disableIndicators !== true && (
-                <Box className='indicators'>
+                <View className='indicators'>
                     {indicator.getMediaSourceIndicator()}
 
-                    <Box className='cardIndicators'>
+                    <View className='cardIndicators'>
                         {cardOptions.missingIndicator !== false
                             && indicator.getMissingIndicator()}
 
@@ -57,8 +57,8 @@ const CardImageContainer: FC<CardImageContainerProps> = ({
                             || item.CollectionType) && (
                             <RefreshIndicator item={item} />
                         )}
-                    </Box>
-                </Box>
+                    </View>
+                </View>
             )}
 
             <Media item={item} imgUrl={imgUrl} blurhash={blurhash} imageType={cardOptions.imageType} />

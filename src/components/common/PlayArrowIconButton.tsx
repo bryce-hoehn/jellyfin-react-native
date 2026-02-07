@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
-import IconButton from '@mui/material/IconButton';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ItemAction } from 'constants/itemAction';
 import { translate } from 'lib/globalize';
@@ -15,12 +15,11 @@ interface PlayArrowIconButtonProps {
 const PlayArrowIconButton: FC<PlayArrowIconButtonProps> = ({ className, action, title, iconClassName }) => {
     return (
         <IconButton
-            className={className}
-            data-action={action}
-            title={translate(title)}
-        >
-            <PlayArrowIcon className={iconClassName} />
-        </IconButton>
+            // TODO: className prop not supported in RN Paper - need style prop instead
+            // data-action attribute not supported in React Native
+            icon={({ size, color }) => <Icon name="play-arrow" size={size} color={color} />}
+            // TODO: title prop not directly supported - need Tooltip or accessible label
+        />
     );
 };
 

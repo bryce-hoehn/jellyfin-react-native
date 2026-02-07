@@ -1,7 +1,6 @@
 import { SyncPlayUserAccessType } from '@jellyfin/sdk/lib/generated-client/models/sync-play-user-access-type';
-import Groups from '@mui/icons-material/Groups';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { IconButton } from 'react-native-paper';
 import React, { useCallback, useState } from 'react';
 
 import { pluginManager } from 'components/pluginManager';
@@ -34,20 +33,17 @@ const SyncPlayButton = () => {
         return null;
     }
 
+    // TODO: Menu component needs refactoring
     return (
         <>
-            <Tooltip title={translate('ButtonSyncPlay')}>
-                <IconButton
-                    size='large'
-                    aria-label={translate('ButtonSyncPlay')}
-                    aria-controls={ID}
-                    aria-haspopup='true'
-                    onPress={onSyncPlayButtonPress}
-                    color='inherit'
-                >
-                    <Groups />
-                </IconButton>
-            </Tooltip>
+            {/* TODO: Tooltip not available in RN Paper - consider react-native-paper-tooltip */}
+            {/* TODO: size prop not directly supported in RN Paper IconButton */}
+            {/* TODO: color='inherit' not supported - use theme colors */}
+            {/* TODO: aria-* props not supported in React Native */}
+            <IconButton
+                icon={() => <Icon name="groups" size={24} />}
+                onPress={onSyncPlayButtonPress}
+            />
 
             <AppSyncPlayMenu
                 open={isSyncPlayMenuOpen}

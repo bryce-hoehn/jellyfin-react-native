@@ -1,10 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import LinearProgress from '@mui/material/LinearProgress';
-import DialogContentText from '@mui/material/DialogContentText';
-import Stack from '@mui/material/Stack';
+import { View } from 'react-native';
+import { Dialog, Portal, ProgressBar, Text } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 
 type IProps = {
@@ -13,19 +9,21 @@ type IProps = {
 
 const RestoreProgressDialog: FunctionComponent<IProps> = ({ open }) => {
     return (
-        <Dialog
-            open={open}
-            maxWidth={'xs'}
-            fullWidth
-        >
-            <DialogTitle>{translate('MessageRestoreInProgress')}</DialogTitle>
-            <DialogContent>
-                <Stack spacing={2}>
-                    <DialogContentText>{translate('MessageWaitingForServer')}</DialogContentText>
-                    <LinearProgress />
-                </Stack>
-            </DialogContent>
-        </Dialog>
+        <Portal>
+            <Dialog
+                visible={open}
+                // TODO: maxWidth={'xs'} - no direct equivalent in react-native-paper
+                // TODO: fullWidth - no direct equivalent in react-native-paper
+            >
+                <Dialog.Title>{translate('MessageRestoreInProgress')}</Dialog.Title>
+                <Dialog.Content>
+                    <View /* TODO: Add spacing={2} equivalent styling */>
+                        <Text>{translate('MessageWaitingForServer')}</Text>
+                        <ProgressBar indeterminate />
+                    </View>
+                </Dialog.Content>
+            </Dialog>
+        </Portal>
     );
 };
 

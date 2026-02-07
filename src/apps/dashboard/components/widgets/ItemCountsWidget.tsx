@@ -1,18 +1,11 @@
 import type { ItemCounts } from '@jellyfin/sdk/lib/generated-client/models/item-counts';
-import Book from '@mui/icons-material/Book';
-import Movie from '@mui/icons-material/Movie';
-import MusicNote from '@mui/icons-material/MusicNote';
-import MusicVideo from '@mui/icons-material/MusicVideo';
-import Tv from '@mui/icons-material/Tv';
-import VideoLibrary from '@mui/icons-material/VideoLibrary';
-import Grid from '@mui/material/Grid';
-import SvgIcon from '@mui/material/SvgIcon';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View } from 'react-native';
 import React, { useMemo } from 'react';
 
 import { useItemCounts } from 'apps/dashboard/features/metrics/api/useItemCounts';
 import MetricCard, { type MetricCardProps } from 'apps/dashboard/features/metrics/components/MetricCard';
 import { translate } from 'lib/globalize';
-import Box from '@mui/material/Box';
 
 interface MetricDefinition {
     key: keyof ItemCounts
@@ -20,34 +13,34 @@ interface MetricDefinition {
 }
 
 interface CardDefinition {
-    Icon: typeof SvgIcon
+    iconName: string
     metrics: MetricDefinition[]
 }
 
 const CARD_DEFINITIONS: CardDefinition[] = [
     {
-        Icon: Movie,
+        iconName: 'movie',
         metrics: [{ key: 'MovieCount', i18n: 'Movies' }]
     }, {
-        Icon: Tv,
+        iconName: 'tv',
         metrics: [
             { key: 'SeriesCount', i18n: 'Series' },
             { key: 'EpisodeCount', i18n: 'Episodes' }
         ]
     }, {
-        Icon: MusicNote,
+        iconName: 'music_note',
         metrics: [
             { key: 'AlbumCount', i18n: 'Albums' },
             { key: 'SongCount', i18n: 'Songs' }
         ]
     }, {
-        Icon: MusicVideo,
+        iconName: 'music_video',
         metrics: [{ key: 'MusicVideoCount', i18n: 'MusicVideos' }]
     }, {
-        Icon: Book,
+        iconName: 'book',
         metrics: [{ key: 'BookCount', i18n: 'Books' }]
     }, {
-        Icon: VideoLibrary,
+        iconName: 'video_library',
         metrics: [{ key: 'BoxSetCount', i18n: 'Collections' }]
     }
 ];
@@ -66,8 +59,8 @@ const ItemCountsWidget = () => {
                 // Check if the metrics are present in counts
                 || def.metrics.some(({ key }) => counts?.[key])
             ))
-            .map(({ Icon, metrics }) => ({
-                Icon,
+            .map(({ iconName, metrics }) => ({
+                iconName,
                 metrics: metrics.map(({ i18n, key }) => ({
                     label: translate(i18n),
                     value: counts?.[key]
@@ -76,27 +69,19 @@ const ItemCountsWidget = () => {
     }, [ counts, isPending ]);
 
     return (
-        <Box>
-            <Grid
-                container
-                spacing={2}
-                sx={{
-                    alignItems: 'stretch'
-                }}
-            >
+        <View>
+            {/* TODO: Replace Grid with View and custom layout (flexWrap, flexDirection) */}
+            {/* TODO: Replace sx prop with StyleSheet */}
+            <View>
                 {cards.map(card => (
-                    <Grid
+                    <View
                         key={card.metrics.map(metric => metric.label).join('-')}
-                        item
-                        xs={12}
-                        sm={6}
-                        lg={4}
                     >
                         <MetricCard {...card} />
-                    </Grid>
+                    </View>
                 ))}
-            </Grid>
-        </Box>
+            </View>
+        </View>
     );
 };
 

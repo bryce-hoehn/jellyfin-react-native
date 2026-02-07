@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 import groupBy from 'lodash-es/groupBy';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import { getIndex } from './listHelper';
 import ListGroupHeaderWrapper from './ListGroupHeaderWrapper';
 import List from './List';
@@ -38,14 +38,14 @@ const Lists: FC<ListsProps> = ({ items = [], listOptions = {} }) => {
             {Object.entries(groupedData).map(
                 ([itemGroupTitle, getItems], index) => (
                     // eslint-disable-next-line react/no-array-index-key
-                    <Box key={index}>
+                    <View key={index}>
                         {itemGroupTitle && (
                             <ListGroupHeaderWrapper index={index}>
                                 {itemGroupTitle}
                             </ListGroupHeaderWrapper>
                         )}
                         {getItems.map((item) => renderListItem(item, index))}
-                    </Box>
+                    </View>
                 )
             )}
         </>

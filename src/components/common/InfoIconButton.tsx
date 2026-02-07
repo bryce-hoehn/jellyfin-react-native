@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ItemAction } from 'constants/itemAction';
 import { translate } from 'lib/globalize';
@@ -12,12 +12,11 @@ interface InfoIconButtonProps {
 const InfoIconButton: FC<InfoIconButtonProps> = ({ className }) => {
     return (
         <IconButton
-            className={className}
-            data-action={ItemAction.Link}
-            title={translate('ButtonInfo')}
-        >
-            <InfoIcon />
-        </IconButton>
+            // TODO: className prop not supported in RN Paper - need style prop instead
+            // TODO: data-action attribute not supported in React Native
+            // TODO: title prop not directly supported - need accessible label
+            icon={({ size, color }) => <Icon name="info" size={size} color={color} />}
+        />
     );
 };
 

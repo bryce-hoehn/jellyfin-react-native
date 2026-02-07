@@ -1,14 +1,13 @@
-import Alert from '@mui/material/Alert/Alert';
-import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
-import Box from '@mui/material/Box/Box';
-import Paper from '@mui/material/Paper/Paper';
-import Typography from '@mui/material/Typography/Typography';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 import classNames from 'classnames';
 import React, { type FC, useEffect } from 'react';
 import { useRouteError } from 'react-router-dom';
 
 import loading from 'components/loading/loading';
 import Page from 'components/Page';
+
+// TODO: Alert, AlertTitle, and Paper are MUI components - need RN equivalents
 
 interface ErrorBoundaryParams {
     pageClasses?: string[]
@@ -28,38 +27,33 @@ const ErrorBoundary: FC<ErrorBoundaryParams> = ({
             id='errorBoundary'
             className={classNames('mainAnimatedPage', pageClasses)}
         >
-            <Box className='content-primary'>
-                <Alert severity='error'>
-                    <AlertTitle>
+            <View className='content-primary'>
+                {/* TODO: Alert component with severity='error' needs RN equivalent */}
+                <View>
+                    {/* TODO: AlertTitle needs RN equivalent */}
+                    <Text>
                         {error.name}
-                    </AlertTitle>
+                    </Text>
 
-                    <Typography>
+                    <Text>
                         {error.message}
-                    </Typography>
+                    </Text>
 
                     {error.stack && (
-                        <Paper
-                            variant='outlined'
-                            sx={{
-                                marginTop: 1,
-                                backgroundColor: 'transparent'
-                            }}
-                        >
-                            <Box
-                                component='pre'
-                                sx={{
-                                    overflow: 'auto',
-                                    margin: 2,
-                                    maxHeight: '25rem' // 20 lines
-                                }}
-                            >
-                                {error.stack}
-                            </Box>
-                        </Paper>
+                        <View>
+                            {/* TODO: Paper component with variant='outlined' needs RN equivalent */}
+                            {/* TODO: sx props (marginTop, backgroundColor) need RN style conversion */}
+                            <View>
+                                {/* TODO: component='pre' needs RN Text with monospace font */}
+                                {/* TODO: sx props (overflow, margin, maxHeight) need RN style conversion */}
+                                <Text>
+                                    {error.stack}
+                                </Text>
+                            </View>
+                        </View>
                     )}
-                </Alert>
-            </Box>
+                </View>
+            </View>
         </Page>
     );
 };

@@ -1,19 +1,7 @@
 import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client';
 import { CollectionType } from '@jellyfin/sdk/lib/generated-client/models/collection-type';
-import Favorite from '@mui/icons-material/Favorite';
-import Movie from '@mui/icons-material/Movie';
-import MusicNote from '@mui/icons-material/MusicNote';
-import Photo from '@mui/icons-material/Photo';
-import LiveTv from '@mui/icons-material/LiveTv';
-import Tv from '@mui/icons-material/Tv';
-import Theaters from '@mui/icons-material/Theaters';
-import MusicVideo from '@mui/icons-material/MusicVideo';
-import Book from '@mui/icons-material/Book';
-import Queue from '@mui/icons-material/Queue';
-import Quiz from '@mui/icons-material/Quiz';
-import VideoLibrary from '@mui/icons-material/VideoLibrary';
-import Folder from '@mui/icons-material/Folder';
 import React, { FC } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { MetaView } from '../constants/metaView';
 
@@ -25,35 +13,35 @@ const LibraryIcon: FC<LibraryIconProps> = ({
     item
 }) => {
     if (item.Id === MetaView.Favorites.Id) {
-        return <Favorite />;
+        return <Icon name="favorite" size={24} />;
     }
 
     switch (item.CollectionType) {
         case CollectionType.Movies:
-            return <Movie />;
+            return <Icon name="movie" size={24} />;
         case CollectionType.Music:
-            return <MusicNote />;
+            return <Icon name="music-note" size={24} />;
         case CollectionType.Homevideos:
         case CollectionType.Photos:
-            return <Photo />;
+            return <Icon name="photo" size={24} />;
         case CollectionType.Livetv:
-            return <LiveTv />;
+            return <Icon name="live-tv" size={24} />;
         case CollectionType.Tvshows:
-            return <Tv />;
+            return <Icon name="tv" size={24} />;
         case CollectionType.Trailers:
-            return <Theaters />;
+            return <Icon name="theaters" size={24} />;
         case CollectionType.Musicvideos:
-            return <MusicVideo />;
+            return <Icon name="music-video" size={24} />;
         case CollectionType.Books:
-            return <Book />;
+            return <Icon name="book" size={24} />;
         case CollectionType.Boxsets:
-            return <VideoLibrary />;
+            return <Icon name="video-library" size={24} />;
         case CollectionType.Playlists:
-            return <Queue />;
+            return <Icon name="queue" size={24} />;
         case undefined:
-            return <Quiz />;
+            return <Icon name="quiz" size={24} />;
         default:
-            return <Folder />;
+            return <Icon name="folder" size={24} />;
     }
 };
 
