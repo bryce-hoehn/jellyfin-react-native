@@ -18,10 +18,10 @@ import type { ItemDto } from 'types/base/models/item-dto';
 import type { ProgressOptions } from 'types/progressOptions';
 
 const TypeIcon = {
-    Video: <Icon name="videocam" className='indicatorIcon' />,
-    Folder: <Icon name="folder" className='indicatorIcon' />,
-    PhotoAlbum: <Icon name="photo-album" className='indicatorIcon' />,
-    Photo: <Icon name="photo" className='indicatorIcon' />
+    Video: <Icon name="videocam" size={20} className='indicatorIcon' />,
+    Folder: <Icon name="folder" size={20} className='indicatorIcon' />,
+    PhotoAlbum: <Icon name="photo-album" size={20} className='indicatorIcon' />,
+    Photo: <Icon name="photo" size={20} className='indicatorIcon' />
 };
 
 const getTypeIcon = (itemType: NullableString) => {
@@ -99,7 +99,7 @@ const useIndicator = (item: ItemDto) => {
         let status;
 
         if (item.Type === ItemKind.SeriesTimer) {
-            return <Icon name="fiber-smart-record" className={indicatorIconClass} />;
+            return <Icon name="fiber-smart-record" size={20} className={indicatorIconClass} />;
         } else if (item.TimerId || item.SeriesTimerId) {
             status = item.Status || ItemStatus.Cancelled;
         } else if (item.Type === ItemKind.Timer) {
@@ -112,6 +112,7 @@ const useIndicator = (item: ItemDto) => {
             return (
                 <Icon
                     name="fiber-smart-record"
+                    size={20}
                     className={`${indicatorIconClass} ${
                         status === ItemStatus.Cancelled ? 'timerIndicator-inactive' : ''
                     }`}
@@ -119,7 +120,7 @@ const useIndicator = (item: ItemDto) => {
             );
         }
 
-        return <Icon name="fiber-manual-record" className={indicatorIconClass} />;
+        return <Icon name="fiber-manual-record" size={20} className={indicatorIconClass} />;
     };
 
     const getTypeIndicator = () => {
@@ -162,7 +163,7 @@ const useIndicator = (item: ItemDto) => {
             ) {
                 return (
                     <View className='playedIndicator indicator'>
-                        <Icon name="check" className='indicatorIcon' />
+                        <Icon name="check" size={20} className='indicatorIcon' />
                     </View>
                 );
             }

@@ -3,13 +3,12 @@ import { Chip } from 'react-native-paper';
 import React, { useMemo } from 'react';
 
 import { translate } from 'lib/globalize';
-import getLogLevelColor from '../utils/getLogLevelColor';
 
 const LogLevelChip = ({ level }: { level: LogLevel }) => {
     const levelText = useMemo(() => translate(`LogLevel.${level}`), [level]);
 
     // TODO: Map MUI size='small' to React Native Paper compact prop
-    // TODO: Map MUI color prop to React Native Paper style/mode
+    // TODO: Map MUI color prop to React Native Paper style/mode - getLogLevelColor removed
     // TODO: Map MUI title prop to accessible label
     return (
         <Chip
