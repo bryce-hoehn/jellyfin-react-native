@@ -39,7 +39,8 @@ const TaskLastRan: FunctionComponent<TaskProps> = ({ task }: TaskProps) => {
         }
     } else {
         return (
-            <Text>{/* TODO: sx props (color) need RN style conversion */}{translate('LabelStopping')}</Text>
+            // TODO: sx props (color) need RN style conversion
+            <Text>{translate('LabelStopping')}</Text>
         );
     }
 };
