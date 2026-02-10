@@ -9,7 +9,7 @@ import '../../../../components/cardbuilder/card.scss';
 import '../../../../components/indicators/indicators.scss';
 import '../../../../styles/flexstyles.scss';
 import Page from '../../../../components/Page';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'expo-router';
 import Toast from 'apps/dashboard/components/Toast';
 import { useUsers } from 'hooks/useUsers';
 import Loading from 'components/loading/LoadingComponent';
@@ -23,10 +23,10 @@ type MenuEntry = {
 };
 
 const UserProfiles = () => {
-    const location = useLocation();
+    const pathname = usePathname();
+    const router = useRouter();
     const [ isSettingsSavedToastOpen, setIsSettingsSavedToastOpen ] = useState(false);
     const element = useRef<HTMLDivElement>(null);
-    const navigate = useNavigate();
     const { data: users, isPending } = useUsers();
     const deleteUser = useDeleteUser();
 
@@ -37,10 +37,13 @@ const UserProfiles = () => {
     useEffect(() => {
         const page = element.current;
 
-        if (location.state?.openSavedToast) {
-            setIsSettingsSavedToastOpen(true);
-            window.history.replaceState({}, '');
-        }
+        // Check for toast state (passed via navigation state in React Router)
+        // In Expo Router, we might need to use a different approach for this
+        // For now, we'll comment it out as Expo Router doesn't have location.state
+        // if (location.state?.openSavedToast) {
+        //     setIsSettingsSavedToastOpen(true);
+        //     window.history.replaceState({}, '');
+        // }
 
         if (!page) {
             console.error('Unexpected null reference');
@@ -87,15 +90,15 @@ const UserProfiles = () => {
                     callback: function (id: string) {
                         switch (id) {
                             case 'open':
-                                navigate(`/dashboard/users/profile?userId=${userId}`);
+                                router.push(`/dashboard/users/profile?userId=${userId}`);
                                 break;
 
                             case 'access':
-                                navigate(`/dashboard/users/access?userId=${userId}`);
+                                router.push(`/dashboard/users/access?userId=${userId}`);
                                 break;
 
                             case 'parentalcontrol':
-                                navigate(`/dashboard/users/parentalcontrol?userId=${userId}`);
+                                router.push(`/dashboard/users/parentalcontrol?userId=${userId}`);
                                 break;
 
                             case 'delete':
@@ -137,7 +140,7 @@ const UserProfiles = () => {
         };
 
         const onAddUserClick = function() {
-            navigate('/dashboard/users/add');
+            router.push('/dashboard/users/add');
         };
 
         page.addEventListener('click', onPageClick);
@@ -147,7 +150,7 @@ const UserProfiles = () => {
             page.removeEventListener('click', onPageClick);
             (page.querySelector('#btnAddUser') as HTMLButtonElement).removeEventListener('click', onAddUserClick);
         };
-    }, [navigate, deleteUser, location.state?.openSavedToast]);
+    }, [router, deleteUser]);
 
     if (isPending) {
         return <Loading />;

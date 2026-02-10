@@ -15,7 +15,7 @@ import { useLibraryMediaFolders } from 'apps/dashboard/features/users/api/useLib
 import { useChannels } from 'apps/dashboard/features/users/api/useChannels';
 import { useUpdateUserPolicy } from 'apps/dashboard/features/users/api/useUpdateUserPolicy';
 import { useCreateUser } from 'apps/dashboard/features/users/api/useCreateUser';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'expo-router';
 
 type ItemsArr = {
     Name?: string | null;
@@ -23,7 +23,7 @@ type ItemsArr = {
 };
 
 const UserNew = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const [ channelsItems, setChannelsItems ] = useState<ItemsArr[]>([]);
     const [ mediaFoldersItems, setMediaFoldersItems ] = useState<ItemsArr[]>([]);
     const [ isErrorToastOpen, setIsErrorToastOpen ] = useState(false);
@@ -160,7 +160,7 @@ const UserNew = () => {
                         userPolicy: user.Policy
                     }, {
                         onSuccess: () => {
-                            navigate(`/dashboard/users/profile?userId=${user.Id}`);
+                            router.push(`/dashboard/users/profile?userId=${user.Id}`);
                         },
                         onError: () => {
                             console.error('[usernew] failed to update user policy');
@@ -204,7 +204,7 @@ const UserNew = () => {
             (page.querySelector('.newUserProfileForm') as HTMLFormElement).removeEventListener('submit', onSubmit);
             (page.querySelector('#btnCancel') as HTMLButtonElement).removeEventListener('click', onCancelClick);
         };
-    }, [loadUser, createUser, updateUserPolicy, navigate]);
+    }, [loadUser, createUser, updateUserPolicy, router]);
 
     return (
         <Page

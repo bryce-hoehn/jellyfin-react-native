@@ -6,7 +6,7 @@ import SearchResultsRow from './SearchResultsRow';
 import { CardShape } from 'utils/card';
 import { CollectionType } from '@jellyfin/sdk/lib/generated-client/models/collection-type';
 import { Section } from '../types';
-import { Link } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 interface SearchResultsProps {
     parentId?: string;
@@ -34,7 +34,7 @@ const SearchResults: FC<SearchResultsProps> = ({
                     <div>
                         <Link
                             className='emby-button'
-                            to={`/search?query=${encodeURIComponent(query || '')}`}
+                            href={`/search?query=${encodeURIComponent(query || '')}`}
                         >{translate('RetryWithGlobalSearch')}</Link>
                     </div>
                 )}

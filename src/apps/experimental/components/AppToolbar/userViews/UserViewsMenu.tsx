@@ -4,7 +4,7 @@ import ListItemText from '@mui/material/ListItemText/ListItemText';
 import Menu, { type MenuProps } from '@mui/material/Menu/Menu';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 import LibraryIcon from 'apps/experimental/components/LibraryIcon';
 import { appRouter } from 'components/router/appRouter';
@@ -32,7 +32,7 @@ const UserViewsMenu: FC<UserViewsMenuProps> = ({
                 <MenuItem
                     key={view.Id}
                     component={Link}
-                    to={appRouter.getRouteUrl(view, { context: view.CollectionType }).substring(1)}
+                    href={appRouter.getRouteUrl(view, { context: view.CollectionType }).substring(1)}
                     onPress={onMenuClose}
                     selected={view.Id === selectedId}
                 >

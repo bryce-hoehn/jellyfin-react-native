@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
 import { translate } from 'lib/globalize';
 import Widget from './Widget';
-import List from '@mui/material/List';
+import { View } from 'react-native';
 import ActivityListItem from 'apps/dashboard/features/activity/components/ActivityListItem';
 import { useLogEntries } from 'apps/dashboard/features/activity/api/useLogEntries';
 import subSeconds from 'date-fns/subSeconds';
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
+import { Text } from 'react-native-paper';
 
 const ActivityLogWidget = () => {
     const dayBefore = useMemo(() => (
@@ -25,15 +24,19 @@ const ActivityLogWidget = () => {
             title={translate('HeaderActivity')}
             href='/dashboard/activity?useractivity=true'
         >
+            {/* TODO: Replace Stack with View and custom layout */}
+            {/* TODO: Replace Skeleton with ActivityIndicator or custom skeleton */}
+            {/* TODO: Replace List with View and custom styling */}
+            {/* TODO: Replace sx prop with StyleSheet */}
             {isPending ? (
-                <Stack spacing={2}>
-                    <Skeleton variant='rounded' height={60} />
-                    <Skeleton variant='rounded' height={60} />
-                    <Skeleton variant='rounded' height={60} />
-                    <Skeleton variant='rounded' height={60} />
-                </Stack>
+                <View>
+                    <Text>Loading...</Text>
+                    <Text>Loading...</Text>
+                    <Text>Loading...</Text>
+                    <Text>Loading...</Text>
+                </View>
             ) : (
-                <List sx={{ bgcolor: 'background.paper' }}>
+                <View>
                     {logs?.Items?.map(entry => (
                         <ActivityListItem
                             key={entry.Id}
@@ -42,7 +45,7 @@ const ActivityLogWidget = () => {
                             to='/dashboard/activity?useractivity=true'
                         />
                     ))}
-                </List>
+                </View>
             )}
         </Widget>
     );

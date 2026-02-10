@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { useApi } from 'hooks/useApi';
@@ -215,12 +215,11 @@ const MoreCommandsButton: FC<MoreCommandsButtonProps> = ({
     if (item && hasCommands) {
         return (
             <IconButton
-                className='button-flat btnMoreCommands'
-                title={translate('ButtonMore')}
+                // TODO: className prop not supported in RN Paper
+                // TODO: title prop not supported - use accessibility label
                 onPress={onMoreCommandsClick}
-            >
-                <MoreVertIcon />
-            </IconButton>
+                icon={() => <Icon name="more-vert" size={24} />}
+            />
         );
     }
 

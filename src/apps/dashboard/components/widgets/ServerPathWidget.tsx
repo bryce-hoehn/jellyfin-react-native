@@ -1,4 +1,4 @@
-import List from '@mui/material/List';
+import { View } from 'react-native';
 import React from 'react';
 import StorageListItem from 'apps/dashboard/features/storage/components/StorageListItem';
 import { translate } from 'lib/globalize';
@@ -13,7 +13,9 @@ const ServerPathWidget = () => {
             title={translate('HeaderPaths')}
             href='/dashboard/settings'
         >
-            <List sx={{ bgcolor: 'background.paper' }}>
+            {/* TODO: Replace List with View and custom styling */}
+            {/* TODO: Replace sx prop with StyleSheet */}
+            <View>
                 <StorageListItem
                     label={translate('LabelCache')}
                     folder={systemStorage?.CacheFolder}
@@ -42,7 +44,7 @@ const ServerPathWidget = () => {
                     label={translate('LabelWeb')}
                     folder={systemStorage?.WebFolder}
                 />
-            </List>
+            </View>
         </Widget>
     );
 };

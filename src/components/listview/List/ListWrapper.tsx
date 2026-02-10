@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { type FC, type PropsWithChildren } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { View } from 'react-native';
+import { Button } from 'react-native-paper';
 
 import { ItemAction } from 'constants/itemAction';
 import type { DataAttributes } from 'types/dataAttributes';
@@ -27,13 +27,15 @@ const ListWrapper: FC<PropsWithChildren<ListWrapperProps>> = ({
     if (layoutManager.tv) {
         return (
             <Button
-                data-index={index}
+                // TODO: data-* attributes not supported in React Native
+                // data-index={index}
                 className={classNames(
                     className,
                     'itemAction listItem-button listItem-focusscale'
                 )}
-                data-action={action}
-                aria-label={title || ''}
+                // data-action={action}
+                // TODO: aria-label not supported in React Native Paper Button
+                // aria-label={title || ''}
                 {...dataAttributes}
             >
                 {children}
@@ -41,9 +43,12 @@ const ListWrapper: FC<PropsWithChildren<ListWrapperProps>> = ({
         );
     } else {
         return (
-            <Box data-index={index} className={className} {...dataAttributes}>
+            <View 
+                // TODO: data-* attributes not supported in React Native
+                // data-index={index}
+                className={className} {...dataAttributes}>
                 {children}
-            </Box>
+            </View>
         );
     }
 };

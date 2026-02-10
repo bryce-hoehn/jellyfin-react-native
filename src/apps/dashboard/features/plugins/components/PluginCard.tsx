@@ -1,6 +1,6 @@
-import ExtensionIcon from '@mui/icons-material/Extension';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import React, { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'expo-router';
 
 import BaseCard from 'apps/dashboard/components/BaseCard';
 
@@ -11,15 +11,14 @@ interface PluginCardProps {
 };
 
 const PluginCard = ({ plugin }: PluginCardProps) => {
-    const location = useLocation();
+    const pathname = usePathname();
 
     const pluginPage = useMemo(() => (
         {
             pathname: `/dashboard/plugins/${plugin.id}`,
-            search: `?name=${encodeURIComponent(plugin.name || '')}`,
-            hash: location.hash
+            params: { name: plugin.name || '' }
         }
-    ), [ location, plugin ]);
+    ), [ plugin ]);
 
     return (
         <BaseCard
@@ -27,7 +26,7 @@ const PluginCard = ({ plugin }: PluginCardProps) => {
             to={pluginPage}
             text={[plugin.version?.VersionNumber, plugin.status].filter(t => t).join(' ')}
             image={plugin.imageUrl}
-            icon={<ExtensionIcon sx={{ width: 80, height: 80 }} />}
+            icon={<Icon name="extension" size={80} />}
         />
     );
 };

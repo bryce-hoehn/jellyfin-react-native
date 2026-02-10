@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ListItemText from '@mui/material/ListItemText';
 import { translate } from 'lib/globalize';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'expo-router';
 import ConfirmDialog from 'components/ConfirmDialog';
 import { useDeleteTuner } from '../api/useDeleteTuner';
 
@@ -19,7 +19,7 @@ interface TunerDeviceCardProps {
 }
 
 const TunerDeviceCard = ({ tunerHost }: TunerDeviceCardProps) => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const actionRef = useRef<HTMLButtonElement | null>(null);
     const [ anchorEl, setAnchorEl ] = useState<HTMLElement | null>(null);
     const [ isMenuOpen, setIsMenuOpen ] = useState(false);
@@ -27,8 +27,8 @@ const TunerDeviceCard = ({ tunerHost }: TunerDeviceCardProps) => {
     const deleteTuner = useDeleteTuner();
 
     const navigateToEditPage = useCallback(() => {
-        navigate(`/dashboard/livetv/tuner?id=${tunerHost.Id}`);
-    }, [ navigate, tunerHost ]);
+        router.push(`/dashboard/livetv/tuner?id=${tunerHost.Id}`);
+    }, [ router, tunerHost ]);
 
     const onDelete = useCallback(() => {
         if (tunerHost.Id) {

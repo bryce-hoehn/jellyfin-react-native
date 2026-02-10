@@ -1,29 +1,39 @@
 import React, { useCallback } from 'react';
-import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import { Snackbar, IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Toast = (props: SnackbarProps) => {
-    const onCloseClick = useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        props.onClose?.(e, 'clickaway');
+// TODO: size prop not available on React Native Paper IconButton (was 'small')
+// TODO: color prop not available on React Native Paper IconButton (was 'inherit')
+// TODO: autoHideDuration prop may have different behavior in React Native Paper (was 3300)
+
+interface ToastProps {
+    visible: boolean
+    onDismiss?: () => void
+    children?: React.ReactNode
+    duration?: number
+}
+
+const Toast = (props: ToastProps) => {
+    const onCloseClick = useCallback(() => {
+        props.onDismiss?.();
     }, [ props ]);
 
     const action = (
         <IconButton
-            size='small'
-            color='inherit'
+            icon={() => <Icon name="close" size={20} />}
             onPress={onCloseClick}
-        >
-            <CloseIcon fontSize='small' />
-        </IconButton>
+        />
     );
 
     return (
         <Snackbar
-            autoHideDuration={3300}
+            visible={props.visible}
+            onDismiss={props.onDismiss}
+            duration={props.duration || 3300}
             action={action}
-            { ...props }
-        />
+        >
+            {props.children}
+        </Snackbar>
     );
 };
 

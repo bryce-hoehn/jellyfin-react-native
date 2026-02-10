@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 
 import toast from 'components/toast/toast';
 import { translate } from 'lib/globalize';
@@ -13,12 +13,13 @@ type UpdateField = {
 };
 
 export function useDisplaySettingForm() {
-    const [urlParams] = useSearchParams();
+    const urlParams = useLocalSearchParams();
+    const userId = typeof urlParams.userId === 'string' ? urlParams.userId : undefined;
     const {
         displaySettings,
         loading,
         saveDisplaySettings
-    } = useDisplaySettings({ userId: urlParams.get('userId') });
+    } = useDisplaySettings({ userId });
     const [formValues, setFormValues] = useState<DisplaySettingsValues>();
 
     useEffect(() => {

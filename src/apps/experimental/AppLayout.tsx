@@ -3,7 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { type Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Slot } from 'expo-router';
+import { usePathname } from 'expo-router';
 
 import AppBody from 'components/AppBody';
 import CustomCss from 'components/CustomCss';
@@ -19,10 +20,10 @@ import './AppOverrides.scss';
 export const Component = () => {
     const [ isDrawerActive, setIsDrawerActive ] = useState(false);
     const { user } = useApi();
-    const location = useLocation();
+    const pathname = usePathname();
 
     const isMediumScreen = useMediaQuery((t: Theme) => t.breakpoints.up('md'));
-    const isDrawerAvailable = isDrawerPath(location.pathname) && Boolean(user) && !isMediumScreen;
+    const isDrawerAvailable = isDrawerPath(pathname) && Boolean(user) && !isMediumScreen;
     const isDrawerOpen = isDrawerActive && isDrawerAvailable;
 
     const onToggleDrawer = useCallback(() => {
@@ -68,7 +69,7 @@ export const Component = () => {
                     }}
                 >
                     <AppBody>
-                        <Outlet />
+                        <Slot />
                     </AppBody>
                 </Box>
             </Box>

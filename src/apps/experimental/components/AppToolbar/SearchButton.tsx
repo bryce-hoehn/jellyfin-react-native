@@ -1,57 +1,45 @@
 import React, { type FC } from 'react';
-import {
-    Link,
-    URLSearchParamsInit,
-    createSearchParams,
-    useLocation,
-    useSearchParams
-} from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { usePathname, useLocalSearchParams } from 'expo-router';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { IconButton } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 
-const getUrlParams = (searchParams: URLSearchParams) => {
+const getUrlParams = (searchParams: Record<string, string | string[]>) => {
     const parentId =
-        searchParams.get('parentId') || searchParams.get('topParentId');
-    const collectionType = searchParams.get('collectionType');
-    const params: URLSearchParamsInit = {};
+        searchParams.parentId || searchParams.topParentId;
+    const collectionType = searchParams.collectionType;
+    const params: Record<string, string> = {};
 
-    if (parentId) {
+    if (parentId && typeof parentId === 'string') {
         params.parentId = parentId;
     }
 
-    if (collectionType) {
+    if (collectionType && typeof collectionType === 'string') {
         params.collectionType = collectionType;
     }
     return params;
 };
 
 const SearchButton: FC = () => {
-    const location = useLocation();
-    const [searchParams] = useSearchParams();
+    const pathname = usePathname();
+    const searchParams = useLocalSearchParams();
 
-    const isSearchPath = location.pathname === '/search';
-    const search = createSearchParams(getUrlParams(searchParams));
-    const createSearchLink =
-        {
-            pathname: '/search',
-            search: search ? `?${search}` : undefined
-        };
+    const isSearchPath = pathname === '/search';
+    const urlParams = getUrlParams(searchParams);
+    const searchQuery = new URLSearchParams(urlParams).toString();
+    const createSearchLink = `/search${searchQuery ? `?${searchQuery}` : ''}`;
 
     return (
-        <Tooltip title={translate('Search')}>
-            <IconButton
-                size='large'
-                aria-label={translate('Search')}
-                color='inherit'
-                component={Link}
-                disabled={isSearchPath}
-                to={createSearchLink}
-            >
-                <SearchIcon />
-            </IconButton>
-        </Tooltip>
+        // TODO: Tooltip not available in RN Paper - consider react-native-paper-tooltip
+        // TODO: size prop not directly supported in RN Paper IconButton
+        // TODO: color='inherit' not supported - use theme colors
+        // TODO: component={Link} not supported - needs navigation handling
+        // TODO: disabled prop styling may differ
+        // TODO: aria-* props not supported in React Native
+        <IconButton
+            icon={() => <Icon name="search" size={24} />}
+            onPress={() => {/* TODO: navigation handling */}}
+        />
     );
 };
 

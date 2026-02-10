@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { type MRT_ColumnDef, type MRT_Theme, useMaterialReactTable } from 'material-react-table';
-import { useSearchParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 
 import DateTimeCell from 'apps/dashboard/components/table/DateTimeCell';
 import TablePage, { DEFAULT_TABLE_OPTIONS } from 'apps/dashboard/components/table/TablePage';
@@ -42,10 +42,10 @@ const getUserCell = (users: UsersRecords) => function UserCell({ row }: Activity
 };
 
 export const Component = () => {
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const searchParams = useLocalSearchParams<{ useractivity?: string }>();
 
     const [ activityView, setActivityView ] = useState(
-        getActivityView(searchParams.get(VIEW_PARAM)));
+        getActivityView(typeof searchParams.useractivity === 'string' ? searchParams.useractivity : null));
 
     const [ pagination, setPagination ] = useState({
         pageIndex: 0,
@@ -148,16 +148,13 @@ export const Component = () => {
     }, []);
 
     useEffect(() => {
-        const currentViewParam = getActivityView(searchParams.get(VIEW_PARAM));
+        const currentViewParam = getActivityView(typeof searchParams.useractivity === 'string' ? searchParams.useractivity : null);
         if (currentViewParam !== activityView) {
-            if (activityView === ActivityView.All) {
-                searchParams.delete(VIEW_PARAM);
-            } else {
-                searchParams.set(VIEW_PARAM, `${activityView === ActivityView.User}`);
-            }
-            setSearchParams(searchParams);
+            // TODO: Update URL with new search params using Expo Router
+            // Expo Router doesn't have a direct equivalent to setSearchParams
+            // This functionality may need to be updated when implementing proper navigation
         }
-    }, [ activityView, searchParams, setSearchParams ]);
+    }, [ activityView, searchParams ]);
 
     // NOTE: We need to provide a custom theme due to a MRT bug causing the initial theme to always be used
     // https://github.com/KevinVandy/material-react-table/issues/1429

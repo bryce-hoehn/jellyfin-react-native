@@ -1,22 +1,21 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { View } from 'react-native';
+import { Card, IconButton, Text } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getDefaultBackgroundClass } from 'components/cardbuilder/cardBuilderUtils';
-import CardActionArea from '@mui/material/CardActionArea';
-import Stack from '@mui/material/Stack';
-import { Link, To } from 'react-router-dom';
+import { Link, Href } from 'expo-router';
+
+// TODO: CardMedia - React Native Paper doesn't have a direct CardMedia equivalent
+// Need to use React Native Image component or similar
+// TODO: CardActionArea - React Native Paper doesn't have a CardActionArea equivalent
+// May need to use Pressable or TouchableOpacity with Card
 
 interface BaseCardProps {
     title?: string;
     text?: string;
     image?: string | null;
     icon?: React.ReactNode;
-    to?: To;
+    to?: Href;
     onPress?: () => void;
     action?: boolean;
     actionRef?: React.MutableRefObject<HTMLButtonElement | null>;
@@ -40,80 +39,73 @@ const BaseCard = ({
 }: BaseCardProps) => {
     return (
         <Card
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                height: height || 240,
-                width: width
-            }}
+            // TODO: Remove sx prop - convert to React Native StyleSheet or style prop
+            // Original: display: 'flex', flexDirection: 'column', height: height || 240, width: width
         >
-            <CardActionArea
-                {...(to && {
-                    component: Link,
-                    to: to
-                })}
-                onPress={onPress}
-                sx={{
-                    display: 'flex',
-                    flexGrow: 1,
-                    alignItems: 'stretch'
-                }}
+            {/* TODO: CardActionArea replacement needed - use Pressable or TouchableOpacity */}
+            {/* Original props: component Link, to, onPress */}
+            <View
+                // TODO: Convert sx styling to React Native style prop
+                // Original: display: 'flex', flexGrow: 1, alignItems: 'stretch'
             >
                 {image ? (
-                    <CardMedia
-                        sx={{ flexGrow: 1 }}
-                        image={image}
-                        title={title}
-                    />
+                    // TODO: CardMedia replacement - use React Native Image component
+                    // Original props: image={image}, title={title}, flexGrow: 1
+                    <View>
+                        {/* TODO: Implement Image component here */}
+                    </View>
                 ) : (
-                    <Box className={getDefaultBackgroundClass(title)} sx={{
-                        flexGrow: 1,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
+                    <View
+                        // TODO: Remove className prop - React Native View doesn't support className
+                        // Original: className={getDefaultBackgroundClass(title)}
+                        // TODO: Convert sx to React Native style prop
+                        // Original sx: flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    >
                         {icon}
-                    </Box>
+                    </View>
                 )}
-            </CardActionArea>
-            <CardContent
-                sx={{
-                    minHeight: 50,
-                    '&:last-child': {
-                        paddingBottom: 2,
-                        paddingRight: 1
-                    }
-                }}>
-                <Stack flexGrow={1} direction='row'>
-                    <Stack flexGrow={1} sx={{ overflow: 'hidden' }}>
-                        <Typography gutterBottom sx={{
-                            overflow: 'hidden',
-                            whiteSpace: 'nowrap',
-                            textOverflow: 'ellipsis'
-                        }}>
+            </View>
+            <Card.Content
+                // TODO: Remove sx prop - convert to React Native style
+                // Original: minHeight: 50, '&:last-child': { paddingBottom: 2, paddingRight: 1 }
+            >
+                <View
+                    // TODO: Convert Stack to View with flexDirection: 'row' style
+                    // Original: flexGrow={1} direction='row'
+                >
+                    <View
+                        // TODO: Convert Stack to View with flex: 1 style
+                        // Original: flexGrow={1} sx={{ overflow: 'hidden' }}
+                    >
+                        <Text
+                            // TODO: Remove sx prop - convert to React Native style
+                            // Original gutterBottom sx: overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'
+                            // Text doesn't support ellipsizeMode directly, may need numberOfLines
+                        >
                             {title}
-                        </Typography>
+                        </Text>
                         {text && (
-                            <Typography
-                                variant='body2'
-                                color='text.secondary'
-                                sx={{
-                                    lineBreak: 'anywhere'
-                                }}
+                            <Text
+                                // TODO: Convert Typography variant='body2' to appropriate Text style
+                                // TODO: Convert color='text.secondary' to theme color
+                                // TODO: Remove sx prop - convert lineBreak: 'anywhere' to React Native equivalent
                             >
                                 {text}
-                            </Typography>
+                            </Text>
                         )}
-                    </Stack>
-                    <Box>
+                    </View>
+                    <View>
                         {action ? (
-                            <IconButton ref={actionRef} onPress={onActionPress}>
-                                <MoreVertIcon />
+                            <IconButton
+                                ref={actionRef}
+                                onPress={onActionPress}
+                                icon={() => <Icon name="more-vert" size={24} />}
+                            >
                             </IconButton>
                         ) : null}
-                    </Box>
-                </Stack>
-            </CardContent>
+                    </View>
+                </View>
+            </Card.Content>
         </Card>
     );
 };

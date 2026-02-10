@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import { View } from 'react-native';
+// TODO: ButtonGroup not available in React Native
 import classNames from 'classnames';
 
 import { appRouter } from 'components/router/appRouter';
@@ -40,10 +40,14 @@ const CardHoverMenu: FC<CardHoverMenuProps> = ({
     const { IsFavorite, Played } = item.UserData ?? {};
 
     return (
-        <Box
+        // TODO: data-action attribute not available in RN (use custom prop or state)
+        <View
             className='cardOverlayContainer itemAction'
             data-action={action}
         >
+            {/* TODO: Replace <a> with TouchableOpacity and handle navigation */}
+            {/* TODO: Convert href to onPress navigation */}
+            {/* TODO: aria-label not available in RN (use accessibilityLabel) */}
             <a
                 href={url}
                 aria-label={item.Name || ''}
@@ -58,7 +62,8 @@ const CardHoverMenu: FC<CardHoverMenuProps> = ({
                 />
             )}
 
-            <ButtonGroup className='cardOverlayButton-br flex'>
+            {/* TODO: ButtonGroup not available in RN, using View instead */}
+            <View className='cardOverlayButton-br flex'>
                 {itemHelper.canMarkPlayed(item) && cardOptions.enablePlayedButton !== false && (
                     <PlayedButton
                         className={btnCssClass}
@@ -79,8 +84,8 @@ const CardHoverMenu: FC<CardHoverMenuProps> = ({
                 )}
 
                 <MoreVertIconButton className={btnCssClass} />
-            </ButtonGroup>
-        </Box>
+            </View>
+        </View>
     );
 };
 

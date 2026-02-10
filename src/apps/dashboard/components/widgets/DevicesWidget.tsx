@@ -2,7 +2,7 @@ import React from 'react';
 import { translate } from 'lib/globalize';
 import Widget from './Widget';
 import DeviceCard from 'apps/dashboard/features/devices/components/DeviceCard';
-import Stack from '@mui/material/Stack';
+import { View } from 'react-native';
 import useLiveSessions from 'apps/dashboard/features/sessions/hooks/useLiveSessions';
 
 const DevicesWidget = () => {
@@ -13,14 +13,15 @@ const DevicesWidget = () => {
             title={translate('HeaderDevices')}
             href='/dashboard/devices'
         >
-            <Stack direction='row' flexWrap='wrap' gap={2}>
+            {/* TODO: Replace Stack with View and custom layout (flexWrap, flexDirection) */}
+            <View>
                 {devices?.map(device => (
                     <DeviceCard
                         key={device.Id}
                         device={device}
                     />
                 ))}
-            </Stack>
+            </View>
         </Widget>
     );
 };

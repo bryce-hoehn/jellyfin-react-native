@@ -1,16 +1,21 @@
-import ListItemButton, { ListItemButtonBaseProps } from '@mui/material/ListItemButton';
+import { List } from 'react-native-paper';
 import React, { FC } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { usePathname, useLocalSearchParams } from 'expo-router';
+import { TouchableOpacity } from 'react-native';
 
-interface ListItemLinkProps extends ListItemButtonBaseProps {
+// TODO: ListItemButtonBaseProps not available in React Native Paper
+interface ListItemLinkProps {
     to: string
     includePaths?: string[]
     excludePaths?: string[]
+    children?: React.ReactNode
 }
 
-const isMatchingParams = (routeParams: URLSearchParams, currentParams: URLSearchParams) => {
+const isMatchingParams = (routeParams: URLSearchParams, currentParams: Record<string, string | string[]>) => {
     for (const param of routeParams) {
-        if (currentParams.get(param[0]) !== param[1]) {
+        const currentValue = currentParams[param[0]];
+        const currentParamValue = Array.isArray(currentValue) ? currentValue[0] : currentValue;
+        if (currentParamValue !== param[1]) {
             return false;
         }
     }
@@ -25,27 +30,31 @@ const ListItemLink: FC<ListItemLinkProps> = ({
     excludePaths = [],
     ...params
 }) => {
-    const location = useLocation();
-    const [ searchParams ] = useSearchParams();
+    const pathname = usePathname();
+    const searchParams = useLocalSearchParams();
 
     const [ toPath, toParams ] = to.split('?');
     // eslint-disable-next-line compat/compat
     const toSearchParams = new URLSearchParams(`?${toParams}`);
     const selectedPaths = [ toPath, ...includePaths ];
 
-    const selected = selectedPaths.includes(location.pathname)
-        && !excludePaths.includes(location.pathname + location.search)
+    const search = new URLSearchParams(Object.entries(searchParams).map(([key, value]) => [key, Array.isArray(value) ? value[0] : value as string])).toString();
+    const selected = selectedPaths.includes(pathname)
+        && !excludePaths.includes(pathname + (search ? '?' + search : ''))
         && (!toParams || isMatchingParams(toSearchParams, searchParams));
 
+    // TODO: List.Item doesn't have 'selected' prop like MUI ListItemButton
+    // TODO: component={Link} pattern doesn't work in React Native - need custom navigation
     return (
-        <ListItemButton
-            component={Link}
-            to={to}
-            selected={selected}
+        <List.Item
+            // TODO: Need to implement selection styling manually
+            onPress={() => {
+                // TODO: Implement navigation
+            }}
             {...params}
         >
             {children}
-        </ListItemButton>
+        </List.Item>
     );
 };
 

@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useMemo } from 'react';
-import IconButton from '@mui/material/IconButton';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import ReplayIcon from '@mui/icons-material/Replay';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useQueryClient } from '@tanstack/react-query';
 
 import { ItemAction } from 'constants/itemAction';
@@ -76,17 +75,12 @@ const PlayOrResumeButton: FC<PlayOrResumeButtonProps> = ({
 
     return (
         <IconButton
-            className='button-flat btnPlayOrResume'
-            data-action={isResumable ? ItemAction.Resume : ItemAction.Play}
-            title={
-                isResumable ?
-                    translate('ButtonResume') :
-                    translate('Play')
-            }
+            // TODO: className prop not supported in RN Paper
+            // TODO: data-action not supported in React Native
+            // TODO: title prop not supported - use accessibility label
             onPress={onPlayClick}
-        >
-            {isResumable ? <ReplayIcon /> : <PlayArrowIcon />}
-        </IconButton>
+            icon={() => <Icon name={isResumable ? "replay" : "play-arrow"} size={24} />}
+        />
     );
 };
 

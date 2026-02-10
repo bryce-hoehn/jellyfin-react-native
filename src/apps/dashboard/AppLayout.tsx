@@ -1,6 +1,7 @@
 import { useMediaQuery, Theme } from 'hooks/useMediaQuery';
 import React, { FC, StrictMode, useCallback, useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { usePathname } from 'expo-router';
+import { Slot } from 'expo-router';
 
 import AppBody from 'components/AppBody';
 import AppToolbar from 'components/toolbar/AppToolbar';
@@ -20,12 +21,12 @@ import { View } from 'react-native';
 
 export const Component: FC = () => {
     const [ isDrawerActive, setIsDrawerActive ] = useState(false);
-    const location = useLocation();
+    const pathname = usePathname();
     const { user } = useApi();
     const { dateFnsLocale } = useLocale();
 
     const isMediumScreen = useMediaQuery((t: any) => t.breakpoints.up('md'));
-    const isMetadataManager = location.pathname.startsWith(`/${DASHBOARD_APP_PATHS.MetadataManager}`);
+    const isMetadataManager = pathname.startsWith(`/${DASHBOARD_APP_PATHS.MetadataManager}`);
     const isDrawerAvailable = Boolean(user) && !isMetadataManager;
     const isDrawerOpen = isDrawerActive && isDrawerAvailable;
 
@@ -81,7 +82,7 @@ export const Component: FC = () => {
                     }}
                 >
                     <AppBody>
-                        <Outlet />
+                        <Slot />
                     </AppBody>
                 </View>
             </View>

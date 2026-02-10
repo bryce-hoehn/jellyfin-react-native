@@ -29,6 +29,7 @@ enum BounceRoutes {
 
 type ConnectionRequiredProps = {
     level?: AccessLevelValue
+    children?: React.ReactNode
 };
 
 const ERROR_STATES = [
@@ -56,7 +57,8 @@ const fetchPublicSystemInfo = async (apiClient: ApiClient) => {
  * If a condition fails, this component will navigate to the appropriate page.
  */
 const ConnectionRequired: FunctionComponent<ConnectionRequiredProps> = ({
-    level = 'user'
+    level = 'user',
+    children
 }) => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -223,7 +225,7 @@ const ConnectionRequired: FunctionComponent<ConnectionRequiredProps> = ({
         return <Loading />;
     }
 
-    return <Outlet />;
+    return children ? <>{children}</> : <Outlet />;
 };
 
 export default ConnectionRequired;

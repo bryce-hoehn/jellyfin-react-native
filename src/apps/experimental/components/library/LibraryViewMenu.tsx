@@ -4,7 +4,7 @@ import Button from '@mui/material/Button/Button';
 import Menu from '@mui/material/Menu/Menu';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import React, { FC, useCallback, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { usePathname, useRouter, useLocalSearchParams } from 'expo-router';
 
 import { LibraryRoutes } from 'apps/experimental/features/libraries/constants/libraryRoutes';
 import useCurrentTab from 'hooks/useCurrentTab';
@@ -13,8 +13,9 @@ import { translate } from 'lib/globalize';
 const LIBRARY_VIEW_MENU_ID = 'library-view-menu';
 
 const LibraryViewMenu: FC = () => {
-    const location = useLocation();
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const pathname = usePathname();
+    const router = useRouter();
+    const searchParams = useLocalSearchParams();
     const { activeTab } = useCurrentTab();
 
     const [ menuAnchorEl, setMenuAnchorEl ] = useState<null | HTMLElement>(null);
@@ -28,7 +29,7 @@ const LibraryViewMenu: FC = () => {
         setMenuAnchorEl(null);
     }, []);
 
-    const currentRoute = LibraryRoutes.find(({ path }) => path === location.pathname);
+    const currentRoute = LibraryRoutes.find(({ path }) => path === pathname);
     const currentTab = currentRoute?.views.find(({ index }) => index === activeTab);
 
     if (!currentTab) return null;
@@ -59,8 +60,9 @@ const LibraryViewMenu: FC = () => {
                         key={tab.view}
                         // eslint-disable-next-line react/jsx-no-bind
                         onPress={() => {
-                            searchParams.set('tab', `${tab.index}`);
-                            setSearchParams(searchParams);
+                            const newParams = new URLSearchParams(searchParams as Record<string, string>);
+                            newParams.set('tab', `${tab.index}`);
+                            router.push(`${pathname}?${newParams.toString()}`);
                             onMenuClose();
                         }}
                         selected={tab.index === currentTab.index}

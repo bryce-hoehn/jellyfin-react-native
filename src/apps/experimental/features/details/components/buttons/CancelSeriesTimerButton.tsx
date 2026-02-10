@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useRouter } from 'expo-router';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { useCancelSeriesTimer } from 'hooks/api/liveTvHooks';
 import { translate } from 'lib/globalize';
@@ -16,7 +16,7 @@ interface CancelSeriesTimerButtonProps {
 const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
     itemId
 }) => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const cancelSeriesTimer = useCancelSeriesTimer();
 
     const onCancelSeriesTimerClick = useCallback(() => {
@@ -36,7 +36,7 @@ const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
                         onSuccess: async () => {
                             toast(translate('SeriesCancelled'));
                             loading.hide();
-                            navigate('/livetv');
+                            router.push('/livetv');
                         },
                         onError: (err: unknown) => {
                             loading.hide();
@@ -52,16 +52,15 @@ const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
             .catch(() => {
                 // confirm dialog closed
             });
-    }, [cancelSeriesTimer, navigate, itemId]);
+    }, [cancelSeriesTimer, router, itemId]);
 
     return (
         <IconButton
-            className='button-flat btnCancelSeriesTimer'
-            title={translate('CancelSeries')}
+            // TODO: className prop not supported in RN Paper
+            // TODO: title prop not supported - use accessibility label
             onPress={onCancelSeriesTimerClick}
-        >
-            <DeleteIcon />
-        </IconButton>
+            icon={() => <Icon name="delete" size={24} />}
+        />
     );
 };
 

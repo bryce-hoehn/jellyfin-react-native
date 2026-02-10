@@ -1,5 +1,4 @@
-import ListItem from '@mui/material/ListItem';
-import List from '@mui/material/List';
+import { View } from 'react-native';
 import React, { FC } from 'react';
 
 import DrawerHeaderLink from 'apps/experimental/components/drawers/DrawerHeaderLink';
@@ -21,11 +20,13 @@ const AppDrawer: FC<ResponsiveDrawerProps> = ({
         onClose={onClose}
         onOpen={onOpen}
     >
-        <List disablePadding>
-            <ListItem disablePadding>
+        {/* TODO: List styling - was MUI List with disablePadding */}
+        <View>
+            {/* TODO: ListItem styling - was MUI ListItem with disablePadding */}
+            <View>
                 <DrawerHeaderLink />
-            </ListItem>
-        </List>
+            </View>
+        </View>
         <ServerDrawerSection />
         <DevicesDrawerSection />
         <LiveTvDrawerSection />

@@ -1,5 +1,5 @@
 import React, { type FC } from 'react';
-import Box from '@mui/material/Box';
+import { View } from 'react-native';
 import itemHelper from 'components/itemHelper';
 import { isUsingLiveTvNaming } from '../cardbuilder/cardBuilderUtils';
 import type { ItemDto } from 'types/base/models/item-dto';
@@ -13,9 +13,9 @@ const DefaultName: FC<DefaultNameProps> = ({ item }) => {
         item.Name :
         itemHelper.getDisplayName(item);
     return (
-        <Box className='cardText cardDefaultText'>
+        <View className='cardText cardDefaultText'>
             {defaultName}
-        </Box>
+        </View>
     );
 };
 

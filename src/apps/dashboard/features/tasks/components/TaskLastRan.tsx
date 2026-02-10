@@ -2,7 +2,7 @@ import React, { FunctionComponent, useMemo } from 'react';
 import { TaskProps } from '../types/taskProps';
 import { useLocale } from 'hooks/useLocale';
 import { formatDistance, formatDistanceToNow, parseISO } from 'date-fns';
-import Typography from '@mui/material/Typography';
+import { Text } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 
 const TaskLastRan: FunctionComponent<TaskProps> = ({ task }: TaskProps) => {
@@ -26,18 +26,21 @@ const TaskLastRan: FunctionComponent<TaskProps> = ({ task }: TaskProps) => {
             const lastResultStatus = task.LastExecutionResult.Status;
 
             return (
-                <Typography sx={{ lineHeight: '1.2rem', color: 'text.secondary' }} variant='body1'>
+                <Text variant='bodyLarge'>
+                    {/* TODO: sx props (lineHeight, color) need RN style conversion */}
                     {translate('LabelScheduledTaskLastRan', lastRan, timeTaken)}
 
-                    {lastResultStatus == 'Failed' && <Typography display='inline' color='error'>{` (${translate('LabelFailed')})`}</Typography>}
-                    {lastResultStatus == 'Cancelled' && <Typography display='inline' color='blue'>{` (${translate('LabelCancelled')})`}</Typography>}
-                    {lastResultStatus == 'Aborted' && <Typography display='inline' color='error'>{` (${translate('LabelAbortedByServerShutdown')})`}</Typography>}
-                </Typography>
+                    {/* TODO: display='inline' and color props (error/blue) need RN implementation */}
+                    {lastResultStatus == 'Failed' && <Text>{` (${translate('LabelFailed')})`}</Text>}
+                    {lastResultStatus == 'Cancelled' && <Text>{` (${translate('LabelCancelled')})`}</Text>}
+                    {lastResultStatus == 'Aborted' && <Text>{` (${translate('LabelAbortedByServerShutdown')})`}</Text>}
+                </Text>
             );
         }
     } else {
         return (
-            <Typography sx={{ color: 'text.secondary' }}>{translate('LabelStopping')}</Typography>
+            // TODO: sx props (color) need RN style conversion
+            <Text>{translate('LabelStopping')}</Text>
         );
     }
 };

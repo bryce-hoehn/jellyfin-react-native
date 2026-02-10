@@ -14,7 +14,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import React, { type MouseEvent, useCallback, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'expo-router';
 
 import ListItemLink from 'components/ListItemLink';
 import { translate } from 'lib/globalize';
@@ -34,10 +34,10 @@ const PLAYBACK_PATHS = [
 ];
 
 const ServerDrawerSection = () => {
-    const location = useLocation();
+    const pathname = usePathname();
 
-    const [ isLibrarySectionOpen, setIsLibrarySectionOpen ] = useState(LIBRARY_PATHS.includes(location.pathname));
-    const [ isPlaybackSectionOpen, setIsPlaybackSectionOpen ] = useState(PLAYBACK_PATHS.includes(location.pathname));
+    const [ isLibrarySectionOpen, setIsLibrarySectionOpen ] = useState(LIBRARY_PATHS.includes(pathname));
+    const [ isPlaybackSectionOpen, setIsPlaybackSectionOpen ] = useState(PLAYBACK_PATHS.includes(pathname));
 
     const onLibrarySectionPress = useCallback((e: MouseEvent) => {
         e.preventDefault();

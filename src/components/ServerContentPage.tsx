@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname, useLocalSearchParams } from 'expo-router';
 
 import viewManager from './viewManager/viewManager';
 import { translate } from 'lib/globalize';
@@ -15,13 +15,15 @@ interface ServerContentPageProps {
  * Uses the ViewManager to dynamically load and execute the page JS.
  */
 const ServerContentPage: FunctionComponent<ServerContentPageProps> = ({ view }) => {
-    const location = useLocation();
+    const pathname = usePathname();
+    const searchParams = useLocalSearchParams();
+    const search = new URLSearchParams(Object.entries(searchParams).map(([key, value]) => [key, Array.isArray(value) ? value[0] : value as string])).toString();
 
     useEffect(() => {
         const loadPage = () => {
             const viewOptions = {
-                url: location.pathname + location.search,
-                state: location.state,
+                url: pathname + (search ? '?' + search : ''),
+                state: undefined,
                 autoFocus: false,
                 options: {
                     supportsThemeMedia: false,
@@ -35,7 +37,7 @@ const ServerContentPage: FunctionComponent<ServerContentPageProps> = ({ view }) 
                         const apiClient = ServerConnections.currentApiClient();
 
                         // Fetch the view html from the server and translate it
-                        const viewHtml = await apiClient?.get(apiClient.getUrl(view + location.search))
+                        const viewHtml = await apiClient?.get(apiClient.getUrl(view + (search ? '?' + search : '')))
                             .then((html: string) => translateHtml(html));
 
                         viewManager.loadView({
@@ -48,12 +50,12 @@ const ServerContentPage: FunctionComponent<ServerContentPageProps> = ({ view }) 
 
         loadPage();
     },
-    // location.state is NOT included as a dependency here since dialogs will update state while the current view stays the same
+    // state is NOT included as a dependency here since dialogs will update state while the current view stays the same
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
         view,
-        location.pathname,
-        location.search
+        pathname,
+        search
     ]);
 
     return null;

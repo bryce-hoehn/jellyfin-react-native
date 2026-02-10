@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Slot } from 'expo-router';
 
 import AppBody from 'components/AppBody';
 import CustomCss from 'components/CustomCss';
@@ -9,7 +9,7 @@ export default function AppLayout() {
     return (
         <>
             <AppBody>
-                <Outlet />
+                <Slot />
             </AppBody>
             <ThemeCss />
             <CustomCss />

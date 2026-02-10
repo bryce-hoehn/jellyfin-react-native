@@ -10,7 +10,7 @@ import { Menu } from 'react-native-paper';
 import dialog from 'components/dialog/dialog';
 import { playbackManager } from 'components/playback/playbackmanager';
 import React, { FC, useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 import { enable, isEnabled } from 'scripts/autocast';
 import { translate } from 'lib/globalize';
@@ -133,7 +133,7 @@ const RemotePlayActiveMenu: FC<RemotePlayActiveMenuProps> = ({
 
             <MenuItem
                 component={Link}
-                to='/queue'
+                href='/queue'
                 onPress={onMenuClose}
             >
                 <ListItemIcon>
