@@ -7,9 +7,9 @@ export default function Queue() {
     <ViewManagerPage
       controller='playback/queue/index'
       view='playback/queue/index.html'
-      isFullscreen={true}
+      isFullscreen
       isNowPlayingBarEnabled={false}
-      isThemeMediaSupported={true}
+      isThemeMediaSupported
     />
   );
 }

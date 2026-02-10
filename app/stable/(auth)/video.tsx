@@ -8,9 +8,9 @@ export default function Video() {
       controller='playback/video/index'
       view='playback/video/index.html'
       type='video-osd'
-      isFullscreen={true}
+      isFullscreen
       isNowPlayingBarEnabled={false}
-      isThemeMediaSupported={true}
+      isThemeMediaSupported
     />
   );
 }
