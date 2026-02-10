@@ -1,13 +1,15 @@
-import { Stack } from "expo-router";
+import { Slot } from 'expo-router';
+import React from 'react';
+
+import AppHeader from '../../src/components/AppHeader';
+import Backdrop from '../../src/components/Backdrop';
 
 export default function ExperimentalLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="home" />
-    </Stack>
+    <>
+      <AppHeader isHidden />
+      <Backdrop />
+      <Slot />
+    </>
   );
 }
