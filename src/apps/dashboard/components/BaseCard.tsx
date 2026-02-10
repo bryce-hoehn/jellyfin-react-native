@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Card, IconButton, Text } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getDefaultBackgroundClass } from 'components/cardbuilder/cardBuilderUtils';
-import { Link, To } from 'react-router-dom';
+import { Link, Href } from 'expo-router';
 
 // TODO: CardMedia - React Native Paper doesn't have a direct CardMedia equivalent
 // Need to use React Native Image component or similar
@@ -15,7 +15,7 @@ interface BaseCardProps {
     text?: string;
     image?: string | null;
     icon?: React.ReactNode;
-    to?: To;
+    to?: Href;
     onPress?: () => void;
     action?: boolean;
     actionRef?: React.MutableRefObject<HTMLButtonElement | null>;

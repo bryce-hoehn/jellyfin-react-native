@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 type WidgetProps = {
     title: string;

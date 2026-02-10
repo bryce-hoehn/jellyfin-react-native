@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import debounce from 'lodash-es/debounce';
 import isEqual from 'lodash-es/isEqual';
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 import { EventType } from 'constants/eventType';
 import Events, { type Event } from 'utils/events';
@@ -85,7 +85,7 @@ const AppTabs: FC<AppTabsParams> = ({
                         label={name}
                         data-tab-index={`${index}`}
                         component={Link}
-                        to={href}
+                        href={href}
                     />
                 ))
             }

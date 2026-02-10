@@ -1,6 +1,6 @@
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React, { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'expo-router';
 
 import BaseCard from 'apps/dashboard/components/BaseCard';
 
@@ -11,15 +11,14 @@ interface PluginCardProps {
 };
 
 const PluginCard = ({ plugin }: PluginCardProps) => {
-    const location = useLocation();
+    const pathname = usePathname();
 
     const pluginPage = useMemo(() => (
         {
             pathname: `/dashboard/plugins/${plugin.id}`,
-            search: `?name=${encodeURIComponent(plugin.name || '')}`,
-            hash: location.hash
+            params: { name: plugin.name || '' }
         }
-    ), [ location, plugin ]);
+    ), [ plugin ]);
 
     return (
         <BaseCard

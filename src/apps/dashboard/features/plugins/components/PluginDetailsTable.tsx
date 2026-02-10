@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell/TableCell';
 import TableContainer from '@mui/material/TableContainer/TableContainer';
 import TableRow from '@mui/material/TableRow/TableRow';
 import React, { FC } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 import { translate } from 'lib/globalize';
 
@@ -77,8 +77,7 @@ const PluginDetailsTable: FC<PluginDetailsTableProps> = ({
                             )
                             || (pluginDetails?.version?.repositoryUrl && (
                                 <Link
-                                    component={RouterLink}
-                                    to={pluginDetails.version.repositoryUrl}
+                                    href={pluginDetails.version.repositoryUrl}
                                     target='_blank'
                                     rel='noopener noreferrer'
                                 >
