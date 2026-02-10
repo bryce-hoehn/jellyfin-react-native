@@ -1,42 +1,33 @@
 import React, { type FC } from 'react';
-import {
-    Link,
-    URLSearchParamsInit,
-    createSearchParams,
-    useLocation,
-    useSearchParams
-} from 'react-router-dom';
+import { usePathname, useLocalSearchParams } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { IconButton } from 'react-native-paper';
 import { translate } from 'lib/globalize';
 
-const getUrlParams = (searchParams: URLSearchParams) => {
+const getUrlParams = (searchParams: Record<string, string | string[]>) => {
     const parentId =
-        searchParams.get('parentId') || searchParams.get('topParentId');
-    const collectionType = searchParams.get('collectionType');
-    const params: URLSearchParamsInit = {};
+        searchParams.parentId || searchParams.topParentId;
+    const collectionType = searchParams.collectionType;
+    const params: Record<string, string> = {};
 
-    if (parentId) {
+    if (parentId && typeof parentId === 'string') {
         params.parentId = parentId;
     }
 
-    if (collectionType) {
+    if (collectionType && typeof collectionType === 'string') {
         params.collectionType = collectionType;
     }
     return params;
 };
 
 const SearchButton: FC = () => {
-    const location = useLocation();
-    const [searchParams] = useSearchParams();
+    const pathname = usePathname();
+    const searchParams = useLocalSearchParams();
 
-    const isSearchPath = location.pathname === '/search';
-    const search = createSearchParams(getUrlParams(searchParams));
-    const createSearchLink =
-        {
-            pathname: '/search',
-            search: search ? `?${search}` : undefined
-        };
+    const isSearchPath = pathname === '/search';
+    const urlParams = getUrlParams(searchParams);
+    const searchQuery = new URLSearchParams(urlParams).toString();
+    const createSearchLink = `/search${searchQuery ? `?${searchQuery}` : ''}`;
 
     return (
         // TODO: Tooltip not available in RN Paper - consider react-native-paper-tooltip

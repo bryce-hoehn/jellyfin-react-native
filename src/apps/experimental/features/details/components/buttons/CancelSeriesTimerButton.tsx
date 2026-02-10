@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'expo-router';
 import { IconButton } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -16,7 +16,7 @@ interface CancelSeriesTimerButtonProps {
 const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
     itemId
 }) => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const cancelSeriesTimer = useCancelSeriesTimer();
 
     const onCancelSeriesTimerClick = useCallback(() => {
@@ -36,7 +36,7 @@ const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
                         onSuccess: async () => {
                             toast(translate('SeriesCancelled'));
                             loading.hide();
-                            navigate('/livetv');
+                            router.push('/livetv');
                         },
                         onError: (err: unknown) => {
                             loading.hide();
@@ -52,7 +52,7 @@ const CancelSeriesTimerButton: FC<CancelSeriesTimerButtonProps> = ({
             .catch(() => {
                 // confirm dialog closed
             });
-    }, [cancelSeriesTimer, navigate, itemId]);
+    }, [cancelSeriesTimer, router, itemId]);
 
     return (
         <IconButton

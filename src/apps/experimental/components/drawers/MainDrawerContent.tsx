@@ -9,7 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname, useLocalSearchParams } from 'expo-router';
 
 import ListItemLink from 'components/ListItemLink';
 import { appRouter } from 'components/router/appRouter';
@@ -23,12 +23,13 @@ import DrawerHeaderLink from './DrawerHeaderLink';
 
 const MainDrawerContent = () => {
     const { user } = useApi();
-    const location = useLocation();
+    const pathname = usePathname();
+    const searchParams = useLocalSearchParams();
     const { data: userViewsData } = useUserViews(user?.Id);
     const userViews = userViewsData?.Items || [];
     const webConfig = useWebConfig();
 
-    const isHomeSelected = location.pathname === '/home' && (!location.search || location.search === '?tab=0');
+    const isHomeSelected = pathname === '/home' && (!searchParams.tab || searchParams.tab === '0');
 
     return (
         <>

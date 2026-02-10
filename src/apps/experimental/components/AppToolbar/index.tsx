@@ -1,6 +1,6 @@
 import Stack from '@mui/material/Stack';
 import React, { type FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'expo-router';
 
 import { appRouter, PUBLIC_PATHS } from 'components/router/appRouter';
 import AppToolbar from 'components/toolbar/AppToolbar';
@@ -22,16 +22,16 @@ const ExperimentalAppToolbar: FC<AppToolbarProps> = ({
     isDrawerOpen,
     onDrawerButtonPress
 }) => {
-    const location = useLocation();
+    const pathname = usePathname();
 
     // The video osd does not show the standard toolbar
-    if (location.pathname === '/video') return null;
+    if (pathname === '/video') return null;
 
     // Only show the back button in apps when appropriate
-    const isBackButtonAvailable = window.NativeShell && appRouter.canGoBack(location.pathname);
+    const isBackButtonAvailable = window.NativeShell && appRouter.canGoBack(pathname);
 
     // Check if the current path is a public path to hide user content
-    const isPublicPath = PUBLIC_PATHS.includes(location.pathname);
+    const isPublicPath = PUBLIC_PATHS.includes(pathname);
 
     return (
         <AppToolbar

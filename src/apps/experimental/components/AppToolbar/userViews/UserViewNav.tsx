@@ -7,7 +7,8 @@ import Icon from '@mui/material/Icon';
 import { Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { useCallback, useMemo, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link } from 'expo-router';
+import { usePathname, useLocalSearchParams } from 'expo-router';
 
 import LibraryIcon from 'apps/experimental/components/LibraryIcon';
 import { MetaView } from 'apps/experimental/constants/metaView';
@@ -53,10 +54,11 @@ const getCurrentUserView = (
 };
 
 const UserViewNav = () => {
-    const location = useLocation();
-    const [ searchParams ] = useSearchParams();
-    const libraryId = searchParams.get('topParentId') || searchParams.get('parentId');
-    const collectionType = searchParams.get('collectionType');
+    const pathname = usePathname();
+    const searchParams = useLocalSearchParams();
+    const libraryId = (typeof searchParams.topParentId === 'string' ? searchParams.topParentId : undefined) || 
+                      (typeof searchParams.parentId === 'string' ? searchParams.parentId : undefined);
+    const collectionType = typeof searchParams.collectionType === 'string' ? searchParams.collectionType : undefined;
     const { activeTab } = useCurrentTab();
     const webConfig = useWebConfig();
 
@@ -98,8 +100,8 @@ const UserViewNav = () => {
     }, []);
 
     const currentUserView = useMemo(() => (
-        getCurrentUserView(userViews?.Items, location.pathname, libraryId, collectionType, activeTab)
-    ), [ activeTab, collectionType, libraryId, location.pathname, userViews ]);
+        getCurrentUserView(userViews?.Items, pathname, libraryId, collectionType, activeTab)
+    ), [ activeTab, collectionType, libraryId, pathname, userViews ]);
 
     if (isPending) return null;
 
@@ -110,7 +112,7 @@ const UserViewNav = () => {
                 color={(currentUserView?.Id === MetaView.Favorites.Id) ? 'primary' : 'inherit'}
                 startIcon={<Favorite />}
                 component={Link}
-                to='/home?tab=1'
+                href='/home?tab=1'
             >
                 {translate(MetaView.Favorites.Name)}
             </Button>
@@ -137,7 +139,7 @@ const UserViewNav = () => {
                     color={(view.Id === currentUserView?.Id) ? 'primary' : 'inherit'}
                     startIcon={<LibraryIcon item={view} />}
                     component={Link}
-                    to={appRouter.getRouteUrl(view, { context: view.CollectionType }).substring(1)}
+                    href={appRouter.getRouteUrl(view, { context: view.CollectionType }).substring(1)}
                 >
                     {view.Name}
                 </Button>
