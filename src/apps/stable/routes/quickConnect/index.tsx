@@ -1,6 +1,6 @@
 import { getQuickConnectApi } from '@jellyfin/sdk/lib/utils/api/quick-connect-api';
 import React, { FC, FormEvent, useCallback, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocalSearchParams } from 'expo-router';
 
 import Page from 'components/Page';
 import { translate } from 'lib/globalize';
@@ -12,8 +12,8 @@ import './quickConnect.scss';
 
 const QuickConnectPage: FC = () => {
     const { api, user } = useApi();
-    const [ searchParams ] = useSearchParams();
-    const [ code, setCode ] = useState(searchParams.get('code') ?? '');
+    const searchParams = useLocalSearchParams();
+    const [ code, setCode ] = useState((searchParams.code as string) ?? '');
     const [ error, setError ] = useState<string>();
     const [ success, setSuccess ] = useState(false);
 
@@ -37,7 +37,7 @@ const QuickConnectPage: FC = () => {
             return;
         }
 
-        const userId = searchParams.get('userId') ?? user?.Id;
+        const userId = (searchParams.userId as string) ?? user?.Id;
         const normalizedCode = code.replace(/\s/g, '');
         console.log('[QuickConnect] authorizing code %s as user %s', normalizedCode, userId);
 
@@ -83,7 +83,7 @@ const QuickConnectPage: FC = () => {
                                 <p>
                                     {translate('QuickConnectAuthorizeSuccess')}
                                 </p>
-                                <Link to='/home' className='button-link emby-button'>
+                                <Link href='/home' className='button-link emby-button'>
                                     {translate('GoHome')}
                                 </Link>
                             </div>

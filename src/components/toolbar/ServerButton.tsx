@@ -1,7 +1,7 @@
 import icon from '@jellyfin/ux-web/icon-transparent.png';
 import { Button } from 'react-native-paper';
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'expo-router';
 import { Image } from 'react-native';
 
 import { useSystemInfo } from 'hooks/useSystemInfo';

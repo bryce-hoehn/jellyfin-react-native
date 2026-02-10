@@ -1,6 +1,6 @@
 import type { UserDto } from '@jellyfin/sdk/lib/generated-client/models/user-dto';
 import React, { useEffect, useMemo, useState, type FC } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 
 import { appHost } from 'components/apphost';
 import layoutManager from 'components/layoutManager';
@@ -19,7 +19,7 @@ import keyboardNavigation from 'scripts/keyboardNavigation';
 
 const UserSettingsPage: FC = () => {
     const { user: currentUser } = useApi();
-    const [ searchParams ] = useSearchParams();
+    const searchParams = useLocalSearchParams();
     const {
         data: isQuickConnectEnabled,
         isPending: isQuickConnectEnabledPending
@@ -28,7 +28,7 @@ const UserSettingsPage: FC = () => {
     const [ user, setUser ] = useState<UserDto>();
 
     const userId = useMemo(() => (
-        searchParams.get('userId') || currentUser?.Id
+        (searchParams.userId as string) || currentUser?.Id
     ), [ currentUser, searchParams ]);
     const isLoggedInUser = useMemo(() => (
         userId && userId === currentUser?.Id

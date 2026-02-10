@@ -2,7 +2,7 @@ import { ForgotPasswordAction } from '@jellyfin/sdk/lib/generated-client/models/
 import { getUserApi } from '@jellyfin/sdk/lib/utils/api/user-api';
 import { useMutation } from '@tanstack/react-query';
 import React, { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'expo-router';
 
 import alert from 'components/alert';
 import Page from 'components/Page';
@@ -12,7 +12,7 @@ import { translate } from 'lib/globalize';
 import ServerConnections from 'lib/jellyfin-apiclient/ServerConnections';
 
 export const ForgotPasswordPage = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const [username, setUsername] = useState('');
 
     const forgotPasswordMutation = useMutation({
@@ -47,7 +47,7 @@ export const ForgotPasswordPage = () => {
                     msg += '<br/><br/>';
                     msg += result.PinFile;
                     msg += '<br/>';
-                    callback = () => navigate('/forgotpasswordpin');
+                    callback = () => router.push('/forgotpasswordpin');
                     break;
                 default:
                     return;
@@ -63,8 +63,8 @@ export const ForgotPasswordPage = () => {
     });
 
     const handleCancel = useCallback(() => {
-        navigate(-1);
-    }, [navigate]);
+        router.back();
+    }, [router]);
 
     const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();

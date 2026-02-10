@@ -1,7 +1,7 @@
 import type { UserDto } from '@jellyfin/sdk/lib/generated-client';
 import { ImageType } from '@jellyfin/sdk/lib/generated-client/models/image-type';
 import React, { FunctionComponent, useEffect, useRef, useCallback, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 
 import Dashboard from '../../../../utils/dashboard';
 import globalize from '../../../../lib/globalize';
@@ -17,8 +17,8 @@ import Loading from 'components/loading/LoadingComponent';
 import Button from 'elements/emby-button/Button';
 
 const UserProfile: FunctionComponent = () => {
-    const [ searchParams ] = useSearchParams();
-    const userId = searchParams.get('userId');
+    const searchParams = useLocalSearchParams();
+    const userId = searchParams.userId as string | undefined;
     const { data: user, isPending: isUserPending } = useUser(userId ? { userId: userId } : undefined);
     const libraryMenu = useMemo(async () => ((await import('../../../../scripts/libraryMenu')).default), []);
 

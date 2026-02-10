@@ -1,6 +1,6 @@
 import { MenuProps, Menu, List, Divider } from 'react-native-paper';
 import React, { FC, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 import { appHost } from 'components/apphost';
 import { AppFeature } from 'constants/appFeature';
@@ -61,7 +61,7 @@ const AppUserMenu: FC<AppUserMenuProps> = ({
         >
             <Menu.Item
                 component={Link}
-                to={`/userprofile?userId=${user?.Id}`}
+                href={`/userprofile?userId=${user?.Id}`}
                 onPress={onMenuClose}
             >
                 <List.Item
@@ -71,7 +71,7 @@ const AppUserMenu: FC<AppUserMenuProps> = ({
             </Menu.Item>
             <Menu.Item
                 component={Link}
-                to='/mypreferencesmenu'
+                href='/mypreferencesmenu'
                 onPress={onMenuClose}
             >
                 <List.Item
@@ -112,7 +112,7 @@ const AppUserMenu: FC<AppUserMenuProps> = ({
                 <Menu.Item
                     key='admin-dashboard-link'
                     component={Link}
-                    to='/dashboard'
+                    href='/dashboard'
                     onPress={onMenuClose}
                 >
                     <List.Item
@@ -123,7 +123,7 @@ const AppUserMenu: FC<AppUserMenuProps> = ({
                 <Menu.Item
                     key='admin-metadata-link'
                     component={Link}
-                    to='/metadata'
+                    href='/metadata'
                     onPress={onMenuClose}
                 >
                     <List.Item
@@ -137,7 +137,7 @@ const AppUserMenu: FC<AppUserMenuProps> = ({
             {isQuickConnectEnabled && (
                 <Menu.Item
                     component={Link}
-                    to='/quickconnect'
+                    href='/quickconnect'
                     onPress={onMenuClose}
                 >
                     <List.Item
