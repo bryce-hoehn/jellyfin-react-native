@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import Page from 'components/Page';
-import { useParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -21,7 +21,7 @@ import TaskTriggerCell from 'apps/dashboard/features/tasks/components/TaskTrigge
 import NewTriggerForm from 'apps/dashboard/features/tasks/components/NewTriggerForm';
 
 export const Component = () => {
-    const { id: taskId } = useParams();
+    const { id: taskId } = useLocalSearchParams<{ id?: string }>();
     const updateTask = useUpdateTask();
     const { data: task, isLoading } = useTask({ taskId: taskId || '' });
     const [ isAddTriggerDialogOpen, setIsAddTriggerDialogOpen ] = useState(false);

@@ -3,7 +3,7 @@ import { UnratedItem } from '@jellyfin/sdk/lib/generated-client/models/unrated-i
 import { DynamicDayOfWeek } from '@jellyfin/sdk/lib/generated-client/models/dynamic-day-of-week';
 import escapeHTML from 'escape-html';
 import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 
 import globalize from '../../../../lib/globalize';
 import AccessScheduleList from '../../../../components/dashboard/users/AccessScheduleList';
@@ -65,8 +65,7 @@ function handleSaveUser(
 }
 
 const UserParentalControl = () => {
-    const [ searchParams ] = useSearchParams();
-    const userId = searchParams.get('userId');
+    const { userId } = useLocalSearchParams<{ userId?: string }>();
     const [ userName, setUserName ] = useState('');
     const [ parentalRatings, setParentalRatings ] = useState<ParentalRating[]>([]);
     const [ unratedItems, setUnratedItems ] = useState<UnratedNamedItem[]>([]);

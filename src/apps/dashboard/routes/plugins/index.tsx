@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React, { useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'expo-router';
 
 import SearchInput from 'apps/dashboard/components/SearchInput';
 import { usePluginDetails } from 'apps/dashboard/features/plugins/api/usePluginDetails';
@@ -121,7 +121,7 @@ export const Component = () => {
 
                         <Button
                             component={Link}
-                            to='/dashboard/plugins/repositories'
+                            href='/dashboard/plugins/repositories'
                             variant='outlined'
                             sx={{
                                 marginLeft: 2

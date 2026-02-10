@@ -12,7 +12,8 @@ import useLiveTasks from 'apps/dashboard/features/tasks/hooks/useLiveTasks';
 import Button from '@mui/material/Button';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import AddIcon from '@mui/icons-material/Add';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useStartTask } from 'apps/dashboard/features/tasks/api/useStartTask';
 import { TaskState } from '@jellyfin/sdk/lib/generated-client/models/task-state';
 import TaskProgress from 'apps/dashboard/features/tasks/components/TaskProgress';
@@ -27,7 +28,7 @@ import Grid from '@mui/material/Grid';
 const CONFIG_KEY = 'livetv';
 
 export const Component = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
     const {
         data: config,
         isPending: isConfigPending,
@@ -44,12 +45,12 @@ export const Component = () => {
     const startTask = useStartTask();
 
     const navigateToSchedulesDirect = useCallback(() => {
-        navigate('/dashboard/livetv/guide?type=schedulesdirect');
-    }, [ navigate ]);
+        router.push('/dashboard/livetv/guide?type=schedulesdirect');
+    }, [ router ]);
 
     const navigateToXMLTV = useCallback(() => {
-        navigate('/dashboard/livetv/guide?type=xmltv');
-    }, [ navigate ]);
+        router.push('/dashboard/livetv/guide?type=xmltv');
+    }, [ router ]);
 
     const showProviderMenu = useCallback(() => {
         setAnchorEl(providerButtonRef.current);
@@ -92,7 +93,7 @@ export const Component = () => {
                             sx={{ alignSelf: 'flex-start' }}
                             startIcon={<AddIcon />}
                             component={Link}
-                            to='/dashboard/livetv/tuner'
+                            href='/dashboard/livetv/tuner'
                         >
                             {translate('ButtonAddTunerDevice')}
                         </Button>

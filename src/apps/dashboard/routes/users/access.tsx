@@ -1,6 +1,6 @@
 import type { BaseItemDto, DeviceInfoDto, UserDto } from '@jellyfin/sdk/lib/generated-client';
 import React, { useCallback, useEffect, useState, useRef, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 
 import loading from '../../../../components/loading/loading';
 import globalize from '../../../../lib/globalize';
@@ -21,8 +21,7 @@ type ItemsArr = {
 };
 
 const UserLibraryAccess = () => {
-    const [ searchParams ] = useSearchParams();
-    const userId = searchParams.get('userId');
+    const { userId } = useLocalSearchParams<{ userId?: string }>();
     const [ isSettingsSavedToastOpen, setIsSettingsSavedToastOpen ] = useState(false);
     const [ userName, setUserName ] = useState('');
     const [channelsItems, setChannelsItems] = useState<ItemsArr[]>([]);

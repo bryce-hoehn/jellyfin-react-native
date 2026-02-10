@@ -15,7 +15,7 @@ import Download from '@mui/icons-material/Download';
 import Extension from '@mui/icons-material/Extension';
 import Settings from '@mui/icons-material/Settings';
 import React, { type FC, useState, useCallback, useMemo } from 'react';
-import { useSearchParams, Link as RouterLink, useParams } from 'react-router-dom';
+import { useLocalSearchParams, Link as RouterLink } from 'expo-router';
 
 import { findBestConfigurationPage } from 'apps/dashboard/features/plugins/api/configurationPage';
 import { findBestPluginInfo } from 'apps/dashboard/features/plugins/api/pluginInfo';
@@ -47,8 +47,7 @@ const TRUSTED_REPO_URL = 'https://repo.jellyfin.org/';
 
 const PluginPage: FC = () => {
     const { api } = useApi();
-    const { pluginId } = useParams();
-    const [ searchParams ] = useSearchParams();
+    const { pluginId, name } = useLocalSearchParams<{ pluginId?: string; name?: string }>();
     const disablePlugin = useDisablePlugin();
     const enablePlugin = useEnablePlugin();
     const installPlugin = useInstallPackage();
@@ -60,7 +59,7 @@ const PluginPage: FC = () => {
     const [ isUninstallConfirmOpen, setIsUninstallConfirmOpen ] = useState(false);
     const [ pendingInstallVersion, setPendingInstallVersion ] = useState<VersionInfo>();
 
-    const pluginName = searchParams.get('name') ?? undefined;
+    const pluginName = typeof name === 'string' ? name : undefined;
 
     const {
         data: configurationPages,
@@ -402,7 +401,7 @@ const PluginPage: FC = () => {
                                 {!isLoading && pluginDetails?.configurationPage?.Name && (
                                     <Button
                                         component={RouterLink}
-                                        to={`/${getPluginUrl(pluginDetails.configurationPage.Name)}`}
+                                        href={`/${getPluginUrl(pluginDetails.configurationPage.Name)}`}
                                         startIcon={<Settings />}
                                     >
                                         {translate('Settings')}

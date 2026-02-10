@@ -1,7 +1,7 @@
 import Loading from 'components/loading/LoadingComponent';
 import Page from 'components/Page';
 import React, { useCallback, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocalSearchParams } from 'expo-router';
 import { useServerLog } from 'apps/dashboard/features/logs/api/useServerLog';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -17,7 +17,7 @@ import { copy } from 'scripts/clipboard';
 import Toast from 'apps/dashboard/components/Toast';
 
 export const Component = () => {
-    const { file: fileName } = useParams();
+    const { file: fileName } = useLocalSearchParams<{ file?: string }>();
     const {
         isError: error,
         isPending: loading,
